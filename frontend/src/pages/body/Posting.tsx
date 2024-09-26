@@ -52,7 +52,6 @@ function Posting({ path }: { path: string }) {
       <img style={{ maxWidth: "100%" }} {...props} alt="" />
     ),
   };
-  console.log(markdownContent);
 
   return (
     <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
