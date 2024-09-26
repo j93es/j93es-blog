@@ -20,10 +20,16 @@ const app: Application = express();
 app.set("trust proxy", "loopback, linklocal, uniquelocal");
 app.set("port", PORT || 8000);
 
-app.use((req, res, next) => {
-  res.setHeader("Cross-Origin-Resource-Policy", "cross-origin"); // 교차 출처 리소스 허용
-  next();
-});
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: ["'self'", "https://j93es.com"],
+      imgSrc: ["'self'", "https://j93es.com"],
+      scriptSrc: ["'self'", "https://j93es.com"],
+    },
+  })
+);
+app.use(helmet.referrerPolicy({ policy: "no-referrer" }));
 app.use(cors(corsOptions));
 app.use(
   helmet({
