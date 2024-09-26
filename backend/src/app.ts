@@ -20,6 +20,7 @@ const app: Application = express();
 app.set("trust proxy", "loopback, linklocal, uniquelocal");
 app.set("port", PORT || 8000);
 
+app.use(cors(corsOptions));
 app.use(
   helmet({
     crossOriginResourcePolicy: false,
@@ -27,7 +28,6 @@ app.use(
 );
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cors(corsOptions));
 
 app.use(rateLimiter.makeLimit(60, 200));
 
