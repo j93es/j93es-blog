@@ -20,10 +20,6 @@ const app: Application = express();
 app.set("trust proxy", "loopback, linklocal, uniquelocal");
 app.set("port", PORT || 8000);
 
-app.use((req, res, next) => {
-  console.log(req);
-  next();
-});
 app.use(cors(corsOptions));
 app.use(
   helmet({
