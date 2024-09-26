@@ -23,6 +23,7 @@ app.set("port", PORT || 8000);
 app.use(cors(corsOptions));
 app.use(
   helmet({
+    contentSecurityPolicy: false,
     crossOriginResourcePolicy: { policy: "cross-origin" },
   })
 );
