@@ -19,4 +19,4 @@ export const enum AccidentCode {
 }
 ```
 
-![성능 테스트](https://j93.es/api/posts/dev/backend-begin/img/performance-test.png)
+![성능 테스트](https://j93.es/api/posts/dev/backend-begin/image/performance-test.png)

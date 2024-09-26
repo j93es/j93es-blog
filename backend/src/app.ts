@@ -20,16 +20,6 @@ const app: Application = express();
 app.set("trust proxy", "loopback, linklocal, uniquelocal");
 app.set("port", PORT || 8000);
 
-app.use(
-  helmet.contentSecurityPolicy({
-    directives: {
-      defaultSrc: ["'self'", "https://j93es.com"],
-      imgSrc: ["'self'", "https://j93es.com"],
-      scriptSrc: ["'self'", "https://j93es.com"],
-    },
-  })
-);
-app.use(helmet.referrerPolicy({ policy: "no-referrer" }));
 app.use(cors(corsOptions));
 app.use(
   helmet({
