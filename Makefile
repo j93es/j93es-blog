@@ -33,6 +33,9 @@ stop-pm2:
 start-pm2:
 	cd $(BACKEND_DIR) && sudo pm2 start npm --name j93es-blog-backend -- run start
 
+save-pm2:
+	sudo pm2 save
+
 # 5. Reload Nginx to apply new configuration
 restart-nginx:
 	sudo systemctl reload nginx
@@ -40,9 +43,9 @@ restart-nginx:
 deploy-frontend:update build-frontend restart-nginx
 	@echo "Frontend deployment completed."
 
-deploy-backend:update build-backend stop-pm2 start-pm2 restart-nginx
+deploy-backend:update build-backend stop-pm2 start-pm2 save-pm2 restart-nginx
 	@echo "Backend deployment completed."
 
 # 6. Full deployment: Update, build, and restart services
-deploy: update build-frontend build-backend stop-pm2 start-pm2 restart-nginx
+deploy: update build-frontend build-backend stop-pm2 start-pm2 save-pm2 restart-nginx
 	@echo "Deployment completed."

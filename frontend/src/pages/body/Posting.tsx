@@ -54,7 +54,7 @@ function Posting({ path }: { path: string }) {
   };
 
   return (
-    <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
+    <div style={{ width: "90%", display: "flex", justifyContent: "center" }}>
       <div style={{ width: "100%" }}>
         <ReactMarkdown
           children={markdownContent}
