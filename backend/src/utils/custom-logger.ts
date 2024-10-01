@@ -46,6 +46,30 @@ export class CustomLogger {
     )} - ${req.method} ${req.url} - ${req.headers["user-agent"]}`;
   };
 
+  requestLogger = (req: Request, res: Response, next: NextFunction) => {
+    const start = new Date();
+    const originalEnd = res.end;
+
+    res.end = (
+      chunk?: any,
+      encoding?: BufferEncoding | (() => void),
+      cb?: () => void
+    ): Response<any, Record<string, any>> => {
+      const result = originalEnd.call(
+        res,
+        chunk,
+        encoding as BufferEncoding,
+        cb
+      );
+      const duration = new Date().getTime() - start.getTime();
+      const message = `${res.statusCode} ${duration}ms`;
+      this.log("Request", message, req);
+      return result;
+    };
+
+    next();
+  };
+
   log = (head: string, message: string, req?: Request) => {
     console.log(this.makeMsg(head, message, req));
   };

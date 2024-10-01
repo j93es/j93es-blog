@@ -34,6 +34,8 @@ app.use(rateLimiter.makeLimit(60, 200));
 
 app.use(requestUtils.addId);
 
+app.use(customLogger.requestLogger);
+
 app.use(express.static(publicDir));
 
 app.get("/index/", (req: Request, res: Response) => {
