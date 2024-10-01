@@ -1,5 +1,7 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { apiUrl } from "config/app-config";
+import { bodyLoadingContext, setBodyLoadingContext } from "App";
+import Loader from "pages/body/Loader";
 
 import ReactMarkdown from "react-markdown";
 import rehypeHighlight from "rehype-highlight";
@@ -9,6 +11,8 @@ import { coldarkCold as syntaxHighlighterStyle } from "react-syntax-highlighter/
 
 function Posting({ path }: { path: string }) {
   const [markdownContent, setMarkdownContent] = useState("");
+  const loading = useContext(bodyLoadingContext);
+  const setBodyLoading = useContext(setBodyLoadingContext);
 
   useEffect(() => {
     if (!path || path === "/") {
@@ -16,18 +20,26 @@ function Posting({ path }: { path: string }) {
     }
     const fetchMarkdown = async () => {
       try {
+        setBodyLoading(true);
         const response = await fetch(apiUrl + path);
         if (!response.ok) {
           throw new Error("Failed to fetch markdown");
         }
         const markdownText = await response.text();
         setMarkdownContent(markdownText.split("---")[2]);
+        setBodyLoading(false);
       } catch (error) {
         console.error("Failed to fetch markdown", error);
       }
     };
 
     fetchMarkdown();
+
+    return () => {
+      setMarkdownContent("");
+    };
+
+    // eslint-disable-next-line
   }, [path]);
 
   const components = {
@@ -53,7 +65,7 @@ function Posting({ path }: { path: string }) {
     ),
   };
 
-  return (
+  const postingJsx = (
     <div style={{ width: "90%", display: "flex", justifyContent: "center" }}>
       <div style={{ width: "100%" }}>
         <ReactMarkdown
@@ -64,6 +76,8 @@ function Posting({ path }: { path: string }) {
       </div>
     </div>
   );
+
+  return <>{loading ? <Loader /> : postingJsx}</>;
 }
 
 export default Posting;

@@ -1,24 +1,25 @@
 import { useContext } from "react";
-import { PostingListContext } from "App";
+import { PostingListContext, bodyLoadingContext } from "App";
 import { Link } from "react-router-dom";
+import Loader from "pages/body/Loader";
 import "pages/body/PostingList.css";
 
 function PostingList() {
   const postingList = useContext(PostingListContext);
-
-  return (
-    <li className="posting-list-wrap">
+  const loading = useContext(bodyLoadingContext);
+  const postingListJsx = (
+    <ul className="posting-list-wrap">
       {postingList.map((posting) => (
-        <Link
-          key={`link-${posting.title}`}
-          to={posting.path}
-          className="posting-link"
-        >
-          {posting.title} - {posting.date}
-        </Link>
+        <li key={`posting-${posting.title}`}>
+          <Link to={posting.path} className="posting-link">
+            {posting.title} - {posting.date}
+          </Link>
+        </li>
       ))}
-    </li>
+    </ul>
   );
+
+  return <>{loading ? <Loader /> : postingListJsx}</>;
 }
 
 export default PostingList;

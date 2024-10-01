@@ -11,19 +11,19 @@ import Header from "pages/header/Header";
 import Body from "pages/body/Body";
 
 export const PostingListContext = createContext<MarkdownMetadata[]>([]);
-export const LoadingContext = createContext<boolean>(true);
-export const setLoadingContext = createContext<
+export const bodyLoadingContext = createContext<boolean>(true);
+export const setBodyLoadingContext = createContext<
   React.Dispatch<React.SetStateAction<boolean>>
 >(() => {});
 
 function App() {
   const [postingList, setPostingList] = useState<MarkdownMetadata[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [bodyLoading, setBodyLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const func = async () => {
       try {
-        setLoading(true);
+        setBodyLoading(true);
         const response = await fetch(`${apiUrl}/index`, {
           method: "GET",
           headers: {
@@ -35,7 +35,7 @@ function App() {
         }
         const data = await response.json();
         setPostingList(data);
-        setLoading(false);
+        setBodyLoading(false);
       } catch (error) {
         console.error(error);
       }
@@ -45,8 +45,8 @@ function App() {
 
   return (
     <div className="App">
-      <LoadingContext.Provider value={loading}>
-        <setLoadingContext.Provider value={setLoading}>
+      <bodyLoadingContext.Provider value={bodyLoading}>
+        <setBodyLoadingContext.Provider value={setBodyLoading}>
           <PostingListContext.Provider value={postingList}>
             <BrowserRouter>
               <Header />
@@ -62,8 +62,8 @@ function App() {
               </Routes>
             </BrowserRouter>
           </PostingListContext.Provider>
-        </setLoadingContext.Provider>
-      </LoadingContext.Provider>
+        </setBodyLoadingContext.Provider>
+      </bodyLoadingContext.Provider>
     </div>
   );
 }
