@@ -1,9 +1,6 @@
 .header-wrapper {
-  background-color: #ecf4fb;
-  color: #121418;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100px;
-  margin: 0 auto;
+  height: 6.25rem;
 }

@@ -1,17 +1,18 @@
-import { setAlertMessageContext } from "App";
+import { setAlertDataContext } from "App";
+import { AlertType } from "module/alert";
 import { useState, useEffect, useContext } from "react";
 
 export default function AlertRedirect({
   path,
   delaySeconds,
-  message,
+  alertData,
 }: {
   path: string;
   delaySeconds: number;
-  message: string;
+  alertData: AlertType;
 }) {
   const [remainingMs, setRemainingMs] = useState(delaySeconds * 1000);
-  const setAlertMessage = useContext(setAlertMessageContext);
+  const setAlertData = useContext(setAlertDataContext);
 
   useEffect(() => {
     setTimeout(() => {
@@ -20,7 +21,7 @@ export default function AlertRedirect({
 
     if (remainingMs <= 0) {
       window.location.href = path;
-      setAlertMessage("");
+      setAlertData(null);
     }
 
     // eslint-disable-next-line
@@ -28,7 +29,8 @@ export default function AlertRedirect({
 
   return (
     <div className="alert-redirect-wrap">
-      <h3>{message}</h3>
+      <h3>{alertData.message}</h3>
+      <p>{alertData.statusText}</p>
       <p>Please try again later</p>
       <p>Redirect to homepage after {remainingMs / 1000} seconds.</p>
     </div>

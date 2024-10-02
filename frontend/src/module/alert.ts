@@ -1,4 +1,4 @@
 export interface AlertType {
   message: string;
-  type: string;
+  statusText: string;
 }

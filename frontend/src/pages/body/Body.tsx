@@ -1,10 +1,10 @@
 import { useContext, useEffect, useState } from "react";
-import { apiUrl } from "config/app-config";
+import { apiUrl } from "config";
 import {
   bodyLoadingContext,
   setBodyLoadingContext,
-  alertMessageContext,
-  setAlertMessageContext,
+  alertDataContext,
+  setAlertDataContext,
 } from "App";
 import Loader from "pages/body/Loader";
 import AlertRedirect from "pages/body/AlertRedirect";
@@ -15,9 +15,9 @@ import "pages/body/Body.css";
 function Body({ path }: { path: string }) {
   const [markdownContent, setMarkdownContent] = useState("");
   const loading = useContext(bodyLoadingContext);
-  const alertMessage = useContext(alertMessageContext);
+  const alertData = useContext(alertDataContext);
   const setBodyLoading = useContext(setBodyLoadingContext);
-  const setAlertMessage = useContext(setAlertMessageContext);
+  const setAlertData = useContext(setAlertDataContext);
 
   useEffect(() => {
     if (!path || path === "/") {
@@ -29,12 +29,17 @@ function Body({ path }: { path: string }) {
         setBodyLoading(true);
         const response = await fetch(apiUrl + path);
         if (!response.ok) {
-          throw new Error();
+          throw new Error(response.statusText);
         }
         const markdownText = await response.text();
         setMarkdownContent(markdownText.split("---")[2]);
       } catch (error: Error | any) {
-        setAlertMessage("Failed to fetch markdown");
+        const statusText = error.statusText ? error.statusText : `${error}`;
+
+        setAlertData({
+          message: "Failed to fetch markdown",
+          statusText: statusText,
+        });
       } finally {
         setBodyLoading(false);
       }
@@ -48,10 +53,10 @@ function Body({ path }: { path: string }) {
     // eslint-disable-next-line
   }, [path]);
 
-  if (alertMessage) {
+  if (alertData) {
     return (
       <div className="body-wrapper">
-        {<AlertRedirect path="/" delaySeconds={5} message={alertMessage} />}
+        {<AlertRedirect path="/" delaySeconds={5} alertData={alertData} />}
       </div>
     );
   }

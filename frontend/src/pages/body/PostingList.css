@@ -1,5 +1,16 @@
-.posting-link {
-  text-decoration: underline;
-  color: black;
+.posting-list-wrap {
   width: 90%;
+  text-align: center;
+}
+
+.posting-category-wrap {
+  padding-left: 1.25rem;
+}
+
+.posting-link {
+  text-decoration: none;
+  color: #121418;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.25rem;
 }

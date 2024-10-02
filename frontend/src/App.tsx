@@ -5,31 +5,32 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { createContext } from "react";
 import { useState, useEffect } from "react";
 import { MarkdownMetadata } from "module/metadata";
-import { apiUrl } from "config/app-config";
+import { apiUrl } from "config";
 
 import Header from "pages/header/Header";
 import Body from "pages/body/Body";
+import { AlertType } from "module/alert";
 
 export const PostingListContext = createContext<MarkdownMetadata[]>([]);
 export const bodyLoadingContext = createContext<boolean>(true);
 export const setBodyLoadingContext = createContext<
   React.Dispatch<React.SetStateAction<boolean>>
 >(() => {});
-export const alertMessageContext = createContext<string>("");
-export const setAlertMessageContext = createContext<
-  React.Dispatch<React.SetStateAction<string>>
+export const alertDataContext = createContext<AlertType | null>(null);
+export const setAlertDataContext = createContext<
+  React.Dispatch<React.SetStateAction<AlertType | null>>
 >(() => {});
 
 function App() {
-  const [alertMessage, setAlertMessage] = useState<string>("");
+  const [alertData, setAlertData] = useState<AlertType | null>(null);
   const [bodyLoading, setBodyLoading] = useState<boolean>(true);
   const [postingList, setPostingList] = useState<MarkdownMetadata[]>([]);
 
   useEffect(() => {
-    if (alertMessage) {
-      alert(`${alertMessage}`);
+    if (alertData) {
+      alert(`${alertData.message}\n${alertData.statusText}`);
     }
-  }, [alertMessage]);
+  }, [alertData]);
 
   useEffect(() => {
     const func = async () => {
@@ -42,12 +43,17 @@ function App() {
           },
         });
         if (!response.ok) {
-          throw new Error();
+          throw new Error(response.statusText);
         }
         const data = await response.json();
         setPostingList(data);
-      } catch (error) {
-        setAlertMessage("Failed to get posting list");
+      } catch (error: any) {
+        const statusText = error.statusText ? error.statusText : `${error}`;
+
+        setAlertData({
+          message: "Failed to get posting list",
+          statusText: statusText,
+        });
       } finally {
         setBodyLoading(false);
       }
@@ -57,8 +63,8 @@ function App() {
 
   return (
     <div className="App">
-      <alertMessageContext.Provider value={alertMessage}>
-        <setAlertMessageContext.Provider value={setAlertMessage}>
+      <alertDataContext.Provider value={alertData}>
+        <setAlertDataContext.Provider value={setAlertData}>
           <bodyLoadingContext.Provider value={bodyLoading}>
             <setBodyLoadingContext.Provider value={setBodyLoading}>
               <PostingListContext.Provider value={postingList}>
@@ -82,8 +88,8 @@ function App() {
               </PostingListContext.Provider>
             </setBodyLoadingContext.Provider>
           </bodyLoadingContext.Provider>
-        </setAlertMessageContext.Provider>
-      </alertMessageContext.Provider>
+        </setAlertDataContext.Provider>
+      </alertDataContext.Provider>
     </div>
   );
 }

@@ -1,10 +1,8 @@
 .body-wrapper {
-  background-color: #ecf4fb;
-  color: #121418;
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: left;
   margin: 0 auto;
-  max-width: 768px;
+  text-align: left;
+  max-width: 48rem;
 }
