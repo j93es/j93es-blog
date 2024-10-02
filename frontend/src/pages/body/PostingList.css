@@ -9,9 +9,13 @@
 }
 
 .posting-link {
+  text-align: left;
   text-decoration: none;
   color: #121418;
-  display: flex;
-  justify-content: space-between;
+  /* display: flex;
+  justify-content: space-between; */
   margin-bottom: 0.25rem;
+  display: grid;
+  grid-template-columns: 1fr 140px;
+  grid-gap: 0.625rem;
 }
