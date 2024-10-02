@@ -1,13 +1,12 @@
 import { useContext } from "react";
-import { PostingListContext, bodyLoadingContext } from "App";
+import { PostingListContext } from "App";
 import { Link } from "react-router-dom";
-import Loader from "pages/body/Loader";
 import "pages/body/PostingList.css";
 
 function PostingList() {
   const postingList = useContext(PostingListContext);
-  const loading = useContext(bodyLoadingContext);
-  const postingListJsx = (
+
+  return (
     <ul className="posting-list-wrap">
       {postingList.map((posting) => (
         <li key={`posting-${posting.title}`}>
@@ -18,8 +17,6 @@ function PostingList() {
       ))}
     </ul>
   );
-
-  return <>{loading ? <Loader /> : postingListJsx}</>;
 }
 
 export default PostingList;

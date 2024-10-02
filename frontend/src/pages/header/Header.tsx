@@ -6,7 +6,7 @@ function Header() {
     <header className="header-wrapper">
       <Link to="/" className="header-title">
         <svg
-          xmlns="http://www.w3.org/2000/svg"
+          // xmlns="http://www.w3.org/2000/svg"
           width="200"
           height="100"
           viewBox="0 0 1080 1080"
