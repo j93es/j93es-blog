@@ -10,6 +10,7 @@ import { apiUrl } from "config";
 import Header from "pages/header/Header";
 import Body from "pages/body/Body";
 import { AlertType } from "module/alert";
+import Redirect from "components/Redirect";
 
 export const PostingListContext = createContext<MarkdownMetadata[]>([]);
 export const bodyLoadingContext = createContext<boolean>(true);
@@ -83,6 +84,17 @@ function App() {
                         element={<Body path={`/${posting.path}`} />}
                       />
                     ))}
+                    <Route
+                      path="*"
+                      element={
+                        <Redirect
+                          path="/"
+                          title="Not Found"
+                          message="Unable to perform requested function"
+                          delaySeconds={5}
+                        />
+                      }
+                    />
                   </Routes>
                 </BrowserRouter>
               </PostingListContext.Provider>

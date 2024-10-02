@@ -6,8 +6,8 @@ import {
   alertDataContext,
   setAlertDataContext,
 } from "App";
-import Loader from "pages/body/Loader";
-import AlertRedirect from "pages/body/AlertRedirect";
+import Loader from "components/Loader";
+import Redirect from "components/Redirect";
 import PostingList from "pages/body/PostingList";
 import Posting from "pages/body/Posting";
 import "pages/body/Body.css";
@@ -56,7 +56,15 @@ function Body({ path }: { path: string }) {
   if (alertData) {
     return (
       <div className="body-wrapper">
-        {<AlertRedirect path="/" delaySeconds={5} alertData={alertData} />}
+        {
+          <Redirect
+            path="/"
+            delaySeconds={5}
+            title={alertData.statusText}
+            message={alertData.message}
+            callback={() => setAlertData(null)}
+          />
+        }
       </div>
     );
   }
