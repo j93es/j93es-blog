@@ -2,14 +2,13 @@ import fs from "fs";
 import matter from "gray-matter";
 import path from "path";
 import { publicDir } from "../config";
-import { MarkdownMetadata, PhotoMetadata } from "../interface/metadata";
+import { MarkdownMetadata } from "../interface/metadata";
 
 export class FilesMetadata {
   private markdownFilesMetadata: MarkdownMetadata[] | null = null;
-  private photoFilesMetadata: PhotoMetadata[] | null = null;
 
-  private makeMarkdownFilesMetadata = (directoryPath: string) => {
-    const markdownFilesMetadata: MarkdownMetadata[] = [];
+  private makeRawMarkdownFilesMetadata = (directoryPath: string) => {
+    const rawMarkdownFilesMetadata: MarkdownMetadata[] = [];
 
     const readDirectory = (dirPath: string) => {
       const files = fs.readdirSync(dirPath);
@@ -23,10 +22,11 @@ export class FilesMetadata {
           const markdownContent = fs.readFileSync(fullPath, "utf-8");
           const { data } = matter(markdownContent);
 
-          markdownFilesMetadata.push({
+          rawMarkdownFilesMetadata.push({
             title: data.title,
             date: data.date,
             tag: data.tag,
+            category: data.category,
             path: fullPath.split(publicDir)[1],
           });
         }
@@ -34,12 +34,37 @@ export class FilesMetadata {
     };
 
     readDirectory(directoryPath);
-    return markdownFilesMetadata;
+    return rawMarkdownFilesMetadata;
+  };
+
+  private sortMarkdownFilesMetadata = (metadata: MarkdownMetadata[]) => {
+    return metadata.sort((a, b) => {
+      const categoryGap = a.category.localeCompare(b.category);
+      if (categoryGap !== 0) {
+        return categoryGap;
+      }
+
+      const dateGap = new Date(a.date).getTime() - new Date(b.date).getTime();
+      if (dateGap !== 0) {
+        return dateGap;
+      }
+
+      const titleGap = a.title.localeCompare(b.title);
+      if (titleGap !== 0) {
+        return titleGap;
+      }
+
+      return 0;
+    });
   };
 
   getMarkdownFilesMetadata = () => {
     if (this.markdownFilesMetadata === null) {
-      this.markdownFilesMetadata = this.makeMarkdownFilesMetadata(publicDir);
+      const rawMarkdownFilesMetadata =
+        this.makeRawMarkdownFilesMetadata(publicDir);
+      this.markdownFilesMetadata = this.sortMarkdownFilesMetadata(
+        rawMarkdownFilesMetadata
+      );
     }
 
     return this.markdownFilesMetadata;

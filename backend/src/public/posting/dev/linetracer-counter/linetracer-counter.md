@@ -1,7 +1,7 @@
 ---
-title: "맞아가며 배운 백엔드"
-date: 2024-09-25 15:30
-tag: [backend]
+title: "계수기"
+date: 2024-09-26 15:30
+tag: [fullstack]
 category: development
 ---
 
