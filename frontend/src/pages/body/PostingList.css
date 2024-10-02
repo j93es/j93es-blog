@@ -1,5 +1,6 @@
 .posting-list-wrap {
   width: 90%;
+  max-width: 30rem;
   text-align: center;
 }
 
