@@ -1,8 +1,13 @@
 import { useContext, useEffect, useState } from "react";
 import { apiUrl } from "config/app-config";
-import { bodyLoadingContext, setBodyLoadingContext } from "App";
+import {
+  bodyLoadingContext,
+  setBodyLoadingContext,
+  alertMessageContext,
+  setAlertMessageContext,
+} from "App";
 import Loader from "pages/body/Loader";
-
+import AlertRedirect from "pages/body/AlertRedirect";
 import PostingList from "pages/body/PostingList";
 import Posting from "pages/body/Posting";
 import "pages/body/Body.css";
@@ -10,7 +15,9 @@ import "pages/body/Body.css";
 function Body({ path }: { path: string }) {
   const [markdownContent, setMarkdownContent] = useState("");
   const loading = useContext(bodyLoadingContext);
+  const alertMessage = useContext(alertMessageContext);
   const setBodyLoading = useContext(setBodyLoadingContext);
+  const setAlertMessage = useContext(setAlertMessageContext);
 
   useEffect(() => {
     if (!path || path === "/") {
@@ -22,18 +29,18 @@ function Body({ path }: { path: string }) {
         setBodyLoading(true);
         const response = await fetch(apiUrl + path);
         if (!response.ok) {
-          throw new Error("Failed to fetch markdown");
+          throw new Error();
         }
         const markdownText = await response.text();
         setMarkdownContent(markdownText.split("---")[2]);
+      } catch (error: Error | any) {
+        setAlertMessage("Failed to fetch markdown");
+      } finally {
         setBodyLoading(false);
-      } catch (error) {
-        console.error("Failed to fetch markdown", error);
       }
     };
 
     fetchMarkdown();
-
     return () => {
       setMarkdownContent("");
     };
@@ -41,14 +48,27 @@ function Body({ path }: { path: string }) {
     // eslint-disable-next-line
   }, [path]);
 
-  const jsxElem =
-    path === "/" ? (
-      <PostingList />
-    ) : (
-      <Posting markdownContent={markdownContent} />
+  if (alertMessage) {
+    return (
+      <div className="body-wrapper">
+        {<AlertRedirect path="/" delaySeconds={5} message={alertMessage} />}
+      </div>
     );
+  }
 
-  return <div className="body-wrapper">{loading ? <Loader /> : jsxElem}</div>;
+  if (loading) {
+    return <div className="body-wrapper">{<Loader />}</div>;
+  }
+
+  if (path === "/") {
+    return <div className="body-wrapper">{<PostingList />}</div>;
+  }
+
+  return (
+    <div className="body-wrapper">
+      {<Posting markdownContent={markdownContent} />}
+    </div>
+  );
 }
 
 export default Body;

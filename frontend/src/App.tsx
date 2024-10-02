@@ -15,10 +15,21 @@ export const bodyLoadingContext = createContext<boolean>(true);
 export const setBodyLoadingContext = createContext<
   React.Dispatch<React.SetStateAction<boolean>>
 >(() => {});
+export const alertMessageContext = createContext<string>("");
+export const setAlertMessageContext = createContext<
+  React.Dispatch<React.SetStateAction<string>>
+>(() => {});
 
 function App() {
-  const [postingList, setPostingList] = useState<MarkdownMetadata[]>([]);
+  const [alertMessage, setAlertMessage] = useState<string>("");
   const [bodyLoading, setBodyLoading] = useState<boolean>(true);
+  const [postingList, setPostingList] = useState<MarkdownMetadata[]>([]);
+
+  useEffect(() => {
+    if (alertMessage) {
+      alert(`${alertMessage}`);
+    }
+  }, [alertMessage]);
 
   useEffect(() => {
     const func = async () => {
@@ -31,13 +42,14 @@ function App() {
           },
         });
         if (!response.ok) {
-          throw new Error("Failed to get posting list");
+          throw new Error();
         }
         const data = await response.json();
         setPostingList(data);
-        setBodyLoading(false);
       } catch (error) {
-        console.error(error);
+        setAlertMessage("Failed to get posting list");
+      } finally {
+        setBodyLoading(false);
       }
     };
     func();
@@ -45,25 +57,33 @@ function App() {
 
   return (
     <div className="App">
-      <bodyLoadingContext.Provider value={bodyLoading}>
-        <setBodyLoadingContext.Provider value={setBodyLoading}>
-          <PostingListContext.Provider value={postingList}>
-            <BrowserRouter>
-              <Header />
-              <Routes>
-                <Route key={`route`} path={`/`} element={<Body path={`/`} />} />
-                {postingList.map((posting) => (
-                  <Route
-                    key={`route-${posting.title}`}
-                    path={`/${posting.path}`}
-                    element={<Body path={`/${posting.path}`} />}
-                  />
-                ))}
-              </Routes>
-            </BrowserRouter>
-          </PostingListContext.Provider>
-        </setBodyLoadingContext.Provider>
-      </bodyLoadingContext.Provider>
+      <alertMessageContext.Provider value={alertMessage}>
+        <setAlertMessageContext.Provider value={setAlertMessage}>
+          <bodyLoadingContext.Provider value={bodyLoading}>
+            <setBodyLoadingContext.Provider value={setBodyLoading}>
+              <PostingListContext.Provider value={postingList}>
+                <BrowserRouter>
+                  <Header />
+                  <Routes>
+                    <Route
+                      key={`route`}
+                      path={`/`}
+                      element={<Body path={`/`} />}
+                    />
+                    {postingList.map((posting) => (
+                      <Route
+                        key={`route-${posting.title}`}
+                        path={`/${posting.path}`}
+                        element={<Body path={`/${posting.path}`} />}
+                      />
+                    ))}
+                  </Routes>
+                </BrowserRouter>
+              </PostingListContext.Provider>
+            </setBodyLoadingContext.Provider>
+          </bodyLoadingContext.Provider>
+        </setAlertMessageContext.Provider>
+      </alertMessageContext.Provider>
     </div>
   );
 }
