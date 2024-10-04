@@ -9,6 +9,11 @@ function PostingList() {
   const postingList = useContext(PostingListContext);
   const categoryJsx: { [key: string]: JSX.Element[] } = {};
 
+  categoryList.forEach((category: string) => {
+    categoryJsx[category] = [];
+  });
+  categoryJsx["etc"] = [];
+
   postingList.forEach((posting: MarkdownMetadata) => {
     const jsxElem = (
       <li key={`posting-${posting.title}`}>
@@ -27,11 +32,13 @@ function PostingList() {
       posting.category = "etc";
     }
 
-    if (!Object.keys(categoryJsx).includes(posting.category)) {
-      categoryJsx[posting.category] = [];
-    }
-
     categoryJsx[posting.category].push(jsxElem);
+  });
+
+  Object.keys(categoryJsx).forEach((category: string) => {
+    if (categoryJsx[category].length === 0) {
+      delete categoryJsx[category];
+    }
   });
 
   return (
