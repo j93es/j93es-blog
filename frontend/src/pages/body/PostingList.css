@@ -4,18 +4,22 @@
   text-align: center;
 }
 
-.posting-category-wrap {
-  padding-left: 1.25rem;
+.category-wrap {
+  margin-bottom: 4rem;
+}
+
+.posting-link-wrap {
   list-style: none;
 }
 
 .posting-link {
   text-align: left;
   text-decoration: none;
+  align-items: center;
   color: #121418;
-  margin-bottom: 8px;
+  margin-bottom: 0.6875rem;
   display: grid;
   grid-template-columns: 1fr 8.75rem;
   grid-gap: 0.625rem;
-  border-bottom: 1px solid #12141844;
+  border-bottom: 0.0625rem solid #12141844;
 }

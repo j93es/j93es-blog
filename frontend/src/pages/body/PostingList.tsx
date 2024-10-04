@@ -2,8 +2,8 @@ import { useContext } from "react";
 import { PostingListContext } from "App";
 import { Link } from "react-router-dom";
 import { categoryList } from "config";
-import "pages/body/PostingList.css";
 import { MarkdownMetadata } from "module/metadata";
+import "pages/body/PostingList.css";
 
 function PostingList() {
   const postingList = useContext(PostingListContext);
@@ -12,7 +12,6 @@ function PostingList() {
   categoryList.forEach((category: string) => {
     categoryJsx[category] = [];
   });
-  categoryJsx["etc"] = [];
 
   postingList.forEach((posting: MarkdownMetadata) => {
     const jsxElem = (
@@ -28,25 +27,17 @@ function PostingList() {
       </li>
     );
 
-    if (!categoryList.includes(posting.category)) {
-      posting.category = "etc";
-    }
-
-    categoryJsx[posting.category].push(jsxElem);
-  });
-
-  Object.keys(categoryJsx).forEach((category: string) => {
-    if (categoryJsx[category].length === 0) {
-      delete categoryJsx[category];
+    if (categoryList.includes(posting.category)) {
+      categoryJsx[posting.category].push(jsxElem);
     }
   });
 
   return (
     <div className="posting-list-wrap">
       {Object.keys(categoryJsx).map((category: string) => (
-        <div key={`category-${category}`}>
+        <div key={`category-${category}`} className="category-wrap">
           <h2>{category}</h2>
-          <ul className="posting-category-wrap">{categoryJsx[category]}</ul>
+          <ul className="posting-link-wrap">{categoryJsx[category]}</ul>
         </div>
       ))}
     </div>

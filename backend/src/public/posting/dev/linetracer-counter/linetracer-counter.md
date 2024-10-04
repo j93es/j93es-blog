@@ -2,7 +2,7 @@
 title: "계수기"
 date: 2024-09-26 15:30
 tag: [fullstack]
-category: dev
+category: _dev
 ---
 
 # 기술스택
