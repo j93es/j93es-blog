@@ -46,7 +46,7 @@ function PostingList() {
       {Object.keys(categoryJsx).map((category: string) => (
         <div key={`category-${category}`}>
           <h2>{category}</h2>
-          <ol className="posting-category-wrap">{categoryJsx[category]}</ol>
+          <ul className="posting-category-wrap">{categoryJsx[category]}</ul>
         </div>
       ))}
     </div>

@@ -6,16 +6,16 @@
 
 .posting-category-wrap {
   padding-left: 1.25rem;
+  list-style: none;
 }
 
 .posting-link {
   text-align: left;
   text-decoration: none;
   color: #121418;
-  /* display: flex;
-  justify-content: space-between; */
-  margin-bottom: 0.25rem;
+  margin-bottom: 8px;
   display: grid;
   grid-template-columns: 1fr 8.75rem;
   grid-gap: 0.625rem;
+  border-bottom: 1px solid #12141844;
 }

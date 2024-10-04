@@ -44,7 +44,7 @@ export class FilesMetadata {
         return categoryGap;
       }
 
-      const dateGap = new Date(a.date).getTime() - new Date(b.date).getTime();
+      const dateGap = new Date(b.date).getTime() - new Date(a.date).getTime();
       if (dateGap !== 0) {
         return dateGap;
       }
