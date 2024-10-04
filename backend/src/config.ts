@@ -18,6 +18,4 @@ export const whitelist = JSON.parse(
     ])
 );
 
-export const isProduction = process.env.DEVELOPMENT_ENV !== "development";
-
 export const publicDir = path.join(__dirname, "public");

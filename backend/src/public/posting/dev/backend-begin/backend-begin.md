@@ -1,8 +1,8 @@
 ---
-title: "계수기"
-date: 2024-09-26 15:30
-tag: [fullstack]
-category: development
+title: "맞아가며 배운 백엔드(테스트중)"
+date: 2024-09-25 15:30
+tag: [backend]
+category: dev
 ---
 
 # 기술스택
