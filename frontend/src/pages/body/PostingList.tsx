@@ -12,7 +12,11 @@ function PostingList() {
   postingList.forEach((posting: MarkdownMetadata) => {
     const jsxElem = (
       <li key={`posting-${posting.title}`}>
-        <Link to={posting.path} className="posting-link">
+        <Link
+          to={posting.path}
+          className="posting-link"
+          aria-label={`posting ${posting.title}`}
+        >
           <span>{posting.title}</span>
           <span>{posting.date}</span>
         </Link>

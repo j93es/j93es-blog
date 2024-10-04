@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 function Header() {
   return (
     <header className="header-wrapper">
-      <Link to="/" className="header-title">
+      <Link to="/" className="header-title" aria-label="homepage">
         <svg width="200" height="100" viewBox="0 0 1080 1080" version="1.1">
           <path d="" stroke="none" fill="#080404" fill-rule="evenodd" />
           <path
