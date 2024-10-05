@@ -21,9 +21,19 @@ app.set("trust proxy", "loopback, linklocal, uniquelocal");
 app.set("port", PORT || 8000);
 
 app.use(cors(corsOptions));
+app.use(helmet());
 app.use(
-  helmet({
-    crossOriginResourcePolicy: { policy: "cross-origin" },
+  helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: ["'self'"],
+      styleSrc: ["'self'"],
+      imgSrc: ["'self'", "https:"],
+      connectSrc: ["'self'"],
+      fontSrc: ["'self'", "https:"],
+      objectSrc: ["'none'"],
+      upgradeInsecureRequests: [],
+    },
   })
 );
 
