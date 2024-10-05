@@ -47,7 +47,7 @@ app.use(requestUtils.addId);
 
 app.use(customLogger.requestLogger);
 
-app.use(express.static(publicDir));
+app.use(express.static(publicDir, { etag: false, index: false, maxAge: "1d" }));
 
 app.get("/index/", (req: Request, res: Response) => {
   const markdownFilesMetadata = filesMetadata.getMarkdownFilesMetadata();
