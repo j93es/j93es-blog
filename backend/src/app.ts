@@ -22,20 +22,6 @@ app.set("port", PORT || 8000);
 
 app.use(cors(corsOptions));
 app.use(helmet());
-app.use(
-  helmet.contentSecurityPolicy({
-    directives: {
-      defaultSrc: ["'self'"],
-      scriptSrc: ["'self'"],
-      styleSrc: ["'self'"],
-      imgSrc: ["'self'", "https:"],
-      connectSrc: ["'self'"],
-      fontSrc: ["'self'", "https:"],
-      objectSrc: ["'none'"],
-      upgradeInsecureRequests: [],
-    },
-  })
-);
 
 app.use(express.json({ limit: "1mb" }));
 app.use(express.urlencoded({ extended: false }));
@@ -52,36 +38,6 @@ app.get("/index/", (req: Request, res: Response) => {
   const markdownFilesMetadata = filesMetadata.getMarkdownFilesMetadata();
   res.json(markdownFilesMetadata);
 });
-
-// app.get("/file/*", (req: Request, res: Response, next: NextFunction) => {
-//   const requestedPath = req.url.split("/")[2] || "index.md";
-//   const filePath = path.join(publicDir, requestedPath);
-//   const normalizedPath = path.normalize(filePath);
-
-//   if (!normalizedPath.startsWith(publicDir)) {
-//     return next(
-//       new ForbbidenError("Path Traversal Detected: " + normalizedPath)
-//     );
-//   }
-
-//   res.sendFile(normalizedPath, (err) => {
-//     if (err) {
-//       if (
-//         (err as NodeJS.ErrnoException).code === "ENOENT" ||
-//         (err as NodeJS.ErrnoException).code === "EISDIR" ||
-//         (err as NodeJS.ErrnoException).code === "ENOTDIR" ||
-//         (err as NodeJS.ErrnoException).code === "EPERM" ||
-//         (err as NodeJS.ErrnoException).code === "EACCES" ||
-//         (err as NodeJS.ErrnoException).code === "ENAMETOOLONG" ||
-//         (err as NodeJS.ErrnoException).code === "ELOOP"
-//       ) {
-//         next(new ResourceNotFoundError("File Not Found: " + normalizedPath));
-//       } else {
-//         next(err);
-//       }
-//     }
-//   });
-// });
 
 app.use(errorHandler.routerNotFound);
 app.use(errorHandler.notFound);
