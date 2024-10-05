@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, Suspense } from "react";
 import { apiUrl } from "config";
 import {
   bodyLoadingContext,
@@ -9,8 +9,10 @@ import {
 import Loader from "components/Loader";
 import Redirect from "components/Redirect";
 import PostingList from "pages/body/PostingList";
-import Posting from "pages/body/Posting";
+
 import "pages/body/Body.css";
+
+const Posting = React.lazy(() => import("pages/body/Posting"));
 
 function Body({ path }: { path: string }) {
   const [markdownContent, setMarkdownContent] = useState("");
@@ -79,7 +81,11 @@ function Body({ path }: { path: string }) {
 
   return (
     <div className="body-wrapper">
-      {<Posting markdownContent={markdownContent} />}
+      {
+        <Suspense fallback={<Loader />}>
+          <Posting markdownContent={markdownContent} />
+        </Suspense>
+      }
     </div>
   );
 }
