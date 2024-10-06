@@ -35,14 +35,14 @@
 - 월본 이미지 사이즈(약 8mb)를 그대로 서빙하는 것은 쿨하지 않아서, 이미지 리사이즈 해주는 툴을 만들어서(이 툴은 어딘가에 무조건 있겠지만, 구현해보고 싶어서 만들어봤다. 낭만있잖아~ 사실 추후 미래에는 이미지, 그래픽을 다루는 능력이 점차 중요해질 것 같아서 맛보기로 구현해보았다.) 8짜리를 200kb로 줄여 public 파일에 넣었다. 깃 링크는 https://github.com/J93es/jpg-resizer.git 이것 참고
 - html meta 태크를 통해 theme-color을 추가해봤는데 별 효과가 없는 것 같다ㅠㅠ
 
-#### 2024-10-5 meta tag and Lighthouse
+#### 2024-10-5 meta tag, Lighthouse, CSP
 
 - 메타태그들을 손보았다. 성능 향상을 위하여 dns-prefetch를 해볼까 했는데 외부 도메인에서 받아오는게 없는 것 같아서 적용하지않았다. theme-color는 캐시문제인지 아직 잘 작동하지 않았다. 더하여 웹앱으로 실행될때의 로고등을 설정하였다.
 - Lighthouse를 통하여 성능 테스트를 하였다. 모바일 환경에서의 performance가 낮게 측정되었으나, React를 활용하고 있고, 서버 사양이 개인 서버인 이상 현재 수준에서는 어쩔 수 없다고 판단한다. 하지만 성능을 높이기 위한 방법을 꾸준히 공부해봐야겠다. (그리고 lighthouse에서 모바일 환경 성능측정은 cpu를 20배 느리게 쓰로틀링 걸고 측정하는 것 같다...)
 - 메타 태그에 apple-mobile-web-app-capable 이걸 사용했으나, chrome 브라우저에서 apple-mobile-web-app-capable is deprecated 라고 해서 mobile-web-app-capable로 바꾸었다. 기능상 문제는 없지만, frontend에서 디테일을 살리는 작업은 중요하다고 생각한다.
 - bg-color을 body 태그에 적용하지 않아서 아래로 계속 스크롤하는 등의 액션을 취할 때에 흰색 영역이 보였다. 이를 body 태그에 bg-color 속성을 적용해서 해결했다.
 - 랜더링 성능을 비약적으로 향상시켰다. 먼저 코드분리를 하였다. 홈페이지 화면에서는 마크다운을 html로 변환해주는 코드가 필요없다. 이에 홈페이지를 로드할때 필요없는 js 파일을 React.lazy를 이용하여 로드하지 않도록 만들었다. 둘째로 의존성을 정리하였다. react-syntax-highlighter라는 것을 사용하였는데... 이것이 용량이 상당히 컸다. 이에 rehype-highlight 만을 이용하여 code highlighting을 구현했다. 앞으로는 플러그인을 가져올때에, 플러그인의 용량도 생각해가며 가져와야겠다.
-- 성능 최적화 결과, lighthouse 테스트 결과 본래 performance가 70점대를 웃돌았는데, 100점으로 향상되었다. ./frontend/performance-test/10-5 참고
+- 성능 최적화 결과, lighthouse 테스트 결과 본래 performance가 70점대를 웃돌았는데, 100점으로 향상되었다. ./frontend/performance-test/10-5-homepage 참고
 - XSS 공격을 방지하기 위해 helmet을 통하여 content-security-policy를 설정하였다. express 서버에서 헤더를 추가할까 고민햇는데, 생각해보니 frontend 페이지에서도 CSP 헤더가 적용되어야해서 nginx에서 헤더를 추가하기로 하였다.
 - cloudflare 캐싱 정책을 활용하였다. 일단 사이즈가 큰 image 라우터만 적용하였다.
 - 캐싱 정책을 cloudflare에서 관리하기보다는 로컬에서 관리하는 것이 좋다고 판단하여 express에서 정적파일을 제공할 때에 캐싱을 설정하였다.
