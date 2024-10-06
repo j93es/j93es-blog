@@ -15,7 +15,10 @@ update:
 	if [ ! -d "$(PROJECT_DIR)" ]; then \
 		sudo git clone $(REPO_URL) $(PROJECT_DIR); \
 	else \
-		cd $(PROJECT_DIR) && sudo git pull | grep -q "Already up to date." && echo "No changes to update. Exiting..." && exit 1; \
+		cd $(PROJECT_DIR) && if sudo git pull | grep -q "Already up to date."; then \
+			echo "No changes to update. Exiting..."; \
+			exit 1; \
+		fi; \
 	fi
 
 # 2. Install dependencies and build frontend
