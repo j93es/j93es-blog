@@ -40,7 +40,7 @@ export default function Footer() {
           </svg>
         </a>
       </div>
-      <p>&copy; {new Date().getFullYear()} j93es. All rights reserved.</p>
+      <span>&copy; {new Date().getFullYear()} j93es. All rights reserved.</span>
     </footer>
   );
 }

@@ -22,5 +22,5 @@
   display: grid;
   grid-template-columns: 1fr 8.75rem;
   grid-gap: 0.625rem;
-  border-bottom: 0.0625rem solid #12141844;
+  border-bottom: 0.0625rem solid #e1e4e8;
 }

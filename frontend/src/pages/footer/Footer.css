@@ -4,12 +4,15 @@
   align-items: center;
   justify-content: center;
   margin: 0 auto;
-  padding: 3.125rem 0 1.875rem 0;
+  padding: 2rem 0;
+  border-top: 0.125rem solid #e1e4e8;
 }
 
 .social-container {
   margin: 0 auto;
-  width: 90px;
+  width: 5.625rem;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  grid-gap: 0.5rem;
+  padding-bottom: 1rem;
 }
