@@ -9,7 +9,7 @@ function Posting({ markdownContent }: { markdownContent: string }) {
       return <code style={{ borderRadius: "1rem" }} {...props} />;
     },
     img: ({ ...props }) => (
-      <img style={{ width: "100%", height: "auto" }} {...props} alt="" />
+      <img style={{ maxWidth: "100%", height: "auto" }} {...props} alt="" />
     ),
   };
 
