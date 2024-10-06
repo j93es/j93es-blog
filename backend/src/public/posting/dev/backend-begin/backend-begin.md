@@ -21,6 +21,4 @@ export const enum AccidentCode {
 ```
 
 ![성능 테스트](https://j93.es/api/image/dev/backend-begin/performance-test.png)
-![작은 이미지](https://j93.es/api/image/dev/backend-begin/little-img.png)
-
-little-img.png
+![작은 이미지](http://localhost:8086/image/dev/backend-begin/little-img.png)
