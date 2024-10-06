@@ -15,8 +15,8 @@ update:
 	if [ ! -d "$(PROJECT_DIR)" ]; then \
 		sudo git clone $(REPO_URL) $(PROJECT_DIR); \
 	else \
-		cd $(PROJECT_DIR) && sudo git pull; \
-		fi
+		cd $(PROJECT_DIR) && sudo git pull | grep -q "Already up to date." && echo "No changes to update. Exiting..." && exit 1; \
+	fi
 
 # 2. Install dependencies and build frontend
 build-frontend:
