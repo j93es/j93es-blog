@@ -14,7 +14,14 @@ function Posting({ markdownContent }: { markdownContent: string }) {
   };
 
   return (
-    <div style={{ width: "90%", display: "flex", justifyContent: "center" }}>
+    <div
+      style={{
+        width: "90%",
+        display: "flex",
+        justifyContent: "center",
+        marginBottom: "3rem",
+      }}
+    >
       <div style={{ width: "100%" }}>
         <ReactMarkdown
           children={markdownContent}
