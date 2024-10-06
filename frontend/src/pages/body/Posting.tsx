@@ -19,7 +19,7 @@ function Posting({ markdownContent }: { markdownContent: string }) {
         width: "90%",
         display: "flex",
         justifyContent: "center",
-        marginBottom: "4.5rem",
+        marginBottom: "4rem",
       }}
     >
       <div style={{ width: "100%" }}>
