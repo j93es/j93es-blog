@@ -4,7 +4,7 @@
   text-align: center;
 }
 
-.category-wrap {
+.category-wrap:not(:last-child) {
   margin-bottom: 4rem;
 }
 
