@@ -1,9 +1,6 @@
 .footer-wrapper {
   width: 100%;
   text-align: center;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto;
   padding: 2rem 0;
   border-top: 0.125rem solid #e1e4e8;
 }

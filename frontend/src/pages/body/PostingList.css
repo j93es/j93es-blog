@@ -1,11 +1,14 @@
 .posting-list-wrap {
   width: 90%;
   max-width: 30rem;
-  text-align: center;
 }
 
 .category-wrap:not(:last-child) {
   margin-bottom: 4rem;
+}
+
+.category-title {
+  text-align: center;
 }
 
 .posting-link-wrap {
@@ -14,7 +17,6 @@
 }
 
 .posting-link {
-  text-align: left;
   text-decoration: none;
   align-items: center;
   color: #121418;
