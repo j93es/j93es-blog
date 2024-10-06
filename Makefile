@@ -8,7 +8,7 @@ BACKEND_DIR=$(PROJECT_DIR)/backend
 ENV_DIR=/srv/j93es-blog/env
 
 # Targets
-.PHONY: all update build-frontend build-backend deploy deploy-frontend deploy-backend restart-nginx start-pm2 stop-pm2
+.PHONY: all update update-force build-frontend build-backend deploy deploy-frontend deploy-backend restart-nginx start-pm2 stop-pm2
 
 # 1. Clone or update the repository
 update:
@@ -19,6 +19,13 @@ update:
 			echo "No changes to update. Exiting..."; \
 			exit 1; \
 		fi; \
+	fi
+
+update-force:
+	if [ ! -d "$(PROJECT_DIR)" ]; then \
+		sudo git clone $(REPO_URL) $(PROJECT_DIR); \
+	else \
+		cd $(PROJECT_DIR) && sudo git pull; \
 	fi
 
 # 2. Install dependencies and build frontend
@@ -43,10 +50,10 @@ save-pm2:
 restart-nginx:
 	sudo systemctl reload nginx
 
-deploy-frontend:update build-frontend restart-nginx
+deploy-frontend: update-force build-frontend restart-nginx
 	@echo "Frontend deployment completed."
 
-deploy-backend:update build-backend stop-pm2 start-pm2 save-pm2 restart-nginx
+deploy-backend:update-force build-backend stop-pm2 start-pm2 save-pm2 restart-nginx
 	@echo "Backend deployment completed."
 
 # 6. Full deployment: Update, build, and restart services
