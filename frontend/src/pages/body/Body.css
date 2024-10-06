@@ -1,8 +1,8 @@
 .body-wrapper {
+  width: 100%;
+  max-width: 48rem;
   display: flex;
   justify-content: center;
-  align-items: center;
   margin: 0 auto;
   text-align: left;
-  max-width: 48rem;
 }

@@ -1,6 +1,6 @@
 import "./App.css";
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 import { createContext } from "react";
 import { useState, useEffect } from "react";
@@ -9,6 +9,7 @@ import { apiUrl } from "config";
 
 import Header from "pages/header/Header";
 import Body from "pages/body/Body";
+import Footer from "pages/footer/Footer";
 import { AlertType } from "module/alert";
 import Redirect from "components/Redirect";
 
@@ -64,44 +65,43 @@ function App() {
 
   return (
     <div className="App">
+      <Header />
       <alertDataContext.Provider value={alertData}>
         <setAlertDataContext.Provider value={setAlertData}>
           <bodyLoadingContext.Provider value={bodyLoading}>
             <setBodyLoadingContext.Provider value={setBodyLoading}>
               <PostingListContext.Provider value={postingList}>
-                <BrowserRouter>
-                  <Header />
-                  <Routes>
+                <Routes>
+                  <Route
+                    key={`route`}
+                    path={`/`}
+                    element={<Body path={`/`} />}
+                  />
+                  {postingList.map((posting) => (
                     <Route
-                      key={`route`}
-                      path={`/`}
-                      element={<Body path={`/`} />}
+                      key={`route-${posting.title}`}
+                      path={`/${posting.path}`}
+                      element={<Body path={`/${posting.path}`} />}
                     />
-                    {postingList.map((posting) => (
-                      <Route
-                        key={`route-${posting.title}`}
-                        path={`/${posting.path}`}
-                        element={<Body path={`/${posting.path}`} />}
+                  ))}
+                  <Route
+                    path="*"
+                    element={
+                      <Redirect
+                        path="/"
+                        title="Not Found"
+                        message="Unable to perform requested function"
+                        delaySeconds={5}
                       />
-                    ))}
-                    <Route
-                      path="*"
-                      element={
-                        <Redirect
-                          path="/"
-                          title="Not Found"
-                          message="Unable to perform requested function"
-                          delaySeconds={5}
-                        />
-                      }
-                    />
-                  </Routes>
-                </BrowserRouter>
+                    }
+                  />
+                </Routes>
               </PostingListContext.Provider>
             </setBodyLoadingContext.Provider>
           </bodyLoadingContext.Provider>
         </setAlertDataContext.Provider>
       </alertDataContext.Provider>
+      <Footer />
     </div>
   );
 }

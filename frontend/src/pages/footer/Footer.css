@@ -1,0 +1,15 @@
+.footer-wrapper {
+  width: 100%;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 1.25rem 0;
+}
+
+.social-container {
+  margin: 0 auto;
+  width: 90px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}

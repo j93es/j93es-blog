@@ -57,7 +57,7 @@ function Body({ path }: { path: string }) {
 
   if (alertData) {
     return (
-      <div className="body-wrapper">
+      <main className="body-wrapper">
         {
           <Redirect
             path="/"
@@ -67,26 +67,26 @@ function Body({ path }: { path: string }) {
             callback={() => setAlertData(null)}
           />
         }
-      </div>
+      </main>
     );
   }
 
   if (loading) {
-    return <div className="body-wrapper">{<Loader />}</div>;
+    return <main className="body-wrapper">{<Loader />}</main>;
   }
 
   if (path === "/") {
-    return <div className="body-wrapper">{<PostingList />}</div>;
+    return <main className="body-wrapper">{<PostingList />}</main>;
   }
 
   return (
-    <div className="body-wrapper">
+    <main className="body-wrapper">
       {
         <Suspense fallback={<Loader />}>
           <Posting markdownContent={markdownContent} />
         </Suspense>
       }
-    </div>
+    </main>
   );
 }
 

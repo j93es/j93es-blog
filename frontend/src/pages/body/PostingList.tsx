@@ -19,7 +19,7 @@ function PostingList() {
         <Link
           to={posting.path}
           className="posting-link"
-          aria-label={`posting ${posting.title}`}
+          aria-label={`A post named ${posting.title} in the ${posting.category} category`}
         >
           <span>{posting.title}</span>
           <span>{posting.date}</span>
