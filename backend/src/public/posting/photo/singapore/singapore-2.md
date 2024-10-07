@@ -14,24 +14,24 @@ category: photo
 
 ## 가든스 더 베이
 
-![가든스더베이](https://j93.es/api/image/photo/singapore-2/1-가든스더베이1.jpg)
+![가든스더베이](https://j93.es/api/image/photo/singapore/singapore-2/1-가든스더베이1.jpg)
 
-![가든스더베이](https://j93.es/api/image/photo/singapore-2/1-가든스더베이2.jpg)
+![가든스더베이](https://j93.es/api/image/photo/singapore/singapore-2/1-가든스더베이2.jpg)
 
-![가든스더베이](https://j93.es/api/image/photo/singapore-2/1-가든스더베이3.jpg)
+![가든스더베이](https://j93.es/api/image/photo/singapore/singapore-2/1-가든스더베이3.jpg)
 
-![가든스더베이](https://j93.es/api/image/photo/singapore-2/1-가든스더베이4.jpg)
+![가든스더베이](https://j93.es/api/image/photo/singapore/singapore-2/1-가든스더베이4.jpg)
 
-![가든스더베이](https://j93.es/api/image/photo/singapore-2/1-가든스더베이5.jpg)
+![가든스더베이](https://j93.es/api/image/photo/singapore/singapore-2/1-가든스더베이5.jpg)
 
-![가든스더베이](https://j93.es/api/image/photo/singapore-2/1-가든스더베이6.jpg)
+![가든스더베이](https://j93.es/api/image/photo/singapore/singapore-2/1-가든스더베이6.jpg)
 
 ## 유니버셜 스튜디오
 
-![유니버셜스튜디오](https://j93.es/api/image/photo/singapore-2/2-유니버셜스튜디오1.jpg)
+![유니버셜스튜디오](https://j93.es/api/image/photo/singapore/singapore-2/2-유니버셜스튜디오1.jpg)
 
-![유니버셜스튜디오](https://j93.es/api/image/photo/singapore-2/2-유니버셜스튜디오2.jpg)
+![유니버셜스튜디오](https://j93.es/api/image/photo/singapore/singapore-2/2-유니버셜스튜디오2.jpg)
 
-![유니버셜스튜디오](https://j93.es/api/image/photo/singapore-2/2-유니버셜스튜디오3.jpg)
+![유니버셜스튜디오](https://j93.es/api/image/photo/singapore/singapore-2/2-유니버셜스튜디오3.jpg)
 
-![유니버셜스튜디오](https://j93.es/api/image/photo/singapore-2/2-유니버셜스튜디오4.jpg)
+![유니버셜스튜디오](https://j93.es/api/image/photo/singapore/singapore-2/2-유니버셜스튜디오4.jpg)

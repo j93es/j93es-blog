@@ -14,26 +14,26 @@ category: photo
 
 ## 머라이언 공원
 
-![머라이언공원](https://j93.es/api/image/photo/singapore-4/1-머라이언공원1.jpg)
+![머라이언공원](https://j93.es/api/image/photo/singapore/singapore-4/1-머라이언공원1.jpg)
 
-![머라이언공원](https://j93.es/api/image/photo/singapore-4/1-머라이언공원2.jpg)
+![머라이언공원](https://j93.es/api/image/photo/singapore/singapore-4/1-머라이언공원2.jpg)
 
-![머라이언공원](https://j93.es/api/image/photo/singapore-4/1-머라이언공원3.jpg)
+![머라이언공원](https://j93.es/api/image/photo/singapore/singapore-4/1-머라이언공원3.jpg)
 
-![머라이언공원](https://j93.es/api/image/photo/singapore-4/1-머라이언공원4.jpg)
+![머라이언공원](https://j93.es/api/image/photo/singapore/singapore-4/1-머라이언공원4.jpg)
 
-![머라이언공원](https://j93.es/api/image/photo/singapore-4/1-머라이언공원5.jpg)
+![머라이언공원](https://j93.es/api/image/photo/singapore/singapore-4/1-머라이언공원5.jpg)
 
-![머라이언공원](https://j93.es/api/image/photo/singapore-4/1-머라이언공원6.jpg)
+![머라이언공원](https://j93.es/api/image/photo/singapore/singapore-4/1-머라이언공원6.jpg)
 
 ## 마리나베이샌즈 쇼핑몰
 
-![마리나베이샌즈쇼핑몰](https://j93.es/api/image/photo/singapore-4/2-마리나베이샌즈쇼핑몰1.jpg)
+![마리나베이샌즈쇼핑몰](https://j93.es/api/image/photo/singapore/singapore-4/2-마리나베이샌즈쇼핑몰1.jpg)
 
-![마리나베이샌즈쇼핑몰](https://j93.es/api/image/photo/singapore-4/2-마리나베이샌즈쇼핑몰2.jpg)
+![마리나베이샌즈쇼핑몰](https://j93.es/api/image/photo/singapore/singapore-4/2-마리나베이샌즈쇼핑몰2.jpg)
 
-![마리나베이샌즈쇼핑몰](https://j93.es/api/image/photo/singapore-4/2-마리나베이샌즈쇼핑몰3.jpg)
+![마리나베이샌즈쇼핑몰](https://j93.es/api/image/photo/singapore/singapore-4/2-마리나베이샌즈쇼핑몰3.jpg)
 
-![마리나베이샌즈쇼핑몰](https://j93.es/api/image/photo/singapore-4/2-마리나베이샌즈쇼핑몰4.jpg)
+![마리나베이샌즈쇼핑몰](https://j93.es/api/image/photo/singapore/singapore-4/2-마리나베이샌즈쇼핑몰4.jpg)
 
-![마리나베이샌즈쇼핑몰](https://j93.es/api/image/photo/singapore-4/2-마리나베이샌즈쇼핑몰5.jpg)
+![마리나베이샌즈쇼핑몰](https://j93.es/api/image/photo/singapore/singapore-4/2-마리나베이샌즈쇼핑몰5.jpg)

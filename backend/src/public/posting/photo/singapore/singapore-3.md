@@ -14,32 +14,32 @@ category: photo
 
 ## 아틀라스바
 
-![아틀라스바](https://j93.es/api/image/photo/singapore-3/1-아틀라스바1.jpg)
+![아틀라스바](https://j93.es/api/image/photo/singapore/singapore-3/1-아틀라스바1.jpg)
 
-![아틀라스바](https://j93.es/api/image/photo/singapore-3/1-아틀라스바2.jpg)
+![아틀라스바](https://j93.es/api/image/photo/singapore/singapore-3/1-아틀라스바2.jpg)
 
-![아틀라스바](https://j93.es/api/image/photo/singapore-3/1-아틀라스바3.jpg)
+![아틀라스바](https://j93.es/api/image/photo/singapore/singapore-3/1-아틀라스바3.jpg)
 
-![아틀라스바](https://j93.es/api/image/photo/singapore-3/1-아틀라스바4.jpg)
+![아틀라스바](https://j93.es/api/image/photo/singapore/singapore-3/1-아틀라스바4.jpg)
 
 ## 밤거리
 
-![밤거리](https://j93.es/api/image/photo/singapore-3/2-밤거리1.jpg)
+![밤거리](https://j93.es/api/image/photo/singapore/singapore-3/2-밤거리1.jpg)
 
-![밤거리](https://j93.es/api/image/photo/singapore-3/2-밤거리2.jpg)
+![밤거리](https://j93.es/api/image/photo/singapore/singapore-3/2-밤거리2.jpg)
 
 ## 아랍거리
 
-![아랍거리](https://j93.es/api/image/photo/singapore-3/3-아랍거리1.jpg)
+![아랍거리](https://j93.es/api/image/photo/singapore/singapore-3/3-아랍거리1.jpg)
 
-![아랍거리](https://j93.es/api/image/photo/singapore-3/3-아랍거리2.jpg)
+![아랍거리](https://j93.es/api/image/photo/singapore/singapore-3/3-아랍거리2.jpg)
 
-![아랍거리](https://j93.es/api/image/photo/singapore-3/3-아랍거리3.jpg)
+![아랍거리](https://j93.es/api/image/photo/singapore/singapore-3/3-아랍거리3.jpg)
 
-![아랍거리](https://j93.es/api/image/photo/singapore-3/3-아랍거리4.jpg)
+![아랍거리](https://j93.es/api/image/photo/singapore/singapore-3/3-아랍거리4.jpg)
 
-![아랍거리](https://j93.es/api/image/photo/singapore-3/3-아랍거리5.jpg)
+![아랍거리](https://j93.es/api/image/photo/singapore/singapore-3/3-아랍거리5.jpg)
 
 ## 빌딩
 
-![빌딩](https://j93.es/api/image/photo/singapore-3/4-빌딩.jpg)
+![빌딩](https://j93.es/api/image/photo/singapore/singapore-3/4-빌딩.jpg)
