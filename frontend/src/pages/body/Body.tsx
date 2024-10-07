@@ -1,48 +1,72 @@
 import React, { useContext, useEffect, useState, Suspense } from "react";
 import { apiUrl } from "config";
 import {
-  bodyLoadingContext,
-  setBodyLoadingContext,
-  alertDataContext,
-  setAlertDataContext,
+  LoadingContext,
+  SetLoadingContext,
+  AlertDataContext,
+  SetAlertDataContext,
+  PostingListContext,
 } from "App";
+
 import Loader from "components/Loader";
 import Redirect from "components/Redirect";
 import PostingList from "pages/body/PostingList";
+
 import "pages/body/Body.css";
 
 const Posting = React.lazy(() => import("pages/body/Posting"));
 
-function Body({ path }: { path: string }) {
+function Body({
+  path,
+  isExistPath = true,
+}: {
+  path: string;
+  isExistPath?: boolean;
+}) {
   const [markdownContent, setMarkdownContent] = useState("");
-  const loading = useContext(bodyLoadingContext);
-  const alertData = useContext(alertDataContext);
-  const setBodyLoading = useContext(setBodyLoadingContext);
-  const setAlertData = useContext(setAlertDataContext);
+  const loading = useContext(LoadingContext);
+  const alertData = useContext(AlertDataContext);
+  const postingList = useContext(PostingListContext);
+  const setLoading = useContext(SetLoadingContext);
+  const setAlertData = useContext(SetAlertDataContext);
+
+  useEffect(() => {
+    if (postingList && !isExistPath) {
+      setAlertData({
+        message: "Requested page not found",
+        statusText: "Not Found",
+      });
+      return;
+    }
+    if (isExistPath) {
+      setAlertData(null);
+    }
+
+    // eslint-disable-next-line
+  }, [postingList, isExistPath]);
 
   useEffect(() => {
     if (!path || path === "/") {
       setMarkdownContent("");
       return;
     }
+
     const fetchMarkdown = async () => {
       try {
-        setBodyLoading(true);
+        setLoading(true);
         const response = await fetch(apiUrl + path);
         if (!response.ok) {
-          throw new Error(response.statusText);
+          throw new Error(`${response.status} ${response.statusText}`);
         }
         const markdownText = await response.text();
         setMarkdownContent(markdownText.split("---")[2]);
       } catch (error: Error | any) {
-        const statusText = error.statusText ? error.statusText : `${error}`;
-
         setAlertData({
-          message: "Failed to fetch markdown",
-          statusText: statusText,
+          message: "Unable to load posting",
+          statusText: error.message,
         });
       } finally {
-        setBodyLoading(false);
+        setLoading(false);
       }
     };
 
@@ -55,6 +79,10 @@ function Body({ path }: { path: string }) {
   }, [path]);
 
   const getJsx = () => {
+    if (loading) {
+      return <Loader />;
+    }
+
     if (alertData) {
       return (
         <Redirect
@@ -65,10 +93,6 @@ function Body({ path }: { path: string }) {
           callback={() => setAlertData(null)}
         />
       );
-    }
-
-    if (loading) {
-      return <Loader />;
     }
 
     if (path === "/") {

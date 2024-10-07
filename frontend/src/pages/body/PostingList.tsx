@@ -13,7 +13,7 @@ function PostingList() {
     categoryJsx[category] = [];
   });
 
-  postingList.forEach((posting: MarkdownMetadata) => {
+  postingList?.forEach((posting: MarkdownMetadata) => {
     const jsxElem = (
       <li key={`posting-${posting.title}`}>
         <Link

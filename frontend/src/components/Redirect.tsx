@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
+
 import "components/Redirect.css";
+import { useNavigate } from "react-router-dom";
 
 export default function Redirect({
   path,
@@ -14,28 +16,28 @@ export default function Redirect({
   message: string;
   callback?: () => void;
 }) {
-  const [remainingMs, setRemainingMs] = useState(delaySeconds * 1000);
-
+  const [remainingSec, setremainingSec] = useState(delaySeconds);
+  const navigate = useNavigate();
   useEffect(() => {
     setTimeout(() => {
-      setRemainingMs(remainingMs - 1000);
+      setremainingSec(remainingSec - 1 > 0 ? remainingSec - 1 : 0);
     }, 1000);
 
-    if (remainingMs <= 0) {
-      window.location.href = path;
+    if (remainingSec <= 0) {
+      navigate(path);
       if (callback) {
         callback();
       }
     }
 
     // eslint-disable-next-line
-  }, [remainingMs]);
+  }, [remainingSec]);
 
   return (
     <div className="redirect-wrap">
       <h3>{title}</h3>
       <p>{message}</p>
-      <p>Redirect to homepage after {remainingMs / 1000} seconds.</p>
+      <p>Redirect to homepage after {remainingSec} seconds.</p>
     </div>
   );
 }
