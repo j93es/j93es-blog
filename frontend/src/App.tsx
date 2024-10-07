@@ -75,10 +75,10 @@ function App() {
                       element={<Body path={`/${posting.path}`} />}
                     />
                   ))}
-                  {/* <Route
+                  <Route
                     path="*"
                     element={<Body path="/" isExistPath={false} />}
-                  /> */}
+                  />
                 </Routes>
               </PostingListContext.Provider>
             </SetLoadingContext.Provider>
