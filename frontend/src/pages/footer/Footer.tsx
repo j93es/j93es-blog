@@ -2,8 +2,8 @@ import "pages/footer/Footer.css";
 
 export default function Footer() {
   return (
-    <footer className="footer-wrapper">
-      <div className="social-container">
+    <footer className="footer-cont">
+      <div className="social-item">
         <a
           aria-label="Visit j93es's Instagram"
           href="https://www.instagram.com/j93es_jung"

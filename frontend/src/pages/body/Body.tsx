@@ -9,7 +9,6 @@ import {
 import Loader from "components/Loader";
 import Redirect from "components/Redirect";
 import PostingList from "pages/body/PostingList";
-
 import "pages/body/Body.css";
 
 const Posting = React.lazy(() => import("pages/body/Posting"));
@@ -55,39 +54,35 @@ function Body({ path }: { path: string }) {
     // eslint-disable-next-line
   }, [path]);
 
-  if (alertData) {
+  const getJsx = () => {
+    if (alertData) {
+      return (
+        <Redirect
+          path="/"
+          delaySeconds={5}
+          title={alertData.statusText}
+          message={alertData.message}
+          callback={() => setAlertData(null)}
+        />
+      );
+    }
+
+    if (loading) {
+      return <Loader />;
+    }
+
+    if (path === "/") {
+      return <PostingList />;
+    }
+
     return (
-      <main className="body-wrapper">
-        {
-          <Redirect
-            path="/"
-            delaySeconds={5}
-            title={alertData.statusText}
-            message={alertData.message}
-            callback={() => setAlertData(null)}
-          />
-        }
-      </main>
+      <Suspense fallback={<Loader />}>
+        <Posting markdownContent={markdownContent} />
+      </Suspense>
     );
-  }
+  };
 
-  if (loading) {
-    return <main className="body-wrapper">{<Loader />}</main>;
-  }
-
-  if (path === "/") {
-    return <main className="body-wrapper">{<PostingList />}</main>;
-  }
-
-  return (
-    <main className="body-wrapper">
-      {
-        <Suspense fallback={<Loader />}>
-          <Posting markdownContent={markdownContent} />
-        </Suspense>
-      }
-    </main>
-  );
+  return <main className="body-cont">{getJsx()}</main>;
 }
 
 export default Body;

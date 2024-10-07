@@ -1,11 +1,11 @@
-.footer-wrapper {
+.footer-cont {
   width: 100%;
   text-align: center;
   padding: 2rem 0;
   border-top: 0.125rem solid #e1e4e8;
 }
 
-.social-container {
+.social-item {
   margin: 0 auto;
   width: 5.625rem;
   display: grid;

@@ -18,7 +18,7 @@ function PostingList() {
       <li key={`posting-${posting.title}`}>
         <Link
           to={posting.path}
-          className="posting-link"
+          className="posting-link-item"
           aria-label={`A post named ${posting.title} in the ${posting.category} category`}
         >
           <span>{posting.title}</span>
