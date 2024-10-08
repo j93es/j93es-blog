@@ -76,6 +76,12 @@ function App() {
                     />
                   ))}
                   <Route
+                    path="/policy/information-protection-policy.md"
+                    element={
+                      <Body path="/policy/information-protection-policy.md" />
+                    }
+                  />
+                  <Route
                     path="*"
                     element={<Body path="/" isExistPath={false} />}
                   />

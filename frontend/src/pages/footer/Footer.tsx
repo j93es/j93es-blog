@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "pages/footer/Footer.css";
 
 export default function Footer() {
@@ -40,7 +41,13 @@ export default function Footer() {
           </svg>
         </a>
       </div>
-      <span>&copy; {new Date().getFullYear()} j93es. All rights reserved.</span>
+      <p>&copy; {new Date().getFullYear()} j93es. All rights reserved.</p>
+      <Link
+        to="/policy/information-protection-policy.md"
+        className="information-protection-policy"
+      >
+        정보 보호 정책
+      </Link>
     </footer>
   );
 }

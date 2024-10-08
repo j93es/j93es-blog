@@ -11,5 +11,8 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 0.5rem;
-  padding-bottom: 1rem;
+}
+
+.information-protection-policy {
+  color: #121418;
 }
