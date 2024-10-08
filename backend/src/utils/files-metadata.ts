@@ -58,10 +58,11 @@ export class FilesMetadata {
     });
   };
 
-  getMarkdownFilesMetadata = () => {
+  getMarkdownFilesMetadata = (directoryPath: string) => {
     if (this.markdownFilesMetadata === null) {
-      const rawMarkdownFilesMetadata =
-        this.makeRawMarkdownFilesMetadata(publicDir);
+      const rawMarkdownFilesMetadata = this.makeRawMarkdownFilesMetadata(
+        path.join(publicDir, directoryPath)
+      );
       this.markdownFilesMetadata = this.sortMarkdownFilesMetadata(
         rawMarkdownFilesMetadata
       );

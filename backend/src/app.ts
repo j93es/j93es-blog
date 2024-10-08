@@ -1,7 +1,7 @@
 import dotenv from "dotenv";
 dotenv.config();
 
-import express, { Application, NextFunction, Request, Response } from "express";
+import express, { Application, Request, Response } from "express";
 import cors from "cors";
 import helmet from "helmet";
 
@@ -35,39 +35,10 @@ app.use(customLogger.requestLogger);
 app.use(express.static(publicDir, { etag: false, index: false, maxAge: "1d" }));
 
 app.get("/index/", (req: Request, res: Response) => {
-  const markdownFilesMetadata = filesMetadata.getMarkdownFilesMetadata();
+  const markdownFilesMetadata =
+    filesMetadata.getMarkdownFilesMetadata("/posting");
   res.json(markdownFilesMetadata);
 });
-
-// app.get("/file/*", (req: Request, res: Response, next: NextFunction) => {
-//   const requestedPath = req.url.split("/")[2] || "index.md";
-//   const filePath = path.join(publicDir, requestedPath);
-//   const normalizedPath = path.normalize(filePath);
-
-//   if (!normalizedPath.startsWith(publicDir)) {
-//     return next(
-//       new ForbbidenError("Path Traversal Detected: " + normalizedPath)
-//     );
-//   }
-
-//   res.sendFile(normalizedPath, (err) => {
-//     if (err) {
-//       if (
-//         (err as NodeJS.ErrnoException).code === "ENOENT" ||
-//         (err as NodeJS.ErrnoException).code === "EISDIR" ||
-//         (err as NodeJS.ErrnoException).code === "ENOTDIR" ||
-//         (err as NodeJS.ErrnoException).code === "EPERM" ||
-//         (err as NodeJS.ErrnoException).code === "EACCES" ||
-//         (err as NodeJS.ErrnoException).code === "ENAMETOOLONG" ||
-//         (err as NodeJS.ErrnoException).code === "ELOOP"
-//       ) {
-//         next(new ResourceNotFoundError("File Not Found: " + normalizedPath));
-//       } else {
-//         next(err);
-//       }
-//     }
-//   });
-// });
 
 app.use(errorHandler.routerNotFound);
 app.use(errorHandler.notFound);
