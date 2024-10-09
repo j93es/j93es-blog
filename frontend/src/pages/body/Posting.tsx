@@ -35,7 +35,7 @@ function Posting({
 
   return (
     <div className="posting-wrap">
-      <div className="posting-markdown-wrap">
+      <div>
         <ReactMarkdown
           children={markdownContent.split("---")[2]}
           remarkPlugins={[remarkGfm]}
@@ -43,15 +43,15 @@ function Posting({
           components={components}
         />
       </div>
-      <div className="posting-nav-wrap">
-        {nextPosting && (
-          <Link to={nextPosting.path} className="posting-nav-item">
-            다음 글: {nextPosting.title}
+      <div>
+        {previousPosting && (
+          <Link to={previousPosting.path} className="posting-nav-item prev">
+            <span>&lsaquo; {previousPosting.title}</span>
           </Link>
         )}
-        {previousPosting && (
-          <Link to={previousPosting.path} className="posting-nav-item">
-            이전 글: {previousPosting.title}
+        {nextPosting && (
+          <Link to={nextPosting.path} className="posting-nav-item next">
+            <span>{nextPosting.title} &rsaquo;</span>
           </Link>
         )}
       </div>

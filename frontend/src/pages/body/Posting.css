@@ -2,16 +2,7 @@
   width: 90%;
   display: grid;
   grid-template-rows: 1fr auto;
-}
-
-.posting-nav-wrap {
-  justify-content: center;
-  text-align: center;
-  display: grid;
-}
-
-.posting-markdown-wrap {
-  margin-bottom: 1rem;
+  grid-gap: 1rem;
 }
 
 .posting-nav-item {
@@ -19,5 +10,15 @@
   align-items: center;
   color: #121418;
   border-bottom: 0.0625rem solid #e1e4e8;
-  margin-bottom: 0.6875rem;
+}
+
+.prev {
+  justify-self: start;
+  float: left;
+  margin: 0 1rem 0.6875rem 0;
+}
+
+.next {
+  justify-self: end;
+  float: right;
 }
