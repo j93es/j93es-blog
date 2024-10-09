@@ -1,14 +1,18 @@
 import fs from "fs";
 import matter from "gray-matter";
 import path from "path";
-import { publicDir } from "../config";
-import { MarkdownMetadata } from "../interface/metadata";
+import { publicDir, showingCategoryList } from "../config";
+import { PostingData } from "../interface/PostingData";
 
 export class FilesMetadata {
-  private markdownFilesMetadata: MarkdownMetadata[] | null = null;
+  private postingData: PostingData | null = null;
 
-  private makeRawMarkdownFilesMetadata = (directoryPath: string) => {
-    const rawMarkdownFilesMetadata: MarkdownMetadata[] = [];
+  private makeRawPostingData = (directoryPath: string) => {
+    const rawPostingData: PostingData = {};
+
+    showingCategoryList.forEach((category: string, index: number) => {
+      rawPostingData[category] = { order: index, data: [] };
+    });
 
     const readDirectory = (dirPath: string) => {
       const files = fs.readdirSync(dirPath);
@@ -22,7 +26,10 @@ export class FilesMetadata {
           const markdownContent = fs.readFileSync(fullPath, "utf-8");
           const { data } = matter(markdownContent);
 
-          rawMarkdownFilesMetadata.push({
+          if (!showingCategoryList.includes(data.category)) {
+            return;
+          }
+          rawPostingData[data.category].data.push({
             title: data.title,
             date: data.date,
             tag: data.tag,
@@ -34,40 +41,48 @@ export class FilesMetadata {
     };
 
     readDirectory(directoryPath);
-    return rawMarkdownFilesMetadata;
+    Object.keys(rawPostingData).forEach((key) => {
+      if (rawPostingData[key].data.length === 0) {
+        delete rawPostingData[key];
+      }
+    });
+
+    return rawPostingData;
   };
 
-  private sortMarkdownFilesMetadata = (metadata: MarkdownMetadata[]) => {
-    return metadata.sort((a, b) => {
-      const categoryGap = a.category.localeCompare(b.category);
-      if (categoryGap !== 0) {
-        return categoryGap;
-      }
+  private sortPostingData = (postingData: PostingData) => {
+    Object.keys(postingData).map((key) => {
+      postingData[key].data.sort((a, b) => {
+        const categoryGap = a.category.localeCompare(b.category);
+        if (categoryGap !== 0) {
+          return categoryGap;
+        }
 
-      const dateGap = new Date(b.date).getTime() - new Date(a.date).getTime();
-      if (dateGap !== 0) {
-        return dateGap;
-      }
+        const dateGap = new Date(b.date).getTime() - new Date(a.date).getTime();
+        if (dateGap !== 0) {
+          return dateGap;
+        }
 
-      const titleGap = a.title.localeCompare(b.title);
-      if (titleGap !== 0) {
-        return titleGap;
-      }
+        const titleGap = a.title.localeCompare(b.title);
+        if (titleGap !== 0) {
+          return titleGap;
+        }
 
-      return 0;
+        return 0;
+      });
     });
+
+    return postingData;
   };
 
   getMarkdownFilesMetadata = (directoryPath: string) => {
-    if (this.markdownFilesMetadata === null) {
-      const rawMarkdownFilesMetadata = this.makeRawMarkdownFilesMetadata(
+    if (this.postingData === null) {
+      const rawPostingData = this.makeRawPostingData(
         path.join(publicDir, directoryPath)
       );
-      this.markdownFilesMetadata = this.sortMarkdownFilesMetadata(
-        rawMarkdownFilesMetadata
-      );
+      this.postingData = this.sortPostingData(rawPostingData);
     }
 
-    return this.markdownFilesMetadata;
+    return this.postingData;
   };
 }

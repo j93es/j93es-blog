@@ -9,3 +9,8 @@ export const whitelist = JSON.parse(
 );
 
 export const publicDir = path.join(__dirname, "public");
+
+export const showingCategoryList = JSON.parse(
+  process.env.SHOWING_CATEGORY_LIST ||
+    JSON.stringify(["frontend", "backend", "devops", "database", "etc"])
+);

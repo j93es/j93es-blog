@@ -1,7 +1,5 @@
 import { useState, useEffect } from "react";
-
 import "components/Redirect.css";
-import { useNavigate } from "react-router-dom";
 
 export default function Redirect({
   path,
@@ -17,14 +15,13 @@ export default function Redirect({
   callback?: () => void;
 }) {
   const [remainingSec, setremainingSec] = useState(delaySeconds);
-  const navigate = useNavigate();
   useEffect(() => {
     setTimeout(() => {
       setremainingSec(remainingSec - 1 > 0 ? remainingSec - 1 : 0);
     }, 1000);
 
     if (remainingSec <= 0) {
-      navigate(path);
+      window.location.href = path;
       if (callback) {
         callback();
       }

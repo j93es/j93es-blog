@@ -5,7 +5,7 @@ import {
   SetLoadingContext,
   AlertDataContext,
   SetAlertDataContext,
-  PostingListContext,
+  PostingDataContext,
 } from "App";
 
 import Loader from "components/Loader";
@@ -13,41 +13,42 @@ import Redirect from "components/Redirect";
 import PostingList from "pages/body/PostingList";
 
 import "pages/body/Body.css";
+import { EachPosting } from "module/PostingData";
 
 const Posting = React.lazy(() => import("pages/body/Posting"));
 
 function Body({
   path,
+  eachPosting = null,
   isExistPath = true,
 }: {
   path: string;
+  eachPosting?: EachPosting | null;
   isExistPath?: boolean;
 }) {
   const [markdownContent, setMarkdownContent] = useState("");
   const loading = useContext(LoadingContext);
   const alertData = useContext(AlertDataContext);
-  const postingList = useContext(PostingListContext);
+  const postingData = useContext(PostingDataContext);
   const setLoading = useContext(SetLoadingContext);
   const setAlertData = useContext(SetAlertDataContext);
 
   useEffect(() => {
-    if (postingList && !isExistPath) {
+    if (postingData?.getCategoryList() && !isExistPath) {
       setAlertData({
         message: "Requested page not found",
-        statusText: "Not Found",
+        statusText: "404 Not Found",
       });
       return;
     }
+
     if (isExistPath) {
       setAlertData(null);
     }
-
-    // eslint-disable-next-line
-  }, [postingList, isExistPath]);
+  }, [path, postingData, isExistPath, setAlertData]);
 
   useEffect(() => {
     if (!path || path === "/") {
-      setMarkdownContent("");
       return;
     }
 
@@ -59,7 +60,7 @@ function Body({
           throw new Error(`${response.status} ${response.statusText}`);
         }
         const markdownText = await response.text();
-        setMarkdownContent(markdownText.split("---")[2]);
+        setMarkdownContent(markdownText);
       } catch (error: Error | any) {
         setAlertData({
           message: "Unable to load posting",
@@ -78,35 +79,29 @@ function Body({
     // eslint-disable-next-line
   }, [path]);
 
-  const getJsx = () => {
-    if (loading) {
-      return <Loader />;
-    }
-
-    if (alertData) {
-      return (
+  return (
+    <main className="body-cont">
+      {loading ? (
+        <Loader />
+      ) : alertData ? (
         <Redirect
           path="/"
           delaySeconds={5}
-          title={alertData.statusText}
-          message={alertData.message}
-          callback={() => setAlertData(null)}
+          title={`${alertData.statusText}`}
+          message={`${alertData.message}`}
         />
-      );
-    }
-
-    if (path === "/") {
-      return <PostingList />;
-    }
-
-    return (
-      <Suspense fallback={<Loader />}>
-        <Posting markdownContent={markdownContent} />
-      </Suspense>
-    );
-  };
-
-  return <main className="body-cont">{getJsx()}</main>;
+      ) : path === "/" ? (
+        <PostingList />
+      ) : (
+        <Suspense fallback={<Loader />}>
+          <Posting
+            markdownContent={markdownContent}
+            eachPosting={eachPosting}
+          />
+        </Suspense>
+      )}
+    </main>
+  );
 }
 
 export default Body;

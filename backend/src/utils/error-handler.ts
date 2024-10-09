@@ -63,7 +63,6 @@ export class ErrorHandler {
       res.locals.message = `${error}`;
       res.locals.error = error;
 
-      console.error(error);
       customLogger.error("InternalServerError", error.message, req);
       res.status(500).sendFile(path.join(errorPagesPath, "500.html"));
     } catch (err) {
