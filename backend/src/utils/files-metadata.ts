@@ -2,7 +2,7 @@ import fs from "fs";
 import matter from "gray-matter";
 import path from "path";
 import { publicDir, showingCategoryList } from "../config";
-import { PostingData } from "../interface/PostingData";
+import { PostingData, PostingDataClass } from "../model/PostingData";
 
 export class FilesMetadata {
   private postingData: PostingData | null = null;
@@ -50,37 +50,12 @@ export class FilesMetadata {
     return rawPostingData;
   };
 
-  private sortPostingData = (postingData: PostingData) => {
-    Object.keys(postingData).map((key) => {
-      postingData[key].data.sort((a, b) => {
-        const categoryGap = a.category.localeCompare(b.category);
-        if (categoryGap !== 0) {
-          return categoryGap;
-        }
-
-        const dateGap = new Date(b.date).getTime() - new Date(a.date).getTime();
-        if (dateGap !== 0) {
-          return dateGap;
-        }
-
-        const titleGap = a.title.localeCompare(b.title);
-        if (titleGap !== 0) {
-          return titleGap;
-        }
-
-        return 0;
-      });
-    });
-
-    return postingData;
-  };
-
   getMarkdownFilesMetadata = (directoryPath: string) => {
     if (this.postingData === null) {
       const rawPostingData = this.makeRawPostingData(
         path.join(publicDir, directoryPath)
       );
-      this.postingData = this.sortPostingData(rawPostingData);
+      this.postingData = new PostingDataClass(rawPostingData).sortPostingData();
     }
 
     return this.postingData;

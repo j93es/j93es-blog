@@ -3,7 +3,7 @@ import rehypeHighlight from "rehype-highlight";
 import remarkGfm from "remark-gfm";
 import "highlight.js/styles/github-dark-dimmed.css";
 import "pages/body/Posting.css";
-import { EachPosting } from "module/PostingData";
+import { EachPosting } from "model/PostingData";
 import { Link } from "react-router-dom";
 import { PostingDataContext } from "App";
 import { useContext } from "react";

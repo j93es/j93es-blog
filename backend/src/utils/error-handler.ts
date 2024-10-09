@@ -4,7 +4,7 @@ import {
   NotFoundError,
   ForbbidenError,
   TooManyRequestsError,
-} from "../interface/error";
+} from "../model/error";
 import { customLogger } from "./index";
 import { publicDir } from "../config";
 

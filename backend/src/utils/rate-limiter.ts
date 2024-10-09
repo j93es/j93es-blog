@@ -1,6 +1,6 @@
 import { rateLimit } from "express-rate-limit";
 import { requestUtils } from "./index";
-import { TooManyRequestsError } from "../interface/error";
+import { TooManyRequestsError } from "../model/error";
 
 export class RateLimiter {
   makeLimit(second: number, limit: number) {

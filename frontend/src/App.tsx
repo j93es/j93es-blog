@@ -4,9 +4,9 @@ import { Routes, Route } from "react-router-dom";
 
 import { createContext } from "react";
 import { useState, useEffect } from "react";
-import { PostingData, EachPosting, PostingDataClass } from "module/PostingData";
+import { PostingData, EachPosting, PostingDataClass } from "model/PostingData";
 import { apiUrl } from "config";
-import { AlertType } from "module/Alert";
+import { AlertType } from "model/Alert";
 
 import Header from "pages/header/Header";
 import Body from "pages/body/Body";

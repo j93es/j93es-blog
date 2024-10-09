@@ -13,7 +13,7 @@ import Redirect from "components/Redirect";
 import PostingList from "pages/body/PostingList";
 
 import "pages/body/Body.css";
-import { EachPosting } from "module/PostingData";
+import { EachPosting } from "model/PostingData";
 
 const Posting = React.lazy(() => import("pages/body/Posting"));
 

@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { PostingDataContext } from "App";
 import { Link } from "react-router-dom";
-import { EachPosting } from "module/PostingData";
+import { EachPosting } from "model/PostingData";
 import "pages/body/PostingList.css";
 
 function PostingList() {
