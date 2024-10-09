@@ -4,9 +4,9 @@ import { Routes, Route } from "react-router-dom";
 
 import { createContext } from "react";
 import { useState, useEffect } from "react";
-import { PostingData, EachPosting, PostingDataClass } from "model/PostingData";
+import { EachPosting, PostingDataClass } from "model/posting-data";
 import { apiUrl } from "config";
-import { AlertType } from "model/Alert";
+import { AlertType } from "model/alert";
 
 import Header from "pages/header/Header";
 import Body from "pages/body/Body";
@@ -40,9 +40,9 @@ function App() {
         if (!response.ok) {
           throw new Error(`${response.status} ${response.statusText}`);
         }
-        const postingData: PostingData = await response.json();
+        const postingData = new PostingDataClass(await response.json());
 
-        setPostingData(new PostingDataClass(postingData));
+        setPostingData(new PostingDataClass(postingData.sortPostingData()));
       } catch (error: any) {
         setAlertData({
           message: "Unable to load posting list",
@@ -80,12 +80,7 @@ function App() {
                             <Route
                               key={eachPosting.path}
                               path={eachPosting.path}
-                              element={
-                                <Body
-                                  path={eachPosting.path}
-                                  eachPosting={eachPosting}
-                                />
-                              }
+                              element={<Body path={eachPosting.path} />}
                             />
                           );
                         });

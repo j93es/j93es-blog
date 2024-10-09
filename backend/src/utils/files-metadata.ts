@@ -1,8 +1,8 @@
 import fs from "fs";
-import matter from "gray-matter";
 import path from "path";
 import { publicDir, showingCategoryList } from "../config";
 import { PostingData, PostingDataClass } from "../model/PostingData";
+import { parseMarkdown } from "./index";
 
 export class FilesMetadata {
   private postingData: PostingData | null = null;
@@ -24,7 +24,7 @@ export class FilesMetadata {
           readDirectory(fullPath);
         } else if (path.extname(fullPath) === ".md") {
           const markdownContent = fs.readFileSync(fullPath, "utf-8");
-          const { data } = matter(markdownContent);
+          const { data } = parseMarkdown(markdownContent);
 
           if (!showingCategoryList.includes(data.category)) {
             return;

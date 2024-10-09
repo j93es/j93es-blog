@@ -1,8 +1,8 @@
 ---
-title: "계수기ddddddddddddddddd"
-date: 2024-09-26 15:30
+title: 계수기ddddddddddddddddd
+date: 2024-09-26 14:30
 tag: [fullstack]
-category: _dev
+category: dev
 ---
 
 # 기술스택
@@ -13,11 +13,7 @@ category: _dev
 - Infra: Nginx, Cloudflare(or AWS Route53)
 
 ```typescript
-export const enum AccidentCode {
-  CAR_CRASH = "0",
-  FIRE = "1",
-  FLOOD = "2",
-}
-```
+export const
 
 ![성능 테스트](https://j93.es/api/image/dev/backend-begin/performance-test.png)
+```

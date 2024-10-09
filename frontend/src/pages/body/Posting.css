@@ -21,4 +21,6 @@
 .next {
   justify-self: end;
   float: right;
+  text-align: right;
+  margin: 1px;
 }

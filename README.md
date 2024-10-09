@@ -70,3 +70,7 @@
 - 기존에는 포스팅 카테고리를 frontend에서 관리하는 부분이 있었다. 이를 전부 backend에서 관리할 수 있도록 하였다.
 - 이전 글, 다음 글 기능을 추가하였다.
 - PostingDataClass를 추가하여 데이터를 직관적으로 사용할 수 있게 되었다.(ex. Object.keys(postingData).sort(---) => postingData.getCategoryList())
+
+#### 2024-10-10 remove dependency
+
+- gray-matter라는 툴이 별로라는 생각이 들었다. 일단 Webpack5에서 Buffer을 기본적으로 제공해주지 않아서, React에서는 gray-matter를 사용하기에 어려워 보였다. 이에, 마크다운 parser를 만들어서 gray-matter를 대체하였다. 구현이 쉬워보였는데, 정규표현식 등을 활용해서 여러 엣지 케이스를 막아야 했다는 점이 까다롭게 느껴졌다.

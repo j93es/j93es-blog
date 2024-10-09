@@ -26,11 +26,11 @@ export class PostingDataClass {
     this.postingData = JSON.parse(JSON.stringify(postingData));
   }
 
-  public getPostingData = () => {
+  public getPostingData = (): PostingData | null => {
     return this.postingData;
   };
 
-  public getCategoryList = () => {
+  public getCategoryList = (): string[] | [] => {
     if (!this.postingData) {
       return [];
     }
@@ -43,8 +43,8 @@ export class PostingDataClass {
     });
   };
 
-  public getPostingList = (category: string) => {
-    if (!this.postingData) {
+  public getPostingList = (category: string): EachPosting[] | [] => {
+    if (!this.postingData || !this.postingData[category]) {
       return [];
     }
 
@@ -55,17 +55,22 @@ export class PostingDataClass {
     category: string,
     target: string,
     by: keyof EachPosting
-  ) => {
+  ): EachPosting | null => {
     if (!this.postingData) {
       return null;
     }
 
-    return this.postingData[category].data.find(
-      (posting) => posting[by] === target
+    return (
+      this.postingData[category].data.find(
+        (posting) => posting[by] === target
+      ) ?? null
     );
   };
 
-  public getNextPosting = (category: string, title: string) => {
+  public getNextPosting = (
+    category: string,
+    title: string
+  ): EachPosting | null => {
     const postingList = this.getPostingList(category);
     const index = postingList.findIndex((posting) => posting.title === title);
     if (index === 0) {
@@ -75,7 +80,10 @@ export class PostingDataClass {
     return postingList[index - 1];
   };
 
-  public getPreviousPosting = (category: string, title: string) => {
+  public getPreviousPosting = (
+    category: string,
+    title: string
+  ): EachPosting | null => {
     const postingList = this.getPostingList(category);
     const index = postingList.findIndex((posting) => posting.title === title);
     if (index === postingList.length - 1) {

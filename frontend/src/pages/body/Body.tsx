@@ -13,17 +13,14 @@ import Redirect from "components/Redirect";
 import PostingList from "pages/body/PostingList";
 
 import "pages/body/Body.css";
-import { EachPosting } from "model/PostingData";
 
 const Posting = React.lazy(() => import("pages/body/Posting"));
 
 function Body({
   path,
-  eachPosting = null,
   isExistPath = true,
 }: {
   path: string;
-  eachPosting?: EachPosting | null;
   isExistPath?: boolean;
 }) {
   const [markdownContent, setMarkdownContent] = useState("");
@@ -94,10 +91,7 @@ function Body({
         <PostingList />
       ) : (
         <Suspense fallback={<Loader />}>
-          <Posting
-            markdownContent={markdownContent}
-            eachPosting={eachPosting}
-          />
+          <Posting markdownContent={markdownContent} />
         </Suspense>
       )}
     </main>

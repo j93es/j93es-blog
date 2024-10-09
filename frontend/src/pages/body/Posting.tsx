@@ -1,20 +1,15 @@
+import { Link } from "react-router-dom";
+import { PostingDataContext } from "App";
+import { useContext } from "react";
+import { parseMarkdown } from "utils/parse-markdown";
+
 import ReactMarkdown from "react-markdown";
 import rehypeHighlight from "rehype-highlight";
 import remarkGfm from "remark-gfm";
 import "highlight.js/styles/github-dark-dimmed.css";
 import "pages/body/Posting.css";
-import { EachPosting } from "model/PostingData";
-import { Link } from "react-router-dom";
-import { PostingDataContext } from "App";
-import { useContext } from "react";
 
-function Posting({
-  markdownContent,
-  eachPosting = null,
-}: {
-  markdownContent: string;
-  eachPosting?: EachPosting | null;
-}) {
+function Posting({ markdownContent }: { markdownContent: string }) {
   const components = {
     code: ({ ...props }) => {
       return <code style={{ borderRadius: "0.625rem" }} {...props} />;
@@ -23,21 +18,19 @@ function Posting({
       <img style={{ maxWidth: "100%" }} loading="lazy" {...props} alt="" />
     ),
   };
+
   const postingData = useContext(PostingDataContext);
+  const { data, content } = parseMarkdown(markdownContent);
   const nextPosting =
-    postingData &&
-    eachPosting &&
-    postingData.getNextPosting(eachPosting.category, eachPosting.title);
+    postingData && postingData.getNextPosting(data.category, data.title);
   const previousPosting =
-    postingData &&
-    eachPosting &&
-    postingData.getPreviousPosting(eachPosting.category, eachPosting.title);
+    postingData && postingData.getPreviousPosting(data.category, data.title);
 
   return (
     <div className="posting-wrap">
       <div>
         <ReactMarkdown
-          children={markdownContent.split("---")[2]}
+          children={content}
           remarkPlugins={[remarkGfm]}
           rehypePlugins={[rehypeHighlight]}
           components={components}

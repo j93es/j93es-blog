@@ -1,8 +1,8 @@
 ---
-title: "tempddddddddddddddddddddtempddddddddddddddddddddtempdddddddddddddddddddd"
+title: tempddddddddddddddddddddtempddddddddddddddddddddtempdddddddddddddddddddd
 date: 2024-09-26 15:30
 tag: [fullstack]
-category: _dev
+category: dev
 ---
 
 # 기술스택
@@ -12,12 +12,10 @@ category: _dev
 - Language: TypeScript
 - Infra: Nginx, Cloudflare(or AWS Route53)
 
+https://j93.es/api/image/dev/backend-begin/performance-test.pnghttps://j93.es/api/image/dev/backend-begin/performance-test.png
+
 ```typescript
-export const enum AccidentCode {
-  CAR_CRASH = "0",
-  FIRE = "1",
-  FLOOD = "2",
-}
+export
 ```
 
 ![성능 테스트](https://j93.es/api/image/dev/backend-begin/performance-test.png)
