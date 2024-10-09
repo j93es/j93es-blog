@@ -2,7 +2,7 @@
 title: 맞아가며 배운 백엔드(테스트중)
 date: 2024-10-09 13:30
 tag: [backend]
-category: dev
+category: _dev
 ---
 
 # 기술스택
