@@ -13,7 +13,7 @@ category: _dev
 - Infra: Nginx, Cloudflare(or AWS Route53)
 
 ```typescript
-export const
+export const;
 
-![성능 테스트](https://j93.es/api/image/dev/backend-begin/performance-test.png)
+// ![성능 테스트](https://j93.es/api/image/dev/backend-begin/performance-test.png)
 ```
