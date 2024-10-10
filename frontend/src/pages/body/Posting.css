@@ -3,6 +3,7 @@
   display: grid;
   grid-template-rows: 1fr auto;
   grid-gap: 1rem;
+  margin: 0 auto;
 }
 
 .posting-nav-item {
@@ -10,17 +11,17 @@
   align-items: center;
   color: #121418;
   border-bottom: 0.0625rem solid #e1e4e8;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.prev {
-  justify-self: start;
+.nav-prev {
   float: left;
+  text-align: left;
   margin: 0 1rem 0.6875rem 0;
 }
 
-.next {
-  justify-self: end;
+.nav-next {
   float: right;
   text-align: right;
-  margin: 1px;
 }

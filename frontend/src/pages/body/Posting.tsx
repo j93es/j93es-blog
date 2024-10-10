@@ -24,6 +24,11 @@ function Posting({ path }: { path: string }) {
     img: ({ ...props }) => (
       <img style={{ maxWidth: "100%" }} loading="lazy" {...props} alt="" />
     ),
+    pre: ({ ...props }) => {
+      return (
+        <pre style={{ whiteSpace: "pre-wrap", width: "100%" }} {...props} />
+      );
+    },
   };
   const [isPostingLoading, setIsPostingLoading] = useState(true);
   const [markdownContent, setMarkdownContent] = useState("");
@@ -94,12 +99,15 @@ function Posting({ path }: { path: string }) {
           </div>
           <div>
             {previousPosting && (
-              <Link to={previousPosting.path} className="posting-nav-item prev">
+              <Link
+                to={previousPosting.path}
+                className="posting-nav-item nav-prev"
+              >
                 <span>&lsaquo; {previousPosting.title}</span>
               </Link>
             )}
             {nextPosting && (
-              <Link to={nextPosting.path} className="posting-nav-item next">
+              <Link to={nextPosting.path} className="posting-nav-item nav-next">
                 <span>{nextPosting.title} &rsaquo;</span>
               </Link>
             )}
