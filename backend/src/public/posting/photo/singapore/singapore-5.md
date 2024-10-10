@@ -20,10 +20,6 @@ category: photo
 
 ![사테거리](https://j93.es/api/image/photo/singapore/singapore-5/1-사테거리3.jpg)
 
-![사테거리](https://j93.es/api/image/photo/singapore/singapore-5/1-사테거리4.jpg)
-
-![사테거리](https://j93.es/api/image/photo/singapore/singapore-5/1-사테거리5.jpg)
-
 ## 무지개 경찰서
 
 ![무지개경찰서](https://j93.es/api/image/photo/singapore/singapore-5/2-무지개경찰서1.jpg)

@@ -24,8 +24,6 @@ category: photo
 
 ![머라이언공원](https://j93.es/api/image/photo/singapore/singapore-4/1-머라이언공원5.jpg)
 
-![머라이언공원](https://j93.es/api/image/photo/singapore/singapore-4/1-머라이언공원6.jpg)
-
 ## 마리나베이샌즈 쇼핑몰
 
 ![마리나베이샌즈쇼핑몰](https://j93.es/api/image/photo/singapore/singapore-4/2-마리나베이샌즈쇼핑몰1.jpg)
@@ -35,5 +33,3 @@ category: photo
 ![마리나베이샌즈쇼핑몰](https://j93.es/api/image/photo/singapore/singapore-4/2-마리나베이샌즈쇼핑몰3.jpg)
 
 ![마리나베이샌즈쇼핑몰](https://j93.es/api/image/photo/singapore/singapore-4/2-마리나베이샌즈쇼핑몰4.jpg)
-
-![마리나베이샌즈쇼핑몰](https://j93.es/api/image/photo/singapore/singapore-4/2-마리나베이샌즈쇼핑몰5.jpg)
