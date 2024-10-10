@@ -1,22 +1,20 @@
-import "./App.css";
-import React from "react";
-import { Routes, Route } from "react-router-dom";
-
-import { createContext } from "react";
-import { useState, useEffect } from "react";
+// React
+import React, { createContext, useState, useEffect } from "react";
 import { EachPosting, PostingDataClass } from "model/posting-data";
 import { apiUrl } from "config";
 import { AlertType } from "model/alert";
-
 import Header from "pages/header/Header";
 import Body from "pages/body/Body";
 import Footer from "pages/footer/Footer";
 
+// External
+import { Routes, Route } from "react-router-dom";
+
+// Local
+import "App.css";
+
 export const PostingDataContext = createContext<PostingDataClass | null>(null);
-export const LoadingContext = createContext<boolean>(true);
-export const SetLoadingContext = createContext<
-  React.Dispatch<React.SetStateAction<boolean>>
->(() => {});
+export const IsPostingListLoadingContext = createContext<boolean>(true);
 export const AlertDataContext = createContext<AlertType | null>(null);
 export const SetAlertDataContext = createContext<
   React.Dispatch<React.SetStateAction<AlertType | null>>
@@ -24,13 +22,14 @@ export const SetAlertDataContext = createContext<
 
 function App() {
   const [alertData, setAlertData] = useState<AlertType | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [isPostingListLoading, setIsPostingListLoading] =
+    useState<boolean>(true);
   const [postingData, setPostingData] = useState<PostingDataClass | null>(null);
 
   useEffect(() => {
     const func = async () => {
       try {
-        setLoading(true);
+        setIsPostingListLoading(true);
         const response = await fetch(`${apiUrl}/index`, {
           method: "GET",
           headers: {
@@ -49,7 +48,7 @@ function App() {
           statusText: error.message,
         });
       } finally {
-        setLoading(false);
+        setIsPostingListLoading(false);
       }
     };
     func();
@@ -60,39 +59,37 @@ function App() {
       <Header />
       <AlertDataContext.Provider value={alertData}>
         <SetAlertDataContext.Provider value={setAlertData}>
-          <LoadingContext.Provider value={loading}>
-            <SetLoadingContext.Provider value={setLoading}>
-              <PostingDataContext.Provider value={postingData}>
-                <Routes>
-                  <Route path="/" element={<Body path="/" />} />
-                  <Route
-                    path="/policy/information-protection-policy.md"
-                    element={
-                      <Body path="/policy/information-protection-policy.md" />
-                    }
-                  />
-                  {postingData &&
-                    postingData.getCategoryList().map((category: string) => {
-                      return postingData
-                        .getPostingList(category)
-                        .map((eachPosting: EachPosting) => {
-                          return (
-                            <Route
-                              key={eachPosting.path}
-                              path={eachPosting.path}
-                              element={<Body path={eachPosting.path} />}
-                            />
-                          );
-                        });
-                    })}
-                  <Route
-                    path="*"
-                    element={<Body path="*" isExistPath={false} />}
-                  />
-                </Routes>
-              </PostingDataContext.Provider>
-            </SetLoadingContext.Provider>
-          </LoadingContext.Provider>
+          <IsPostingListLoadingContext.Provider value={isPostingListLoading}>
+            <PostingDataContext.Provider value={postingData}>
+              <Routes>
+                <Route path="/" element={<Body path="/" />} />
+                <Route
+                  path="/policy/information-protection-policy.md"
+                  element={
+                    <Body path="/policy/information-protection-policy.md" />
+                  }
+                />
+                {postingData &&
+                  postingData.getCategoryList().map((category: string) => {
+                    return postingData
+                      .getPostingList(category)
+                      .map((eachPosting: EachPosting) => {
+                        return (
+                          <Route
+                            key={eachPosting.path}
+                            path={eachPosting.path}
+                            element={<Body path={eachPosting.path} />}
+                          />
+                        );
+                      });
+                  })}
+                <Route
+                  path="*"
+                  element={<Body path="*" isExistPath={false} />}
+                />
+              </Routes>
+            </PostingDataContext.Provider>
+          </IsPostingListLoadingContext.Provider>
         </SetAlertDataContext.Provider>
       </AlertDataContext.Provider>
       <Footer />

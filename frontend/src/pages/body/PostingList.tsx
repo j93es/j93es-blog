@@ -1,8 +1,13 @@
+// React
 import { useContext } from "react";
+
+// Local
 import { PostingDataContext } from "App";
 import { Link } from "react-router-dom";
 import { EachPosting } from "model/posting-data";
 import "pages/body/PostingList.css";
+
+// External
 
 function PostingList() {
   const postingData = useContext(PostingDataContext);

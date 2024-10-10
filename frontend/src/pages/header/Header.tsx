@@ -1,4 +1,7 @@
+// Local
 import "pages/header/Header.css";
+
+// External
 import { Link } from "react-router-dom";
 
 function Header() {
