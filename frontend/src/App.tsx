@@ -2,7 +2,7 @@
 import React, { createContext, useState, useEffect } from "react";
 import { EachPosting, PostingDataClass } from "model/posting-data";
 import { apiUrl } from "config";
-import { AlertType } from "model/alert";
+import { AlertType } from "model/alert-type";
 import Header from "pages/header/Header";
 import Body from "pages/body/Body";
 import Footer from "pages/footer/Footer";
