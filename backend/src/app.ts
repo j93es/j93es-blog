@@ -20,7 +20,47 @@ const app: Application = express();
 app.set("trust proxy", "loopback, linklocal, uniquelocal");
 app.set("port", PORT || 8000);
 
-app.use(helmet({ crossOriginResourcePolicy: { policy: "cross-origin" } }));
+app.use(
+  helmet({
+    crossOriginResourcePolicy: { policy: "cross-origin" },
+    contentSecurityPolicy: {
+      useDefaults: true,
+      directives: {
+        "default-src": ["'none'"],
+        "script-src": ["'strict-dynamic'"],
+        "style-src": ["'self'"],
+        "img-src": ["'self'"],
+        "font-src": ["'self'"],
+        "object-src": ["'none'"],
+        "frame-ancestors": ["'none'"],
+        "base-uri": ["'self'"],
+        "form-action": ["'self'"],
+        "upgrade-insecure-requests": [],
+        "block-all-mixed-content": [],
+      },
+    },
+    hsts: {
+      maxAge: 63072000, // 2 years in seconds
+      includeSubDomains: true, // 서브 도메인 포함
+      preload: true,
+    },
+    noSniff: true,
+    xssFilter: true,
+    frameguard: {
+      action: "sameorigin",
+    },
+    referrerPolicy: { policy: "strict-origin-when-cross-origin" },
+  })
+);
+
+app.use((req, res, next) => {
+  res.setHeader(
+    "Permissions-Policy",
+    "accelerometer=(),autoplay=(),camera=(),fullscreen=(self),geolocation=(),gyroscope=(),midi=(),microphone=(),magnetometer=(),payment=(),xr-spatial-tracking=()"
+  );
+  next();
+});
+
 app.use(cors(corsOptions));
 
 app.use(express.json({ limit: "1mb" }));
