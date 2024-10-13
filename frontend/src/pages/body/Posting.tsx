@@ -1,5 +1,5 @@
 // React
-import { useContext, useEffect, useState } from "react";
+import { useRef, useContext, useEffect, useState } from "react";
 
 // Local
 import { apiUrl } from "config";
@@ -17,6 +17,34 @@ import remarkGfm from "remark-gfm";
 import "highlight.js/styles/github-dark-dimmed.css";
 
 function Posting({ path }: { path: string }) {
+  const [isPostingLoading, setIsPostingLoading] = useState(true);
+  const [markdownContent, setMarkdownContent] = useState("");
+  const [nextPosting, setNextPosting] = useState<EachPosting | null>(null);
+  const [previousPosting, setPreviousPosting] = useState<EachPosting | null>(
+    null
+  );
+  const setAlertData = useContext(SetAlertDataContext);
+  const postingData = useContext(PostingDataContext);
+
+  const elementRef = useRef<HTMLDivElement>(null);
+  const [elementSize, setElementSize] = useState({ width: 0, height: 0 });
+  const updateSize = () => {
+    const element = elementRef.current;
+    if (element) {
+      const { width, height } = element.getBoundingClientRect();
+      setElementSize({ width, height });
+    }
+  };
+
+  useEffect(() => {
+    updateSize();
+    window.addEventListener("resize", updateSize);
+
+    return () => {
+      window.removeEventListener("resize", updateSize);
+    };
+  }, []);
+
   const components = {
     code: ({ ...props }) => {
       return <code style={{ borderRadius: "0.625rem" }} {...props} />;
@@ -26,19 +54,17 @@ function Posting({ path }: { path: string }) {
     ),
     pre: ({ ...props }) => {
       return (
-        <pre style={{ whiteSpace: "pre-wrap", width: "100%" }} {...props} />
+        <pre
+          style={{
+            whiteSpace: "pre",
+            maxWidth: `${elementSize.width}px`,
+            overflowX: "auto",
+          }}
+          {...props}
+        />
       );
     },
   };
-  const [isPostingLoading, setIsPostingLoading] = useState(true);
-  const [markdownContent, setMarkdownContent] = useState("");
-  const [nextPosting, setNextPosting] = useState<EachPosting | null>(null);
-  const [previousPosting, setPreviousPosting] = useState<EachPosting | null>(
-    null
-  );
-  const setAlertData = useContext(SetAlertDataContext);
-
-  const postingData = useContext(PostingDataContext);
 
   useEffect(() => {
     if (!path || path === "/") {
@@ -84,7 +110,7 @@ function Posting({ path }: { path: string }) {
   }, [path]);
 
   return (
-    <div className="posting-wrap">
+    <div ref={elementRef} className="posting-wrap">
       {isPostingLoading ? (
         <Loader />
       ) : (
