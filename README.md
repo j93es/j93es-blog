@@ -76,3 +76,8 @@
 - gray-matter라는 툴이 별로라는 생각이 들었다. 일단 Webpack5에서 Buffer을 기본적으로 제공해주지 않아서, React에서는 gray-matter를 사용하기에 어려워 보였다. 이에, 마크다운 parser를 만들어서 gray-matter를 대체하였다. 구현이 쉬워보였는데, 정규표현식 등을 활용해서 여러 엣지 케이스를 막아야 했다는 점이 까다롭게 느껴졌다.
 - 포스팅을 fetch하는 주체를 Body 컴포넌트에서 Posting 컴포넌트로 옮겼다. 더하여 Loading을 isPostingListLoading과 isPostingLoading으로 분리하였다.
 - react-markdown에서 생성하는 pre 태그가 화면 밖으로 삐져나오는 것을 <pre style={{ whiteSpace: "pre-wrap", width: "100%" }} {...props} /> 을 통하여 해결하였다.
+
+#### 2024-10-13 markdown pre tag, code tag, scroll
+
+- 코드 블록이 줄바꿈 되는 것이 아주 보기 싫다. 따라서 scoll하는 방향으로 pre tag를 변경하였다.
+- 마크다운의 pre tag 랜더링 성능을 향상시켰다. pre 태그를 scroll 하는 방법으로 업데이트 했더니, 부모요소의 size가 업데이트 된다면, markdown 전체가 렌더링 되는 문제가 있었는데, 변경후에는 pre tag만 랜더링 된다
