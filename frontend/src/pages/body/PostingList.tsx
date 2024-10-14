@@ -2,26 +2,26 @@
 import { useContext } from "react";
 
 // Local
-import { PostingDataContext } from "App";
+import { PostingIndexControllerContext } from "App";
 import { Link } from "react-router-dom";
-import { EachPosting } from "model/posting-data";
+import { EachPostingMetadata } from "model/postingIndex";
 import "pages/body/PostingList.css";
 
 // External
 
 function PostingList() {
-  const postingData = useContext(PostingDataContext);
+  const postingIndexController = useContext(PostingIndexControllerContext);
 
   return (
     <div className="posting-list-wrap">
-      {postingData &&
-        postingData.getCategoryList().map((category: string) => (
+      {postingIndexController &&
+        postingIndexController.getCategoryList().map((category: string) => (
           <div key={`category-${category}`} className="category-wrap">
             <h2 className="category-title">{category}</h2>
             <ul className="posting-link-wrap">
-              {postingData
+              {postingIndexController
                 .getPostingList(category)
-                .map((posting: EachPosting) => (
+                .map((posting: EachPostingMetadata) => (
                   <li key={`posting-${posting.title}`}>
                     <Link
                       to={posting.path}

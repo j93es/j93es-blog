@@ -1,8 +1,9 @@
 // React
 import React, { createContext, useState, useEffect } from "react";
-import { EachPosting, PostingDataClass } from "model/posting-data";
+import { EachPostingMetadata } from "model/postingIndex";
+import { PostingIndexController } from "controller/index";
 import { apiUrl } from "config";
-import { AlertType } from "model/alert-type";
+import { AlertType } from "model/alertType";
 import Header from "pages/header/Header";
 import Body from "pages/body/Body";
 import Footer from "pages/footer/Footer";
@@ -13,7 +14,8 @@ import { Routes, Route } from "react-router-dom";
 // Local
 import "App.css";
 
-export const PostingDataContext = createContext<PostingDataClass | null>(null);
+export const PostingIndexControllerContext =
+  createContext<PostingIndexController | null>(null);
 export const IsPostingListLoadingContext = createContext<boolean>(true);
 export const AlertDataContext = createContext<AlertType | null>(null);
 export const SetAlertDataContext = createContext<
@@ -24,7 +26,8 @@ function App() {
   const [alertData, setAlertData] = useState<AlertType | null>(null);
   const [isPostingListLoading, setIsPostingListLoading] =
     useState<boolean>(true);
-  const [postingData, setPostingData] = useState<PostingDataClass | null>(null);
+  const [postingIndexController, setPostingIndexController] =
+    useState<PostingIndexController | null>(null);
 
   useEffect(() => {
     const func = async () => {
@@ -39,9 +42,11 @@ function App() {
         if (!response.ok) {
           throw new Error(`${response.status} ${response.statusText}`);
         }
-        const postingData = new PostingDataClass(await response.json());
+        const postingIndexController = new PostingIndexController(
+          await response.json()
+        );
 
-        setPostingData(new PostingDataClass(postingData.sortPostingData()));
+        setPostingIndexController(postingIndexController);
       } catch (error: any) {
         setAlertData({
           message: "Unable to load posting list",
@@ -60,7 +65,9 @@ function App() {
       <AlertDataContext.Provider value={alertData}>
         <SetAlertDataContext.Provider value={setAlertData}>
           <IsPostingListLoadingContext.Provider value={isPostingListLoading}>
-            <PostingDataContext.Provider value={postingData}>
+            <PostingIndexControllerContext.Provider
+              value={postingIndexController}
+            >
               <Routes>
                 <Route path="/" element={<Body path="/" />} />
                 <Route
@@ -69,26 +76,28 @@ function App() {
                     <Body path="/policy/information-protection-policy.md" />
                   }
                 />
-                {postingData &&
-                  postingData.getCategoryList().map((category: string) => {
-                    return postingData
-                      .getPostingList(category)
-                      .map((eachPosting: EachPosting) => {
-                        return (
-                          <Route
-                            key={eachPosting.path}
-                            path={eachPosting.path}
-                            element={<Body path={eachPosting.path} />}
-                          />
-                        );
-                      });
-                  })}
+                {postingIndexController &&
+                  postingIndexController
+                    .getCategoryList()
+                    .map((category: string) => {
+                      return postingIndexController
+                        .getPostingList(category)
+                        .map((EachPostingMetadata: EachPostingMetadata) => {
+                          return (
+                            <Route
+                              key={EachPostingMetadata.path}
+                              path={EachPostingMetadata.path}
+                              element={<Body path={EachPostingMetadata.path} />}
+                            />
+                          );
+                        });
+                    })}
                 <Route
                   path="*"
                   element={<Body path="*" isExistPath={false} />}
                 />
               </Routes>
-            </PostingDataContext.Provider>
+            </PostingIndexControllerContext.Provider>
           </IsPostingListLoadingContext.Provider>
         </SetAlertDataContext.Provider>
       </AlertDataContext.Provider>

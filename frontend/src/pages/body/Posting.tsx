@@ -3,9 +3,9 @@ import { useRef, useContext, useEffect, useState, useMemo, memo } from "react";
 
 // Local
 import { apiUrl } from "config";
-import { EachPosting } from "model/posting-data";
-import { parseMarkdown } from "utils/parse-markdown";
-import { SetAlertDataContext, PostingDataContext } from "App";
+import { EachPostingMetadata } from "model/postingIndex";
+import { parseMarkdown } from "utils/index";
+import { SetAlertDataContext, PostingIndexControllerContext } from "App";
 import Loader from "components/Loader";
 import "pages/body/Posting.css";
 
@@ -34,12 +34,13 @@ const PreTag = memo(
 function Posting({ path }: { path: string }) {
   const [isPostingLoading, setIsPostingLoading] = useState(true);
   const [markdownContent, setMarkdownContent] = useState("");
-  const [nextPosting, setNextPosting] = useState<EachPosting | null>(null);
-  const [previousPosting, setPreviousPosting] = useState<EachPosting | null>(
+  const [nextPosting, setNextPosting] = useState<EachPostingMetadata | null>(
     null
   );
+  const [previousPosting, setPreviousPosting] =
+    useState<EachPostingMetadata | null>(null);
   const setAlertData = useContext(SetAlertDataContext);
-  const postingData = useContext(PostingDataContext);
+  const postingIndexController = useContext(PostingIndexControllerContext);
   const elementRef = useRef<HTMLDivElement>(null);
   const [elementSize, setElementSize] = useState({ width: 0, height: 0 });
 
@@ -75,10 +76,17 @@ function Posting({ path }: { path: string }) {
         const markdownText = await response.text();
         const { data, content } = parseMarkdown(markdownText);
         const nextPosting =
-          postingData && postingData.getNextPosting(data.category, data.title);
+          postingIndexController &&
+          postingIndexController.getNextPostingMetadata(
+            data.category,
+            data.title
+          );
         const previousPosting =
-          postingData &&
-          postingData.getPreviousPosting(data.category, data.title);
+          postingIndexController &&
+          postingIndexController.getPreviousPostingMetadata(
+            data.category,
+            data.title
+          );
 
         setMarkdownContent(content);
         setNextPosting(nextPosting);
