@@ -9,7 +9,7 @@
 1. frontend
 
 - react-markdown 이라는 심각한 의존성을 가짐에 심히 염려스럽다.
-- rehype-raw 툴을 이용해서 md의 html 태그를 랜더링 시키려했으나, 무슨 미친 의존성을(아니 상식적으로 typescript 환경에 영향을 주는게 말이야 방구야) 요구하길래, 버렸다. react-markdown의 img 태그 컴포넌트를 추가하는 것으로 해결했으나, 여전히 react-markdown을 가지고 가는 것은 위협요소라 판단한다.
+- rehype-raw 툴을 이용해서 md의 html 태그를 랜더링 시키려했으나, 무슨 미친 의존성을(아니 상식적으로 typescript 환경에 영향을 주는게 말이야 방구야) 요구하길래, 버렸다. react-markdown의 img 태그 컴포넌트를 추가하는 것으로 해결했으나, 여전히 react-markdown을 가지고 가는 것은 위협요소라 판단한다.(2024-10-14 추가: react-markdown 공식문서를 확인하고 rehype-raw를 적용해보니 잘 적용되더라... 일단 적용하진 않았으나, 웹팩 용량 등을 확인하고 추후 적용할 수도 있을것 같다. 먼저 문서를 읽는 것을 최우선으로 해야겠다.)
 - TODO controller 분리 등 리팩터링 필요하다. 일해라 미래의 나.
 
 2. backend
@@ -24,7 +24,7 @@
 
 #### 2024-10-1 public directory structure update
 
-- 블로그 카테고리에 사진을 추가하려하는데, 추후 사진의 용량이 10GB 이상으로 커지면 유지보수에 어려움을 느낄 수 있다고 판단했다. (카메라 사진 한장의 용량이 8mb인 것을 고려한다면 사진 용량에 관한 유지보수 고려는 필수적이라고 생각한다,) (깃허브는 한 레포지터리의 용량을 10GB 이하로 하기를 권장한다.) 따라서 /public/photo/dir-name/(name.md & /image/name.png)이런 식으로 구성되어 있던 것을 /public/posting/photo/dir-name/name.md /public/image/photo/dir-name/name.png의 구조로 바꾸고 추후 이미지 용량이 커진다면, /public/image/dir-name에 해당하는 레포지터리를 하나 더파서 build 할때 추가할 예정이다.
+- 블로그 카테고리에 사진을 추가하려하는데, 추후 사진의 용량이 5GB 이상으로 커지면 유지보수에 어려움을 느낄 수 있다고 판단했다. (카메라 사진 한장의 용량이 8mb인 것을 고려한다면 사진 용량에 관한 유지보수 고려는 필수적이라고 생각한다,) (깃허브는 한 레포지터리의 용량을 5GB 이하로 하기를 권장한다.) 따라서 /public/photo/dir-name/(name.md & /image/name.png)이런 식으로 구성되어 있던 것을 /public/posting/photo/dir-name/name.md /public/image/photo/dir-name/name.png의 구조로 바꾸고 추후 이미지 용량이 커진다면, /public/image/dir-name에 해당하는 레포지터리를 하나 더파서 build 할때 추가할 예정이다.
 
 #### 2024-10-2 category
 
@@ -60,9 +60,7 @@
 #### 2024-10-8 Detail
 
 - 포스팅 페이지에서 새로고침을 하면, Notfound 페이지가 0.1초 정도 나왔다가, 로딩바가 떳다가 다시 포스팅 페이지가 랜더링되었다. 그 이유는 새로고침하면 api/index/를 불러와야하는데, 해당 api response가 도착하기 전까지는 리액트 라우터가 생성되지 않는다. 이에 리액트 라우터가 생성되지 않은 상태에서 해당 페이지에 접근하러하니 Notfound 페이지가 나왔던 것 같다. 해당 상황에서 Notfound 페이지가 뜨지 않도록, 로딩중일때는 리다이렉트 페이지보다 로딩바를 우선적으로 랜더링 되도록 하였다.
-
 - 이미지가 밀려나는것을 방지하고 싶은데 한번 방법을 더욱 상세히 공부해봐야겠다.
-
 - 정보 보호 정책을 수립하였다. 개인을 식별할 수 없는 범위 내에서 보안, 사용자 경험 등을 위하여 최소한의 정보(IP 주소, 브라우저 정보) 만을 수집하기로 하였다.
 
 #### 2024-10-9 posting category
@@ -86,3 +84,4 @@
 
 - backend: 기존 util에 묶여 있었던 service 로직을 분리하였다.
 - frontend: postingData라는 model의 어휘가 중의적이라고 생각되어, postingIndex로 이름을 바꾸었다. 더하여 model 파일에 같이 존재하였던 controller 로직을 분리하였다.
+- rehype-raw를 적용할까 고민하였으나 결론적으로 적용하기로 했다. 일단 적용하려한 이유는 img 태그의 width, height를 지정하여 이미지가 랜더링 시에 쉬프트 되지 않도록 하여 사용자 경험을 높이기 위해서였다. 하지만 rehype-raw를 install하고 웹팩으로 감싸면 무려 90kb에서 60kb증가한 150kb 정도가 나와서(약 1.6배 증가한 수치이다.) 적용하는데 망설여졌다. 그런데 사용자의 경험을 위하여 각 img에 lasyloading을 적용하고 추후 picture 태그를 통하여 확장 가능하다는 점에서 rehype-raw를 적용하기로 하였다. 현재로서는 img 태그만을 위하여 이 툴을 적용하였는데, 수지타산이 맞는지 고민이긴하다.
