@@ -14,6 +14,7 @@ import { Link } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import rehypeHighlight from "rehype-highlight";
 import remarkGfm from "remark-gfm";
+import rehypeRaw from "rehype-raw";
 import "highlight.js/styles/github-dark-dimmed.css";
 
 const PreTag = memo(
@@ -117,7 +118,7 @@ function Posting({ path }: { path: string }) {
         return <code style={{ borderRadius: "0.625rem" }} {...props} />;
       },
       img: ({ ...props }) => (
-        <img style={{ maxWidth: "100%" }} loading="lazy" {...props} alt="" />
+        <img style={{ maxWidth: "100%", height: "auto" }} {...props} alt="" />
       ),
       pre: ({ ...props }) => {
         return <PreTag elementSize={elementSize} {...props} />;
@@ -136,7 +137,7 @@ function Posting({ path }: { path: string }) {
             <ReactMarkdown
               children={markdownContent}
               remarkPlugins={[remarkGfm]}
-              rehypePlugins={[rehypeHighlight]}
+              rehypePlugins={[rehypeHighlight, rehypeRaw]}
               components={{
                 ...components,
                 pre: (props) => (
