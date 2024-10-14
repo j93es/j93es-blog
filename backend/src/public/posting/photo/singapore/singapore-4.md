@@ -16,20 +16,20 @@ category: photo
 
 <img src="https://j93.es/api/image/photo/singapore/singapore-4/1-머라이언공원1.jpg" alt="1-머라이언공원1" width="660" height="440">
 
-<img src="https://j93.es/api/image/photo/singapore/singapore-4/1-머라이언공원2.jpg" alt="1-머라이언공원2" width="660" height="440" loading="lasy">
+<img src="https://j93.es/api/image/photo/singapore/singapore-4/1-머라이언공원2.jpg" alt="1-머라이언공원2" width="660" height="440" loading="lazy">
 
-<img src="https://j93.es/api/image/photo/singapore/singapore-4/1-머라이언공원3.jpg" alt="1-머라이언공원3" width="660" height="440" loading="lasy">
+<img src="https://j93.es/api/image/photo/singapore/singapore-4/1-머라이언공원3.jpg" alt="1-머라이언공원3" width="660" height="440" loading="lazy">
 
-<img src="https://j93.es/api/image/photo/singapore/singapore-4/1-머라이언공원4.jpg" alt="1-머라이언공원4" width="660" height="440" loading="lasy">
+<img src="https://j93.es/api/image/photo/singapore/singapore-4/1-머라이언공원4.jpg" alt="1-머라이언공원4" width="660" height="440" loading="lazy">
 
-<img src="https://j93.es/api/image/photo/singapore/singapore-4/1-머라이언공원5.jpg" alt="1-머라이언공원5" width="660" height="440" loading="lasy">
+<img src="https://j93.es/api/image/photo/singapore/singapore-4/1-머라이언공원5.jpg" alt="1-머라이언공원5" width="660" height="440" loading="lazy">
 
 ## 마리나베이샌즈 쇼핑몰
 
-<img src="https://j93.es/api/image/photo/singapore/singapore-4/2-마리나베이샌즈쇼핑몰1.jpg" alt="2-마리나베이샌즈쇼핑몰1" width="660" height="440" loading="lasy">
+<img src="https://j93.es/api/image/photo/singapore/singapore-4/2-마리나베이샌즈쇼핑몰1.jpg" alt="2-마리나베이샌즈쇼핑몰1" width="660" height="440" loading="lazy">
 
-<img src="https://j93.es/api/image/photo/singapore/singapore-4/2-마리나베이샌즈쇼핑몰2.jpg" alt="2-마리나베이샌즈쇼핑몰2" width="660" height="440" loading="lasy">
+<img src="https://j93.es/api/image/photo/singapore/singapore-4/2-마리나베이샌즈쇼핑몰2.jpg" alt="2-마리나베이샌즈쇼핑몰2" width="660" height="440" loading="lazy">
 
-<img src="https://j93.es/api/image/photo/singapore/singapore-4/2-마리나베이샌즈쇼핑몰3.jpg" alt="2-마리나베이샌즈쇼핑몰3" width="440" height="660" loading="lasy">
+<img src="https://j93.es/api/image/photo/singapore/singapore-4/2-마리나베이샌즈쇼핑몰3.jpg" alt="2-마리나베이샌즈쇼핑몰3" width="440" height="660" loading="lazy">
 
-<img src="https://j93.es/api/image/photo/singapore/singapore-4/2-마리나베이샌즈쇼핑몰4.jpg" alt="2-마리나베이샌즈쇼핑몰4" width="660" height="440" loading="lasy">
+<img src="https://j93.es/api/image/photo/singapore/singapore-4/2-마리나베이샌즈쇼핑몰4.jpg" alt="2-마리나베이샌즈쇼핑몰4" width="660" height="440" loading="lazy">

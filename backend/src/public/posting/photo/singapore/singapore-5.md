@@ -16,16 +16,16 @@ category: photo
 
 <img src="https://j93.es/api/image/photo/singapore/singapore-5/1-사테거리1.jpg" alt="1-사테거리1" width="440" height="660">
 
-<img src="https://j93.es/api/image/photo/singapore/singapore-5/1-사테거리2.jpg" alt="1-사테거리2" width="660" height="440" loading="lasy">
+<img src="https://j93.es/api/image/photo/singapore/singapore-5/1-사테거리2.jpg" alt="1-사테거리2" width="660" height="440" loading="lazy">
 
-<img src="https://j93.es/api/image/photo/singapore/singapore-5/1-사테거리3.jpg" alt="1-사테거리3" width="440" height="660" loading="lasy">
+<img src="https://j93.es/api/image/photo/singapore/singapore-5/1-사테거리3.jpg" alt="1-사테거리3" width="440" height="660" loading="lazy">
 
 ## 무지개 경찰서
 
-<img src="https://j93.es/api/image/photo/singapore/singapore-5/2-무지개경찰서1.jpg" alt="2-무지개경찰서1" width="660" height="440" loading="lasy">
+<img src="https://j93.es/api/image/photo/singapore/singapore-5/2-무지개경찰서1.jpg" alt="2-무지개경찰서1" width="660" height="440" loading="lazy">
 
-<img src="https://j93.es/api/image/photo/singapore/singapore-5/2-무지개경찰서2.jpg" alt="2-무지개경찰서2" width="660" height="440" loading="lasy">
+<img src="https://j93.es/api/image/photo/singapore/singapore-5/2-무지개경찰서2.jpg" alt="2-무지개경찰서2" width="660" height="440" loading="lazy">
 
-<img src="https://j93.es/api/image/photo/singapore/singapore-5/2-무지개경찰서3.jpg" alt="2-무지개경찰서3" width="660" height="440" loading="lasy">
+<img src="https://j93.es/api/image/photo/singapore/singapore-5/2-무지개경찰서3.jpg" alt="2-무지개경찰서3" width="660" height="440" loading="lazy">
 
-<img src="https://j93.es/api/image/photo/singapore/singapore-5/2-무지개경찰서4.jpg" alt="2-무지개경찰서4" width="660" height="440" loading="lasy">
+<img src="https://j93.es/api/image/photo/singapore/singapore-5/2-무지개경찰서4.jpg" alt="2-무지개경찰서4" width="660" height="440" loading="lazy">

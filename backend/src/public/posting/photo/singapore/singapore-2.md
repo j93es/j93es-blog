@@ -16,22 +16,22 @@ category: photo
 
 <img src="https://j93.es/api/image/photo/singapore/singapore-2/1-가든스더베이1.jpg" alt="1-가든스더베이1" width="440" height="660">
 
-<img src="https://j93.es/api/image/photo/singapore/singapore-2/1-가든스더베이2.jpg" alt="1-가든스더베이2" width="440" height="660" loading="lasy">
+<img src="https://j93.es/api/image/photo/singapore/singapore-2/1-가든스더베이2.jpg" alt="1-가든스더베이2" width="440" height="660" loading="lazy">
 
-<img src="https://j93.es/api/image/photo/singapore/singapore-2/1-가든스더베이3.jpg" alt="1-가든스더베이3" width="440" height="660" loading="lasy">
+<img src="https://j93.es/api/image/photo/singapore/singapore-2/1-가든스더베이3.jpg" alt="1-가든스더베이3" width="440" height="660" loading="lazy">
 
-<img src="https://j93.es/api/image/photo/singapore/singapore-2/1-가든스더베이4.jpg" alt="1-가든스더베이4" width="660" height="440" loading="lasy">
+<img src="https://j93.es/api/image/photo/singapore/singapore-2/1-가든스더베이4.jpg" alt="1-가든스더베이4" width="660" height="440" loading="lazy">
 
-<img src="https://j93.es/api/image/photo/singapore/singapore-2/1-가든스더베이5.jpg" alt="1-가든스더베이5" width="440" height="660" loading="lasy">
+<img src="https://j93.es/api/image/photo/singapore/singapore-2/1-가든스더베이5.jpg" alt="1-가든스더베이5" width="440" height="660" loading="lazy">
 
-<img src="https://j93.es/api/image/photo/singapore/singapore-2/1-가든스더베이6.jpg" alt="1-가든스더베이6" width="660" height="440" loading="lasy">
+<img src="https://j93.es/api/image/photo/singapore/singapore-2/1-가든스더베이6.jpg" alt="1-가든스더베이6" width="660" height="440" loading="lazy">
 
 ## 유니버셜 스튜디오
 
-<img src="https://j93.es/api/image/photo/singapore/singapore-2/2-유니버셜스튜디오1.jpg" alt="2-유니버셜스튜디오1" width="660" height="440" loading="lasy">
+<img src="https://j93.es/api/image/photo/singapore/singapore-2/2-유니버셜스튜디오1.jpg" alt="2-유니버셜스튜디오1" width="660" height="440" loading="lazy">
 
-<img src="https://j93.es/api/image/photo/singapore/singapore-2/2-유니버셜스튜디오2.jpg" alt="2-유니버셜스튜디오2" width="440" height="660" loading="lasy">
+<img src="https://j93.es/api/image/photo/singapore/singapore-2/2-유니버셜스튜디오2.jpg" alt="2-유니버셜스튜디오2" width="440" height="660" loading="lazy">
 
-<img src="https://j93.es/api/image/photo/singapore/singapore-2/2-유니버셜스튜디오3.jpg" alt="2-유니버셜스튜디오3" width="660" height="440" loading="lasy">
+<img src="https://j93.es/api/image/photo/singapore/singapore-2/2-유니버셜스튜디오3.jpg" alt="2-유니버셜스튜디오3" width="660" height="440" loading="lazy">
 
-<img src="https://j93.es/api/image/photo/singapore/singapore-2/2-유니버셜스튜디오4.jpg" alt="2-유니버셜스튜디오4" width="660" height="440" loading="lasy">
+<img src="https://j93.es/api/image/photo/singapore/singapore-2/2-유니버셜스튜디오4.jpg" alt="2-유니버셜스튜디오4" width="660" height="440" loading="lazy">
