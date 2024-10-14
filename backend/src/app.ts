@@ -14,7 +14,7 @@ import {
   customLogger,
 } from "./utils/index";
 
-import { filesMetadata } from "./utils/index";
+import { filesMetadata } from "./service/index";
 
 const app: Application = express();
 app.set("trust proxy", "loopback, linklocal, uniquelocal");

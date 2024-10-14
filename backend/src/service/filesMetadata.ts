@@ -1,17 +1,18 @@
 import fs from "fs";
 import path from "path";
 import { publicDir, showingCategoryList } from "../config";
-import { PostingData, PostingDataClass } from "../model/PostingData";
-import { parseMarkdown } from "./index";
+import { PostingIndex } from "../model/postingIndex";
+import { PostingIndexController } from "../controller/index";
+import { parseMarkdown } from "../utils/index";
 
 export class FilesMetadata {
-  private postingData: PostingData | null = null;
+  private postingIndex: PostingIndex | null = null;
 
-  private makeRawPostingData = (directoryPath: string) => {
-    const rawPostingData: PostingData = {};
+  private makeRawPostingIndex = (directoryPath: string) => {
+    const rawPostingIndex: PostingIndex = {};
 
     showingCategoryList.forEach((category: string, index: number) => {
-      rawPostingData[category] = { order: index, data: [] };
+      rawPostingIndex[category] = { order: index, data: [] };
     });
 
     const readDirectory = (dirPath: string) => {
@@ -29,7 +30,7 @@ export class FilesMetadata {
           if (!showingCategoryList.includes(data.category)) {
             return;
           }
-          rawPostingData[data.category].data.push({
+          rawPostingIndex[data.category].data.push({
             title: data.title,
             date: data.date,
             tag: data.tag,
@@ -41,23 +42,25 @@ export class FilesMetadata {
     };
 
     readDirectory(directoryPath);
-    Object.keys(rawPostingData).forEach((key) => {
-      if (rawPostingData[key].data.length === 0) {
-        delete rawPostingData[key];
+    Object.keys(rawPostingIndex).forEach((key) => {
+      if (rawPostingIndex[key].data.length === 0) {
+        delete rawPostingIndex[key];
       }
     });
 
-    return rawPostingData;
+    return rawPostingIndex;
   };
 
   getMarkdownFilesMetadata = (directoryPath: string) => {
-    if (this.postingData === null) {
-      const rawPostingData = this.makeRawPostingData(
+    if (this.postingIndex === null) {
+      const rawPostingIndex = this.makeRawPostingIndex(
         path.join(publicDir, directoryPath)
       );
-      this.postingData = new PostingDataClass(rawPostingData).sortPostingData();
+      this.postingIndex = new PostingIndexController(
+        rawPostingIndex
+      ).getPostingIndex();
     }
 
-    return this.postingData;
+    return this.postingIndex;
   };
 }
