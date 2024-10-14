@@ -18,7 +18,7 @@ category: photo
 
 <img src="https://j93.es/api/image/photo/singapore/singapore-5/1-사테거리2.jpg" alt="1-사테거리2" width="660" height="440" loading="lazy">
 
-<img src="https://j93.es/api/image/photo/singapore/singapore-5/1-사테거리3.jpg" alt="1-사테거리3" width="440" height="660" loading="lazy">
+<img src="https://j93.es/api/image/photo/singapore/singapore-5/1-사테거리3.jpg" alt="1-사테거리3" width="660" height="440" loading="lazy">
 
 ## 무지개 경찰서
 
