@@ -15,7 +15,9 @@ import { Link } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import rehypeHighlight from "rehype-highlight";
 import remarkGfm from "remark-gfm";
+import rehypeRaw from "rehype-raw";
 import "highlight.js/styles/github-dark-dimmed.css";
+import CustomImage from "components/CustomImage";
 
 function Posting({ path }: { path: string }) {
   const [isPostingLoading, setIsPostingLoading] = useState(true);
@@ -45,7 +47,6 @@ function Posting({ path }: { path: string }) {
     return () => {
       window.removeEventListener("resize", updateSize);
     };
-    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
@@ -100,16 +101,15 @@ function Posting({ path }: { path: string }) {
 
   const components = useRef({
     code: ({ ...props }) => {
-      return <code style={{ borderRadius: "0.625rem" }} {...props} />;
-    },
-    img: ({ ...props }) => {
       return (
-        <img
+        <code
+          style={{ borderRadius: "0.625rem", fontSize: "0.875rem" }}
           {...props}
-          style={{ maxWidth: "100%", height: "auto" }}
-          alt={props.alt || "이미지 로드 실패"}
         />
       );
+    },
+    img: ({ ...props }) => {
+      return <CustomImage {...props} />;
     },
     pre: ({ ...props }) => {
       return <CustomPre elementWidth={elementWidth} {...props} />;
@@ -126,7 +126,7 @@ function Posting({ path }: { path: string }) {
             <ReactMarkdown
               children={markdownContent}
               remarkPlugins={[remarkGfm]}
-              rehypePlugins={[rehypeHighlight]}
+              rehypePlugins={[rehypeHighlight, rehypeRaw]}
               components={{
                 ...components.current,
                 pre: (props) => (

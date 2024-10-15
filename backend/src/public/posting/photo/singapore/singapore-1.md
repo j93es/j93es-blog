@@ -14,34 +14,34 @@ category: photo
 
 ## 쥬얼 창이
 
-![쥬얼창이](https://j93.es/api/image/photo/singapore/singapore-1/1-쥬얼창이.jpg)
+<img src="https://j93.es/api/image/photo/singapore/singapore-1/1-쥬얼창이.jpg" alt="1-쥬얼창이" width="440" height="660">
 
 ## 송파 바쿠테
 
-![송파바쿠테](https://j93.es/api/image/photo/singapore/singapore-1/2-송파바쿠테.jpg)
+<img src="https://j93.es/api/image/photo/singapore/singapore-1/2-송파바쿠테.jpg" alt="2-송파바쿠테" width="660" height="440" loading="lazy">
 
 ## 점보 씨푸드
 
-![점보씨푸드](https://j93.es/api/image/photo/singapore/singapore-1/3-점보씨푸드1.jpg)
+<img src="https://j93.es/api/image/photo/singapore/singapore-1/3-점보씨푸드1.jpg" alt="3-점보씨푸드1" width="440" height="660" loading="lazy">
 
-![점보씨푸드](https://j93.es/api/image/photo/singapore/singapore-1/3-점보씨푸드2.jpg)
+<img src="https://j93.es/api/image/photo/singapore/singapore-1/3-점보씨푸드2.jpg" alt="3-점보씨푸드2" width="660" height="440" loading="lazy">
 
 ## 거리
 
-![거리](https://j93.es/api/image/photo/singapore/singapore-1/4-거리1.jpg)
+<img src="https://j93.es/api/image/photo/singapore/singapore-1/4-거리1.jpg" alt="4-거리1" width="440" height="660" loading="lazy">
 
-![거리](https://j93.es/api/image/photo/singapore/singapore-1/4-거리2.jpg)
+<img src="https://j93.es/api/image/photo/singapore/singapore-1/4-거리2.jpg" alt="4-거리2" width="440" height="660" loading="lazy">
 
-![거리](https://j93.es/api/image/photo/singapore/singapore-1/4-거리3.jpg)
+<img src="https://j93.es/api/image/photo/singapore/singapore-1/4-거리3.jpg" alt="4-거리3" width="660" height="440" loading="lazy">
 
 ## 마리나베이샌즈
 
-![마리나베이샌즈](https://j93.es/api/image/photo/singapore/singapore-1/5-마리나베이샌즈1.jpg)
+<img src="https://j93.es/api/image/photo/singapore/singapore-1/5-마리나베이샌즈1.jpg" alt="5-마리나베이샌즈1" width="660" height="440" loading="lazy">
 
-![마리나베이샌즈](https://j93.es/api/image/photo/singapore/singapore-1/5-마리나베이샌즈2.jpg)
+<img src="https://j93.es/api/image/photo/singapore/singapore-1/5-마리나베이샌즈2.jpg" alt="5-마리나베이샌즈2" width="660" height="440" loading="lazy">
 
-![마리나베이샌즈](https://j93.es/api/image/photo/singapore/singapore-1/5-마리나베이샌즈3.jpg)
+<img src="https://j93.es/api/image/photo/singapore/singapore-1/5-마리나베이샌즈3.jpg" alt="5-마리나베이샌즈3" width="660" height="440" loading="lazy">
 
-![마리나베이샌즈](https://j93.es/api/image/photo/singapore/singapore-1/5-마리나베이샌즈4.jpg)
+<img src="https://j93.es/api/image/photo/singapore/singapore-1/5-마리나베이샌즈4.jpg" alt="5-마리나베이샌즈4" width="660" height="440" loading="lazy">
 
-![마리나베이샌즈](https://j93.es/api/image/photo/singapore/singapore-1/5-마리나베이샌즈5.jpg)
+<img src="https://j93.es/api/image/photo/singapore/singapore-1/5-마리나베이샌즈5.jpg" alt="5-마리나베이샌즈5" width="440" height="660" loading="lazy">

@@ -14,32 +14,32 @@ category: photo
 
 ## 아틀라스바
 
-![아틀라스바](https://j93.es/api/image/photo/singapore/singapore-3/1-아틀라스바1.jpg)
+<img src="https://j93.es/api/image/photo/singapore/singapore-3/1-아틀라스바1.jpg" alt="1-아틀라스바1" width="660" height="440">
 
-![아틀라스바](https://j93.es/api/image/photo/singapore/singapore-3/1-아틀라스바2.jpg)
+<img src="https://j93.es/api/image/photo/singapore/singapore-3/1-아틀라스바2.jpg" alt="1-아틀라스바2" width="440" height="660" loading="lazy">
 
-![아틀라스바](https://j93.es/api/image/photo/singapore/singapore-3/1-아틀라스바3.jpg)
+<img src="https://j93.es/api/image/photo/singapore/singapore-3/1-아틀라스바3.jpg" alt="1-아틀라스바3" width="660" height="440" loading="lazy">
 
-![아틀라스바](https://j93.es/api/image/photo/singapore/singapore-3/1-아틀라스바4.jpg)
+<img src="https://j93.es/api/image/photo/singapore/singapore-3/1-아틀라스바4.jpg" alt="1-아틀라스바4" width="440" height="660" loading="lazy">
 
 ## 밤거리
 
-![밤거리](https://j93.es/api/image/photo/singapore/singapore-3/2-밤거리1.jpg)
+<img src="https://j93.es/api/image/photo/singapore/singapore-3/2-밤거리1.jpg" alt="2-밤거리1" width="440" height="660" loading="lazy">
 
-![밤거리](https://j93.es/api/image/photo/singapore/singapore-3/2-밤거리2.jpg)
+<img src="https://j93.es/api/image/photo/singapore/singapore-3/2-밤거리2.jpg" alt="2-밤거리2" width="660" height="440" loading="lazy">
 
 ## 아랍거리
 
-![아랍거리](https://j93.es/api/image/photo/singapore/singapore-3/3-아랍거리1.jpg)
+<img src="https://j93.es/api/image/photo/singapore/singapore-3/3-아랍거리1.jpg" alt="3-아랍거리1" width="660" height="440" loading="lazy">
 
-![아랍거리](https://j93.es/api/image/photo/singapore/singapore-3/3-아랍거리2.jpg)
+<img src="https://j93.es/api/image/photo/singapore/singapore-3/3-아랍거리2.jpg" alt="3-아랍거리2" width="660" height="440" loading="lazy">
 
-![아랍거리](https://j93.es/api/image/photo/singapore/singapore-3/3-아랍거리3.jpg)
+<img src="https://j93.es/api/image/photo/singapore/singapore-3/3-아랍거리3.jpg" alt="3-아랍거리3" width="660" height="440" loading="lazy">
 
-![아랍거리](https://j93.es/api/image/photo/singapore/singapore-3/3-아랍거리4.jpg)
+<img src="https://j93.es/api/image/photo/singapore/singapore-3/3-아랍거리4.jpg" alt="3-아랍거리4" width="660" height="440" loading="lazy">
 
-![아랍거리](https://j93.es/api/image/photo/singapore/singapore-3/3-아랍거리5.jpg)
+<img src="https://j93.es/api/image/photo/singapore/singapore-3/3-아랍거리5.jpg" alt="2-밤거리1" width="440" height="660" loading="lazy">
 
 ## 빌딩
 
-![빌딩](https://j93.es/api/image/photo/singapore/singapore-3/4-빌딩.jpg)
+<img src="https://j93.es/api/image/photo/singapore/singapore-3/4-빌딩.jpg" alt="4-빌딩" width="440" height="660" loading="lazy">
