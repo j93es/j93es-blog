@@ -80,8 +80,12 @@
 - 코드 블록이 줄바꿈 되는 것이 아주 보기 싫다. 따라서 scoll하는 방향으로 pre tag를 변경하였다.
 - 마크다운의 pre tag 랜더링 성능을 향상시켰다. pre 태그를 scroll 하는 방법으로 업데이트 했더니, 부모요소의 size가 업데이트 된다면, markdown 전체가 렌더링 되는 문제가 있었는데, 변경후에는 pre tag만 랜더링 된다
 
-#### 2024-10-14 refactor
+#### 2024-10-14 refactor, add rehype-raw
 
 - backend: 기존 util에 묶여 있었던 service 로직을 분리하였다.
 - frontend: postingData라는 model의 어휘가 중의적이라고 생각되어, postingIndex로 이름을 바꾸었다. 더하여 model 파일에 같이 존재하였던 controller 로직을 분리하였다.
 - rehype-raw를 적용할까 고민하였으나 결론적으로 적용하기로 했다. 일단 적용하려한 이유는 img 태그의 width, height를 지정하여 이미지가 랜더링 시에 쉬프트 되지 않도록 하여 사용자 경험을 높이기 위해서였다. 하지만 rehype-raw를 install하고 웹팩으로 감싸면 무려 90kb에서 60kb증가한 150kb 정도가 나와서(약 1.6배 증가한 수치이다.) 적용하는데 망설여졌다. 그런데 사용자의 경험을 위하여 각 img에 lasyloading을 적용하고 추후 picture 태그를 통하여 확장 가능하다는 점에서 rehype-raw를 적용하기로 하였다. 현재로서는 img 태그만을 위하여 이 툴을 적용하였는데, 수지타산이 맞는지 고민이긴하다.
+
+#### 2024-10-14 rm rehype-raw
+
+- rehype-raw를 활용하여 img가 로딩될때, layout shift되는 것을 막으려 했지만, 큰 성능향상을 보이지 못했다. 더하여 img 태그 랜더링을 위하여 많은 용량을 허비하는 것을 낭비라고 생각하여 rehype-raw를 제거하였다.

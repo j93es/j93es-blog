@@ -138,4 +138,6 @@ export default Posting;
 https://j93.es/api/image/dev/backend-begin/performance-test.pnghttps://j93.es/api/image/dev/backend-begin/performance-test.png
 ```
 
-![성능 테스트](https://j93.es/api/image/dev/backend-begin/performance-test.png)
+<p>지수 나타내기 $3^{2} = 9$</p>
+
+![성능 테스트](http://localhost:8086/image/dev/backend-begin/performance-test.png)

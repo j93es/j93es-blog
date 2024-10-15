@@ -1,5 +1,5 @@
 // React
-import { useRef, useContext, useEffect, useState, useMemo, memo } from "react";
+import { useRef, useContext, useEffect, useState } from "react";
 
 // Local
 import { apiUrl } from "config";
@@ -7,6 +7,7 @@ import { EachPostingMetadata } from "model/postingIndex";
 import { parseMarkdown } from "utils/index";
 import { SetAlertDataContext, PostingIndexControllerContext } from "App";
 import Loader from "components/Loader";
+import CustomPre from "components/CustomPre";
 import "pages/body/Posting.css";
 
 // External
@@ -14,23 +15,7 @@ import { Link } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import rehypeHighlight from "rehype-highlight";
 import remarkGfm from "remark-gfm";
-import rehypeRaw from "rehype-raw";
 import "highlight.js/styles/github-dark-dimmed.css";
-
-const PreTag = memo(
-  ({ elementSize, ...props }: { elementSize: { width: any; height: any } }) => {
-    return (
-      <pre
-        style={{
-          whiteSpace: "pre",
-          maxWidth: `${elementSize.width}px`,
-          overflowX: "auto",
-        }}
-        {...props}
-      />
-    );
-  }
-);
 
 function Posting({ path }: { path: string }) {
   const [isPostingLoading, setIsPostingLoading] = useState(true);
@@ -43,14 +28,14 @@ function Posting({ path }: { path: string }) {
   const setAlertData = useContext(SetAlertDataContext);
   const postingIndexController = useContext(PostingIndexControllerContext);
   const elementRef = useRef<HTMLDivElement>(null);
-  const [elementSize, setElementSize] = useState({ width: 0, height: 0 });
+  const [elementWidth, setElementWidth] = useState(0);
 
   useEffect(() => {
     const updateSize = () => {
       const element = elementRef.current;
       if (element) {
-        const { width, height } = element.getBoundingClientRect();
-        setElementSize({ width, height });
+        const { width } = element.getBoundingClientRect();
+        setElementWidth(width);
       }
     };
 
@@ -60,6 +45,7 @@ function Posting({ path }: { path: string }) {
     return () => {
       window.removeEventListener("resize", updateSize);
     };
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
@@ -112,20 +98,23 @@ function Posting({ path }: { path: string }) {
     // eslint-disable-next-line
   }, [path]);
 
-  const components = useMemo(() => {
-    return {
-      code: ({ ...props }) => {
-        return <code style={{ borderRadius: "0.625rem" }} {...props} />;
-      },
-      img: ({ ...props }) => (
-        <img style={{ maxWidth: "100%", height: "auto" }} {...props} alt="" />
-      ),
-      pre: ({ ...props }) => {
-        return <PreTag elementSize={elementSize} {...props} />;
-      },
-    };
-    // eslint-disable-next-line
-  }, []);
+  const components = useRef({
+    code: ({ ...props }) => {
+      return <code style={{ borderRadius: "0.625rem" }} {...props} />;
+    },
+    img: ({ ...props }) => {
+      return (
+        <img
+          {...props}
+          style={{ maxWidth: "100%", height: "auto" }}
+          alt={props.alt || "이미지 로드 실패"}
+        />
+      );
+    },
+    pre: ({ ...props }) => {
+      return <CustomPre elementWidth={elementWidth} {...props} />;
+    },
+  });
 
   return (
     <div ref={elementRef} className="posting-wrap">
@@ -137,11 +126,14 @@ function Posting({ path }: { path: string }) {
             <ReactMarkdown
               children={markdownContent}
               remarkPlugins={[remarkGfm]}
-              rehypePlugins={[rehypeHighlight, rehypeRaw]}
+              rehypePlugins={[rehypeHighlight]}
               components={{
-                ...components,
+                ...components.current,
                 pre: (props) => (
-                  <components.pre elementSize={elementSize} {...props} />
+                  <components.current.pre
+                    elementWidth={elementWidth}
+                    {...props}
+                  />
                 ),
               }}
             />
