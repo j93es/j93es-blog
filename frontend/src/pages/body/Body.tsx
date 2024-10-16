@@ -17,6 +17,10 @@ import "pages/body/Body.css";
 
 const Posting = React.lazy(() => import("pages/body/Posting"));
 
+const preloadPosting = () => {
+  import("pages/body/Posting");
+};
+
 function Body({
   path,
   isExistPath = true,
@@ -28,6 +32,10 @@ function Body({
   const alertData = useContext(AlertDataContext);
   const postingIndexController = useContext(PostingIndexControllerContext);
   const setAlertData = useContext(SetAlertDataContext);
+
+  useEffect(() => {
+    preloadPosting();
+  }, []);
 
   useEffect(() => {
     if (postingIndexController?.getCategoryList() && !isExistPath) {
