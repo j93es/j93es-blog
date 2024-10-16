@@ -16,7 +16,7 @@ category: photo
 
 <img src="https://j93.es/api/image/photo/singapore/singapore-3/1-아틀라스바1.jpg" alt="1-아틀라스바1" width="660" height="440">
 
-<img src="https://j93.es/api/image/photo/singapore/singapore-3/1-아틀라스바2.jpg" alt="1-아틀라스바2" width="440" height="660" loading="lazy">
+<img src="https://j93.es/api/image/photo/singapore/singapore-3/1-아틀라스바2.jpg" alt="1-아틀라스바2" width="440" height="660">
 
 <img src="https://j93.es/api/image/photo/singapore/singapore-3/1-아틀라스바3.jpg" alt="1-아틀라스바3" width="660" height="440" loading="lazy">
 

@@ -16,7 +16,7 @@ category: photo
 
 <img src="https://j93.es/api/image/photo/singapore/singapore-4/1-머라이언공원1.jpg" alt="1-머라이언공원1" width="660" height="440">
 
-<img src="https://j93.es/api/image/photo/singapore/singapore-4/1-머라이언공원2.jpg" alt="1-머라이언공원2" width="660" height="440" loading="lazy">
+<img src="https://j93.es/api/image/photo/singapore/singapore-4/1-머라이언공원2.jpg" alt="1-머라이언공원2" width="660" height="440">
 
 <img src="https://j93.es/api/image/photo/singapore/singapore-4/1-머라이언공원3.jpg" alt="1-머라이언공원3" width="660" height="440" loading="lazy">
 
