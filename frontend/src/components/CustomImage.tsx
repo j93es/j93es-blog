@@ -10,25 +10,23 @@ const CustomImage: React.FC<CustomImageProps> = (props) => {
   };
 
   return (
-    <p>
-      <img
-        {...props}
-        style={
-          isError
-            ? {
-                width: "100%",
-                height: "auto",
-                objectFit: "contain",
-              }
-            : {
-                maxWidth: "100%",
-                height: "auto",
-              }
-        }
-        alt={props.alt || "이미지 로드 실패"}
-        onError={handleError}
-      />
-    </p>
+    <img
+      {...props}
+      style={
+        isError
+          ? {
+              width: "100%",
+              height: "auto",
+              objectFit: "contain",
+            }
+          : {
+              maxWidth: "100%",
+              height: "auto",
+            }
+      }
+      alt={props.alt || "이미지 로드 실패"}
+      onError={handleError}
+    />
   );
 };
 
