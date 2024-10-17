@@ -13,7 +13,7 @@ export class RequestUtils {
       req.headers["x-real-ip"] ||
       req.ip ||
       "unknown";
-    return `${ipData}`;
+    return `[${ipData}]`;
   };
 
   addId(req: Request, res: Response, next: NextFunction) {
