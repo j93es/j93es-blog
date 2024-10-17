@@ -1,6 +1,5 @@
 import { Request, Response, NextFunction } from "express";
 import { nanoidGenerator } from "./index";
-import { ForbbidenError } from "../model/error";
 
 export class RequestUtils {
   getId = (req: Request): string => {
