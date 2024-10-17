@@ -4,12 +4,14 @@
 
 ## 일지
 
+- 일지는 일단 제 언어로 러프하게 적어보았고, 추후 글로 작성할 가치가 있다고 판단되면 포스팅으로 올릴 예정입니다.
+
 #### 2024-9-26 initial
 
 1. frontend
 
 - react-markdown 이라는 심각한 의존성을 가짐에 심히 염려스럽다.
-- rehype-raw 툴을 이용해서 md의 html 태그를 랜더링 시키려했으나, 무슨 미친 의존성을(아니 상식적으로 typescript 환경에 영향을 주는게 말이야 방구야) 요구하길래, 버렸다. react-markdown의 img 태그 컴포넌트를 추가하는 것으로 해결했으나, 여전히 react-markdown을 가지고 가는 것은 위협요소라 판단한다.(2024-10-14 추가: react-markdown 공식문서를 확인하고 rehype-raw를 적용해보니 잘 적용되더라... 일단 적용하진 않았으나, 웹팩 용량 등을 확인하고 추후 적용할 수도 있을것 같다. 먼저 문서를 읽는 것을 최우선으로 해야겠다.)
+- rehype-raw 툴을 이용해서 md의 html 태그를 랜더링 시키려했으나, 무슨 미친 의존성을(아니 상식적으로 typescript 환경에 영향을 주는게 말이야 방구야) 요구하길래, 버렸다. react-markdown의 img 태그 컴포넌트를 추가하는 것으로 해결했으나, 여전히 react-markdown을 가지고 가는 것은 위협요소라 판단한다.(2024-10-13 추가: react-markdown 공식문서를 확인하고 rehype-raw를 적용해보니 잘 적용되더라... 일단 적용하진 않았으나, 웹팩 용량 등을 확인하고 추후 적용할 수도 있을것 같다. 먼저 문서를 읽는 것을 최우선으로 해야겠다.)
 - TODO controller 분리 등 리팩터링 필요하다. 일해라 미래의 나.
 
 2. backend
@@ -85,3 +87,7 @@
 - backend: 기존 util에 묶여 있었던 service 로직을 분리하였다.
 - frontend: postingData라는 model의 어휘가 중의적이라고 생각되어, postingIndex로 이름을 바꾸었다. 더하여 model 파일에 같이 존재하였던 controller 로직을 분리하였다.
 - rehype-raw를 적용할까 고민하였으나 결론적으로 적용하기로 했다. 일단 적용하려한 이유는 img 태그의 width, height를 지정하여 이미지가 랜더링 시에 쉬프트 되지 않도록 하여 사용자 경험을 높이기 위해서였다. 하지만 rehype-raw를 install하고 웹팩으로 감싸면 무려 90kb에서 60kb증가한 150kb 정도가 나와서(약 1.6배 증가한 수치이다.) 적용하는데 망설여졌다. 그런데 사용자의 경험을 위하여 각 img에 lasyloading을 적용하고 추후 picture 태그를 통하여 확장 가능하다는 점에서 rehype-raw를 적용하기로 하였다. 현재로서는 img 태그만을 위하여 이 툴을 적용하였는데, 수지타산이 맞는지 고민이긴하다.
+
+#### 2024-10-17 component lazy loading
+
+- posting 컴포넌트를 lazy loading하였다. 그런데, posting 컴포넌트 진입시에, 조금은 딜레이가 발생했다. 따라서 사용자 이용 패턴에 대하여 정의하여, 언제 preload 할지 생각해보았다. 먼저 사용자는 postingList를 fetch해야한다. 즉, postingList를 fetch하면 홈페이지 렌더링이 됨으로, postingList를 fetch한 후, posting 컴포넌트를 preload하여 지연시간을 최소화하려 노력하였다.

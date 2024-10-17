@@ -34,8 +34,11 @@ function Body({
   const setAlertData = useContext(SetAlertDataContext);
 
   useEffect(() => {
+    if (isPostingListLoading) {
+      return;
+    }
     preloadPosting();
-  }, []);
+  }, [isPostingListLoading]);
 
   useEffect(() => {
     if (postingIndexController?.getCategoryList() && !isExistPath) {
