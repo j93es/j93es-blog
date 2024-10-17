@@ -8,10 +8,6 @@ export class RateLimiter {
       windowMs: second * 1000,
       limit: limit,
       standardHeaders: "draft-7",
-      // legacyHeaders: false,
-      keyGenerator: (req) => {
-        return requestUtils.getIp(req);
-      },
       handler: (req, res) => {
         throw new TooManyRequestsError(
           `Exceeded the ${limit} requests in ${second} secondes limit`
