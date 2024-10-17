@@ -90,4 +90,5 @@
 
 #### 2024-10-17 component lazy loading
 
-- posting 컴포넌트를 lazy loading하였다. 그런데, posting 컴포넌트 진입시에, 조금은 딜레이가 발생했다. 따라서 사용자 이용 패턴에 대하여 정의하여, 언제 preload 할지 생각해보았다. 먼저 사용자는 postingList를 fetch해야한다. 즉, postingList를 fetch하면 홈페이지 렌더링이 됨으로, postingList를 fetch한 후, posting 컴포넌트를 preload하여 지연시간을 최소화하려 노력하였다.
+- posting 컴포넌트를 lazy loading하였다. 그런데, posting 컴포넌트 진입시에, 조금은 딜레이가 발생했다. 따라서 사용자 이용 패턴에 대하여 정의하여, 언제 preload 할지 생각해보았다. 먼저 사용자는 postingList를 fetch해야한다. 즉, postingList를 fetch하면 홈페이지 렌더링이 됨으로, postingList를 fetch한 후, posting 컴포넌트를 preload하여 지연시간을 최소화하려 노력하였다... 을 적용했다가,,, 그냥 원래대로 롤백했다. 왜냐하면 posting 페이지 자체에서 로딩하면 로딩이 더욱 느려졌고(postingList가 로딩이 완료된 후, chunk 된 js, css 파일을 불러옴으로), 원래대로 돌려도 브라우저가 병렬 다운로드를 진행하기에 큰 문제가 없어보였지만, 정확히 측정해봐야한다.
+- posting 로딩 중에 footer를 랜더링하지 않도록 하여, posting loading 후 footer가 밀려나는 것을 방지하였다.

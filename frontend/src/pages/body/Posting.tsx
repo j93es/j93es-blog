@@ -5,9 +5,14 @@ import { useRef, useContext, useEffect, useState } from "react";
 import { apiUrl } from "config";
 import { EachPostingMetadata } from "model/postingIndex";
 import { parseMarkdown } from "utils/index";
-import { SetAlertDataContext, PostingIndexControllerContext } from "App";
+import {
+  SetAlertDataContext,
+  PostingIndexControllerContext,
+  SetFooterHideCmdContext,
+} from "App";
 import Loader from "components/Loader";
 import CustomPre from "components/CustomPre";
+import CustomImage from "components/CustomImage";
 import "pages/body/Posting.css";
 
 // External
@@ -17,7 +22,6 @@ import rehypeHighlight from "rehype-highlight";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 import "highlight.js/styles/github-dark-dimmed.css";
-import CustomImage from "components/CustomImage";
 
 function Posting({ path }: { path: string }) {
   const [isPostingLoading, setIsPostingLoading] = useState(true);
@@ -31,6 +35,7 @@ function Posting({ path }: { path: string }) {
   const postingIndexController = useContext(PostingIndexControllerContext);
   const elementRef = useRef<HTMLDivElement>(null);
   const [elementWidth, setElementWidth] = useState(0);
+  const setFooterHideCmd = useContext(SetFooterHideCmdContext);
 
   useEffect(() => {
     const updateSize = () => {
@@ -50,12 +55,9 @@ function Posting({ path }: { path: string }) {
   }, []);
 
   useEffect(() => {
-    if (!path || path === "/") {
-      return;
-    }
-
     const fetchMarkdown = async () => {
       try {
+        setFooterHideCmd(true);
         setIsPostingLoading(true);
         const response = await fetch(apiUrl + path);
         if (!response.ok) {
@@ -86,6 +88,7 @@ function Posting({ path }: { path: string }) {
         });
       } finally {
         setIsPostingLoading(false);
+        setFooterHideCmd(false);
       }
     };
 

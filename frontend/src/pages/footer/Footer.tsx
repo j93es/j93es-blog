@@ -4,7 +4,10 @@ import "pages/footer/Footer.css";
 // External
 import { Link } from "react-router-dom";
 
-export default function Footer() {
+export default function Footer({ footerHideCmd }: { footerHideCmd: boolean }) {
+  if (footerHideCmd) {
+    return null;
+  }
   return (
     <footer className="footer-cont">
       <div className="social-item">
