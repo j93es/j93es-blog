@@ -40,8 +40,8 @@ function Body({
   useEffect(() => {
     if (postingIndexController?.getCategoryList() && !isExistPath) {
       setAlertData({
+        title: "404 Not Found",
         message: "Requested page not found",
-        statusText: "404 Not Found",
       });
       return;
     }
@@ -59,7 +59,7 @@ function Body({
         <Redirect
           path="/"
           delaySeconds={5}
-          title={`${alertData.statusText}`}
+          title={`${alertData.title}`}
           message={`${alertData.message}`}
         />
       ) : path === "/" ? (

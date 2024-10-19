@@ -12,6 +12,7 @@ import Footer from "pages/footer/Footer";
 import { Routes, Route } from "react-router-dom";
 
 // Local
+import { FetchError } from "model/errorType";
 import "App.css";
 
 export const PostingIndexControllerContext =
@@ -45,18 +46,25 @@ function App() {
           },
         });
         if (!response.ok) {
-          throw new Error(`${response.status} ${response.statusText}`);
+          throw new FetchError(response.status, response.statusText);
         }
         const postingIndexController = new PostingIndexController(
           await response.json()
         );
 
         setPostingIndexController(postingIndexController);
-      } catch (error: any) {
-        setAlertData({
-          message: "Unable to load posting list",
-          statusText: error.message,
-        });
+      } catch (error: Error | FetchError | any) {
+        if (error instanceof FetchError) {
+          setAlertData({
+            title: `${error.status} ${error.statusText}`,
+            message: "Unable to load posting list",
+          });
+        } else {
+          setAlertData({
+            title: "Error",
+            message: "Unable to load posting list",
+          });
+        }
       } finally {
         setIsPostingListLoading(false);
       }

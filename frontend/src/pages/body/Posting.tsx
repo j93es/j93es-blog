@@ -13,6 +13,7 @@ import {
 import Loader from "components/Loader";
 import CustomPre from "components/CustomPre";
 import CustomImage from "components/CustomImage";
+import { FetchError } from "model/errorType";
 import "pages/body/Posting.css";
 
 // External
@@ -61,7 +62,7 @@ function Posting({ path }: { path: string }) {
         setIsPostingLoading(true);
         const response = await fetch(apiUrl + path);
         if (!response.ok) {
-          throw new Error(`${response.status} ${response.statusText}`);
+          throw new FetchError(response.status, response.statusText);
         }
         const markdownText = await response.text();
         const { data, content } = parseMarkdown(markdownText);
@@ -81,11 +82,18 @@ function Posting({ path }: { path: string }) {
         setMarkdownContent(content);
         setNextPosting(nextPosting);
         setPreviousPosting(previousPosting);
-      } catch (error: Error | any) {
-        setAlertData({
-          message: "Unable to load posting",
-          statusText: error.message,
-        });
+      } catch (error: Error | FetchError | any) {
+        if (error instanceof FetchError) {
+          setAlertData({
+            title: `${error.status} ${error.statusText}`,
+            message: "Unable to load posting",
+          });
+        } else {
+          setAlertData({
+            title: "Error",
+            message: "Unable to load posting",
+          });
+        }
       } finally {
         setIsPostingLoading(false);
         setFooterHideCmd(false);
