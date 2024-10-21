@@ -4,6 +4,7 @@ dotenv.config();
 import express, { Application, Request, Response } from "express";
 import cors from "cors";
 import helmet from "helmet";
+import compression from "compression";
 
 import { PORT, publicDir } from "./config";
 import {
@@ -31,6 +32,18 @@ app.use(rateLimiter.makeLimit(60, 200));
 app.use(requestUtils.addId);
 
 app.use(customLogger.requestLogger);
+
+function shouldCompress(req: Request, res: Response) {
+  if (req.headers["x-no-compression"]) {
+    // don't compress responses with this request header
+    return false;
+  }
+
+  // fallback to standard filter function
+  return compression.filter(req, res);
+}
+
+app.use(compression({ filter: shouldCompress }));
 
 app.use(express.static(publicDir, { etag: false, index: false, maxAge: "1d" }));
 
