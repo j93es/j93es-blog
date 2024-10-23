@@ -7,8 +7,7 @@
     "express-rate-limit": "^7.4.0",
     "nanoid": "3.3.4",
     "node": "^22.2.0",
-    "path": "^0.12.7",
-    "tsconfig-paths": "^4.2.0"
+    "path": "^0.12.7"
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
@@ -24,7 +23,6 @@
   "scripts": {
     "dev": "nodemon ./src/app.ts",
     "build": "tsc && mkdir -p dist/src/public && cp -R src/public/* dist/src/public/",
-    "start": "node ./dist/src/app.js",
-    "create-symlink": "node scripts/createSymlink.js"
+    "start": "node ./dist/src/app.js"
   }
 }

@@ -6,7 +6,7 @@ export class NotFoundError implements Error {
   }
 }
 
-export class ForbbidenError implements Error {
+export class ForbiddenError implements Error {
   name: string = "ForbbidenError";
 
   constructor(public message: string) {

@@ -2,7 +2,7 @@ import path from "path";
 import {
   BadRequestError,
   NotFoundError,
-  ForbbidenError,
+  ForbiddenError,
   TooManyRequestsError,
 } from "../model/error";
 import { customLogger } from "./index";
@@ -49,7 +49,7 @@ export class ErrorHandler {
   };
 
   forbiddenError = (error: any, req: any, res: any, next: any) => {
-    if (error instanceof ForbbidenError) {
+    if (error instanceof ForbiddenError) {
       customLogger.warn("ForbbidenError", error.message, req);
       res.status(403).sendFile(path.join(errorPagesPath, "403.html"));
       return;
