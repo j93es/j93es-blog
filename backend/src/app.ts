@@ -18,6 +18,7 @@ import { filesMetadata } from "./service/index";
 const app: Application = express();
 app.set("trust proxy", "loopback, linklocal, uniquelocal");
 app.set("port", PORT || 8000);
+app.disable("x-powered-by");
 
 app.use(cors(corsOptions));
 
