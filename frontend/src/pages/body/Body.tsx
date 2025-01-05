@@ -6,7 +6,6 @@ import {
   IsPostingListLoadingContext,
   AlertDataContext,
   SetAlertDataContext,
-  PostingIndexControllerContext,
 } from "App";
 import Loader from "components/Loader";
 import Redirect from "components/Redirect";
@@ -30,7 +29,6 @@ function Body({
 }) {
   const isPostingListLoading = useContext(IsPostingListLoadingContext);
   const alertData = useContext(AlertDataContext);
-  const postingIndexController = useContext(PostingIndexControllerContext);
   const setAlertData = useContext(SetAlertDataContext);
 
   useEffect(() => {
@@ -38,7 +36,7 @@ function Body({
   }, []);
 
   useEffect(() => {
-    if (postingIndexController?.getCategoryList() && !isExistPath) {
+    if (!isExistPath && !isPostingListLoading) {
       setAlertData({
         title: "404 Not Found",
         message: "Requested page not found",
@@ -49,7 +47,7 @@ function Body({
     if (isExistPath) {
       setAlertData(null);
     }
-  }, [path, postingIndexController, isExistPath, setAlertData]);
+  }, [path, isExistPath, isPostingListLoading, setAlertData]);
 
   return (
     <main className="body-cont">
@@ -61,6 +59,7 @@ function Body({
           delaySeconds={5}
           title={`${alertData.title}`}
           message={`${alertData.message}`}
+          callback={() => setAlertData(null)}
         />
       ) : path === "/" ? (
         <PostingList />
