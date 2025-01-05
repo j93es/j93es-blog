@@ -2,11 +2,7 @@
 import React, { useContext, useEffect, Suspense } from "react";
 
 // Local
-import {
-  IsPostingListLoadingContext,
-  AlertDataContext,
-  SetAlertDataContext,
-} from "App";
+import { AlertDataContext, SetAlertDataContext } from "App";
 import Loader from "components/Loader";
 import Redirect from "components/Redirect";
 import PostingList from "pages/body/PostingList";
@@ -16,7 +12,7 @@ import "pages/body/Body.css";
 
 const Posting = React.lazy(() => import("pages/body/Posting"));
 
-const preloadPosting = () => {
+const preloadPostingComponent = () => {
   import("pages/body/Posting");
 };
 
@@ -27,33 +23,26 @@ function Body({
   path: string;
   isExistPath?: boolean;
 }) {
-  const isPostingListLoading = useContext(IsPostingListLoadingContext);
   const alertData = useContext(AlertDataContext);
   const setAlertData = useContext(SetAlertDataContext);
 
   useEffect(() => {
-    preloadPosting();
+    preloadPostingComponent();
   }, []);
 
   useEffect(() => {
-    if (!isExistPath && !isPostingListLoading) {
+    if (!isExistPath) {
       setAlertData({
         title: "404 Not Found",
         message: "Requested page not found",
       });
       return;
     }
-
-    if (isExistPath) {
-      setAlertData(null);
-    }
-  }, [path, isExistPath, isPostingListLoading, setAlertData]);
+  }, [path, isExistPath, setAlertData]);
 
   return (
     <main className="body-cont">
-      {isPostingListLoading ? (
-        <Loader />
-      ) : alertData ? (
+      {alertData ? (
         <Redirect
           path="/"
           delaySeconds={5}

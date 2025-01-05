@@ -7,6 +7,7 @@ import { AlertType } from "model/alertType";
 import Header from "pages/header/Header";
 import Body from "pages/body/Body";
 import Footer from "pages/footer/Footer";
+import Loader from "components/Loader";
 
 // External
 import { Routes, Route } from "react-router-dom";
@@ -17,7 +18,6 @@ import "App.css";
 
 export const PostingIndexControllerContext =
   createContext<PostingIndexController | null>(null);
-export const IsPostingListLoadingContext = createContext<boolean>(true);
 export const AlertDataContext = createContext<AlertType | null>(null);
 export const SetAlertDataContext = createContext<
   React.Dispatch<React.SetStateAction<AlertType | null>>
@@ -38,6 +38,7 @@ function App() {
   useEffect(() => {
     const func = async () => {
       try {
+        setFooterHideCmd(true);
         setIsPostingListLoading(true);
         const response = await fetch(`${apiUrl}/index`, {
           method: "GET",
@@ -67,6 +68,7 @@ function App() {
         }
       } finally {
         setIsPostingListLoading(false);
+        setFooterHideCmd(false);
       }
     };
     func();
@@ -75,10 +77,13 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <SetFooterHideCmdContext.Provider value={setFooterHideCmd}>
-        <AlertDataContext.Provider value={alertData}>
-          <SetAlertDataContext.Provider value={setAlertData}>
-            <IsPostingListLoadingContext.Provider value={isPostingListLoading}>
+
+      {isPostingListLoading ? (
+        <Loader />
+      ) : (
+        <SetFooterHideCmdContext.Provider value={setFooterHideCmd}>
+          <AlertDataContext.Provider value={alertData}>
+            <SetAlertDataContext.Provider value={setAlertData}>
               <PostingIndexControllerContext.Provider
                 value={postingIndexController}
               >
@@ -114,10 +119,11 @@ function App() {
                   />
                 </Routes>
               </PostingIndexControllerContext.Provider>
-            </IsPostingListLoadingContext.Provider>
-          </SetAlertDataContext.Provider>
-        </AlertDataContext.Provider>
-      </SetFooterHideCmdContext.Provider>
+            </SetAlertDataContext.Provider>
+          </AlertDataContext.Provider>
+        </SetFooterHideCmdContext.Provider>
+      )}
+
       <Footer footerHideCmd={footerHideCmd} />
     </div>
   );
