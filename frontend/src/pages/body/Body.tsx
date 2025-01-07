@@ -1,48 +1,99 @@
 // React
-import React, { useContext, useEffect, Suspense } from "react";
+import React, { createContext, useState, useEffect, Suspense } from "react";
+
+// External
+import { Routes, Route } from "react-router-dom";
 
 // Local
-import { AlertDataContext, SetAlertDataContext } from "App";
+import { apiUrl } from "config";
+import { EachPostingMetadata } from "model/postingIndex";
+import { PostingIndexController } from "controller/index";
+import { AlertType } from "model/alertType";
+import { FetchError } from "model/errorType";
+import { SetFooterHideCmdContext } from "App";
 import Loader from "components/Loader";
 import Redirect from "components/Redirect";
 import PostingList from "pages/body/PostingList";
 import "pages/body/Body.css";
 
-// External
+export const PostingIndexControllerContext =
+  createContext<PostingIndexController | null>(null);
+export const AlertDataContext = createContext<AlertType | null>(null);
+export const SetAlertDataContext = createContext<
+  React.Dispatch<React.SetStateAction<AlertType | null>>
+>(() => {});
 
-const Posting = React.lazy(() => import("pages/body/Posting"));
-
-const preloadPostingComponent = () => {
-  import("pages/body/Posting");
+const loadPostingComponent = () => {
+  return import("pages/body/Posting");
 };
 
-function Body({
-  path,
-  isExistPath = true,
-}: {
-  path: string;
-  isExistPath?: boolean;
-}) {
-  const alertData = useContext(AlertDataContext);
-  const setAlertData = useContext(SetAlertDataContext);
+const ORIGIN_POSTING = React.lazy(loadPostingComponent);
+
+const Posting = ({ path }: { path: string }) => {
+  return (
+    <Suspense fallback={<Loader />}>
+      <ORIGIN_POSTING path={path} />
+    </Suspense>
+  );
+};
+
+function Body() {
+  const [alertData, setAlertData] = useState<AlertType | null>(null);
+  const [isPostingListLoading, setIsPostingListLoading] =
+    useState<boolean>(true);
+  const [postingIndexController, setPostingIndexController] =
+    useState<PostingIndexController | null>(null);
+  const setFooterHideCmd = React.useContext(SetFooterHideCmdContext);
 
   useEffect(() => {
-    preloadPostingComponent();
+    // preload Posting component
+    loadPostingComponent();
   }, []);
 
   useEffect(() => {
-    if (!isExistPath) {
-      setAlertData({
-        title: "404 Not Found",
-        message: "Requested page not found",
-      });
-      return;
-    }
-  }, [path, isExistPath, setAlertData]);
+    const func = async () => {
+      try {
+        setFooterHideCmd(true);
+        setIsPostingListLoading(true);
+        const response = await fetch(`${apiUrl}/index`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        if (!response.ok) {
+          throw new FetchError(response.status, response.statusText);
+        }
+        const postingIndexController = new PostingIndexController(
+          await response.json()
+        );
+
+        setPostingIndexController(postingIndexController);
+      } catch (error: Error | FetchError | any) {
+        if (error instanceof FetchError) {
+          setAlertData({
+            title: `${error.status} ${error.statusText}`,
+            message: "Unable to load posting list",
+          });
+        } else {
+          setAlertData({
+            title: "Error",
+            message: "Unable to load posting list",
+          });
+        }
+      } finally {
+        setIsPostingListLoading(false);
+        setFooterHideCmd(false);
+      }
+    };
+    func();
+  }, [setFooterHideCmd]);
 
   return (
     <main className="body-cont">
-      {alertData ? (
+      {isPostingListLoading ? (
+        <Loader />
+      ) : alertData ? (
         <Redirect
           path="/"
           delaySeconds={5}
@@ -50,12 +101,54 @@ function Body({
           message={`${alertData.message}`}
           callback={() => setAlertData(null)}
         />
-      ) : path === "/" ? (
-        <PostingList />
       ) : (
-        <Suspense fallback={<Loader />}>
-          <Posting path={path} />
-        </Suspense>
+        <AlertDataContext.Provider value={alertData}>
+          <SetAlertDataContext.Provider value={setAlertData}>
+            <PostingIndexControllerContext.Provider
+              value={postingIndexController}
+            >
+              <Routes>
+                <Route path="/" element={<PostingList />} />
+                <Route
+                  path="/policy/information-protection-policy.md"
+                  element={
+                    <Posting path="/policy/information-protection-policy.md" />
+                  }
+                />
+                {postingIndexController &&
+                  postingIndexController
+                    .getCategoryList()
+                    .map((category: string) => {
+                      return postingIndexController
+                        .getPostingList(category)
+                        .map((EachPostingMetadata: EachPostingMetadata) => {
+                          return (
+                            <Route
+                              key={EachPostingMetadata.path}
+                              path={EachPostingMetadata.path}
+                              element={
+                                <Posting path={EachPostingMetadata.path} />
+                              }
+                            />
+                          );
+                        });
+                    })}
+                <Route
+                  path="*"
+                  element={
+                    <Redirect
+                      path="/"
+                      delaySeconds={5}
+                      title={"404 Not Found"}
+                      message={"Requested page not found"}
+                      callback={() => setAlertData(null)}
+                    />
+                  }
+                />
+              </Routes>
+            </PostingIndexControllerContext.Provider>
+          </SetAlertDataContext.Provider>
+        </AlertDataContext.Provider>
       )}
     </main>
   );

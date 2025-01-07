@@ -1,4 +1,9 @@
+// React
 import React, { useState } from "react";
+
+// External
+
+// Local
 
 interface CustomImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {}
 

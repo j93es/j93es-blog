@@ -1,3 +1,8 @@
+// React
+
+// External
+
+// Local
 import "components/Loader.css";
 
 export default function Loader() {

@@ -1,21 +1,6 @@
 // React
 import { useRef, useContext, useEffect, useState } from "react";
 
-// Local
-import { apiUrl } from "config";
-import { EachPostingMetadata } from "model/postingIndex";
-import { parseMarkdown } from "utils/index";
-import {
-  SetAlertDataContext,
-  PostingIndexControllerContext,
-  SetFooterHideCmdContext,
-} from "App";
-import Loader from "components/Loader";
-import CustomPre from "components/CustomPre";
-import CustomImage from "components/CustomImage";
-import { FetchError } from "model/errorType";
-import "pages/body/Posting.css";
-
 // External
 import { Link } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
@@ -23,6 +8,21 @@ import rehypeHighlight from "rehype-highlight";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 import "highlight.js/styles/github-dark-dimmed.css";
+
+// Local
+import { apiUrl } from "config";
+import { EachPostingMetadata } from "model/postingIndex";
+import { parseMarkdown } from "utils/index";
+import { SetFooterHideCmdContext } from "App";
+import {
+  SetAlertDataContext,
+  PostingIndexControllerContext,
+} from "pages/body/Body";
+import Loader from "components/Loader";
+import CustomPre from "components/CustomPre";
+import CustomImage from "components/CustomImage";
+import { FetchError } from "model/errorType";
+import "pages/body/Posting.css";
 
 function Posting({ path }: { path: string }) {
   const [isPostingLoading, setIsPostingLoading] = useState(true);
@@ -39,19 +39,22 @@ function Posting({ path }: { path: string }) {
   const setFooterHideCmd = useContext(SetFooterHideCmdContext);
 
   useEffect(() => {
-    const updateSize = () => {
-      const element = elementRef.current;
-      if (element) {
-        const { width } = element.getBoundingClientRect();
+    const resizeObserver = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        const { width } = entry.contentRect;
         setElementWidth(width);
       }
-    };
+    });
 
-    updateSize();
-    window.addEventListener("resize", updateSize);
+    const element = elementRef.current;
+    if (element) {
+      resizeObserver.observe(element);
+    }
 
     return () => {
-      window.removeEventListener("resize", updateSize);
+      if (element) {
+        resizeObserver.unobserve(element);
+      }
     };
   }, []);
 

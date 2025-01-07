@@ -1,13 +1,13 @@
 // React
 import { useContext } from "react";
 
+// External
+
 // Local
-import { PostingIndexControllerContext } from "App";
+import { PostingIndexControllerContext } from "pages/body/Body";
 import { Link } from "react-router-dom";
 import { EachPostingMetadata } from "model/postingIndex";
 import "pages/body/PostingList.css";
-
-// External
 
 function PostingList() {
   const postingIndexController = useContext(PostingIndexControllerContext);
