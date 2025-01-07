@@ -27,6 +27,8 @@ import "pages/body/Posting.css";
 function Posting({ path }: { path: string }) {
   const [isPostingLoading, setIsPostingLoading] = useState(true);
   const [markdownContent, setMarkdownContent] = useState("");
+  const [currentPosting, setCurrentPosting] =
+    useState<EachPostingMetadata | null>(null);
   const [nextPosting, setNextPosting] = useState<EachPostingMetadata | null>(
     null
   );
@@ -69,6 +71,12 @@ function Posting({ path }: { path: string }) {
         }
         const markdownText = await response.text();
         const { data, content } = parseMarkdown(markdownText);
+        const currentPosting = {
+          title: data.title,
+          date: data.date,
+          tag: data.tag,
+          category: data.category,
+        } as EachPostingMetadata;
         const nextPosting =
           postingIndexController &&
           postingIndexController.getNextPostingMetadata(
@@ -83,6 +91,7 @@ function Posting({ path }: { path: string }) {
           );
 
         setMarkdownContent(content);
+        setCurrentPosting(currentPosting);
         setNextPosting(nextPosting);
         setPreviousPosting(previousPosting);
       } catch (error: Error | FetchError | any) {
@@ -128,6 +137,9 @@ function Posting({ path }: { path: string }) {
     pre: ({ ...props }) => {
       return <CustomPre elementWidth={elementWidth} {...props} />;
     },
+    p: ({ ...props }) => {
+      return <p style={{ lineHeight: "160%" }} {...props} />;
+    },
   });
 
   return (
@@ -136,7 +148,11 @@ function Posting({ path }: { path: string }) {
         <Loader />
       ) : (
         <>
-          <div>
+          <div className="posting-head">
+            <h1 className="posting-title">{currentPosting?.title}</h1>
+            <p className="posting-date">{currentPosting?.date}</p>
+          </div>
+          <div className="posting-content">
             <ReactMarkdown
               children={markdownContent}
               remarkPlugins={[remarkGfm]}
@@ -152,7 +168,7 @@ function Posting({ path }: { path: string }) {
               }}
             />
           </div>
-          <div>
+          <div className="posting-nav">
             {previousPosting && (
               <Link
                 to={previousPosting.path}

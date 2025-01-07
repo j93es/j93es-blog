@@ -9,7 +9,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
   word-break: keep-all;
   overflow-wrap: break-word;
-  line-height: 150%;
 }
 
 code {
