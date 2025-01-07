@@ -1,6 +1,6 @@
 ---
 title: "낮은 레벨부터 높은 레벨까지: State Machine"
-date: 2024-01-07 19:34
+date: 2024-01-07 20:16
 tag: [embedded, web]
 category: dev
 ---
