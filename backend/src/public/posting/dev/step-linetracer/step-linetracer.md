@@ -25,9 +25,9 @@ category: dev
 
 라인트레이서는 검은색 배경에 흰색선이 배치된 맵에서 흰색선을 따라가는 로봇입니다. 라인트레이서 대회의 규정은 대체로 어떤 로봇이 완주를 빨리하느냐로 초점이 맞춰져 있습니다. 로봇이 동작하는 대회 영상은 [유튜브 링크](https://youtube.com/@zerotoinfinite2418?feature=shared)를 통하여 확인해볼 수 있습니다. 더하여 여러 주행전략을 통하여 기록을 개선할 수 있습니다. 예를들어, 첫번째 주행에서 직선의 정보를 저장해둔뒤, 직선에서는 가속을 진행하는 것이 예시가 되겠습니다.
 
-이때 구체적인 구현은 어떻게 이루어질까요? 먼저 라인트레이서의 구성 요소에 대해 살펴봅시다. 크게는 회로, 소프트웨어, 모터, 배터리 등으로 나눌 수 있습니다.
+이때 구체적인 구현은 어떻게 이루어질까요? 먼저 라인트레이서의 구성 요소에 대해 살펴봅시다. 크게는 회로, 소프트웨어, MCU, 모터, 배터리 등으로 나눌 수 있습니다.
 
-먼저 모터와 배터리를 살펴보겠습니다. 모터는 STEP 모터를 배터리는 12cell 44.4v의 배터리를 활용하였습니다. STEP 모터는 저렴하고 제어가 비교적 쉽다는 장점이 있습니다.(카메라 렌즈의 stm 모터가 STEP 모터를 사용합니다.) 더하여 배터리는 모터 드라이버의 데이터시트에 기초하여, 모터 드라이버가 버틸 수 있는 최대 전압을 고려하여 선정하였습니다.
+먼저 MCU, 모터와 배터리를 살펴보겠습니다. MCU는 STM32F411를 사용하였습니다. 모터는 STEP 모터를 배터리는 12cell 44.4v의 배터리를 활용하였습니다. STEP 모터는 저렴하고 제어가 비교적 쉽다는 장점이 있습니다.(카메라 렌즈의 stm 모터가 STEP 모터를 사용합니다.) 더하여 배터리는 모터 드라이버의 데이터시트에 기초하여, 모터 드라이버가 버틸 수 있는 최대 전압을 고려하였습니다.
 
 다음으로 회로 구성에 대해 살펴보겠습니다. 회로는 파워, 센서 보드, 센서 신호, 모터 드라이버, 모터 신호 등으로 나눌 수 있습니다.
 
@@ -71,16 +71,16 @@ category: dev
 /* 생략 */
 
 // 2상 여자제어방식
-//#define SPEED_COEF					( 31415.92f * TIRE_RADIUS )
+//#define SPEED_COEF  ( 31415.92f * TIRE_RADIUS )
 
 // 1-2상 여자제어방식
-#define SPEED_COEF					( 15707.96f * TIRE_RADIUS )
+#define SPEED_COEF  ( 15707.96f * TIRE_RADIUS )
 
 // 2상 여자제어방식
-//#define TICK_PER_M					( 31.831f / TIRE_RADIUS )
+//#define TICK_PER_M  ( 31.831f / TIRE_RADIUS )
 
 // 1-2상 여자제어방식
-#define TICK_PER_M					( 63.662f / TIRE_RADIUS )
+#define TICK_PER_M  ( 63.662f / TIRE_RADIUS )
 
 /* 생략 */
 ```
@@ -91,12 +91,12 @@ category: dev
 /* 생략 */
 
 // 2상 여자제어방식
-//extern uint8_t			phaseL_table[4];
-//extern uint8_t			phaseR_table[4];
+//extern uint8_t  phaseL_table[4];
+//extern uint8_t  phaseR_table[4];
 
 // 1-2상 여자제어방식
-extern uint8_t			phaseL_table[8];
-extern uint8_t			phaseR_table[8];
+extern uint8_t  phaseL_table[8];
+extern uint8_t  phaseR_table[8];
 
 /* 생략 */
 ```
@@ -107,11 +107,11 @@ extern uint8_t			phaseR_table[8];
 
 ```c
 // 1-2상 여자제어방식
-#define SPEED_COEF ( 15707.96f * TIRE_RADIUS )
-#define TICK_PER_M ( 63.662f / TIRE_RADIUS )
+#define SPEED_COEF  ( 15707.96f * TIRE_RADIUS )
+#define TICK_PER_M  ( 63.662f / TIRE_RADIUS )
 
-uint8_t            phaseL_table[8];
-uint8_t            phaseR_table[8];
+uint8_t             phaseL_table[8];
+uint8_t             phaseR_table[8];
 
 /* 1-2상 여자제어방식 모터 제어 함수를 export */
 ```
@@ -120,11 +120,11 @@ uint8_t            phaseR_table[8];
 
 ```c
 // 2상 여자제어방식
-#define SPEED_COEF ( 31415.92f * TIRE_RADIUS )
-#define TICK_PER_M ( 31.831f / TIRE_RADIUS )
+#define SPEED_COEF  ( 31415.92f * TIRE_RADIUS )
+#define TICK_PER_M  ( 31.831f / TIRE_RADIUS )
 
-uint8_t            phaseL_table[4];
-uint8_t            phaseR_table[4];
+uint8_t             phaseL_table[4];
+uint8_t             phaseR_table[4];
 
 /* 2상 여자제어방식 모터 제어 함수를 export */
 ```
@@ -261,7 +261,7 @@ int main(void) {
 
 > ### 5-3. State Machine과 javascript의 비동기 함수
 
-우리는 async, await에 대하여 학습할때, 비동기적으로 동작하며 다른 작업과 함께 처리될 수 있다는 것을 학습합니다. 조금 더 깊게 들어가면 call stack, task queue와 연관지어 살펴보기도 합니다. 저 또한 이 저도의 지식을 학습하였고, 비동기 함수의 개념을 추상적으로만 이해하고 있었습니다. 그런데 바야흐로 약 1년 전, 저를 포함한 3명이 javascript 스터디를 할 때에, 한 친구가 async의 내부 구현에 대해 궁금증을 가지고 뜯어보기로 합니다. async는 내부적으로 어떻게 구현될까요? 1년 전 스터디를 토대로, async는 내부적으로 어떻게 구현되는지 살펴봅시다.
+우리는 async, await에 대하여 학습할때, 비동기적으로 동작하며 다른 작업과 함께 처리될 수 있다는 것을 학습합니다. 조금 더 깊게 들어가면 call stack, task queue와 연관지어 살펴보기도 합니다. 저 또한 이 정도의 지식을 학습하였고, 비동기 함수의 개념을 추상적으로만 이해하고 있었습니다. 그런데 바야흐로 약 1년 전, 저를 포함한 3명이 javascript 스터디를 할 때에, 한 친구가 async의 내부 구현에 대해 궁금증을 가지고 뜯어보기로 합니다. async는 내부적으로 어떻게 구현될까요? 1년 전 스터디를 토대로, async는 내부적으로 어떻게 구현되는지 살펴봅시다.
 
 먼저 저는 이제 javascript는 모르고 typescript만 아는 개발자이기 때문에(농담입니다.) typescript를 ES5 문법으로 바꾸어 보겠습니다. 참고로 typescript는 javascript로 변환되고, 만약 브라우저가 해당 버전의 javascript가 지원되지 않는다면 ES5 등의 구버전 문법으로 변환됩니다. 즉, 저희는 ES5 문법으로 async, await에 대해 살펴보는 것입니다. [타입스크립트 to ES5 변환 사이트](https://www.typescriptlang.org/play)에 접속한 뒤, TS Config 탭을 클릭하여 Target 버전을 선택하면 손쉽게 변환이 가능합니다. 아래는 변환 전 코드입니다.
 
