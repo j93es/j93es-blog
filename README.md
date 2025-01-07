@@ -109,3 +109,51 @@
 #### 2025-1-5 loading 이펙트를 어디에서 처리할 것인가?
 
 - 현재 프로젝트는 App -> Body -> Posting/Posting List의 계층으로 이루어져있다. 이때, 포스팅 리스트에 대한 fetch는 App에서(라우터를 생성하기 위하여)하였으나, 멍청하게도 포스팅 리스트에 대한 loading 이펙트는 Body에서 하고 있었다. 가독성과 유지보수를 위하여 App에서 포스팅 리스트에 대한 loading 이펙트를 처리하였다.
+
+#### 2025-1-7 리팩터링 | 포스팅에서 부모요소 사이즈를 observing
+
+- app에서 라우터를 설정하여, 가독성이 떨어지는 것처럼 보였고, 차라리 react router를 body에서 관리하면 posting list에 대한 fetch도 body에서 진행할 수 있으니, react router를 body에서 관리하도록 리팩터링 하였다.
+- 포스팅에서 부모요소 사이즈를 observing할때 기존에는
+
+```typescript
+useEffect(() => {
+  const updateSize = () => {
+    const element = elementRef.current;
+    if (element) {
+      const { width } = element.getBoundingClientRect();
+      setElementWidth(width);
+    }
+  };
+
+  updateSize();
+  window.addEventListener("resize", updateSize);
+
+  return () => {
+    window.removeEventListener("resize", updateSize);
+  };
+}, []);
+```
+
+위의 코드를 사용하였다. 하지만 브라우저 창을 너무 빠르게 변경하면 width가 제대로 적용되지 않았다. 더하여 resize 이벤트는 정말 빠르게 발생되기 때문에 비효율적이다. 이에, 다음의 코드로 개선하였다.
+
+```typescript
+useEffect(() => {
+  const resizeObserver = new ResizeObserver((entries) => {
+    for (const entry of entries) {
+      const width = entry.contentRect.width;
+      setElementWidth(width);
+    }
+  });
+
+  const element = elementRef.current;
+  if (element) {
+    resizeObserver.observe(element);
+  }
+
+  return () => {
+    if (element) {
+      resizeObserver.unobserve(element);
+    }
+  };
+}, []);
+```
