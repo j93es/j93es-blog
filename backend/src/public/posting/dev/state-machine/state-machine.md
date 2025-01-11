@@ -136,7 +136,7 @@ int main(void) {
 
 우리는 async, await에 대하여 학습할때, 비동기적으로 동작하며 다른 작업과 함께 처리될 수 있다는 것을 학습합니다. 조금 더 깊게 들어가면 call stack, task queue와 연관지어 살펴보기도 합니다. 저 또한 이 정도의 지식을 학습하였고, 비동기 함수의 개념을 추상적으로만 이해하고 있었습니다. 그런데 바야흐로 약 1년 전, 저를 포함한 3명이 javascript 스터디를 할 때에, 한 친구가 async의 내부 구현에 대해 호기심을 가지고 뜯어보기로 합니다. async는 내부적으로 어떻게 구현될까요? 1년 전 스터디를 토대로, async는 내부적으로 어떻게 구현되는지 살펴봅시다.
 
-저는 이제 javascript는 모르고 typescript만 아는 개발자이기 때문에(농담입니다.) typescript를 ES5 문법으로 바꾸어 보겠습니다. 참고로 브라저 런타임 환경에서는 typescript는 javascript로 변환되고, 만약 브라우저가 해당 버전의 javascript를 지원하지 않는다면 ES5 등의 구버전 문법으로 변환됩니다. 즉, 저희는 ES5 문법으로 async, await에 대해 살펴보는 것입니다. [타입스크립트 to ES5 변환 사이트](https://www.typescriptlang.org/play)에 접속한 뒤, TS Config 탭을 클릭하여 Target 버전을 선택하면 손쉽게 변환이 가능합니다. 아래는 변환 전 코드입니다.
+저는 이제 javascript는 모르고 typescript만 아는 개발자이기 때문에(농담입니다.) typescript를 ES5 문법으로 바꾸어 보겠습니다. 참고로 typescript는 빌드 시에 javascript로 변환되고, 런타임 환경에서 만약 브라우저가 해당 버전의 javascript를 지원하지 않는다면 ES5 등의 구버전 문법으로 변환됩니다. 즉, 저희는 ES5 문법으로 async, await에 대해 살펴보는 것입니다. [타입스크립트 to ES5 변환 사이트](https://www.typescriptlang.org/play)에 접속한 뒤, TS Config 탭을 클릭하여 Target 버전을 선택하면 손쉽게 변환이 가능합니다. 아래는 변환 전 코드입니다.
 
 ```typescript
 async function fetchData(): Promise<any> {
@@ -158,10 +158,7 @@ function fetchData() {
       switch (_a.label) {
         case 0:
           // 1) fetch 호출
-          return [
-            4 /*yield*/,
-            fetch("https://jsonplaceholder.typicode.com/todos/1"),
-          ];
+          return [4 /*yield*/, fetch("https://j93.es")];
         case 1:
           // 2) 응답을 받아서 response 변수에 저장
           response = _a.sent();
