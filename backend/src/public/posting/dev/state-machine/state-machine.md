@@ -1,6 +1,6 @@
 ---
 title: "낮은 레벨부터 높은 레벨까지: State Machine"
-date: 2024-01-07 20:16
+date: 2024-01-12 20:49
 tag: [embedded, web]
 category: dev
 ---
@@ -10,12 +10,12 @@ category: dev
 1. 들어가며
 2. State Machine이란?
 3. STEP 라인트레이서 개발에서 학습했던 State Machine
-4. State Machine과 javascript의 비동기 함수
+4. State Machine과 JavaScript의 비동기 함수
 5. 나오며
 
 ## 1. 들어가며
 
-이번 글에서는 STEP 라인트레이서를 제작하며 활용한 State Machine을 살펴보려합니다. 더하여 3명의 호기심으로 시작한, javascript 비동기 함수의 내부 구현을 뜯어본 경험을 소개하겠습니다. 임베디드 소프트웨어에서 학습했던 State Machine이, javascript 비동기 함수의 이해를 도왔다는 점을 짚는 것을 마지막으로 글을 마치려 합니다.
+이번 글에서는 STEP 라인트레이서를 제작하며 활용한 State Machine을 살펴보려합니다. 더하여 JavaScript 비동기 함수를 구버전 문법으로 변환시켜, 더욱 구체적으로 이해했던 경험을 소개하겠습니다. 임베디드 소프트웨어에서 학습했던 State Machine이, JavaScript 비동기 함수의 이해를 도왔다는 점을 짚는 것을 마지막으로 글을 마치려 합니다.
 
 ## 2. State Machine이란?
 
@@ -57,7 +57,7 @@ category: dev
   1. 초록불로 바뀔 때까지 대기
   2. 핸드폰을 봄
 
-지금까지 State Machine의 개념과 사용하였을 때 기대할 수 있는 효과에 대해 살펴보았습니다. 간단히 요약하면, State Machine은 상태를 관리하기 위한 설계방식 중 하나입니다. 더하여 State Machine을 활용했을때 에러 처리, 비동기 처리 측면에서 이점을 기대해볼 수 있습니다. 지금부터는 임베디드 소프트웨어를 배우며 경험한 State Machine과, 이를 밑바탕으로 javascript의 비동기를 심도있게 이해한 경험을 소개해볼까 합니다.
+지금까지 State Machine의 개념과 사용하였을 때 기대할 수 있는 효과에 대해 살펴보았습니다. 간단히 요약하면, State Machine은 상태를 관리하기 위한 설계방식 중 하나입니다. 더하여 State Machine을 활용했을때 에러 처리, 비동기 처리 측면에서 이점을 기대해볼 수 있습니다. 지금부터는 임베디드 소프트웨어를 배우며 경험한 State Machine과, 이를 밑바탕으로 JavaScript의 비동기를 심도있게 이해한 경험을 소개해볼까 합니다.
 
 ## 3. STEP 라인트레이서 개발에서 학습했던 State Machine
 
@@ -130,15 +130,19 @@ int main(void) {
   2. Is_Robot_Ok() 실행
   3. 직선 가속 시퀀스 종료 여부 판단
 
-이러한 State Machine의 개념을 라인트레이서를 만들며 동아리 선배님들을 통하여 학습할 수 있었습니다. State Machine에 대한 이해는 추후 javascript의 비동기를 심도있게 이해하는 것에 도움을 주었습니다.
+이러한 State Machine의 개념을 라인트레이서를 만들며 동아리 선배님들을 통하여 학습할 수 있었습니다. State Machine에 대한 이해는 추후 JavaScript의 비동기를 심도있게 이해하는 것에 도움을 주었습니다.
 
-## 4. State Machine과 javascript의 비동기 함수
+## 4. State Machine과 JavaScript의 비동기 함수
 
-우리는 async, await에 대하여 학습할때, 비동기적으로 동작하며 다른 작업과 함께 처리될 수 있다는 것을 학습합니다. 조금 더 깊게 들어가면 call stack, task queue와 연관지어 살펴보기도 합니다. 저 또한 이 정도의 지식을 학습하였고, 비동기 함수의 개념을 추상적으로만 이해하고 있었습니다. 그런데 바야흐로 약 1년 전, 저를 포함한 3명이 javascript 스터디를 할 때에, 한 친구가 async의 내부 구현에 대해 호기심을 가지고 뜯어보기로 합니다. async는 내부적으로 어떻게 구현될까요? 1년 전 스터디를 토대로, async는 내부적으로 어떻게 구현되는지 살펴봅시다.
+우리는 async, await에 대하여 학습할때, 비동기적으로 동작하며 다른 작업과 함께 처리될 수 있다는 것을 학습합니다. 조금 더 깊게 들어가면 call stack, task queue와 연관지어 살펴보기도 합니다. 저 또한 이 정도의 지식을 학습하였고, 비동기 함수의 개념을 추상적으로만 이해하고 있었습니다.
 
-저는 이제 javascript는 모르고 typescript만 아는 개발자이기 때문에(농담입니다.) typescript를 ES5 문법으로 바꾸어 보겠습니다. 참고로 typescript는 빌드 시에 javascript로 변환되고, 런타임 환경에서 만약 브라우저가 해당 버전의 javascript를 지원하지 않는다면 ES5 등의 구버전 문법으로 변환됩니다. 즉, 저희는 ES5 문법으로 async, await에 대해 살펴보는 것입니다. [타입스크립트 to ES5 변환 사이트](https://www.typescriptlang.org/play)에 접속한 뒤, TS Config 탭을 클릭하여 Target 버전을 선택하면 손쉽게 변환이 가능합니다. 아래는 변환 전 코드입니다.
+그런데 바야흐로 약 1년 전, 저를 포함한 3명이 JavaScript 스터디를 할 때에, 한 친구가 async는 어떻게 동작하는지에 대해 호기심을 가졌습니다. 특히 ”어떤 방법으로 해당 작업이 멈출때까지 기다리는가?“에 초점을 맞췄습니다. async는 어떤 방법으로 동작할까요? 1년 전 스터디에서는 현대 JavaScript를 ES5등의 구버전 문법으로 변환하는 것으로 그 해답에 근접했습니다. 이를 같이 살펴봅시다.
 
-```typescript
+저는 이제 JavaScript는 모르고 TypeScript만 아는 개발자이기 때문에(농담입니다.) TypeScript를 ES5 문법으로 바꾸어 보겠습니다. 참고로 TypeScript는 빌드 시에 JavaScript로 변환됩니다. 런타임 환경에서는 만약 브라우저가 해당 버전의 JavaScript를 지원하지 않는다면, babel과 같은 컴파일러를 통하여, ES5 등의 구버전 문법으로 변환됩니다.
+
+본론으로 돌아와서 저희는 JavaScript의 비동기 함수를, babel을 통하여 ES5 문법으로 변환하여 살펴볼 것입니다. [타입스크립트 to ES5 변환 사이트](https://www.typescriptlang.org/play)에 접속한 뒤, TS Config 탭을 클릭하여 Target 버전을 선택하면 손쉽게 변환이 가능합니다. 아래는 변환 전 코드입니다.
+
+```TypeScript
 async function fetchData(): Promise<any> {
   const response = await fetch("https://j93.es");
   return response.json();
@@ -148,7 +152,7 @@ fetchData().then(console.log);
 
 그리고 다음은 변환 후 코드의 일부입니다.
 
-```javascript
+```JavaScript
 "use strict";
 /* 생략 */
 function fetchData() {
@@ -171,9 +175,9 @@ function fetchData() {
 /* 생략 */
 ```
 
-\_\_generator와 \_\_awaiter는 코드가 복잡하기에 코드 첨부를 생략하고, 간단한 설명을 제시해보겠습니다. \_\_generator는 State Machine을 활용하여 비동기에 대한 실질적인 로직을 처리하는 함수입니다. 다음으로 \_\_awaiter는 \_\_generator를 이용하여 fetch 등의 비동기 함수를 Promise로 동작시키는 함수입니다. 위의 코드를 분석해보면 http 요청을 0번 상태에서 기다리다가, 1번 상태에서 response를 반환합니다.
+\_\_generator와 \_\_awaiter는 코드가 복잡하기에 코드 첨부를 생략하고, 간단한 설명을 제시해보겠습니다. \_\_generator는 State Machine을 활용하여 비동기에 대한 실질적인 로직을 처리하는 함수입니다. 다음으로 \_\_awaiter는 \_\_generator를 이용하여 fetch 등의 비동기 함수를 Promise로 동작시키는 함수입니다. 위의 코드를 분석해보면 https 요청을 0번 상태에서 기다리다가, 1번 상태에서 response를 반환합니다.
 
-이때 State Machine을 활용하지 않았다면, 0번 상태에서 while문을 순회하며 fetch 요청 응답을 기다려야할 것입니다. 이렇게 구현했다면 javascript는 싱글 스레드로 동작하기 때문에, while 문을 순회하며 fetch 함수의 응답을 기다리는 동안에는 다른 작업을 수행하지 못할 것입니다. 이는 굉장한 자원낭비일 것입니다. 하지만 State Machine을 활용하여 상태를 저장해둔다면, 비동기 함수를 중지하고 다른 작업을 수행할 수 있습니다. 원활한 이해를 위하여 아래에 간단하게 State Machine 활용 여부에 따른 작업처리 순서를 적어보겠습니다.
+이때 State Machine을 활용하지 않았다면, 0번 상태에서 while문을 순회하며 fetch 요청 응답을 기다려야할 것입니다. 이렇게 구현했다면 JavaScript는 싱글 스레드로 동작하기 때문에, while 문을 순회하며 fetch 함수의 응답을 기다리는 동안에는 다른 작업을 수행하지 못할 것입니다. 이는 굉장한 자원낭비일 것입니다. 하지만 State Machine을 활용하여 상태를 저장해둔다면, 비동기 함수를 중지하고 다른 작업을 수행할 수 있습니다. 원활한 이해를 위하여 아래에 간단하게 State Machine 활용 여부에 따른 작업처리 순서를 적어보겠습니다.
 
 - while문으로 block 시 작업처리 순서
 
@@ -193,6 +197,8 @@ function fetchData() {
 
 즉, State Machine을 통하여, 비동기 연산이 완료될 때까지 다른 작업을 멈추고 기다리는 것이 아닌, 하나의 비동기 함수를 중단하고 다시 재개하며, 멀티 스레드"처럼" 작업을 처리할 수 있습니다. (다만, 이 예시에는 State Machine을 활용하지 않는다면 while 문으로 blocking 해야한다는 다소 극단적인 전제가 있습니다. 하지만 큰 틀에서 이해하기에는 무리가 없다고 판단하기에 해당 예시를 사용하였음을 밝힙니다.)
 
+정리하면 async는, babel을 통하여 ES5 문법으로 변환하였을때, State Machine으로 구현됩니다. 다만 브라우저에서 현대 문법이 native로 지원되는 경우에, JavaScript가 바이트 코드로 변환된 결과가 State Machine을 이용하는지 여부는 검증되지 않았습니다. 하지만 단순히 ”async 함수 내에서 await가 호출되었을때 기다린다“라고 추상적으로 이해한 것을 넘어서, 실질적인 동작 원리를 State Machine이란 개념을 통하여 이해해보니, 비동기 함수에 대한 이해를 더욱 높일 수 있었습니다.
+
 ## 5. 나오며
 
-javascript와 임베디드 소프트웨어는 모두 연산의 최적화가 필요하며, 여러 작업을 함께 처리해야하고, 대부분 싱글 스레드 환경에서 동작합니다. 이러한 공통된 문제 상황으로 인하여 State Machine이 낮은 레벨, 높은 레벨에서 두루 사용되는 것일지도 모르겠습니다. 이렇게 임베디드 소프트웨어를 통하여 학습한 State Machine을 바탕으로, 기존에는 추상적으로 인지하였던 비동기 개념에 대해 조금더 깊은 지식을 얻었던 경험을 소개해봤습니다.
+JavaScript와 임베디드 소프트웨어는 모두 연산의 최적화가 필요하며, 여러 작업을 함께 처리해야하고, 대부분 싱글 스레드 환경에서 동작합니다. 이러한 공통된 문제 상황으로 인하여 State Machine이 낮은 레벨, 높은 레벨에서 두루 사용되는 것일지도 모르겠습니다. 이렇게 임베디드 소프트웨어를 통하여 학습한 State Machine을 바탕으로, 기존에는 추상적으로 인지하였던 비동기 개념에 대해 조금더 깊은 지식을 얻었던 경험을 소개해봤습니다.

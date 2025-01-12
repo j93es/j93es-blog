@@ -63,7 +63,7 @@ category: dev
 
 - config.h
 
-```c
+```C
 /* 생략 */
 
 // 2상 여자제어방식
@@ -83,7 +83,7 @@ category: dev
 
 - motor.c
 
-```c
+```C
 /* 생략 */
 
 // 2상 여자제어방식
@@ -101,7 +101,7 @@ extern uint8_t  phaseR_table[8];
 
 - motor-v1.h
 
-```c
+```C
 // 1-2상 여자제어방식
 #define SPEED_COEF  ( 15707.96f * TIRE_RADIUS )
 #define TICK_PER_M  ( 63.662f / TIRE_RADIUS )
@@ -114,7 +114,7 @@ uint8_t             phaseR_table[8];
 
 - motor-v2.h
 
-```c
+```C
 // 2상 여자제어방식
 #define SPEED_COEF  ( 31415.92f * TIRE_RADIUS )
 #define TICK_PER_M  ( 31.831f / TIRE_RADIUS )
@@ -127,7 +127,7 @@ uint8_t             phaseR_table[4];
 
 - main.c
 
-```c
+```C
 #include "motor-v1.h"
 // #include "motor-v2.h"
 ```
