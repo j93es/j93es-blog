@@ -1,5 +1,5 @@
 ---
-title: "낮은 레벨에서 배우는 높은 가치: STEP 라인트레이서가 가져다준 통찰"
+title: "STEP 모터 라인트레이서"
 date: 2024-01-07 19:34
 tag: [embedded]
 category: dev

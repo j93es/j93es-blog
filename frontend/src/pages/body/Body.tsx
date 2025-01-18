@@ -26,9 +26,7 @@ export const SetAlertDataContext = createContext<
 const loadPostingComponent = () => {
   return import("pages/body/Posting");
 };
-
 const ORIGIN_POSTING = React.lazy(loadPostingComponent);
-
 const Posting = ({ path }: { path: string }) => {
   return (
     <Suspense fallback={<Loader />}>
@@ -55,19 +53,15 @@ function Body() {
       try {
         setFooterHideCmd(true);
         setIsPostingListLoading(true);
-        const response = await fetch(`${apiUrl}/index`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
+
+        const response = await fetch(`${apiUrl}/index`);
         if (!response.ok) {
           throw new FetchError(response.status, response.statusText);
         }
+
         const postingIndexController = new PostingIndexController(
           await response.json()
         );
-
         setPostingIndexController(postingIndexController);
       } catch (error: Error | FetchError | any) {
         if (error instanceof FetchError) {

@@ -5,44 +5,48 @@ tag: [fullstack]
 category: _dev
 ---
 
-# 들어가며
+## 0. 목차
 
-# 프로젝트 소개
+## 1. 들어가며
 
-# FCP 개선
+## 2. 프로젝트 소개
 
-## 빌드파일 chunking
+## 3. FCP 개선
 
-## dynamic import
+### dynamic import
 
-## 프로젝트에 적용한 npm 패키지 검토
+### 프로젝트에 적용한 npm 패키지 검토
 
-## 이미지 lazy loading
+### 이미지 lazy loading
 
-## 이미지 리사이징
+### 이미지 리사이징
 
-# CLS 개선
+### 텍스트를 사랑하자 (svg, loading bar)
 
-## footer 마운트 시점 조정
+## 4. CLS 개선
 
-## 이미지 height, width 지정
+### footer 마운트 시점 조정
 
-# FCP/CLS를 개선하며 겪었던 가치판단
+### 이미지 height, width 지정
 
-## 이미지 height, width 지정 vs 번들사이즈
+## 5. FCP/CLS를 개선하며 겪었던 가치판단
 
-## 이미지 용량
+### 이미지 height, width 지정 vs 번들사이즈
 
-# 디테일의 미학
+### 이미지 용량
 
-## meta tag 활용
+## 6. 디테일의 미학
 
-# Backend와 관련된 이모저모
+### meta tag 활용
 
-## 이상한 npm 패키지를 지양하자 - gray-matter
+### noscript
 
-## 맘에 안든다면 만들어 쓰자 - logger, gray-matter
+### 에러 페이지
 
-## XSS 공격을 막기위한 Header 설정
+### 크로스 브라우징
 
-## Header는 어디에서 설정해야 하는가? - Nginx vs Backend
+## 7. Backend와 관련된 이모저모
+
+### 이상한 npm 패키지를 지양하자 - gray-matter
+
+### 맘에 안든다면 만들어 쓰자 - logger, gray-matter

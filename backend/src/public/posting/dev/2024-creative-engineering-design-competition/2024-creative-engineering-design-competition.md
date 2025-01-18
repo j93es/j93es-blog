@@ -1,5 +1,5 @@
 ---
-title: 창의공학설계경진대회
+title: 창의적 종합설계 경진대회
 date:
 tag: [fullstack]
 category: _dev

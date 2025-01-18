@@ -65,10 +65,12 @@ function Posting({ path }: { path: string }) {
       try {
         setFooterHideCmd(true);
         setIsPostingLoading(true);
+
         const response = await fetch(apiUrl + path);
         if (!response.ok) {
           throw new FetchError(response.status, response.statusText);
         }
+
         const markdownText = await response.text();
         const { data, content } = parseMarkdown(markdownText);
         const currentPosting = {
@@ -112,6 +114,7 @@ function Posting({ path }: { path: string }) {
       }
     };
 
+    window.scrollTo(0, 0);
     fetchMarkdown();
     return () => {
       setMarkdownContent("");
