@@ -2,7 +2,7 @@
   width: 100%;
   text-align: center;
   padding: 2rem 0;
-  border-top: 0.125rem solid #e1e4e8;
+  border-top: 0.125rem solid var(--underline-color);
 }
 
 .social-item {
@@ -14,5 +14,5 @@
 }
 
 .information-protection-policy {
-  color: #121418;
+  color: var(--color);
 }

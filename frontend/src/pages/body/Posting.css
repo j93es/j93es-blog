@@ -9,8 +9,8 @@
 .posting-nav-item {
   text-decoration: none;
   align-items: center;
-  color: #121418;
-  border-bottom: 0.0625rem solid #e1e4e8;
+  color: var(--color);
+  border-bottom: 0.0625rem solid var(--underline-color);
   overflow: hidden;
   text-overflow: ellipsis;
 }

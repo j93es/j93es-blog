@@ -20,10 +20,10 @@
   width: 100%;
   text-decoration: none;
   align-items: center;
-  color: #121418;
+  color: var(--color);
   margin-bottom: 0.6875rem;
   display: grid;
   grid-template-columns: 1fr auto;
   grid-gap: 0.625rem;
-  border-bottom: 0.0625rem solid #e1e4e8;
+  border-bottom: 0.0625rem solid var(--underline-color);
 }
