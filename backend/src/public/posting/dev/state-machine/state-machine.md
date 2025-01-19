@@ -15,7 +15,7 @@ category: dev
 
 ## 1. 들어가며
 
-이번 글에서는 STEP 라인트레이서를 제작하며 활용한 State Machine을 살펴보려합니다. 더하여 JavaScript 비동기 함수를 구버전 문법으로 변환시켜, 더욱 구체적으로 이해했던 경험을 소개하겠습니다. 임베디드 소프트웨어에서 학습했던 State Machine이, JavaScript 비동기 함수의 이해를 도왔다는 점을 짚는 것을 마지막으로 글을 마치려 합니다.
+이번 글은 State Machine을 중심으로 진행됩니다. 첫째로 State Machine을 소개하겠습니다. 둘째로 STEP 라인트레이서를 제작하며 활용한 State Machine을 살펴보려합니다. 셋째로 JavaScript 비동기 함수를 구버전 문법으로 변환시킨 결과를, State Machine을 중심으로 이해해보겠습니다. 임베디드 소프트웨어에서 학습했던 State Machine이, JavaScript 비동기 함수의 이해를 도왔다는 점을 짚는 것을 마지막으로 글을 마치려 합니다.
 
 ## 2. State Machine이란?
 
