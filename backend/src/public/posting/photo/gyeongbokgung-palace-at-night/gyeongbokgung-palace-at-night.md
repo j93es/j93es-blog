@@ -12,16 +12,16 @@ category: photo
 
 ## 경복궁
 
-<img src="https://j93.es/api/posting/photo/gyeongbokgung-palace-at-night/img/밤의-경복궁-1.jpg" alt="밤의 경복궁-1" width="440" height="660">
+<img src="https://j93.es/api/posting/photo/gyeongbokgung-palace-at-night/img/밤의-경복궁-1.jpg" alt="밤의 경복궁-1" width="660" height="440">
 
 <img src="https://j93.es/api/posting/photo/gyeongbokgung-palace-at-night/img/밤의-경복궁-2.jpg" alt="밤의 경복궁-2" width="660" height="440" loading="lazy">
 
-<img src="https://j93.es/api/posting/photo/gyeongbokgung-palace-at-night/img/밤의-경복궁-3.jpg" alt="밤의 경복궁-3" width="440" height="660" loading="lazy">
+<img src="https://j93.es/api/posting/photo/gyeongbokgung-palace-at-night/img/밤의-경복궁-3.jpg" alt="밤의 경복궁-3" width="660" height="440" loading="lazy">
 
 <img src="https://j93.es/api/posting/photo/gyeongbokgung-palace-at-night/img/밤의-경복궁-4.jpg" alt="밤의 경복궁-4" width="660" height="440" loading="lazy">
 
-<img src="https://j93.es/api/posting/photo/gyeongbokgung-palace-at-night/img/밤의-경복궁-5.jpg" alt="밤의 경복궁-5" width="440" height="660" loading="lazy">
+<img src="https://j93.es/api/posting/photo/gyeongbokgung-palace-at-night/img/밤의-경복궁-5.jpg" alt="밤의 경복궁-5" width="660" height="440" loading="lazy">
 
-<img src="https://j93.es/api/posting/photo/gyeongbokgung-palace-at-night/img/밤의-경복궁-6.jpg" alt="밤의 경복궁-6" width="440" height="660" loading="lazy">
+<img src="https://j93.es/api/posting/photo/gyeongbokgung-palace-at-night/img/밤의-경복궁-6.jpg" alt="밤의 경복궁-6" width="660" height="440" loading="lazy">
 
 <img src="https://j93.es/api/posting/photo/gyeongbokgung-palace-at-night/img/밤의-경복궁-7.jpg" alt="밤의 경복궁-7" width="660" height="440" loading="lazy">
