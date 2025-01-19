@@ -2,6 +2,7 @@
 import React, { createContext, useState } from "react";
 
 // External
+import { BrowserRouter } from "react-router-dom";
 
 // Local
 import Header from "pages/header/Header";
@@ -18,11 +19,13 @@ function App() {
 
   return (
     <div className="App">
-      <SetFooterHideCmdContext.Provider value={setFooterHideCmd}>
-        <Header />
-        <Body />
-        <Footer footerHideCmd={footerHideCmd} />
-      </SetFooterHideCmdContext.Provider>
+      <BrowserRouter>
+        <SetFooterHideCmdContext.Provider value={setFooterHideCmd}>
+          <Header />
+          <Body />
+          <Footer footerHideCmd={footerHideCmd} />
+        </SetFooterHideCmdContext.Provider>
+      </BrowserRouter>
     </div>
   );
 }

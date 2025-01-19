@@ -2,7 +2,7 @@
 import React, { createContext, useState, useEffect, Suspense } from "react";
 
 // External
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 
 // Local
 import { apiUrl } from "config";
@@ -42,11 +42,17 @@ function Body() {
   const [postingIndexController, setPostingIndexController] =
     useState<PostingIndexController | null>(null);
   const setFooterHideCmd = React.useContext(SetFooterHideCmdContext);
+  const location = useLocation();
 
   useEffect(() => {
     // preload Posting component
     loadPostingComponent();
   }, []);
+
+  useEffect(() => {
+    setAlertData(null);
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
 
   useEffect(() => {
     const func = async () => {
@@ -103,12 +109,7 @@ function Body() {
             >
               <Routes>
                 <Route path="/" element={<PostingList />} />
-                <Route
-                  path="/policy/information-protection-policy.md"
-                  element={
-                    <Posting path="/policy/information-protection-policy.md" />
-                  }
-                />
+
                 {postingIndexController &&
                   postingIndexController
                     .getCategoryList()
@@ -127,6 +128,14 @@ function Body() {
                           );
                         });
                     })}
+
+                <Route
+                  path="/policy/information-protection-policy.md"
+                  element={
+                    <Posting path="/policy/information-protection-policy.md" />
+                  }
+                />
+
                 <Route
                   path="*"
                   element={

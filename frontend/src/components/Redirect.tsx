@@ -23,7 +23,7 @@ export default function Redirect({
   // const navigator = useNavigate();
 
   useEffect(() => {
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       setremainingSec(remainingSec - 1 > 0 ? remainingSec - 1 : 0);
     }, 1000);
 
@@ -34,6 +34,10 @@ export default function Redirect({
         callback();
       }
     }
+
+    return () => {
+      clearTimeout(timer);
+    };
 
     // eslint-disable-next-line
   }, [remainingSec]);

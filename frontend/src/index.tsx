@@ -1,20 +1,73 @@
+// React
 import React from "react";
+
+// External
 import ReactDOM from "react-dom/client";
-import { BrowserRouter } from "react-router-dom";
 import reportWebVitals from "reportWebVitals";
-import "index.css";
+
+// Local
 import App from "App";
+import ErrorPage from "components/ErrorPage";
+import useGlobalErrorHandler from "customHook/useGlobalErrorHandler";
+import ErrorBoundary from "components/ErrorBoundary";
+
+import "index.css";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
+
+function Root() {
+  const hasError: boolean = useGlobalErrorHandler();
+
+  return hasError ? (
+    <ErrorPage />
+  ) : (
+    <ErrorBoundary>
+      <App />
+    </ErrorBoundary>
+  );
+}
+
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <Root />
   </React.StrictMode>
 );
+
+// test code for ErrorBoundary and useGlobalErrorHandler
+
+// function SomeComponent() {
+//   const [shouldThrow, setShouldThrow] = useState(false);
+
+//   if (shouldThrow) {
+//     // 렌더링 과정에서 에러가 발생하도록 강제
+//     throw new Error("Test error from SomeComponent (render)!");
+//   }
+
+//   return (
+//     <div>
+//       <p>에러가 없습니다. 아래 버튼을 눌러 에러를 유발해보세요.</p>
+//       <button onClick={() => setShouldThrow(true)}>Throw Error</button>
+//     </div>
+//   );
+// }
+
+// function AsyncErrorComponent() {
+//   const handleAsyncError = () => {
+//     // .catch()를 생략해 "unhandled promise rejection" 발생
+//     new Promise((_, reject) => {
+//       reject(new Error("Test unhandled promise rejection!"));
+//     });
+//   };
+
+//   return (
+//     <div>
+//       <p>Promise에서 에러를 발생시킵니다. (unhandled rejection)</p>
+//       <button onClick={handleAsyncError}>Throw Async Error</button>
+//     </div>
+//   );
+// }
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

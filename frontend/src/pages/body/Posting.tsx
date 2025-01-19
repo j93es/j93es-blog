@@ -63,6 +63,11 @@ function Posting({ path }: { path: string }) {
   useEffect(() => {
     const fetchMarkdown = async () => {
       try {
+        setMarkdownContent("");
+        setCurrentPosting(null);
+        setNextPosting(null);
+        setPreviousPosting(null);
+
         setFooterHideCmd(true);
         setIsPostingLoading(true);
 
@@ -114,16 +119,18 @@ function Posting({ path }: { path: string }) {
       }
     };
 
-    window.scrollTo(0, 0);
     fetchMarkdown();
+
     return () => {
       setMarkdownContent("");
+      setCurrentPosting(null);
       setNextPosting(null);
       setPreviousPosting(null);
-    };
 
-    // eslint-disable-next-line
-  }, [path]);
+      setIsPostingLoading(false);
+      setFooterHideCmd(false);
+    };
+  }, [path, postingIndexController, setAlertData, setFooterHideCmd]);
 
   const components = useRef({
     code: ({ ...props }) => {
