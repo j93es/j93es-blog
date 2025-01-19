@@ -166,4 +166,4 @@ useEffect(() => {
 
 #### 2025-1-19 ErrorBoundary & useGlobalErrorHandler
 
-- ErrorBoundary로 이벤트나 비동기 작업이 아닌 곳에서 발생하는 에러를, useGlobalErrorHandler를 통하여 이벤트나 비동기 작업에서 발생하는 에러를, 전역으로 컨트롤 할 수 있게 되었다.
+- ErrorBoundary로 이벤트나 비동기 작업이 아닌 곳에서 발생하는 에러를, useGlobalErrorHandler를 통하여 이벤트나 비동기 작업에서 발생하는 에러를, 전역으로 핸들링 할 수 있게 되었다.
