@@ -30,7 +30,7 @@ export default function Footer({ footerHideCmd }: { footerHideCmd: boolean }) {
           <MailIcon />
         </a>
       </div>
-      <p>&copy; {new Date().getFullYear()} j93es. All rights reserved.</p>
+      <p>&copy; 2024-{new Date().getFullYear()} j93es. All rights reserved.</p>
       <Link
         to="/policy/information-protection-policy.md"
         className="information-protection-policy"
