@@ -1,6 +1,6 @@
 ---
 title: "State Machine"
-date: 2024-01-12 20:49
+date: 2025-01-12 20:49
 tag: [embedded, web]
 category: dev
 ---
