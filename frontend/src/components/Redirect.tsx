@@ -44,7 +44,7 @@ export default function Redirect({
 
   return (
     <div className="redirect-wrap">
-      <h3>{title}</h3>
+      <h2>{title}</h2>
       <p>{message}</p>
       <p>Redirect to homepage after {remainingSec} seconds.</p>
     </div>

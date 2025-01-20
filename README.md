@@ -167,3 +167,7 @@ useEffect(() => {
 #### 2025-1-19 ErrorBoundary & useGlobalErrorHandler
 
 - ErrorBoundary로 이벤트나 비동기 작업이 아닌 곳에서 발생하는 에러를, useGlobalErrorHandler를 통하여 이벤트나 비동기 작업에서 발생하는 에러를, 전역으로 핸들링 할 수 있게 되었다.
+
+#### 2025-1-20 svg refactor
+
+- 기존에는 svg 등의 아이콘이나 로고를 inlineㅇ로 활용하였다. 하지만, 여러 컴포넌트에서 로고를 활용할 상황이 생겼고, 이에 assets 폴더에 svg 파일을 정리하여 유지보수성/재사용성을 높혔다.

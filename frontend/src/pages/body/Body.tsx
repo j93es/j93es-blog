@@ -77,7 +77,7 @@ function Body() {
           });
         } else {
           setAlertData({
-            title: "Error",
+            title: "Ooops!",
             message: "Unable to load posting list",
           });
         }

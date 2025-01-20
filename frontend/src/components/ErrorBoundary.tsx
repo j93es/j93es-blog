@@ -40,9 +40,7 @@ class ErrorBoundary extends React.Component<
    * @param error - 발생한 에러 객체
    * @param errorInfo - 에러가 발생한 컴포넌트 스택 정보
    */
-  componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    alert("에러가 발생했습니다. 잠시 후 다시 시도해주세요.");
-  }
+  // componentDidCatch(error: Error, errorInfo: ErrorInfo) {}
 
   render() {
     const { hasError } = this.state;

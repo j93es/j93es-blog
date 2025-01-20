@@ -109,7 +109,7 @@ function Posting({ path }: { path: string }) {
           });
         } else {
           setAlertData({
-            title: "Error",
+            title: "Ooops!",
             message: "Unable to load posting",
           });
         }
