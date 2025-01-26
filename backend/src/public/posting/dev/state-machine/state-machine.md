@@ -5,19 +5,19 @@ tag: [embedded, web]
 category: dev
 ---
 
-## 0. 목차
+## 목차
 
-1. 들어가며
-2. State Machine이란?
-3. State Machine과 STEP 라인트레이서
-4. State Machine과 JavaScript의 비동기 함수
-5. 나오며
+0. 들어가며
+1. State Machine이란?
+2. State Machine과 STEP 라인트레이서
+3. State Machine과 JavaScript의 비동기 함수
+4. 나오며
 
-## 1. 들어가며
+## 0. 들어가며
 
 이번 글은 State Machine을 중심으로 진행됩니다. 첫째로 State Machine을 소개하겠습니다. 둘째로 STEP 라인트레이서를 제작하며 활용한 State Machine을 살펴보려합니다. 셋째로 JavaScript 비동기 함수를 구버전 문법으로 변환시킨 결과를, State Machine을 중심으로 이해해보겠습니다. 임베디드 소프트웨어에서 학습했던 State Machine이, JavaScript 비동기 함수의 이해를 도왔다는 점을 짚는 것을 마지막으로 글을 마치려 합니다.
 
-## 2. State Machine이란?
+## 1. State Machine이란?
 
 본론에 앞서 State Machine에 대한 간단한 설명이 필요할 것 같습니다. State Machine은 상태를 관리하는 하나의 설계 방식입니다.
 
@@ -67,7 +67,7 @@ category: dev
 
 지금까지 State Machine의 개념과 사용하였을 때 기대할 수 있는 효과에 대해 살펴보았습니다. 간단히 요약하면, State Machine은 상태를 관리하기 위한 설계방식 중 하나입니다. 더하여 State Machine을 활용했을때 에러 처리, 비동기 처리 측면에서 이점을 기대해볼 수 있습니다. 지금부터는 State Machine이 STEP 라인트레이서에 적용된 사례를 소개해볼까 합니다.
 
-## 3. State Machine과 STEP 라인트레이서
+## 2. State Machine과 STEP 라인트레이서
 
 다른 개발과 비교하면, 임베디드 소프트웨어 개발은 불필요한 연산을 줄이는 최적화가 더욱 필요합니다. 더하여 라인트레이서의 경우 로봇의 상태를 파악함과 동시에 주행 전략을 선택하는 등의 여러 작업을 함께 처리해야 합니다. 또한 대부분의 임베디드 소프트웨어는 싱글 스레드 환경에서 동작합니다.
 
@@ -140,13 +140,13 @@ int main(void) {
 
 이러한 State Machine의 개념을 라인트레이서를 만들며 동아리 선배님들을 통하여 학습할 수 있었습니다. State Machine에 대한 이해는 추후 JavaScript의 비동기를 심도있게 이해하는 것에 도움을 주었습니다.
 
-## 4. State Machine과 JavaScript의 비동기 함수
+## 3. State Machine과 JavaScript의 비동기 함수
 
 우리는 async, await에 대하여 학습할때, 비동기적으로 동작하며 다른 작업과 함께 처리될 수 있다는 것을 학습합니다. 조금 더 깊게 들어가면 call stack, task queue와 연관지어 살펴보기도 합니다. 저 또한 이 정도의 지식을 학습하였고, 비동기 함수의 개념을 추상적으로만 이해하고 있었습니다.
 
 그런데 바야흐로 약 1년 전, 저를 포함한 3명이 JavaScript 스터디를 할 때에, 한 친구가 async는 어떻게 동작하는지에 대해 호기심을 가졌습니다. 특히 ”어떤 방법으로 해당 작업이 멈출때까지 기다리는가?“에 초점을 맞췄습니다. async는 어떤 방법으로 동작할까요? 1년 전 스터디에서는 현대 JavaScript를 ES5등의 구버전 문법으로 변환하는 것으로 그 해답에 근접했습니다. 이를 같이 살펴봅시다.
 
-저는 이제 JavaScript는 모르고 TypeScript만 아는 개발자이기 때문에(농담입니다.) TypeScript를 ES5 문법으로 바꾸어 보겠습니다. 참고로 TypeScript는 빌드 시에 JavaScript로 변환됩니다. 런타임 환경에서는 만약 브라우저가 해당 버전의 JavaScript 문법을 지원하지 않는다면, babel과 같은 컴파일러를 통하여, ES5 등의 구버전 문법으로 변환됩니다.
+저는 이제 JavaScript는 모르고 TypeScript만 아는 개발자이기 때문에(농담입니다.) TypeScript를 ES5 문법으로 바꾸어 보겠습니다. 참고로 TypeScript는 빌드 시에 JavaScript로 변환됩니다. 런타임 환경에서, 만약 브라우저가 해당 버전의 JavaScript 문법을 지원하지 않는다면, babel과 같은 컴파일러를 통하여, ES5 등의 구버전 문법으로 변환됩니다.
 
 본론으로 돌아와서 저희는 JavaScript의 비동기 함수를, babel을 통하여 ES5 문법으로 변환하여 살펴볼 것입니다. [타입스크립트 to ES5 변환 사이트](https://www.typescriptlang.org/play)에 접속한 뒤, TS Config 탭을 클릭하여 Target 버전을 선택하면 손쉽게 변환이 가능합니다. 아래는 변환 전 코드입니다.
 
@@ -207,6 +207,6 @@ function fetchData() {
 
 정리하면 async는, babel을 통하여 ES5 문법으로 변환하였을때, State Machine으로 구현됩니다. 다만 브라우저에서 현대 문법이 native로 지원되는 경우에, JavaScript가 바이트 코드로 변환된 결과가 State Machine을 이용하는지 여부는 검증되지 않았습니다. 하지만 단순히 ”async 함수 내에서 await가 호출되었을때 기다린다“라고 추상적으로 이해한 것을 넘어서, 실질적인 동작 원리를 State Machine이란 개념을 통하여 이해해보니, 비동기 함수에 대한 이해를 더욱 높일 수 있었습니다.
 
-## 5. 나오며
+## 4. 나오며
 
 JavaScript와 임베디드 소프트웨어는 모두 연산의 최적화가 필요하며, 여러 작업을 함께 처리해야하고, 대부분 싱글 스레드 환경에서 동작합니다. 이러한 공통된 문제 상황으로 인하여 State Machine이 낮은 레벨, 높은 레벨에서 두루 사용되는 것일지도 모르겠습니다. 이렇게 임베디드 소프트웨어를 통하여 학습한 State Machine을 바탕으로, 기존에는 추상적으로 인지하였던 비동기 개념에 대해 조금더 깊은 지식을 얻었던 경험을 소개해봤습니다.

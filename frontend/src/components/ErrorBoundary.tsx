@@ -1,5 +1,5 @@
 // React
-import React, { ReactNode, ErrorInfo } from "react";
+import React, { ReactNode } from "react";
 
 // External
 
