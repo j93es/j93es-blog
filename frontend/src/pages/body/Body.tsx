@@ -111,11 +111,10 @@ function Body() {
             <Route
               path="*"
               element={
-                // <ErrorRedirect
-                //   statusCode={404}
-                //   message="요청하신 페이지를 찾을 수 없습니다."
-                // />
-                <Posting path="/error-page/404.md" />
+                <ErrorRedirect
+                  statusCode={404}
+                  message="요청하신 페이지를 찾을 수 없습니다."
+                />
               }
             />
           </Routes>
