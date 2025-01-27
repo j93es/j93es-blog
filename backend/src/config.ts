@@ -15,7 +15,3 @@ export const showingCategoryList = JSON.parse(
   process.env.SHOWING_CATEGORY_LIST ||
     JSON.stringify(["frontend", "backend", "devops", "database", "etc"])
 );
-
-export const allowedErrorStatus = [400, 403, 404, 429, 500];
-export const queryStatusKey = "j93es-status";
-export const queryMessageKey = "j93es-message";

@@ -4,7 +4,7 @@ dotenv.config();
 import express, { Application, Request, Response } from "express";
 import cors from "cors";
 
-import { PORT, publicDir, allowedErrorStatus, queryStatusKey } from "./config";
+import { PORT, publicDir } from "./config";
 import {
   rateLimiter,
   corsOptions,
@@ -44,6 +44,9 @@ app.use(
     maxAge: "1d",
     setHeaders: (res: Response, filePath, stat) => {
       if (filePath.endsWith("/public/error-page/error.html")) {
+        const queryStatusKey = "j93es-status";
+        const allowedErrorStatus = [400, 403, 404, 429, 500];
+
         const status = Number(res.req.query[queryStatusKey]);
 
         if (allowedErrorStatus.includes(status)) {

@@ -1,5 +1,6 @@
-import { allowedErrorStatus } from "config.ts";
-import { queryStatusKey, queryMessageKey } from "config.ts";
+const allowedErrorStatus = [400, 403, 404, 429, 500];
+const queryStatusKey = "j93es-status";
+const queryMessageKey = "j93es-message";
 
 let countdown = 5;
 const redirectUrl = "https://j93.es";
@@ -14,7 +15,8 @@ const checkQueryString = () => {
     const url = new URL(window.location.href);
     url.searchParams.set(queryStatusKey, "400");
     url.searchParams.set(queryMessageKey, "잘못된 요청입니다.");
-    window.location.replace(url.href);
+    console.log(url);
+    window.location.replace(url);
   }
 };
 
