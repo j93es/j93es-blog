@@ -3,6 +3,7 @@ dotenv.config();
 
 import express, { Application, Request, Response } from "express";
 import cors from "cors";
+import path from "path";
 
 import { PORT, publicDir } from "./config";
 import {
@@ -42,6 +43,12 @@ app.use(
     etag: false,
     index: false,
     maxAge: "1d",
+    setHeaders: (res: Response, filePath, stat) => {
+      if (filePath.endsWith("error.html")) {
+        const status = Number(res.req.query["j93es-status"]) || 400;
+        res.status(status);
+      }
+    },
   })
 );
 

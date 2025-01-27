@@ -1,5 +1,7 @@
 import { useEffect } from "react";
 
+import { apiUrl } from "config";
+
 export function errorRedirect({
   statusCode,
   message,
@@ -8,9 +10,9 @@ export function errorRedirect({
   message: string;
 }) {
   window.location.replace(
-    `/error-page/index.html?status=${encodeURIComponent(
+    `${apiUrl}/error-page/error.html?j93es-status=${encodeURIComponent(
       statusCode
-    )}&message=${encodeURIComponent(message)}`
+    )}&j93es-message=${encodeURIComponent(message)}`
   );
 }
 
