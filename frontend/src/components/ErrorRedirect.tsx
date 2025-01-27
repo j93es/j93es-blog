@@ -8,7 +8,7 @@ export function errorRedirect({
   message: string;
 }) {
   window.location.replace(
-    `/error.html?status=${encodeURIComponent(
+    `/error-page/error.html?status=${encodeURIComponent(
       statusCode
     )}&message=${encodeURIComponent(message)}`
   );

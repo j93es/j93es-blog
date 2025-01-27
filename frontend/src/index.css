@@ -5,8 +5,7 @@
   --link-color: #0066cc;
 }
 
-/* body는 index.html에서 관리 */
-/* body {
+body {
   background-color: var(--bg-color);
   color: var(--color);
   margin: 0;
@@ -17,7 +16,7 @@
   -moz-osx-font-smoothing: grayscale;
   word-break: keep-all;
   overflow-wrap: break-word;
-} */
+}
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
