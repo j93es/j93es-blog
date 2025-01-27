@@ -3,8 +3,6 @@ import path from "path";
 // 포트
 export const PORT = process.env.PORT || 8081;
 
-export const frontendUrl = process.env.FRONTEND_URL || "https://j93.es";
-
 // cors 허용 url
 export const whitelist = JSON.parse(
   process.env.CORS_WHITE_LIST || JSON.stringify(["http://localhost:3000"])

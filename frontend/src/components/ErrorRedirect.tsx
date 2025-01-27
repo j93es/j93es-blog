@@ -1,7 +1,5 @@
 import { useEffect } from "react";
 
-import { apiUrl } from "config";
-
 export function errorRedirect({
   statusCode,
   message,
@@ -10,7 +8,7 @@ export function errorRedirect({
   message: string;
 }) {
   window.location.replace(
-    `${apiUrl}/error?status=${encodeURIComponent(
+    `/error.html?status=${encodeURIComponent(
       statusCode
     )}&message=${encodeURIComponent(message)}`
   );
