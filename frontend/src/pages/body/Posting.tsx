@@ -99,10 +99,10 @@ function Posting({ path }: { path: string }) {
         setNextPosting(nextPosting);
         setPreviousPosting(previousPosting);
       } catch (error: Error | FetchError | any) {
-        errorRedirect({
-          statusCode: error.status || 500,
-          message: "포스팅을 불러오는 중 오류가 발생했습니다.",
-        });
+        // errorRedirect({
+        //   statusCode: error.status || 500,
+        //   message: "포스팅을 불러오는 중 오류가 발생했습니다.",
+        // });
       } finally {
         setIsPostingLoading(false);
         setFooterHideCmd(false);
