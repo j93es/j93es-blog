@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- main page start -->
   <url>
     <loc>https://j93.es/</loc>
     <lastmod>2025-01-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
+  <!-- main page end -->
+
+  <!-- dev posting start -->
   <url>
     <loc>https://j93.es/posting/dev/dc-linetracer/dc-linetracer.md</loc>
     <lastmod>2025-01-27</lastmod>
@@ -24,6 +29,9 @@
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
+  <!-- dev posting end -->
+
+  <!-- photo posting start -->
   <url>
     <loc>https://j93.es/posting/photo/singapore-1/singapore-1.md</loc>
     <lastmod>2025-01-18</lastmod>
@@ -60,4 +68,14 @@
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
+  <!-- photo posting end -->
+
+  <!-- policy start -->
+  <url>
+    <loc>https://j93.es/policy/information-protection-policy.md</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <!-- policy end -->
 </urlset>
