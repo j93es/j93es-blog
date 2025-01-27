@@ -69,9 +69,9 @@ function Posting({ path }: { path: string }) {
         setIsPostingLoading(true);
 
         const response = await fetch(apiUrl + path);
-        if (!response.ok) {
-          throw new FetchError(response.status, response.statusText);
-        }
+        // if (!response.ok) {
+        //   throw new FetchError(response.status, response.statusText);
+        // }
 
         const markdownText = await response.text();
         const { data, content } = parseMarkdown(markdownText);
