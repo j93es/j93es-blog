@@ -55,10 +55,6 @@ app.use(
           res.status(400);
         }
       }
-
-      if (filePath.endsWith("/public/error-page/404.md")) {
-        res.status(404);
-      }
     },
   })
 );
