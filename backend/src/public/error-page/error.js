@@ -1,25 +1,33 @@
+import { allowedErrorStatus } from "config.ts";
+import { queryStatusKey, queryMessageKey } from "config.ts";
+
 let countdown = 5;
 const redirectUrl = "https://j93.es";
 
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
-const statusCode = urlParams.get("j93es-status");
-const message = urlParams.get("j93es-message");
+const statusCode = urlParams.get(queryStatusKey);
+const message = urlParams.get(queryMessageKey);
 
-function setStatus() {
-  if (Number(statusCode) < 400 || Number(statusCode) > 500) {
-    statusCode = "400";
+const checkQueryString = () => {
+  if (!allowedErrorStatus.includes(Number(statusCode))) {
+    const url = new URL(window.location.href);
+    url.searchParams.set(queryStatusKey, "400");
+    url.searchParams.set(queryMessageKey, "잘못된 요청입니다.");
+    window.location.replace(url.href);
   }
+};
 
+const setStatus = () => {
   document.getElementById("statusCode").textContent = statusCode + " Error";
-}
+};
 
-function setErrorMsg() {
+const setErrorMsg = () => {
   document.getElementById("message").textContent =
     message || "예기치 못한 오류가 발생했습니다.";
-}
+};
 
-function startCountdown() {
+const startCountdown = () => {
   document.getElementById("redirectMsg").textContent =
     countdown + "초 뒤에 홈페이지로 이동합니다.";
 
@@ -29,9 +37,10 @@ function startCountdown() {
   } else {
     window.location.href = redirectUrl;
   }
-}
+};
 
 window.onload = function () {
+  checkQueryString();
   setStatus();
   setErrorMsg();
   startCountdown();
