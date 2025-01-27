@@ -24,7 +24,7 @@ export class ErrorHandler {
       res
         .status(code)
         .redirect(
-          `${frontendUrl}/error-page/error.html?status=${code}&message=${message}`
+          `${frontendUrl}/error-page/index.html?status=${code}&message=${message}`
         );
 
       return;
@@ -42,7 +42,7 @@ export class ErrorHandler {
       res
         .status(code)
         .redirect(
-          `${frontendUrl}/error-page/error.html?status=${code}&message=${message}`
+          `${frontendUrl}/error-page/index.html?status=${code}&message=${message}`
         );
       return;
     }
@@ -60,7 +60,7 @@ export class ErrorHandler {
       res
         .status(code)
         .redirect(
-          `${frontendUrl}/error-page/error.html?status=${code}&message=${message}`
+          `${frontendUrl}/error-page/index.html?status=${code}&message=${message}`
         );
       return;
     }
@@ -77,7 +77,7 @@ export class ErrorHandler {
       res
         .status(code)
         .redirect(
-          `${frontendUrl}/error-page/error.html?status=${code}&message=${message}`
+          `${frontendUrl}/error-page/index.html?status=${code}&message=${message}`
         );
       return;
     }
@@ -97,7 +97,7 @@ export class ErrorHandler {
       res
         .status(code)
         .redirect(
-          `${frontendUrl}/error-page/error.html?status=${code}&message=${message}`
+          `${frontendUrl}/error-page/index.html?status=${code}&message=${message}`
         );
     } catch (err) {
       res.end();
