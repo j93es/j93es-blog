@@ -1,13 +1,14 @@
 // React
 import React from "react";
 
+// import { useState } from "react";
+
 // External
 import ReactDOM from "react-dom/client";
 import reportWebVitals from "reportWebVitals";
 
 // Local
 import App from "App";
-import ErrorPage from "components/ErrorPage";
 import useGlobalErrorHandler from "customHook/useGlobalErrorHandler";
 import ErrorBoundary from "components/ErrorBoundary";
 
@@ -18,13 +19,12 @@ const root = ReactDOM.createRoot(
 );
 
 function Root() {
-  const hasError: boolean = useGlobalErrorHandler();
+  useGlobalErrorHandler();
 
-  return hasError ? (
-    <ErrorPage />
-  ) : (
+  return (
     <ErrorBoundary>
       <App />
+      {/* <ErrorBoundaryTest /> */}
     </ErrorBoundary>
   );
 }
@@ -36,6 +36,15 @@ root.render(
 );
 
 // test code for ErrorBoundary and useGlobalErrorHandler
+
+// function ErrorBoundaryTest() {
+//   return (
+//     <div>
+//       <SomeComponent />
+//       <AsyncErrorComponent />
+//     </div>
+//   );
+// }
 
 // function SomeComponent() {
 //   const [shouldThrow, setShouldThrow] = useState(false);

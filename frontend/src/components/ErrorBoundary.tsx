@@ -4,7 +4,7 @@ import React, { ReactNode } from "react";
 // External
 
 // Local
-import ErrorPage from "components/ErrorPage";
+import { errorRedirect } from "./ErrorRedirect";
 
 interface ErrorBoundaryProps {
   /** 자식 컴포넌트 */
@@ -50,8 +50,13 @@ class ErrorBoundary extends React.Component<
     if (hasError) {
       if (fallback) {
         return <>{fallback}</>;
+      } else {
+        errorRedirect({
+          statusCode: 500,
+          message: "예기치 않은 오류가 발생했습니다.",
+        });
+        return null;
       }
-      return <ErrorPage />;
     }
 
     // 에러가 없으면 정상적으로 자식 컴포넌트를 렌더

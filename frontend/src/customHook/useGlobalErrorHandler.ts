@@ -1,22 +1,27 @@
 // React
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 // External
 
 // Local
+import { errorRedirect } from "components/ErrorRedirect";
 
-export default function useGlobalErrorHandler(): boolean {
-  const [hasError, setHasError] = useState(false);
-
+export default function useGlobalErrorHandler() {
   useEffect(() => {
     // 전역 스크립트/런타임 에러
     const handleError = (event: ErrorEvent) => {
-      setHasError(true);
+      errorRedirect({
+        statusCode: 500,
+        message: "예기치 않은 오류가 발생했습니다.",
+      });
     };
 
     // 처리되지 않은 Promise Rejection
     const handleUnhandledRejection = (event: PromiseRejectionEvent) => {
-      setHasError(true);
+      errorRedirect({
+        statusCode: 500,
+        message: "예기치 않은 오류가 발생했습니다.",
+      });
     };
 
     // 이벤트 리스너 등록
@@ -32,6 +37,4 @@ export default function useGlobalErrorHandler(): boolean {
       );
     };
   }, []);
-
-  return hasError;
 }

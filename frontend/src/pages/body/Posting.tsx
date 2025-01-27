@@ -14,14 +14,12 @@ import { apiUrl } from "config";
 import { EachPostingMetadata } from "model/postingIndex";
 import { parseMarkdown } from "utils/index";
 import { SetFooterHideCmdContext } from "App";
-import {
-  SetAlertDataContext,
-  PostingIndexControllerContext,
-} from "pages/body/Body";
+import { PostingIndexControllerContext } from "pages/body/Body";
 import Loader from "components/Loader";
 import CustomPre from "components/CustomPre";
 import CustomImage from "components/CustomImage";
 import { FetchError } from "model/errorType";
+import { errorRedirect } from "components/ErrorRedirect";
 import "pages/body/Posting.css";
 
 function Posting({ path }: { path: string }) {
@@ -34,7 +32,6 @@ function Posting({ path }: { path: string }) {
   );
   const [previousPosting, setPreviousPosting] =
     useState<EachPostingMetadata | null>(null);
-  const setAlertData = useContext(SetAlertDataContext);
   const postingIndexController = useContext(PostingIndexControllerContext);
   const elementRef = useRef<HTMLDivElement>(null);
   const [elementWidth, setElementWidth] = useState(0);
@@ -102,17 +99,10 @@ function Posting({ path }: { path: string }) {
         setNextPosting(nextPosting);
         setPreviousPosting(previousPosting);
       } catch (error: Error | FetchError | any) {
-        if (error instanceof FetchError) {
-          setAlertData({
-            title: `${error.status} ${error.statusText}`,
-            message: "Unable to load posting",
-          });
-        } else {
-          setAlertData({
-            title: "Ooops!",
-            message: "Unable to load posting",
-          });
-        }
+        errorRedirect({
+          statusCode: error.status || 500,
+          message: "포스팅을 불러오는 중 오류가 발생했습니다.",
+        });
       } finally {
         setIsPostingLoading(false);
         setFooterHideCmd(false);
@@ -130,7 +120,7 @@ function Posting({ path }: { path: string }) {
       setIsPostingLoading(false);
       setFooterHideCmd(false);
     };
-  }, [path, postingIndexController, setAlertData, setFooterHideCmd]);
+  }, [path, postingIndexController, setFooterHideCmd]);
 
   const components = useRef({
     code: ({ ...props }) => {
