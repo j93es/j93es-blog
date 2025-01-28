@@ -43,17 +43,24 @@ app.use(
     index: false,
     maxAge: "1d",
     setHeaders: (res: Response, filePath, stat) => {
-      if (filePath.endsWith("/public/error-page/error.html")) {
-        const queryStatusKey = "j93es-status";
-        const allowedErrorStatus = [400, 403, 404, 429, 500];
+      try {
+        if (filePath.endsWith("/public/error-page/error.html")) {
+          const queryStatusKey = "j93es-status";
+          const allowedErrorStatus = [400, 403, 404, 429, 500];
+          const status = Number(res.req.query[queryStatusKey]);
 
-        const status = Number(res.req.query[queryStatusKey]);
-
-        if (allowedErrorStatus.includes(status)) {
-          res.status(status);
-        } else {
-          res.status(400);
+          if (allowedErrorStatus.includes(status)) {
+            res.status(status);
+          } else {
+            res.status(400);
+          }
         }
+      } catch (error: any) {
+        customLogger.error(
+          "Error express.static",
+          error?.message ||
+            "Error occured in setHeaders /public/error-page/error.html"
+        );
       }
     },
   })
