@@ -19,6 +19,8 @@ category: _dev
 
 ## 에러 페이지
 
+## background-color, color
+
 ## 크로스 브라우징
 
 사파리에서 이전포스팅, 다음포스팅 클릭시 화면이 맨 위에서 시작안했던 것
