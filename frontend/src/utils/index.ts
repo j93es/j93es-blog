@@ -1,3 +1,3 @@
-import { parseMarkdown } from "./parseMarkdown";
+import { ParseMarkdown } from "./parseMarkdown";
 
-export { parseMarkdown };
+export const parseMarkdown = new ParseMarkdown();

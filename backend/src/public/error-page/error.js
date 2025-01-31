@@ -1,7 +1,7 @@
 const allowedErrorStatus = [400, 403, 404, 429, 500];
 const queryStatusKey = "j93es-status";
 const queryMessageKey = "j93es-message";
-const redirectUrl = "https://j93.es";
+const redirectUrl = "/";
 let countdown = 5;
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
@@ -36,11 +36,6 @@ const setErrorMsg = () => {
     "message",
     message || "예기치 못한 오류가 발생했습니다."
   );
-};
-
-const setCopyRight = () => {
-  const year = new Date().getFullYear();
-  updateElementTextById("copyRight", `© ${year} j93es`);
 };
 
 const startCountdown = () => {

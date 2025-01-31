@@ -25,7 +25,7 @@ export class FilesMetadata {
           readDirectory(fullPath);
         } else if (path.extname(fullPath) === ".md") {
           const markdownContent = fs.readFileSync(fullPath, "utf-8");
-          const { data } = parseMarkdown(markdownContent);
+          const { data } = parseMarkdown.get(markdownContent);
 
           if (!showingCategoryList.includes(data.category)) {
             return;

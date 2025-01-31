@@ -7,6 +7,7 @@ import ReactMarkdown from "react-markdown";
 import rehypeHighlight from "rehype-highlight";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
+import urlJoin from "url-join";
 import "highlight.js/styles/github-dark-dimmed.css";
 
 // Local
@@ -18,6 +19,7 @@ import { PostingIndexControllerContext } from "pages/body/Body";
 import Loader from "components/Loader";
 import CustomPre from "components/CustomPre";
 import CustomImage from "components/CustomImage";
+import MetaTag from "components/MetaTag";
 import { FetchError } from "model/errorType";
 import { errorRedirect } from "components/ErrorRedirect";
 import "pages/body/Posting.css";
@@ -32,6 +34,8 @@ function Posting({ path }: { path: string }) {
   );
   const [previousPosting, setPreviousPosting] =
     useState<EachPostingMetadata | null>(null);
+  const [description, setDescription] = useState<string | undefined>(undefined);
+
   const postingIndexController = useContext(PostingIndexControllerContext);
   const elementRef = useRef<HTMLDivElement>(null);
   const [elementWidth, setElementWidth] = useState(0);
@@ -64,17 +68,18 @@ function Posting({ path }: { path: string }) {
         setCurrentPosting(null);
         setNextPosting(null);
         setPreviousPosting(null);
+        setDescription(undefined);
 
         setFooterHideCmd(true);
         setIsPostingLoading(true);
 
-        const response = await fetch(apiUrl + path);
+        const response = await fetch(urlJoin(apiUrl, path));
         if (!response.ok) {
           throw new FetchError(response.status, response.statusText);
         }
 
         const markdownText = await response.text();
-        const { data, content } = parseMarkdown(markdownText);
+        const { data, content } = parseMarkdown.get(markdownText);
         const currentPosting = {
           title: data.title,
           date: data.date,
@@ -94,10 +99,22 @@ function Posting({ path }: { path: string }) {
             data.title
           );
 
+        const getDescription = () => {
+          let desc = "안녕하세요! j93es 블로그입니다. ";
+          if (data.title) desc += `이 포스팅의 제목은 ${data.title}입니다. `;
+          if (data.date) desc += `${data.date}에 작성되었습니다. `;
+          if (data.category)
+            desc += `${data.category}의 카테고리로 분류됩니다. `;
+          if (data.tag) desc += `${data.tag}와 관련한 내용을 담고 있습니다. `;
+
+          return desc.trim();
+        };
+
         setMarkdownContent(content);
         setCurrentPosting(currentPosting);
         setNextPosting(nextPosting);
         setPreviousPosting(previousPosting);
+        setDescription(getDescription());
       } catch (error: Error | FetchError | any) {
         errorRedirect({
           statusCode: error.status || 500,
@@ -170,6 +187,14 @@ function Posting({ path }: { path: string }) {
         <Loader />
       ) : (
         <>
+          <MetaTag
+            title={
+              currentPosting
+                ? `${currentPosting.title} - j93es blog`
+                : "j93es blog"
+            }
+            description={description}
+          />
           <div className="posting-head">
             <h1 className="posting-title">{currentPosting?.title}</h1>
             <p className="posting-date">{currentPosting?.date}</p>

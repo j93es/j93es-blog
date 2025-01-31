@@ -3,6 +3,7 @@ import React, { createContext, useState, useEffect, Suspense } from "react";
 
 // External
 import { Routes, Route, useLocation } from "react-router-dom";
+import urlJoin from "url-join";
 
 // Local
 import { apiUrl } from "config";
@@ -53,7 +54,7 @@ function Body() {
         setFooterHideCmd(true);
         setIsPostingListLoading(true);
 
-        const response = await fetch(`${apiUrl}/index`);
+        const response = await fetch(urlJoin(apiUrl, "index"));
         if (!response.ok) {
           throw new FetchError(response.status, response.statusText);
         }
@@ -90,12 +91,12 @@ function Body() {
                 .map((category: string) => {
                   return postingIndexController
                     .getPostingList(category)
-                    .map((EachPostingMetadata: EachPostingMetadata) => {
+                    .map((eachPostingMetadata: EachPostingMetadata) => {
                       return (
                         <Route
-                          key={EachPostingMetadata.path}
-                          path={EachPostingMetadata.path}
-                          element={<Posting path={EachPostingMetadata.path} />}
+                          key={eachPostingMetadata.path}
+                          path={eachPostingMetadata.path}
+                          element={<Posting {...eachPostingMetadata} />}
                         />
                       );
                     });

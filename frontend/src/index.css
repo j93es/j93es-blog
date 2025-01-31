@@ -16,6 +16,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   word-break: keep-all;
   overflow-wrap: break-word;
+  width: 100%;
 }
 
 code {
