@@ -103,8 +103,7 @@ function Posting({ path }: { path: string }) {
           let desc = "안녕하세요! j93es 블로그입니다. ";
           if (data.title) desc += `이 포스팅의 제목은 ${data.title}입니다. `;
           if (data.date) desc += `${data.date}에 작성되었습니다. `;
-          if (data.category)
-            desc += `${data.category}의 카테고리로 분류됩니다. `;
+          if (data.category) desc += `${data.category} 카테고리로 분류됩니다. `;
           if (data.tag) desc += `${data.tag}와 관련한 내용을 담고 있습니다. `;
 
           return desc.trim();
