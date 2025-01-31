@@ -27,6 +27,8 @@ category: _dev
 
 ## Backend와 관련된 이모저모
 
+### CSP 설정, 정보보호정책
+
 ### 이상한 npm 패키지를 지양하자 - gray-matter
 
 ### 맘에 안든다면 만들어 쓰자 - logger, gray-matter

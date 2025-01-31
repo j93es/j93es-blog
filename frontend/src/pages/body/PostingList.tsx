@@ -4,7 +4,7 @@ import { useContext } from "react";
 // External
 
 // Local
-import MetaTagSpecifier from "components/MetaTag";
+import MetaTag from "components/MetaTag";
 import { PostingIndexControllerContext } from "pages/body/Body";
 import { Link } from "react-router-dom";
 import { EachPostingMetadata } from "model/postingIndex";
@@ -15,7 +15,7 @@ function PostingList() {
 
   return (
     <div className="posting-list-wrap">
-      <MetaTagSpecifier useDefault={true} />
+      <MetaTag useDefault={true} />
       {postingIndexController &&
         postingIndexController.getCategoryList().map((category: string) => (
           <div key={`category-${category}`} className="category-wrap">

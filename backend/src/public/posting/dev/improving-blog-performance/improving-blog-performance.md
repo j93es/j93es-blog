@@ -1,5 +1,5 @@
 ---
-title: 개인 블로그 성능 개선
+title: 블로그 성능 개선
 date:
 tag: [frontend]
 category: _dev

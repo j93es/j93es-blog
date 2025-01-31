@@ -182,11 +182,13 @@ function Posting({ path }: { path: string }) {
 
   return (
     <div ref={elementRef} className="posting-wrap">
+      {currentPosting?.title && description && (
+        <MetaTag title={currentPosting.title} description={description} />
+      )}
       {isPostingLoading ? (
         <Loader />
       ) : (
         <>
-          <MetaTag title={currentPosting?.title} description={description} />
           <div className="posting-head">
             <h1 className="posting-title">{currentPosting?.title}</h1>
             <p className="posting-date">{currentPosting?.date}</p>

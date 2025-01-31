@@ -15,6 +15,8 @@ category: _dev
 
 ## model 설계와 관련한 고민
 
+## JWT auth
+
 ## 실패 원인 분석
 
 ### 캐싱 문제
