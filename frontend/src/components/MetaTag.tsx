@@ -3,14 +3,26 @@
 // External
 
 // Local
+import { defaultTitle, defaultDescription } from "config";
 
 const MetaTag = ({
   title,
   description,
+  useDefault = false,
 }: {
   title?: string;
   description?: string;
+  useDefault?: boolean;
 }) => {
+  if (useDefault) {
+    title = defaultTitle;
+    description = defaultDescription;
+  }
+
+  if (!useDefault && title) {
+    title = `${title} - ${defaultTitle}`;
+  }
+
   if (title) {
     document.title = title;
 

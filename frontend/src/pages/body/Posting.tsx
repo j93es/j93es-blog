@@ -186,14 +186,7 @@ function Posting({ path }: { path: string }) {
         <Loader />
       ) : (
         <>
-          <MetaTag
-            title={
-              currentPosting
-                ? `${currentPosting.title} - j93es blog`
-                : "j93es blog"
-            }
-            description={description}
-          />
+          <MetaTag title={currentPosting?.title} description={description} />
           <div className="posting-head">
             <h1 className="posting-title">{currentPosting?.title}</h1>
             <p className="posting-date">{currentPosting?.date}</p>

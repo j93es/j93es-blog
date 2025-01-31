@@ -15,10 +15,7 @@ function PostingList() {
 
   return (
     <div className="posting-list-wrap">
-      <MetaTagSpecifier
-        title="j93es blog"
-        description="안녕하세요! j93es 블로그입니다. j93es의 개발 일지를 기록합니다. 더하여 사진 등 취미와 관련한 게시물 작성합니다. 블로그에 방문해주셔서 감사합니다!"
-      />
+      <MetaTagSpecifier useDefault={true} />
       {postingIndexController &&
         postingIndexController.getCategoryList().map((category: string) => (
           <div key={`category-${category}`} className="category-wrap">
