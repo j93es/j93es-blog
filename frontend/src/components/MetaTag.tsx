@@ -17,9 +17,9 @@ const MetaTag = ({
   description?: string;
   useDefault?: boolean;
 }) => {
-  const [metaTitle, setMetaTitle] = useState<string | undefined>(undefined);
+  const [metaTitle, setMetaTitle] = useState<string | undefined>(defaultTitle);
   const [metaDescription, setMetaDescription] = useState<string | undefined>(
-    undefined
+    defaultDescription
   );
 
   useEffect(() => {
