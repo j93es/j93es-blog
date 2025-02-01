@@ -7,7 +7,7 @@ import "pages/footer/Footer.css";
 // External
 import { Link } from "react-router-dom";
 
-export default function Footer({ footerHideCmd }: { footerHideCmd: boolean }) {
+function Footer({ footerHideCmd }: { footerHideCmd: boolean }) {
   if (footerHideCmd) {
     return null;
   }
@@ -40,3 +40,5 @@ export default function Footer({ footerHideCmd }: { footerHideCmd: boolean }) {
     </footer>
   );
 }
+
+export default Footer;
