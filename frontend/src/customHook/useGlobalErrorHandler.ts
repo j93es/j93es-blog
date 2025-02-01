@@ -12,14 +12,14 @@ export default function useGlobalErrorHandler() {
     const handleError = (event: ErrorEvent) => {
       errorRedirect({
         statusCode: 429,
-        message: event.message || "예기치 못한 문제가 발생했습니다.",
+        message: `${event}` || "예기치 못한 문제가 발생했습니다.",
       });
     };
 
     // 처리되지 않은 Promise Rejection
     const handleUnhandledRejection = (event: PromiseRejectionEvent) => {
       errorRedirect({
-        statusCode: 404,
+        statusCode: 500,
         message: event.reason || "예기치 못한 문제가 발생했습니다.",
       });
     };
