@@ -9,11 +9,13 @@ export function errorRedirect({
   statusCode: number;
   message: string;
 }) {
-  window.location.replace(
-    `${apiUrl}/error-page/error.html?j93es-status=${encodeURIComponent(
-      statusCode
-    )}&j93es-message=${encodeURIComponent(message)}`
-  );
+  try {
+    window.location.replace(
+      `${apiUrl}/error-page/error.html?j93es-status=${encodeURIComponent(
+        statusCode
+      )}&j93es-message=${encodeURIComponent(message)}`
+    );
+  } catch (error) {}
 }
 
 export default function ErrorRedirect({

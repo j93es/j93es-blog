@@ -45,7 +45,9 @@ function Body() {
   }, []);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    try {
+      window.scrollTo(0, 0);
+    } catch (error) {}
   }, [location.pathname]);
 
   useEffect(() => {

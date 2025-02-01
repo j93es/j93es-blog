@@ -25,16 +25,20 @@ export default function useGlobalErrorHandler() {
     };
 
     // 이벤트 리스너 등록
-    window.addEventListener("error", handleError);
-    window.addEventListener("unhandledrejection", handleUnhandledRejection);
+    try {
+      window.addEventListener("error", handleError);
+      window.addEventListener("unhandledrejection", handleUnhandledRejection);
+    } catch (error) {}
 
     return () => {
       // 컴포넌트 언마운트 시 리스너 해제
-      window.removeEventListener("error", handleError);
-      window.removeEventListener(
-        "unhandledrejection",
-        handleUnhandledRejection
-      );
+      try {
+        window.removeEventListener("error", handleError);
+        window.removeEventListener(
+          "unhandledrejection",
+          handleUnhandledRejection
+        );
+      } catch (error) {}
     };
   }, []);
 }
