@@ -24,7 +24,10 @@ class ErrorBoundary extends React.Component<
 > {
   constructor(props: ErrorBoundaryProps) {
     super(props);
-    this.state = { hasError: false, errorMessage: "" };
+    this.state = {
+      hasError: false,
+      errorMessage: "예기치 못한 문제가 발생했습니다.",
+    };
   }
 
   /**
@@ -35,7 +38,7 @@ class ErrorBoundary extends React.Component<
     // 에러 발생 시 hasError를 true로 바꿔 렌더링을 fallback UI로 전환
     return {
       hasError: true,
-      errorMessage: `${error.message} - ${error.stack}`,
+      errorMessage: error.message || "예기치 못한 문제가 발생했습니다.",
     };
   }
 
