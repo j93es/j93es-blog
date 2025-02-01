@@ -46,7 +46,9 @@ app.use(
       try {
         if (filePath.endsWith("/public/error-page/error.html")) {
           const queryStatusKey = "j93es-status";
-          const allowedErrorStatus = [400, 403, 404, 429, 500];
+          const allowedErrorStatus = [
+            400, 403, 404, 429, 500, 1000, 1001, 1002,
+          ];
           const status = Number(res.req.query[queryStatusKey]);
 
           if (allowedErrorStatus.includes(status)) {

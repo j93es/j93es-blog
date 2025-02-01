@@ -59,7 +59,7 @@ class ErrorBoundary extends React.Component<
         return <>{fallback}</>;
       } else {
         errorRedirect({
-          statusCode: 500,
+          statusCode: 1000,
           message: errorMessage,
         });
         return null;
