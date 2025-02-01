@@ -1,4 +1,5 @@
-const allowedErrorStatus = [400, 403, 404, 429, 500, 1000, 1001, 1002];
+const allowedErrorStatus = [400, 403, 404, 429, 500];
+const frontendErrorStatus = [1000, 1001, 1002];
 const queryStatusKey = "j93es-status";
 const queryMessageKey = "j93es-message";
 const redirectUrl = "/";
@@ -6,7 +7,9 @@ let countdown = 5;
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const originStatusCode = Number(urlParams.get(queryStatusKey));
-const statusCode = allowedErrorStatus.includes(originStatusCode)
+const statusCode = [...allowedErrorStatus, ...frontendErrorStatus].includes(
+  originStatusCode
+)
   ? originStatusCode
   : 400;
 const message = urlParams.get(queryMessageKey);

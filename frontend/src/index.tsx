@@ -19,7 +19,7 @@ const root = ReactDOM.createRoot(
 );
 
 function Root() {
-  // useGlobalErrorHandler();
+  useGlobalErrorHandler();
 
   return (
     <ErrorBoundary>
