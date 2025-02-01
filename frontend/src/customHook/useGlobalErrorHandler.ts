@@ -11,7 +11,7 @@ export default function useGlobalErrorHandler() {
     // 전역 스크립트/런타임 에러
     const handleError = (event: ErrorEvent) => {
       errorRedirect({
-        statusCode: 500,
+        statusCode: 429,
         message: event.message || "예기치 못한 문제가 발생했습니다.",
       });
     };
@@ -19,7 +19,7 @@ export default function useGlobalErrorHandler() {
     // 처리되지 않은 Promise Rejection
     const handleUnhandledRejection = (event: PromiseRejectionEvent) => {
       errorRedirect({
-        statusCode: 500,
+        statusCode: 404,
         message: event.reason || "예기치 못한 문제가 발생했습니다.",
       });
     };
