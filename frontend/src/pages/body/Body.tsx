@@ -66,7 +66,7 @@ function Body() {
       } catch (error: Error | FetchError | any) {
         errorRedirect({
           statusCode: error.status || 500,
-          message: "포스팅 리스트를 불러오는 중 오류가 발생했습니다.",
+          message: "포스팅 목록을 불러오는 중 오류가 발생했습니다.",
         });
       } finally {
         setIsPostingListLoading(false);

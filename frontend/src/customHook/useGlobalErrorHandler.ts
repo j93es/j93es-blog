@@ -12,7 +12,7 @@ export default function useGlobalErrorHandler() {
     const handleError = (event: ErrorEvent) => {
       errorRedirect({
         statusCode: 500,
-        message: "예기치 않은 오류가 발생했습니다.",
+        message: event.message,
       });
     };
 
@@ -20,7 +20,7 @@ export default function useGlobalErrorHandler() {
     const handleUnhandledRejection = (event: PromiseRejectionEvent) => {
       errorRedirect({
         statusCode: 500,
-        message: "예기치 않은 오류가 발생했습니다.",
+        message: event.reason,
       });
     };
 

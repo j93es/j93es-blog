@@ -15,6 +15,7 @@ interface ErrorBoundaryProps {
 
 interface ErrorBoundaryState {
   hasError: boolean;
+  errorMessage: string;
 }
 
 class ErrorBoundary extends React.Component<
@@ -23,7 +24,7 @@ class ErrorBoundary extends React.Component<
 > {
   constructor(props: ErrorBoundaryProps) {
     super(props);
-    this.state = { hasError: false };
+    this.state = { hasError: false, errorMessage: "" };
   }
 
   /**
@@ -32,7 +33,10 @@ class ErrorBoundary extends React.Component<
    */
   static getDerivedStateFromError(error: Error) {
     // 에러 발생 시 hasError를 true로 바꿔 렌더링을 fallback UI로 전환
-    return { hasError: true };
+    return {
+      hasError: true,
+      errorMessage: `${error.message} - ${error.stack}`,
+    };
   }
 
   /**
@@ -43,7 +47,7 @@ class ErrorBoundary extends React.Component<
   // componentDidCatch(error: Error, errorInfo: ErrorInfo) {}
 
   render() {
-    const { hasError } = this.state;
+    const { hasError, errorMessage } = this.state;
     const { fallback, children } = this.props;
 
     // 에러가 발생한 경우, fallback UI를 렌더하거나 기본 문구를 표시
@@ -53,7 +57,7 @@ class ErrorBoundary extends React.Component<
       } else {
         errorRedirect({
           statusCode: 500,
-          message: "예기치 않은 오류가 발생했습니다.",
+          message: errorMessage,
         });
         return null;
       }
