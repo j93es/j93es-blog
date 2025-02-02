@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 import { EachPostingMetadata } from "model/postingIndex";
 import "pages/body/PostingList.css";
 
-function PostingList() {
+const PostingList = () => {
   const postingIndexController = useContext(PostingIndexControllerContext);
 
   return (
@@ -40,6 +40,6 @@ function PostingList() {
         ))}
     </div>
   );
-}
+};
 
 export default PostingList;

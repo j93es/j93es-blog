@@ -1,6 +1,6 @@
 import { PostingIndex, EachPostingMetadata } from "../model/postingIndex";
 
-export class PostingIndexController {
+class PostingIndexController {
   private postingIndex: PostingIndex;
   private categoryListCache: string[] | null;
 
@@ -101,3 +101,5 @@ export class PostingIndexController {
     return postingList[index + 1];
   };
 }
+
+export { PostingIndexController };

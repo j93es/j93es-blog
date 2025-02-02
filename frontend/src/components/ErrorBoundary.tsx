@@ -4,7 +4,7 @@ import React, { ReactNode } from "react";
 // External
 
 // Local
-import { errorRedirect } from "./ErrorRedirect";
+import { errorRedirect } from "utils/index";
 
 interface ErrorBoundaryProps {
   /** 자식 컴포넌트 */

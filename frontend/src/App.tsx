@@ -14,20 +14,20 @@ export const SetFooterHideCmdContext = createContext<
   React.Dispatch<React.SetStateAction<boolean>>
 >(() => {});
 
-function App() {
+const App = () => {
   const [footerHideCmd, setFooterHideCmd] = useState(false);
 
   return (
     <div className="App">
       <BrowserRouter>
-        <SetFooterHideCmdContext.Provider value={setFooterHideCmd}>
+        <SetFooterHideCmdContext value={setFooterHideCmd}>
           <Header />
           <Body />
           <Footer footerHideCmd={footerHideCmd} />
-        </SetFooterHideCmdContext.Provider>
+        </SetFooterHideCmdContext>
       </BrowserRouter>
     </div>
   );
-}
+};
 
 export default App;

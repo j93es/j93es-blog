@@ -18,7 +18,7 @@ const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 
-function Root() {
+const Root = () => {
   useGlobalErrorHandler();
 
   return (
@@ -27,7 +27,7 @@ function Root() {
       {/* <ErrorBoundaryTest /> */}
     </ErrorBoundary>
   );
-}
+};
 
 root.render(
   <React.StrictMode>

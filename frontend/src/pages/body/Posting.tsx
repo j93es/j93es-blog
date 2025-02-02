@@ -14,17 +14,16 @@ import "highlight.js/styles/github-dark-dimmed.css";
 import { apiUrl } from "config";
 import { EachPostingMetadata } from "model/postingIndex";
 import { parseMarkdown } from "utils/index";
-import { SetFooterHideCmdContext } from "App";
 import { PostingIndexControllerContext } from "pages/body/Body";
 import Loader from "components/Loader";
 import CustomPre from "components/CustomPre";
 import CustomImage from "components/CustomImage";
 import MetaTag from "components/MetaTag";
 import { FetchError } from "model/errorType";
-import { errorRedirect } from "components/ErrorRedirect";
+import { errorRedirect } from "utils/index";
 import "pages/body/Posting.css";
 
-function Posting({ path }: { path: string }) {
+const Posting = ({ path }: { path: string }) => {
   const [isPostingLoading, setIsPostingLoading] = useState(true);
   const [markdownContent, setMarkdownContent] = useState("");
   const [currentPosting, setCurrentPosting] =
@@ -39,7 +38,6 @@ function Posting({ path }: { path: string }) {
   const postingIndexController = useContext(PostingIndexControllerContext);
   const elementRef = useRef<HTMLDivElement>(null);
   const [elementWidth, setElementWidth] = useState(0);
-  const setFooterHideCmd = useContext(SetFooterHideCmdContext);
 
   useEffect(() => {
     const resizeObserver = new ResizeObserver((entries) => {
@@ -70,7 +68,6 @@ function Posting({ path }: { path: string }) {
         setPreviousPosting(null);
         setDescription(undefined);
 
-        setFooterHideCmd(true);
         setIsPostingLoading(true);
 
         const response = await fetch(urlJoin(apiUrl, path));
@@ -121,7 +118,6 @@ function Posting({ path }: { path: string }) {
         });
       } finally {
         setIsPostingLoading(false);
-        setFooterHideCmd(false);
       }
     };
 
@@ -132,11 +128,9 @@ function Posting({ path }: { path: string }) {
       setCurrentPosting(null);
       setNextPosting(null);
       setPreviousPosting(null);
-
       setIsPostingLoading(false);
-      setFooterHideCmd(false);
     };
-  }, [path, postingIndexController, setFooterHideCmd]);
+  }, [path, postingIndexController]);
 
   const components = useRef({
     code: ({ ...props }) => {
@@ -228,6 +222,6 @@ function Posting({ path }: { path: string }) {
       )}
     </div>
   );
-}
+};
 
 export default Posting;

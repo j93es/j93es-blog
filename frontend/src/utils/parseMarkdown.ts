@@ -3,7 +3,7 @@ interface ParsedMarkdown {
   content: string;
 }
 
-export class ParseMarkdown {
+class ParseMarkdown {
   private _parseMarkdownData(
     match: RegExpMatchArray | null
   ): ParsedMarkdown["data"] {
@@ -94,3 +94,5 @@ export class ParseMarkdown {
     };
   }
 }
+
+export { ParseMarkdown };

@@ -1,33 +1,23 @@
+// React
 import { useEffect } from "react";
 
-import { apiUrl } from "config";
+// External
 
-export function errorRedirect({
+// Local
+import { errorRedirect } from "utils/index";
+
+const ErrorRedirect = ({
   statusCode,
   message,
 }: {
   statusCode: number;
   message: string;
-}) {
-  try {
-    window.location.replace(
-      `${apiUrl}/error-page/error.html?j93es-status=${encodeURIComponent(
-        statusCode
-      )}&j93es-message=${encodeURIComponent(message)}`
-    );
-  } catch (error) {}
-}
-
-export default function ErrorRedirect({
-  statusCode,
-  message,
-}: {
-  statusCode: number;
-  message: string;
-}) {
+}) => {
   useEffect(() => {
     errorRedirect({ statusCode, message });
   }, [statusCode, message]);
 
   return null;
-}
+};
+
+export default ErrorRedirect;

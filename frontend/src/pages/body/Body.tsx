@@ -10,13 +10,13 @@ import { apiUrl } from "config";
 import { EachPostingMetadata } from "model/postingIndex";
 import { PostingIndexController } from "controller/index";
 import { FetchError } from "model/errorType";
-import { SetFooterHideCmdContext } from "App";
 import Loader from "components/Loader";
-import ErrorRedirect, { errorRedirect } from "components/ErrorRedirect";
+import ErrorRedirect from "components/ErrorRedirect";
+import { errorRedirect } from "utils/index";
 import PostingList from "pages/body/PostingList";
 import "pages/body/Body.css";
 
-export const PostingIndexControllerContext =
+const PostingIndexControllerContext =
   createContext<PostingIndexController | null>(null);
 
 const loadPostingComponent = () => {
@@ -31,12 +31,11 @@ const Posting = ({ path }: { path: string }) => {
   );
 };
 
-function Body() {
+const Body = () => {
   const [isPostingListLoading, setIsPostingListLoading] =
     useState<boolean>(true);
   const [postingIndexController, setPostingIndexController] =
     useState<PostingIndexController | null>(null);
-  const setFooterHideCmd = React.useContext(SetFooterHideCmdContext);
   const location = useLocation();
 
   useEffect(() => {
@@ -45,15 +44,12 @@ function Body() {
   }, []);
 
   useEffect(() => {
-    try {
-      window.scrollTo(0, 0);
-    } catch (error) {}
+    window.scrollTo(0, 0);
   }, [location.pathname]);
 
   useEffect(() => {
     const func = async () => {
       try {
-        setFooterHideCmd(true);
         setIsPostingListLoading(true);
 
         const response = await fetch(urlJoin(apiUrl, "index"));
@@ -72,18 +68,17 @@ function Body() {
         });
       } finally {
         setIsPostingListLoading(false);
-        setFooterHideCmd(false);
       }
     };
     func();
-  }, [setFooterHideCmd]);
+  }, []);
 
   return (
     <main className="body-cont">
       {isPostingListLoading ? (
         <Loader />
       ) : (
-        <PostingIndexControllerContext.Provider value={postingIndexController}>
+        <PostingIndexControllerContext value={postingIndexController}>
           <Routes>
             <Route path="/" element={<PostingList />} />
 
@@ -121,10 +116,11 @@ function Body() {
               }
             />
           </Routes>
-        </PostingIndexControllerContext.Provider>
+        </PostingIndexControllerContext>
       )}
     </main>
   );
-}
+};
 
+export { PostingIndexControllerContext };
 export default Body;

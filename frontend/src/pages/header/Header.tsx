@@ -5,7 +5,7 @@ import "pages/header/Header.css";
 // External
 import { Link } from "react-router-dom";
 
-function Header() {
+const Header = () => {
   return (
     <header className="header-cont">
       <Link to="/" className="logo-item" aria-label="Go to homepage">
@@ -13,6 +13,6 @@ function Header() {
       </Link>
     </header>
   );
-}
+};
 
 export default Header;

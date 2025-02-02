@@ -24,29 +24,22 @@ const MetaTagV1 = ({
   }
 
   if (title) {
-    try {
-      document.title = title;
-    } catch (error) {}
-
-    try {
-      document
-        ?.querySelector('meta[name="apple-mobile-web-app-title"]')
-        ?.setAttribute("content", title);
-      document
-        ?.querySelector('meta[property="og:title"]')
-        ?.setAttribute("content", title);
-    } catch (error) {}
+    document.title = title;
+    document
+      .querySelector('meta[name="apple-mobile-web-app-title"]')
+      ?.setAttribute("content", title);
+    document
+      .querySelector('meta[property="og:title"]')
+      ?.setAttribute("content", title);
   }
 
   if (description) {
-    try {
-      document
-        ?.querySelector('meta[name="description"]')
-        ?.setAttribute("content", description);
-      document
-        ?.querySelector('meta[property="og:description"]')
-        ?.setAttribute("content", description);
-    } catch (error) {}
+    document
+      .querySelector('meta[name="description"]')
+      ?.setAttribute("content", description);
+    document
+      .querySelector('meta[property="og:description"]')
+      ?.setAttribute("content", description);
   }
 
   return null;
