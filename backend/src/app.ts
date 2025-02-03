@@ -71,12 +71,26 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 });
 
 app.use(
-  express.static(publicDir, {
+  "/posting/",
+  express.static(path.join(publicDir, "/posting/"), {
     etag: false,
     index: false,
     maxAge: "1d",
   })
 );
+
+app.use(
+  "/policy/",
+  express.static(path.join(publicDir, "/policy/"), {
+    etag: false,
+    index: false,
+    maxAge: "1d",
+  })
+);
+
+app.get("*", (req: Request, res: Response) => {
+  res.sendFile("index.html", { root: publicDir });
+});
 
 app.use(errorHandler.routerNotFound);
 app.use(errorHandler.notFound);
