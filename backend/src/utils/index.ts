@@ -5,6 +5,7 @@ import { NanoidGenerator } from "./nanoid";
 import { ParseMarkdown } from "./parseMarkdown";
 import { RateLimiter } from "./rateLimiter";
 import { RequestUtils } from "./requestUtils";
+import { wrapAsync } from "./wrap-async";
 
 export { corsOptions };
 export const customLogger = new CustomLogger();
@@ -13,3 +14,4 @@ export const nanoidGenerator = new NanoidGenerator();
 export const parseMarkdown = new ParseMarkdown();
 export const rateLimiter = new RateLimiter();
 export const requestUtils = new RequestUtils();
+export { wrapAsync };

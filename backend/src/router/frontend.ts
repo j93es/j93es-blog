@@ -4,6 +4,7 @@ import fs from "fs";
 
 import { publicDir } from "../config";
 import { ForbiddenError, NotFoundError } from "../model/error";
+import { wrapAsync } from "../utils/wrap-async";
 
 const router = express.Router();
 const frontendDir = path.join(publicDir, "frontend");
@@ -38,21 +39,23 @@ router.use(
 
 // 프론트엔드 url에 해당하는 파일이 있는지 선제적으로 확인
 // 없다면 에러 페이지로 리디렉션
-router.use((req: Request, res: Response, next: NextFunction) => {
-  const requestedPath = path.join(publicDir, req.path);
-  const resolvedPath = path.resolve(requestedPath);
+router.use(
+  wrapAsync(async (req: Request, res: Response, next: NextFunction) => {
+    const requestedPath = path.join(publicDir, req.path);
+    const resolvedPath = path.resolve(requestedPath);
 
-  if (!resolvedPath.startsWith(publicDir)) {
-    return next(new ForbiddenError("잘못된 경로로 접근하셨습니다."));
-  }
+    if (!resolvedPath.startsWith(publicDir)) {
+      throw new ForbiddenError("잘못된 경로로 접근하셨습니다.");
+    }
 
-  try {
-    fs.accessSync(resolvedPath, fs.constants.F_OK);
-    next();
-  } catch (err) {
-    next(new NotFoundError("요청하신 파일을 찾을 수 없습니다."));
-  }
-});
+    try {
+      await fs.promises.access(resolvedPath, fs.constants.F_OK);
+      next();
+    } catch (err) {
+      throw new NotFoundError("요청하신 파일을 찾을 수 없습니다.");
+    }
+  })
+);
 
 router.get("*", (req: Request, res: Response) => {
   res.sendFile("index.html", { root: frontendDir });

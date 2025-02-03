@@ -186,3 +186,7 @@ useEffect(() => {
 - error event listener를 삭제하였습니다. 안드로이드 네이버 앱 환경에서 공유하기 버튼을 누르거나, 개인정보보호 브라우저를 실행할 시에 무조건 에러 페이지로 리디렉션 되었습니다. 즉, 브라우저 자체에서 발생하는 오류로 인하여 error event가 발생하고, 에러 페이지로 리디렉션 되는 상황이었습니다. 이에 error event listener를 삭제하였습니다.
 - 이제부터 footer hide cmd를 loader에서 관리합니다.
 - export를 파일의 제일 아래에서 관리하고, function을 arrow function으로 교체하였습니다.
+
+#### 2025-2-4 soft 404
+
+- soft 404를 해결하기 위하여 별의 별짓을 다했다. 결론적으로 frontend 파일들을 express에서 서빙하며, url에 대하여 선제적으로 파일이 있는지 검사하여, 없다면 에러페이지로 리디렉션하고, 있다면 index.html을 반환하여 정상적으로 동작하게 하였다.

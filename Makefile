@@ -30,7 +30,7 @@ update-force:
 
 # 2. Install dependencies and build frontend
 build-frontend:
-	sudo cp $(ENV_DIR)/frontend $(FRONTEND_DIR)/.env && cd $(FRONTEND_DIR) && sudo npm install && sudo npm run build && sudo cp -r $(FRONTEND_DIR)/build/* $(BACKEND_DIR)/src/public/
+	sudo cp $(ENV_DIR)/frontend $(FRONTEND_DIR)/.env && cd $(FRONTEND_DIR) && sudo npm install && sudo npm run build && sudo cp -r $(FRONTEND_DIR)/build/* $(BACKEND_DIR)/src/public/ && sudo cp -r $(FRONTEND_DIR)/build/* $(BACKEND_DIR)/src/public/frontend/
 
 
 # 3. Install dependencies for backend and start with PM2
