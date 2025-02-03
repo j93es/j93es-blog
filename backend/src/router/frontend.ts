@@ -2,7 +2,7 @@ import express, { Request, Response, NextFunction } from "express";
 import path from "path";
 import fs from "fs";
 
-import { publicDir } from "../config";
+import { publicDir, apiDir } from "../config";
 import { ForbiddenError, NotFoundError } from "../model/error";
 import { wrapAsync } from "../utils/wrap-async";
 
@@ -40,10 +40,10 @@ router.use(
 // 없다면 에러 페이지로 리디렉션
 router.use(
   wrapAsync(async (req: Request, res: Response, next: NextFunction) => {
-    const requestedPath = path.join(publicDir, req.path);
+    const requestedPath = path.join(apiDir, req.path);
     const resolvedPath = path.resolve(requestedPath);
 
-    if (!resolvedPath.startsWith(publicDir)) {
+    if (!resolvedPath.startsWith(apiDir)) {
       throw new ForbiddenError("잘못된 경로로 접근하셨습니다.");
     }
 
