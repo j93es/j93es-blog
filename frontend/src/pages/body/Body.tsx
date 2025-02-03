@@ -38,10 +38,10 @@ const Body = () => {
     useState<PostingIndexController | null>(null);
   const location = useLocation();
 
-  useEffect(() => {
-    // preload Posting component
-    loadPostingComponent();
-  }, []);
+  // useEffect(() => {
+  //   // preload Posting component
+  //   loadPostingComponent();
+  // }, []);
 
   useEffect(() => {
     window.scrollTo(0, 0);
