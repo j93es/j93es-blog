@@ -1,5 +1,5 @@
+import { Request, Response } from "express";
 import { rateLimit } from "express-rate-limit";
-import { requestUtils } from "./index";
 import { TooManyRequestsError } from "../model/error";
 
 export class RateLimiter {
@@ -8,7 +8,7 @@ export class RateLimiter {
       windowMs: second * 1000,
       limit: limit,
       standardHeaders: "draft-7",
-      handler: (req, res) => {
+      handler: (req: Request, res: Response) => {
         throw new TooManyRequestsError(
           `Exceeded the ${limit} requests in ${second} secondes limit`
         );

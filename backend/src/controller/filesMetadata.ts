@@ -2,13 +2,20 @@ import fs from "fs";
 import path from "path";
 import { publicDir, showingCategoryList } from "../config";
 import { PostingIndex } from "../model/postingIndex";
-import { PostingIndexController } from "../controller/index";
+import { PostingIndexController } from "./index";
 import { parseMarkdown } from "../utils/index";
 
-export class FilesMetadata {
+// constructor에서 directoryPath를 받아서 사용하는데, 이는 publicDir로부터의 상대경로이다.
+// makeRawPostingIndex 메서드는 publicDir로부터의 상대경로를 받아서 PostingIndex를 만들어 반환한다.
+export class FilesMetadataController {
   private postingIndex: PostingIndex | null = null;
+  private directoryPath: string;
 
-  private makeRawPostingIndex = (directoryPath: string) => {
+  constructor(directoryPath: string) {
+    this.directoryPath = directoryPath;
+  }
+
+  private makeRawPostingIndex = (): PostingIndex => {
     const rawPostingIndex: PostingIndex = {};
 
     showingCategoryList.forEach((category: string, index: number) => {
@@ -41,7 +48,7 @@ export class FilesMetadata {
       });
     };
 
-    readDirectory(directoryPath);
+    readDirectory(path.join(publicDir, this.directoryPath));
     Object.keys(rawPostingIndex).forEach((key) => {
       if (rawPostingIndex[key].data.length === 0) {
         delete rawPostingIndex[key];
@@ -51,14 +58,14 @@ export class FilesMetadata {
     return rawPostingIndex;
   };
 
-  getMarkdownFilesMetadata = (directoryPath: string) => {
+  getMarkdownFilesMetadata = (): PostingIndex => {
     if (this.postingIndex === null) {
-      const rawPostingIndex = this.makeRawPostingIndex(
-        path.join(publicDir, directoryPath)
-      );
+      const rawPostingIndex = this.makeRawPostingIndex();
       this.postingIndex = new PostingIndexController(
         rawPostingIndex
       ).getPostingIndex();
+
+      return this.postingIndex as PostingIndex;
     }
 
     return this.postingIndex;

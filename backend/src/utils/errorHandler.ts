@@ -1,3 +1,4 @@
+import { Request, Response, NextFunction } from "express";
 import {
   BadRequestError,
   NotFoundError,
@@ -5,27 +6,34 @@ import {
   TooManyRequestsError,
 } from "../model/error";
 import { customLogger } from "./index";
-import { errorPageUrl } from "../config";
+import { apiUrl } from "../config";
 
 export class ErrorHandler {
-  private redirectErrorPage = (res: any, code: number, message: string) => {
-    res
-      .status(code)
-      .redirect(
-        `${errorPageUrl}/error.html?j93es-status=${code}&j93es-message=${encodeURIComponent(
-          message
-        )}`
-      );
+  private redirectErrorPage = (
+    res: Response,
+    code: number,
+    message: string
+  ) => {
+    res.redirect(
+      `${apiUrl}/error-page/error.html?j93es-status=${code}&j93es-message=${encodeURIComponent(
+        message
+      )}`
+    );
   };
 
-  routerNotFound = (req: any, res: any, next: any) => {
+  routerNotFound = (req: Request, res: Response, next: NextFunction) => {
     if (res.headersSent) {
       return next();
     }
     throw new NotFoundError("Not Found");
   };
 
-  notFound = (error: any, req: any, res: any, next: any) => {
+  notFound = (
+    error: Error,
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) => {
     if (error instanceof NotFoundError) {
       const code = 404;
       const message = "요청하신 정보를 찾을 수 없습니다.";
@@ -38,7 +46,12 @@ export class ErrorHandler {
     next(error);
   };
 
-  badRequestError = (error: any, req: any, res: any, next: any) => {
+  badRequestError = (
+    error: Error,
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) => {
     if (error instanceof BadRequestError) {
       const code = 400;
       const message = "잘못된 요청입니다.";
@@ -50,7 +63,12 @@ export class ErrorHandler {
     next(error);
   };
 
-  tooManyRequestsError = (error: any, req: any, res: any, next: any) => {
+  tooManyRequestsError = (
+    error: Error,
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) => {
     if (error instanceof TooManyRequestsError) {
       const code = 429;
       const message = "접속량이 많습니다. 잠시 후 다시 시도해주세요.";
@@ -62,7 +80,12 @@ export class ErrorHandler {
     next(error);
   };
 
-  forbiddenError = (error: any, req: any, res: any, next: any) => {
+  forbiddenError = (
+    error: Error,
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) => {
     if (error instanceof ForbiddenError) {
       const code = 403;
       const message = "금지된 접근입니다.";
@@ -75,7 +98,7 @@ export class ErrorHandler {
     next(error);
   };
 
-  error = (error: any, req: any, res: any, next: any) => {
+  error = (error: Error, req: Request, res: Response, next: NextFunction) => {
     try {
       res.locals.message = `${error}`;
       res.locals.error = error;
