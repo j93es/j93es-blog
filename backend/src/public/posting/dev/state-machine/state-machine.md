@@ -1,7 +1,7 @@
 ---
 title: "State Machine"
 date: 2025-01-12 20:49
-tag: [embedded, web]
+tag: [Embedded, JavaScript]
 category: dev
 ---
 

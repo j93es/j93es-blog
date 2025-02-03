@@ -185,7 +185,12 @@ const Posting = ({ path }: { path: string }) => {
         <>
           <div className="posting-head">
             <h1 className="posting-title">{currentPosting?.title}</h1>
-            <p className="posting-date">{currentPosting?.date}</p>
+            <p className="posting-tag">
+              {currentPosting?.tag && `Tags | ${currentPosting.tag.join(", ")}`}
+            </p>
+            <p className="posting-date">
+              {currentPosting?.date && `Date | ${currentPosting.date}`}
+            </p>
           </div>
           <div className="posting-content">
             <ReactMarkdown

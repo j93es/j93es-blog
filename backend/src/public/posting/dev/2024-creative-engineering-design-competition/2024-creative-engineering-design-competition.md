@@ -1,7 +1,7 @@
 ---
 title: 창의적 종합설계 경진대회
 date:
-tag: [fullstack]
+tag: [Frontend, Backend]
 category: _dev
 ---
 
@@ -28,8 +28,6 @@ category: _dev
 ## 보안 정책 수립
 
 ## Frontend와 관련된 이모저모
-
-### 그래프를 그리는데 몇 kb를 태워야할까?
 
 ### 컴포넌트의 모듈화와 디자인 변경
 

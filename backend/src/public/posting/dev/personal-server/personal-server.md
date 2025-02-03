@@ -1,7 +1,7 @@
 ---
 title: 개인 서버
 date:
-tag: [infra]
+tag: [Infra]
 category: _dev
 ---
 

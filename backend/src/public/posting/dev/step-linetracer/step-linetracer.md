@@ -1,7 +1,7 @@
 ---
 title: "STEP 모터 라인트레이서"
 date: 2025-01-07 19:34
-tag: [embedded]
+tag: [Embedded]
 category: dev
 ---
 

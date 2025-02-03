@@ -180,3 +180,9 @@ useEffect(() => {
 
 - 안드로이드 네이버 앱 환경에서 네이버 공유하기를 클릭시 에러가 발생하였다. 왜냐하면 네이버 공유하기 기능에서는 document 속성이 충돌되는 것 같다. 따라서 document 관련 코드를 try-catch로 묶으니 해결되었다.
 - react 에러 바운더리에 단순히 "예기치 못한 문제가 발생하였습니다."가 아닌 실제 에러 객체의 메세지를 표기하여 디버깅이 더 쉽게 수정하였다.
+
+#### 2025-2-2 error event listener | footer hide cmd 관리 주체 | refactor
+
+- error event listener를 삭제하였습니다. 안드로이드 네이버 앱 환경에서 공유하기 버튼을 누르거나, 개인정보보호 브라우저를 실행할 시에 무조건 에러 페이지로 리디렉션 되었습니다. 즉, 브라우저 자체에서 발생하는 오류로 인하여 error event가 발생하고, 에러 페이지로 리디렉션 되는 상황이었습니다. 이에 error event listener를 삭제하였습니다.
+- 이제부터 footer hide cmd를 loader에서 관리합니다.
+- export를 파일의 제일 아래에서 관리하고, function을 arrow function으로 교체하였습니다.

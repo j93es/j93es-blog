@@ -1,7 +1,7 @@
 ---
 title: 블로그 SEO 개선
 date:
-tag: [frontend]
+tag: [Frontend]
 category: _dev
 ---
 

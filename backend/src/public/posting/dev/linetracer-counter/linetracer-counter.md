@@ -1,7 +1,7 @@
 ---
 title: 라인트레이서 계수기 소프트웨어
 date:
-tag: [fullstack]
+tag: [Frontend, Backend]
 category: _dev
 ---
 

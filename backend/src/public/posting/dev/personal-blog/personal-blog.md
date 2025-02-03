@@ -1,7 +1,7 @@
 ---
-title: 개인 블로그
+title: 블로그 디테일 챙기기
 date:
-tag: [fullstack]
+tag: [Frontend, Backend]
 category: _dev
 ---
 
@@ -13,11 +13,15 @@ category: _dev
 
 ## 프로젝트 소개
 
-## meta tag 활용
+## favicon, logo
+
+## menifest.json
+
+## meta tag
+
+description, language
 
 ## noscript
-
-## 에러 페이지
 
 ## background-color, color
 
@@ -29,6 +33,4 @@ category: _dev
 
 ### CSP 설정, 정보보호정책
 
-### 이상한 npm 패키지를 지양하자 - gray-matter
-
-### 맘에 안든다면 만들어 쓰자 - logger, gray-matter
+### index 관리의 주체는 backend가
