@@ -7,10 +7,9 @@ import { ForbiddenError, NotFoundError } from "../model/error";
 import { wrapAsync } from "../utils/wrap-async";
 
 const router = express.Router();
-const frontendDir = path.join(publicDir, "frontend");
 
 router.get("/", (req: Request, res: Response) => {
-  res.sendFile("index.html", { root: frontendDir });
+  res.sendFile("index.html", { root: publicDir });
 });
 
 router.get("/error-page/error.html", (req: Request, res: Response) => {
@@ -26,11 +25,11 @@ router.get("/error-page/error.html", (req: Request, res: Response) => {
   } else {
     res.status(400);
   }
-  res.sendFile("error-page/error.html", { root: frontendDir });
+  res.sendFile("error-page/error.html", { root: publicDir });
 });
 
 router.use(
-  express.static(frontendDir, {
+  express.static(publicDir, {
     etag: false,
     index: false,
     maxAge: "1d",
@@ -58,7 +57,7 @@ router.use(
 );
 
 router.get("*", (req: Request, res: Response) => {
-  res.sendFile("index.html", { root: frontendDir });
+  res.sendFile("index.html", { root: publicDir });
 });
 
 export default router;

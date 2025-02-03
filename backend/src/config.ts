@@ -12,3 +12,4 @@ export const showingCategoryList: string[] = JSON.parse(
 );
 
 export const publicDir = path.join(__dirname, "public");
+export const apiDir = path.join(publicDir, "/api/");

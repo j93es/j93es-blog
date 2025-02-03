@@ -1,6 +1,7 @@
 import express, { Request, Response } from "express";
+
 import { FilesMetadataController } from "../controller/index";
-import { publicDir } from "../config";
+import { apiDir } from "../config";
 
 const router = express.Router();
 const postingMetadata = new FilesMetadataController("/posting/");
@@ -11,7 +12,7 @@ router.get("/index/", (req: Request, res: Response) => {
 });
 
 router.use(
-  express.static(publicDir, {
+  express.static(apiDir, {
     etag: false,
     index: false,
     maxAge: "1d",

@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import { publicDir, showingCategoryList } from "../config";
+import { apiDir, showingCategoryList } from "../config";
 import { PostingIndex } from "../model/postingIndex";
 import { PostingIndexController } from "./index";
 import { parseMarkdown } from "../utils/index";
@@ -42,13 +42,13 @@ export class FilesMetadataController {
             date: data.date,
             tag: data.tag,
             category: data.category,
-            path: fullPath.split(publicDir)[1],
+            path: fullPath.split(apiDir)[1],
           });
         }
       });
     };
 
-    readDirectory(path.join(publicDir, this.directoryPath));
+    readDirectory(path.join(apiDir, this.directoryPath));
     Object.keys(rawPostingIndex).forEach((key) => {
       if (rawPostingIndex[key].data.length === 0) {
         delete rawPostingIndex[key];
