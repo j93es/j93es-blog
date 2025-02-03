@@ -6,7 +6,6 @@ import {
   TooManyRequestsError,
 } from "../model/error";
 import { customLogger } from "./index";
-import { apiUrl } from "../config";
 
 export class ErrorHandler {
   private redirectErrorPage = (
@@ -15,7 +14,7 @@ export class ErrorHandler {
     message: string
   ) => {
     res.redirect(
-      `${apiUrl}/error-page/error.html?j93es-status=${code}&j93es-message=${encodeURIComponent(
+      `/error-page/error.html?j93es-status=${code}&j93es-message=${encodeURIComponent(
         message
       )}`
     );

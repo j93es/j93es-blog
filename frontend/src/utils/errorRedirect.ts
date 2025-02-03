@@ -3,7 +3,6 @@
 // External
 
 // Local
-import { apiUrl } from "config";
 
 const errorRedirect = ({
   statusCode,
@@ -13,7 +12,7 @@ const errorRedirect = ({
   message: string;
 }) => {
   window.location?.replace(
-    `${apiUrl}/error-page/error.html?j93es-status=${encodeURIComponent(
+    `/error-page/error.html?j93es-status=${encodeURIComponent(
       statusCode
     )}&j93es-message=${encodeURIComponent(message)}`
   );
