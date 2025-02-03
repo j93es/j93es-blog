@@ -7,7 +7,7 @@ import {
 } from "../model/error";
 import { customLogger } from "./index";
 
-export class ErrorHandler {
+class ErrorHandler {
   private redirectErrorPage = (
     res: Response,
     code: number,
@@ -112,3 +112,14 @@ export class ErrorHandler {
     }
   };
 }
+
+const errorHandler = new ErrorHandler();
+
+export const errorHandlers = [
+  errorHandler.routerNotFound,
+  errorHandler.notFound,
+  errorHandler.tooManyRequestsError,
+  errorHandler.badRequestError,
+  errorHandler.forbiddenError,
+  errorHandler.error,
+];

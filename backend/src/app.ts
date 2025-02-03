@@ -1,15 +1,14 @@
 import dotenv from "dotenv";
 dotenv.config();
 import express, { Application } from "express";
-import cors from "cors";
-import { PORT, publicDir } from "./config";
+import { PORT } from "./config";
 import {
   rateLimiter,
-  corsOptions,
-  errorHandler,
-  requestUtils,
+  corsMiddleware,
+  requestWriter,
   customLogger,
-} from "./utils/index";
+  errorHandlers,
+} from "./middleware/index";
 import frontendRouter from "./router/frontend";
 import staticFileRouter from "./router/staticFile";
 
@@ -19,22 +18,16 @@ app.set("trust proxy", "loopback, linklocal, uniquelocal");
 app.set("port", PORT || 8000);
 app.disable("x-powered-by");
 
-app.use(cors(corsOptions));
+app.use(corsMiddleware);
 app.use(express.json({ limit: "1mb" }));
 app.use(express.urlencoded({ extended: false }));
 app.use(rateLimiter.makeLimit(60, 200));
-app.use(requestUtils.addId);
+app.use(requestWriter.addId);
 app.use(customLogger.requestLogger);
 
 app.use("/api/", staticFileRouter);
 app.use("/", frontendRouter);
-
-app.use(errorHandler.routerNotFound);
-app.use(errorHandler.notFound);
-app.use(errorHandler.tooManyRequestsError);
-app.use(errorHandler.badRequestError);
-app.use(errorHandler.forbiddenError);
-app.use(errorHandler.error);
+app.use(errorHandlers);
 
 app.listen(app.get("port"), () => {
   customLogger.info(

@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
-import { nanoidGenerator } from "./index";
+import { nanoidGenerator } from "../utils/index";
 
-export class RequestUtils {
+export class RequestWriter {
   getId = (req: Request): string => {
     return `${req.headers.requestId}`;
   };

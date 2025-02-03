@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { requestUtils } from "./index";
+import { requestWriter } from "./index";
 
 export class CustomLogger {
   private formatDateToCustomString = (date: Date) => {
@@ -38,7 +38,7 @@ export class CustomLogger {
         new Date()
       )}] ${this.makeSimpleMsg(head, message)}`;
 
-    return `${requestUtils.getId(req)} ${requestUtils.getIp(
+    return `${requestWriter.getId(req)} ${requestWriter.getIp(
       req
     )} - - [${this.formatDateToCustomString(new Date())}] ${this.makeSimpleMsg(
       head,

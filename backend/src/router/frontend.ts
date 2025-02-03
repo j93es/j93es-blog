@@ -4,7 +4,7 @@ import fs from "fs";
 
 import { publicDir, apiDir } from "../config";
 import { ForbiddenError, NotFoundError } from "../model/error";
-import { wrapAsync } from "../utils/wrap-async";
+import { wrapAsync } from "../middleware/wrapAsync";
 
 const router = express.Router();
 
@@ -36,7 +36,7 @@ router.use(
   })
 );
 
-// 프론트엔드 url에 해당하는 파일이 있는지 선제적으로 확인
+// apiDir을 root로 url의 path에 해당하는 파일이 있는지 선제적으로 확인
 // 없다면 에러 페이지로 리디렉션
 router.use(
   wrapAsync(async (req: Request, res: Response, next: NextFunction) => {
