@@ -1,9 +1,7 @@
 import dotenv from "dotenv";
 dotenv.config();
-import express, { Application, NextFunction, Request, Response } from "express";
+import express, { Application, Request, Response } from "express";
 import cors from "cors";
-import fs from "fs";
-import path from "path";
 import { PORT, publicDir } from "./config";
 import {
   rateLimiter,
@@ -13,7 +11,6 @@ import {
   customLogger,
 } from "./utils/index";
 import { FilesMetadataController } from "./controller/index";
-import { NotFoundError, ForbiddenError } from "./model/error";
 
 const app: Application = express();
 const postingMetadata = new FilesMetadataController("/posting/");
@@ -28,10 +25,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(rateLimiter.makeLimit(60, 200));
 app.use(requestUtils.addId);
 app.use(customLogger.requestLogger);
-
-app.get("/", (req: Request, res: Response) => {
-  res.sendFile("index.html", { root: publicDir });
-});
 
 app.get("/index/", (req: Request, res: Response) => {
   const metadata = postingMetadata.getMarkdownFilesMetadata();
@@ -54,43 +47,13 @@ app.get("/error-page/error.html", (req: Request, res: Response) => {
   res.sendFile("error-page/error.html", { root: publicDir });
 });
 
-app.use((req: Request, res: Response, next: NextFunction) => {
-  const requestedPath = path.join(publicDir, req.path);
-  const resolvedPath = path.resolve(requestedPath);
-
-  if (!resolvedPath.startsWith(publicDir)) {
-    return next(new ForbiddenError("잘못된 경로로 접근하셨습니다."));
-  }
-
-  try {
-    fs.accessSync(resolvedPath, fs.constants.F_OK);
-    next();
-  } catch (err) {
-    next(new NotFoundError("요청하신 파일을 찾을 수 없습니다."));
-  }
-});
-
 app.use(
-  "/posting/",
-  express.static(path.join(publicDir, "/posting/"), {
+  express.static(publicDir, {
     etag: false,
     index: false,
     maxAge: "1d",
   })
 );
-
-app.use(
-  "/policy/",
-  express.static(path.join(publicDir, "/policy/"), {
-    etag: false,
-    index: false,
-    maxAge: "1d",
-  })
-);
-
-app.get("*", (req: Request, res: Response) => {
-  res.sendFile("index.html", { root: publicDir });
-});
 
 app.use(errorHandler.routerNotFound);
 app.use(errorHandler.notFound);
