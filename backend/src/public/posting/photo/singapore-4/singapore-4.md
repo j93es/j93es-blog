@@ -1,7 +1,7 @@
 ---
 title: "싱가포르4"
 date: 2024-10-04 16:47
-tag: [travel]
+tag: [Singapore, Travel]
 category: photo
 ---
 

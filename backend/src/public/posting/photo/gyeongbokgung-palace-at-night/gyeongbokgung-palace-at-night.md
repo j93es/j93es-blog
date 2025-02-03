@@ -1,7 +1,7 @@
 ---
 title: "밤의 경복궁"
 date: 2025-01-19 20:50
-tag: [travel]
+tag: [Seoul, Tour]
 category: photo
 ---
 
