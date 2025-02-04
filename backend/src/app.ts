@@ -18,15 +18,18 @@ app.set("trust proxy", "loopback, linklocal, uniquelocal");
 app.set("port", PORT || 8000);
 app.disable("x-powered-by");
 
-app.use(corsMiddleware);
-app.use(express.json({ limit: "1mb" }));
-app.use(express.urlencoded({ extended: false }));
-app.use(rateLimiter.makeLimit(60, 200));
-app.use(requestWriter.addId);
-app.use(customLogger.requestLogger);
+app.use([
+  corsMiddleware,
+  rateLimiter.makeLimit(60, 200),
+  express.json({ limit: "1mb" }),
+  express.urlencoded({ extended: false }),
+  requestWriter.addId,
+  customLogger.requestLogger,
+]);
 
 app.use("/api/", apiRouter);
 app.use("/", frontendRouter);
+
 app.use(errorHandlers);
 
 app.listen(app.get("port"), () => {

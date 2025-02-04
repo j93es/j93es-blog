@@ -5,8 +5,8 @@ import { PostingIndex } from "../model/postingIndex";
 import { PostingIndexController } from "./index";
 import { parseMarkdown } from "../utils/index";
 
-// constructor에서 directoryPath를 받아서 사용하는데, 이는 publicDir로부터의 상대경로이다.
-// makeRawPostingIndex 메서드는 publicDir로부터의 상대경로를 받아서 PostingIndex를 만들어 반환한다.
+// constructor에서 directoryPath를 받아서 사용하는데, 이는 apiDir로부터의 상대경로이다.
+// makeRawPostingIndex 메서드는 apiDir로부터의 상대경로를 받아서 PostingIndex를 만들어 반환한다.
 export class FilesMetadataController {
   private postingIndex: PostingIndex | null = null;
   private directoryPath: string;
@@ -42,7 +42,7 @@ export class FilesMetadataController {
             date: data.date,
             tag: data.tag,
             category: data.category,
-            path: `/${fullPath.split(apiDir)[1]}`,
+            path: path.join("/", fullPath.split(apiDir)[1]),
           });
         }
       });
