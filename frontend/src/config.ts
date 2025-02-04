@@ -1,4 +1,4 @@
-export const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:8080";
+export const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:8080/";
 export const defaultTitle = process.env.REACT_APP_DEFAULT_TITLE || "j93es blog";
 export const defaultDescription =
   process.env.REACT_APP_DEFAULT_DESCRIPTION ||

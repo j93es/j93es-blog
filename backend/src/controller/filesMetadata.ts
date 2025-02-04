@@ -42,7 +42,7 @@ export class FilesMetadataController {
             date: data.date,
             tag: data.tag,
             category: data.category,
-            path: fullPath.split(apiDir)[1],
+            path: `/${fullPath.split(apiDir)[1]}`,
           });
         }
       });

@@ -11,6 +11,6 @@ export const showingCategoryList: string[] = JSON.parse(
     JSON.stringify(["frontend", "backend", "devops", "database", "etc"])
 );
 
-export const publicDir = path.join(__dirname, "public");
+export const publicDir = path.join(__dirname, "/public/");
 export const apiDir = path.join(publicDir, "/api/");
 export const frontendDir = path.join(publicDir, "/frontend/");
