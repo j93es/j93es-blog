@@ -2,14 +2,14 @@ import express, { Request, Response, NextFunction } from "express";
 import path from "path";
 import fs from "fs";
 
-import { publicDir, apiDir } from "../config";
+import { frontendDir, apiDir } from "../config";
 import { ForbiddenError, NotFoundError } from "../model/error";
 import { wrapAsync } from "../middleware/wrapAsync";
 
 const router = express.Router();
 
 router.get("/", (req: Request, res: Response) => {
-  res.sendFile("index.html", { root: publicDir });
+  res.sendFile("index.html", { root: frontendDir });
 });
 
 router.get("/error-page/error.html", (req: Request, res: Response) => {
@@ -25,11 +25,11 @@ router.get("/error-page/error.html", (req: Request, res: Response) => {
   } else {
     res.status(400);
   }
-  res.sendFile("error-page/error.html", { root: publicDir });
+  res.sendFile("error-page/error.html", { root: frontendDir });
 });
 
 router.use(
-  express.static(publicDir, {
+  express.static(frontendDir, {
     etag: false,
     index: false,
     maxAge: "1d",
@@ -51,13 +51,13 @@ router.use(
       await fs.promises.access(resolvedPath, fs.constants.F_OK);
       next();
     } catch (err) {
-      throw new NotFoundError("요청하신 파일을 찾을 수 없습니다.");
+      throw new NotFoundError("요청하신 페이지를 찾을 수 없습니다.");
     }
   })
 );
 
 router.get("*", (req: Request, res: Response) => {
-  res.sendFile("index.html", { root: publicDir });
+  res.sendFile("index.html", { root: frontendDir });
 });
 
 export default router;

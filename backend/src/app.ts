@@ -10,7 +10,7 @@ import {
   errorHandlers,
 } from "./middleware/index";
 import frontendRouter from "./router/frontend";
-import staticFileRouter from "./router/staticFile";
+import apiRouter from "./router/api";
 
 const app: Application = express();
 
@@ -25,7 +25,7 @@ app.use(rateLimiter.makeLimit(60, 200));
 app.use(requestWriter.addId);
 app.use(customLogger.requestLogger);
 
-app.use("/api/", staticFileRouter);
+app.use("/api/", apiRouter);
 app.use("/", frontendRouter);
 app.use(errorHandlers);
 
