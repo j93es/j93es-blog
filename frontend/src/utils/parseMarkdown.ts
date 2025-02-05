@@ -1,3 +1,7 @@
+// External
+
+// Local
+
 interface ParsedMarkdown {
   data: { [key: string]: any };
   content: string;

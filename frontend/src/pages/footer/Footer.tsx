@@ -1,11 +1,13 @@
+// React
+
+// External
+import { Link } from "react-router-dom";
+
 // Local
 import { ReactComponent as InstagramIcon } from "assets/icons/instagram-icon.svg";
 import { ReactComponent as GithubIcon } from "assets/icons/github-icon.svg";
 import { ReactComponent as MailIcon } from "assets/icons/mail-icon.svg";
 import "pages/footer/Footer.css";
-
-// External
-import { Link } from "react-router-dom";
 
 const Footer = ({ footerHideCmd }: { footerHideCmd: boolean }) => {
   if (footerHideCmd) {

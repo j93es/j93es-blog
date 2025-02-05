@@ -21,6 +21,8 @@ category: _dev
 
 description, language
 
+meta http-equiv="content-language" content="ko"
+
 ## noscript
 
 ## background-color, color

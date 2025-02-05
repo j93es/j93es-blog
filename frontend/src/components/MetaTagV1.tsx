@@ -31,6 +31,9 @@ const MetaTagV1 = ({
     document
       .querySelector('meta[property="og:title"]')
       ?.setAttribute("content", title);
+    document
+      .querySelector('meta[name="twitter:title"]')
+      ?.setAttribute("content", title);
   }
 
   if (description) {
@@ -39,6 +42,9 @@ const MetaTagV1 = ({
       ?.setAttribute("content", description);
     document
       .querySelector('meta[property="og:description"]')
+      ?.setAttribute("content", description);
+    document
+      .querySelector('meta[name="twitter:description"]')
       ?.setAttribute("content", description);
   }
 

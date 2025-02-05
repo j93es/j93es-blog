@@ -3,34 +3,77 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="content-language" content="ko" />
-
-    <link rel="icon" href="%PUBLIC_URL%/logo/favicon.ico" />
-
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="theme-color" content="#f5f8ff" />
+    <!-- title start -->
+    <title>j93es blog</title>
+    <meta property="og:title" content="%REACT_APP_DEFAULT_TITLE%" />
+    <meta
+      name="apple-mobile-web-app-title"
+      content="%REACT_APP_DEFAULT_TITLE%"
+    />
+    <meta name="twitter:title" content="%REACT_APP_DEFAULT_TITLE%" />
+    <!-- title end -->
 
-    <meta name="application-name" content="%REACT_APP_DEFAULT_TITLE%" />
-    <meta name="author" content="j93es" />
-    <meta name="mobile-web-app-capable" content="yes" />
+    <!-- description start -->
+    <meta name="description" content="%REACT_APP_DEFAULT_DESCRIPTION%" />
+    <meta property="og:description" content="%REACT_APP_DEFAULT_DESCRIPTION%" />
+    <meta
+      name="twitter:description"
+      content="%REACT_APP_DEFAULT_DESCRIPTION%"
+    />
+    <!-- description end -->
 
-    <meta name="apple-mobile-web-app-status-bar-style" content="#f5f8ff" />
-    <meta name="apple-touch-icon" content="%PUBLIC_URL%/logo/logo192.png" />
+    <!-- icon start -->
+    <link rel="icon" href="%PUBLIC_URL%/logo/favicon.ico" />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo/logo192.png" />
-
-    <meta name="msapplication-TileColor" content="#f5f8ff" />
-    <meta name="msapplication-navbutton-color" content="#f5f8ff" />
+    <meta name="apple-touch-icon" content="%PUBLIC_URL%/logo/logo192.png" />
+    <meta property="og:image" content="%PUBLIC_URL%/logo/logo192.png" />
     <meta
       name="msapplication-TileImage"
       content="%PUBLIC_URL%/logo/logo192.png"
     />
+    <meta name="twitter:image" content="%PUBLIC_URL%/logo/logo192.png" />
+    <!-- icon end -->
 
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="%PUBLIC_URL%/logo/logo192.png" />
-    <meta property="og:url" content="%PUBLIC_URL%" />
+    <!-- image alt start -->
+    <meta property="og:image:alt" content="j93es logo" />
+    <meta name="twitter:image:alt" content="j93es logo" />
+    <!-- image alt end -->
+
+    <!-- web app start -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <!-- web app end -->
+
+    <!-- theme-color start -->
+    <meta name="theme-color" content="#f5f8ff" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="#f5f8ff" />
+    <meta name="msapplication-TileColor" content="#f5f8ff" />
+    <meta name="msapplication-navbutton-color" content="#f5f8ff" />
+    <!-- theme-color end -->
+
+    <!-- site name start  -->
+    <meta name="application-name" content="%REACT_APP_DEFAULT_TITLE%" />
     <meta property="og:site_name" content="%REACT_APP_DEFAULT_TITLE%" />
+    <!-- site name end -->
+
+    <!-- Open Graph start -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="%PUBLIC_URL%" />
     <meta property="og:locale" content="ko_KR" />
+    <!-- Open Graph end -->
+
+    <!-- Copyright start -->
+    <meta name="author" content="j93es" />
+    <meta name="Date" content="2024-09-26T08:31:59+09:00" />
+    <meta http-equiv="Copyright" content="2024. j93es. All rights reserved." />
+    <!-- Copyright end -->
+
+    <!-- twitter card start -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <!-- twitter card end -->
 
     <!-- Start Naver Search Advisor -->
     <meta
@@ -39,49 +82,14 @@
     />
     <!-- End Naver Search Advisor -->
 
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
-
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/logo/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
     <noscript>
       <meta
         http-equiv="refresh"
         content="0; url=/noscript-page/noscript.html"
       />
     </noscript>
-
-    <!-- replaced by react start -->
-    <title>j93es blog</title>
-    <meta property="og:title" content="%REACT_APP_DEFAULT_TITLE%" />
-    <meta
-      name="apple-mobile-web-app-title"
-      content="%REACT_APP_DEFAULT_TITLE%"
-    />
-    <meta name="description" content="%REACT_APP_DEFAULT_DESCRIPTION%" />
-    <meta property="og:description" content="%REACT_APP_DEFAULT_DESCRIPTION%" />
-    <!-- replaced by react end -->
   </head>
   <body>
     <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
   </body>
 </html>

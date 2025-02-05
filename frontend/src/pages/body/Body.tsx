@@ -12,8 +12,8 @@ import { PostingIndexController } from "controller/index";
 import { FetchError } from "model/errorType";
 import Loader from "components/Loader";
 import ErrorRedirect from "components/ErrorRedirect";
-import { errorRedirect } from "utils/index";
 import PostingList from "pages/body/PostingList";
+import { errorRedirect } from "utils/index";
 import "pages/body/Body.css";
 
 const PostingIndexControllerContext =

@@ -1,3 +1,7 @@
+// External
+
+// Local
+
 import { PostingIndex, EachPostingMetadata } from "../model/postingIndex";
 
 class PostingIndexController {
