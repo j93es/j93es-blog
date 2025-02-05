@@ -8,10 +8,12 @@ import { wrapAsync } from "../middleware/wrapAsync";
 
 const router = express.Router();
 
+// index.html을 제공
 router.get("/", (req: Request, res: Response) => {
   res.sendFile("index.html", { root: frontendDir });
 });
 
+// error.html을 상태코드와 함께 제공
 router.get("/error-page/error.html", (req: Request, res: Response) => {
   const queryStatusKey = "j93es-status";
   const allowedErrorStatus = [400, 403, 404, 429, 500];
@@ -28,6 +30,7 @@ router.get("/error-page/error.html", (req: Request, res: Response) => {
   res.sendFile("error-page/error.html", { root: frontendDir });
 });
 
+// logo, favicon, manifest.json 등의 정적 파일을 제공
 router.use(
   express.static(frontendDir, {
     etag: false,
@@ -38,7 +41,11 @@ router.use(
 
 // apiDir을 root로 url의 path에 해당하는 파일이 있는지 선제적으로 확인
 // 없다면 에러 페이지로 리디렉션
-router.use(
+// 있다면 index.html을 제공
+// frontend에서 example.com/posting/ex.md로 라우팅되면 frontend는 example.com/api/posting/ex.md로 마크다운 파일을 요청함
+// 즉, apiDir에 frontend에서 요청"할" 파일이 있는지 선제적으로 확인하고 없다면 에러 페이지로 리디렉션
+router.get(
+  "*",
   wrapAsync(async (req: Request, res: Response, next: NextFunction) => {
     const requestedPath = path.join(apiDir, req.path);
     const resolvedPath = path.resolve(requestedPath);
@@ -49,15 +56,12 @@ router.use(
 
     try {
       await fs.promises.access(resolvedPath, fs.constants.F_OK);
-      next();
     } catch (err) {
       throw new NotFoundError("요청하신 페이지를 찾을 수 없습니다.");
     }
+
+    res.sendFile("index.html", { root: frontendDir });
   })
 );
-
-router.get("*", (req: Request, res: Response) => {
-  res.sendFile("index.html", { root: frontendDir });
-});
 
 export default router;
