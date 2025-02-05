@@ -18,11 +18,6 @@ class PostingIndexController {
     this.getCategoryList().forEach((category) => {
       this.postingIndex[category].data = this.getPostingList(category).sort(
         (a, b) => {
-          const categoryGap = a.category.localeCompare(b.category);
-          if (categoryGap !== 0) {
-            return categoryGap;
-          }
-
           const dateGap =
             new Date(b.date).getTime() - new Date(a.date).getTime();
           if (dateGap !== 0) {
