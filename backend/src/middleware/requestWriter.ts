@@ -26,6 +26,7 @@ export class RequestWriter {
   };
 
   private getClientIp = (req: Request): string => {
+    console.log(req.headers["x-forwarded-for"], req.headers["x-real-ip"]);
     const xForwardedFor = req.headers["x-forwarded-for"];
     if (typeof xForwardedFor === "string") {
       return xForwardedFor.split(",")[0].replace("[\\[\\]]", "").trim();
