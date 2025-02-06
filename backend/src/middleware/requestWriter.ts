@@ -14,19 +14,23 @@ export class RequestWriter {
   }
 
   getIp = (req: Request) => {
-    return req.headers.removedIp;
+    return `${req.headers.removedIp}`;
   };
 
   addIp = (req: Request, res: Response, next: NextFunction) => {
     const clientIp = this.getClientIp(req);
     const removedIp = this.removeIpPart(clientIp);
 
-    req.headers.removedIp = removedIp || "undefined";
+    req.headers.removedIp = removedIp;
     next();
   };
 
   private getClientIp = (req: Request): string => {
-    console.log(req.headers["x-forwarded-for"], req.headers["x-real-ip"]);
+    console.log(
+      req.headers["x-forwarded-for"],
+      req.headers["x-real-ip"],
+      typeof req.headers["x-forwarded-for"] === "string"
+    );
     const xForwardedFor = req.headers["x-forwarded-for"];
     if (typeof xForwardedFor === "string") {
       return xForwardedFor.split(",")[0].trim();
