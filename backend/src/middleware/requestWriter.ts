@@ -62,7 +62,6 @@ export class RequestWriter {
     else if (ipaddr.IPv6.isValid(ipStr)) {
       try {
         const addr = ipaddr.IPv6.parse(ipStr);
-        // toNormalizedString()는 8그룹의 4자리 16진수 표기를 반환합니다.
         const fullIp: string = addr.toNormalizedString();
         const parts: string[] = fullIp.split(":");
         const newParts = parts.map((elem, idx) =>
