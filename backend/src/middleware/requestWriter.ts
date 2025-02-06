@@ -29,14 +29,14 @@ export class RequestWriter {
     console.log(req.headers["x-forwarded-for"], req.headers["x-real-ip"]);
     const xForwardedFor = req.headers["x-forwarded-for"];
     if (typeof xForwardedFor === "string") {
-      return xForwardedFor.split(",")[0].replace("[\\[\\]]", "").trim();
+      return xForwardedFor.split(",")[0].trim();
     } else if (Array.isArray(xForwardedFor) && xForwardedFor.length > 0) {
       return xForwardedFor[0].trim();
     }
 
     const xRealIp = req.headers["x-real-ip"];
     if (typeof xRealIp === "string") {
-      return xRealIp.replace("[\\[\\]]", "");
+      return xRealIp;
     } else if (Array.isArray(xRealIp) && xRealIp.length > 0) {
       return xRealIp[0].trim();
     }
@@ -49,9 +49,6 @@ export class RequestWriter {
     if (ipaddr.IPv4.isValid(ipStr)) {
       try {
         const parts: string[] = ipStr.split(".");
-        if (ipV4RemainIndex < 0 || ipV4RemainIndex >= parts.length) {
-          return "";
-        }
         const newParts = parts.map((elem, idx) =>
           idx < ipV4RemainIndex ? elem : ""
         );
@@ -67,9 +64,6 @@ export class RequestWriter {
         // toNormalizedString()는 8그룹의 4자리 16진수 표기를 반환합니다.
         const fullIp: string = addr.toNormalizedString();
         const parts: string[] = fullIp.split(":");
-        if (ipV6RemainIndex < 0 || ipV6RemainIndex >= parts.length) {
-          return "";
-        }
         const newParts = parts.map((elem, idx) =>
           idx < ipV6RemainIndex ? elem : ""
         );
