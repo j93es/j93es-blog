@@ -21,16 +21,13 @@ export class RequestWriter {
     const clientIp = this.getClientIp(req);
     const removedIp = this.removeIpPart(clientIp);
 
+    console.log(`clientIp: ${clientIp}, removedIp: ${removedIp}`);
+
     req.headers.removedIp = removedIp;
     next();
   };
 
   private getClientIp = (req: Request): string => {
-    console.log(
-      req.headers["x-forwarded-for"],
-      req.headers["x-real-ip"],
-      typeof req.headers["x-forwarded-for"] === "string"
-    );
     const xForwardedFor = req.headers["x-forwarded-for"];
     if (typeof xForwardedFor === "string") {
       return xForwardedFor.split(",")[0].trim();
