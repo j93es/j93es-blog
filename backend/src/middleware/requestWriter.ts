@@ -47,7 +47,9 @@ export class RequestWriter {
     // IPv4 처리
     if (ipaddr.IPv4.isValid(ipStr)) {
       try {
-        const parts: string[] = ipStr.split(".");
+        const addr = ipaddr.IPv4.parse(ipStr);
+        const fullIp: string = addr.toNormalizedString();
+        const parts: string[] = fullIp.split(".");
         const newParts = parts.map((elem, idx) =>
           idx < ipV4RemainIndex ? elem : ""
         );
