@@ -2,8 +2,9 @@ import { Request, Response, NextFunction } from "express";
 import { requestWriter } from "./index";
 
 export class CustomLogger {
-  private formatDateToCustomString = (date: Date) => {
-    const day = date.getUTCDate().toString().padStart(2, "0");
+  private formatDateToCustomString = (date: Date): string => {
+    const koreaDate = new Date(date.getTime() + 9 * 60 * 60 * 1000);
+    const day = koreaDate.getUTCDate().toString().padStart(2, "0");
     const monthNames = [
       "Jan",
       "Feb",
@@ -18,13 +19,13 @@ export class CustomLogger {
       "Nov",
       "Dec",
     ];
-    const month = monthNames[date.getUTCMonth()];
-    const year = date.getUTCFullYear();
-    const hours = date.getUTCHours().toString().padStart(2, "0");
-    const minutes = date.getUTCMinutes().toString().padStart(2, "0");
-    const seconds = date.getUTCSeconds().toString().padStart(2, "0");
+    const month = monthNames[koreaDate.getUTCMonth()];
+    const year = koreaDate.getUTCFullYear();
+    const hours = koreaDate.getUTCHours().toString().padStart(2, "0");
+    const minutes = koreaDate.getUTCMinutes().toString().padStart(2, "0");
+    const seconds = koreaDate.getUTCSeconds().toString().padStart(2, "0");
 
-    const formattedDate = `${day}/${month}/${year}:${hours}:${minutes}:${seconds} +0000`;
+    const formattedDate = `${day}/${month}/${year}:${hours}:${minutes}:${seconds} +0900`;
     return formattedDate;
   };
 
