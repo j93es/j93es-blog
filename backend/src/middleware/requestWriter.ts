@@ -21,8 +21,6 @@ export class RequestWriter {
     const clientIp = this.getClientIp(req);
     const removedIp = this.removeIpPart(clientIp);
 
-    console.log(`clientIp: ${clientIp}, removedIp: ${removedIp}`);
-
     req.headers.removedIp = removedIp;
     next();
   };
@@ -53,7 +51,7 @@ export class RequestWriter {
         const newParts = parts.map((elem, idx) =>
           idx < ipV4RemainIndex ? elem : ""
         );
-        newParts.join(".");
+        return newParts.join(".");
       } catch (e) {
         return "";
       }
@@ -72,7 +70,8 @@ export class RequestWriter {
       } catch (e) {
         return "";
       }
+    } else {
+      return "";
     }
-    return "";
   };
 }
