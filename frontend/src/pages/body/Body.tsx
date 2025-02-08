@@ -56,10 +56,8 @@ const Body = () => {
         if (!response.ok) {
           throw new FetchError(response.status, response.statusText);
         }
-
-        const postingIndexController = new PostingIndexController(
-          await response.json()
-        );
+        const postingIndex = await response.json();
+        const postingIndexController = new PostingIndexController(postingIndex);
         setPostingIndexController(postingIndexController);
       } catch (error: Error | FetchError | any) {
         errorRedirect({
