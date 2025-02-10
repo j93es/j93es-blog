@@ -1,6 +1,6 @@
 ---
 title: "정보 보호 정책"
-date: 2025-02-26 21:52
+date: 2025-02-10 11:33
 tag: [information-protection-policy]
 category: policy
 ---
@@ -9,6 +9,7 @@ j93.es은(는) 사용자의 웹사이트 이용 경험을 개선하고, 보안�
 
 - [Cloudflare(IP 주소, 접속 국가, 브라우저 정보, 방문자 수 등)](https://www.cloudflare.com/ko-kr/web-analytics/)
 - [Naver Search Advisor(방문자 수)](https://searchadvisor.naver.com)
+- [Daum 웹마스터 도구(방문자 수)](https://cs.daum.net/faq/15.html)
 
 ## 1. 수집되는 정보
 
