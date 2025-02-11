@@ -1,10 +1,9 @@
 import express, { Request, Response } from "express";
 
-import { FilesMetadataController } from "../controller/index";
+import { postingMetadata } from "../controller/index";
 import { apiDir } from "../config";
 
 const router = express.Router();
-const postingMetadata = new FilesMetadataController("/posting/");
 
 router.get("/index/", (req: Request, res: Response) => {
   const metadata = postingMetadata.getMarkdownFilesMetadata();

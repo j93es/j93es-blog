@@ -3,41 +3,33 @@
 // External
 
 // Local
-import { defaultTitle, defaultDescription } from "config";
+import { makeTitleDescription } from "utils/index";
 
 const MetaTagV1 = ({
   title,
-  description,
+  tag,
   useDefault = false,
 }: {
   title?: string;
-  description?: string;
+  tag?: string[];
   useDefault?: boolean;
 }) => {
-  if (useDefault) {
-    title = defaultTitle;
-    description = defaultDescription;
-  }
-  if (!useDefault && title) {
-    title = `${title} - ${defaultTitle}`;
-  }
-  if (!title) {
-    title = defaultTitle;
-  }
-  if (!description) {
-    description = defaultDescription;
-  }
+  const [finalTitle, description] = makeTitleDescription({
+    title,
+    tag,
+    useDefault,
+  });
 
-  document.title = title;
+  document.title = finalTitle;
   document
     .querySelector('meta[name="apple-mobile-web-app-title"]')
-    ?.setAttribute("content", title);
+    ?.setAttribute("content", finalTitle);
   document
     .querySelector('meta[property="og:title"]')
-    ?.setAttribute("content", title);
+    ?.setAttribute("content", finalTitle);
   document
     .querySelector('meta[name="twitter:title"]')
-    ?.setAttribute("content", title);
+    ?.setAttribute("content", finalTitle);
 
   document
     .querySelector('meta[name="description"]')

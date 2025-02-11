@@ -1,5 +1,6 @@
 import { PostingIndex, EachPostingMetadata } from "../model/postingIndex";
 
+// PostingIndex를 받아서 PostingIndex를 정렬하고, PostingIndex를 반환하는 PostingIndexController 클래스
 export class PostingIndexController {
   private postingIndex: PostingIndex;
   private categoryListCache: string[] | null;

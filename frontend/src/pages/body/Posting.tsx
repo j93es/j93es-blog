@@ -33,7 +33,6 @@ const Posting = ({ path }: { path: string }) => {
   );
   const [previousPosting, setPreviousPosting] =
     useState<EachPostingMetadata | null>(null);
-  const [description, setDescription] = useState<string | undefined>(undefined);
 
   const postingIndexController = useContext(PostingIndexControllerContext);
   const elementRef = useRef<HTMLDivElement>(null);
@@ -66,8 +65,6 @@ const Posting = ({ path }: { path: string }) => {
         setCurrentPosting(null);
         setNextPosting(null);
         setPreviousPosting(null);
-        setDescription(undefined);
-
         setIsPostingLoading(true);
 
         const response = await fetch(urlJoin(apiUrl, path));
@@ -96,21 +93,10 @@ const Posting = ({ path }: { path: string }) => {
             data.title
           );
 
-        const getDescription = () => {
-          let desc = "j93es 블로그의 포스팅입니다. ";
-          if (data.tag)
-            desc += `${data.tag.join(
-              ", "
-            )}와(과) 관련한 내용을 담고 있습니다! `;
-
-          return desc.trim();
-        };
-
         setMarkdownContent(content);
         setCurrentPosting(currentPosting);
         setNextPosting(nextPosting);
         setPreviousPosting(previousPosting);
-        setDescription(getDescription());
       } catch (error: Error | FetchError | any) {
         errorRedirect({
           statusCode: error.status || 500,
@@ -176,9 +162,7 @@ const Posting = ({ path }: { path: string }) => {
 
   return (
     <div ref={elementRef} className="posting-wrap">
-      {currentPosting?.title && description && (
-        <MetaTag title={currentPosting.title} description={description} />
-      )}
+      {currentPosting && <MetaTag {...currentPosting} />}
       {isPostingLoading ? (
         <Loader />
       ) : (

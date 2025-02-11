@@ -5,12 +5,13 @@ import fs from "fs";
 import { frontendDir, apiDir } from "../config";
 import { ForbiddenError, NotFoundError } from "../model/error";
 import { wrapAsync } from "../middleware/wrapAsync";
+import { indexHtmlController } from "../controller/index";
 
 const router = express.Router();
 
 // index.html을 제공
 router.get("/", (req: Request, res: Response) => {
-  res.sendFile("index.html", { root: frontendDir });
+  res.send(indexHtmlController.getIndexHtml("/"));
 });
 
 // error.html을 상태코드와 함께 제공
@@ -60,7 +61,10 @@ router.get(
       throw new NotFoundError("요청하신 페이지를 찾을 수 없습니다.");
     }
 
-    res.sendFile("index.html", { root: frontendDir });
+    const indexHtml = indexHtmlController.getIndexHtml(
+      path.join("/", resolvedPath.split(apiDir)[1])
+    );
+    res.send(indexHtml);
   })
 );
 
