@@ -1,10 +1,10 @@
 import cors from "cors";
 
-import { whitelist } from "../config";
+import { corsWhitelist } from "../config";
 
 // 옵션
 const corsOptions: cors.CorsOptions = {
-  origin: whitelist,
+  origin: corsWhitelist,
   optionsSuccessStatus: 200,
 };
 

@@ -1,19 +1,12 @@
 import { Request, Response, NextFunction } from "express";
-import { nanoidGenerator } from "../utils/index";
+import { eTag, lastModified } from "../config";
 
 class HeaderSetter {
-  private eTag: string;
-  private lastModified: string;
-  constructor() {
-    this.eTag = nanoidGenerator.generateId();
-    this.lastModified = new Date().toUTCString();
-  }
-
   setHeader = (req: Request, res: Response, next: NextFunction) => {
     // Set cache headers
     res.setHeader("Cache-Control", "public, max-age=86400");
-    res.setHeader("ETag", this.eTag);
-    res.setHeader("Last-Modified", this.lastModified);
+    res.setHeader("ETag", eTag);
+    res.setHeader("Last-Modified", lastModified);
 
     // Set security headers
     res.set(

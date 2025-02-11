@@ -18,7 +18,12 @@ export class IndexHtmlController {
 
   constructor() {
     const indexHtmlPath = path.join(frontendDir, "index.html");
-    const rawHtml = fs.readFileSync(indexHtmlPath, "utf8");
+    let rawHtml = "";
+    try {
+      rawHtml = fs.readFileSync(indexHtmlPath, "utf8");
+    } catch (error) {
+      console.error("Failed to read index.html file.");
+    }
     // 템플릿을 파싱하여 토큰 배열 생성 (placeholder가 여러 개여도 모두 기록됨)
     this.templateTokens = this.parseTemplate(rawHtml);
 

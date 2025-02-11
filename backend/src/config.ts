@@ -1,4 +1,5 @@
 import path from "path";
+import { nanoidGenerator } from "./utils/index";
 
 export const PORT = process.env.PORT || 8081;
 
@@ -10,7 +11,7 @@ export const titlePlaceholder = process.env.TITLE_PLACEHOLDER || "{{title}}";
 export const descriptionPlaceholder =
   process.env.DESCRIPTION_PLACEHOLDER || "{{description}}";
 
-export const whitelist: string[] = JSON.parse(
+export const corsWhitelist: string[] = JSON.parse(
   process.env.CORS_WHITE_LIST || JSON.stringify(["http://localhost:3000"])
 );
 
@@ -25,3 +26,6 @@ export const frontendDir = path.join(publicDir, "/frontend/");
 
 export const ipV4RemainIndex = 2;
 export const ipV6RemainIndex = 2;
+
+export const eTag = `W/"${nanoidGenerator.generateId()}"`;
+export const lastModified = new Date().toUTCString();
