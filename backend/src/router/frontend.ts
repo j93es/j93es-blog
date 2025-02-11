@@ -32,13 +32,7 @@ router.get("/error-page/error.html", (req: Request, res: Response) => {
 });
 
 // logo, favicon, manifest.json 등의 정적 파일을 제공
-router.use(
-  express.static(frontendDir, {
-    etag: false,
-    index: false,
-    maxAge: "1d",
-  })
-);
+router.use(express.static(frontendDir));
 
 // apiDir을 root로 url의 path에 해당하는 파일이 있는지 선제적으로 확인
 // 없다면 에러 페이지로 리디렉션

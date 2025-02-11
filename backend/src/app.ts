@@ -8,6 +8,7 @@ import {
   requestWriter,
   customLogger,
   errorHandlers,
+  headerSetter,
 } from "./middleware/index";
 import frontendRouter from "./router/frontend";
 import apiRouter from "./router/api";
@@ -19,6 +20,7 @@ app.set("port", PORT || 8000);
 app.disable("x-powered-by");
 
 app.use([
+  headerSetter.setHeader,
   corsMiddleware,
   rateLimiter.makeLimit(60, 200),
   express.json({ limit: "1mb" }),

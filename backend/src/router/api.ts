@@ -10,12 +10,6 @@ router.get("/index/", (req: Request, res: Response) => {
   res.json(metadata);
 });
 
-router.use(
-  express.static(apiDir, {
-    etag: false,
-    index: false,
-    maxAge: "1d",
-  })
-);
+router.use(express.static(apiDir));
 
 export default router;
