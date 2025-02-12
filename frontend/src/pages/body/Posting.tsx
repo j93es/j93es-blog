@@ -75,10 +75,7 @@ const Posting = ({ path }: { path: string }) => {
         const markdownText = await response.text();
         const { data, content } = parseMarkdown.get(markdownText);
         const currentPosting = {
-          title: data.title,
-          date: data.date,
-          tag: data.tag,
-          category: data.category,
+          ...data,
         } as EachPostingMetadata;
         const nextPosting =
           postingIndexController &&
@@ -174,6 +171,10 @@ const Posting = ({ path }: { path: string }) => {
             </p>
             <p className="posting-date">
               {currentPosting?.date && `Date | ${currentPosting.date}`}
+            </p>
+            <p className="posting-summary">
+              {currentPosting?.description &&
+                `Summary | ${currentPosting.description}`}
             </p>
           </div>
           <div className="posting-content">

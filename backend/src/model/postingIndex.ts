@@ -4,6 +4,7 @@ export interface EachPostingMetadata {
   tag: string[];
   category: string;
   path: string;
+  description: string;
 }
 
 export interface PostingCategory {

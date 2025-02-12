@@ -3,6 +3,7 @@ title: 창의적 종합설계 경진대회
 date:
 tag: [Embedded, Frontend, Backend]
 category: _dev
+description:
 ---
 
 ## 들어가며

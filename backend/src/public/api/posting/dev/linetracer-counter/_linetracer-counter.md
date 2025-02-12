@@ -3,6 +3,7 @@ title: 라인트레이서 계수기 소프트웨어
 date:
 tag: [Embedded, Frontend, Backend]
 category: _dev
+description:
 ---
 
 ## 들어가며

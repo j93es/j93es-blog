@@ -3,6 +3,7 @@ title: "State Machine"
 date: 2025-01-12 20:49
 tag: [Embedded, JavaScript]
 category: dev
+description: "상태를 관리하기 위한 설계 방식 중 하나인 State Machine이, 임베디드/JavaScript에서, 어떻게 활용되는지 살펴보겠습니다."
 ---
 
 ## 목차
@@ -19,7 +20,7 @@ category: dev
 
 ## 1. State Machine이란?
 
-본론에 앞서 State Machine에 대한 간단한 설명이 필요할 것 같습니다. State Machine은 상태를 관리하는 하나의 설계 방식입니다.
+본론에 앞서 State Machine에 대한 간단한 설명이 필요할 것 같습니다. State Machine은 상태를 관리하기 위한 설계 방식 중 하나입니다.
 
 그런데 상태 관리란 정확히 무엇을 의미할까요? 예를 들어보겠습니다. 저는 지금 퇴근길에 있다고 가정해보겠습니다. 회사에서 집까지는 하나의 횡단보도가 있습니다. 그렇다면 저의 퇴근길은 다음의 상태들로 나타내볼 수 있을 것입니다.
 

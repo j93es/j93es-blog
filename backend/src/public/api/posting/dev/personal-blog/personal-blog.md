@@ -3,6 +3,7 @@ title: 블로그 디테일 챙기기
 date:
 tag: [Frontend, Backend]
 category: _dev
+description:
 ---
 
 ## 목차

@@ -43,6 +43,7 @@ export class FilesMetadataController {
             tag: data.tag,
             category: data.category,
             path: path.join("/", fullPath.split(apiDir)[1]),
+            description: data.description,
           });
         }
       });
@@ -61,13 +62,10 @@ export class FilesMetadataController {
   getMarkdownFilesMetadata = (): PostingIndex => {
     if (this.postingIndex === null) {
       const rawPostingIndex = this.makeRawPostingIndex();
-      this.postingIndex = new PostingIndexController(
-        rawPostingIndex
-      ).getPostingIndex();
-
-      return this.postingIndex as PostingIndex;
+      this.postingIndex = rawPostingIndex;
+      return JSON.parse(JSON.stringify(rawPostingIndex));
     }
 
-    return this.postingIndex;
+    return JSON.parse(JSON.stringify(this.postingIndex));
   };
 }

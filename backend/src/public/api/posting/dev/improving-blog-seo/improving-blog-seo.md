@@ -3,6 +3,7 @@ title: 블로그 SEO 개선
 date:
 tag: [Frontend]
 category: _dev
+description:
 ---
 
 - meta tag(title, description)
