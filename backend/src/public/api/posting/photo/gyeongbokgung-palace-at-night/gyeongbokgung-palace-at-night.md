@@ -16,16 +16,16 @@ description: "경복궁 야간 개장에서 촬영한 사진을 포스팅합니�
 
 경복궁은 그 우아함과 웅장함을 뽑냅니다. 특히 밤에 적절한 조명 아래에서의 경복궁은 감탄을 자아냅니다. 그리고 낮에는 여백의 미였던 빈 공간이, 밤에는 시야에서 벗어나고 경복궁을 돋보이게 하는 요소로 작용합니다. 기회가 된다면, 두 시간대의 경복궁에서 각기 다른 멋을 온전히 감상하시길 추천드립니다.
 
-<img src="https://j93.es/api/posting/photo/gyeongbokgung-palace-at-night/img/밤의-경복궁-1.jpg" alt="밤의 경복궁-1" width="660" height="440">
+<img src="/api/posting/photo/gyeongbokgung-palace-at-night/img/밤의-경복궁-1.jpg" alt="밤의 경복궁-1" width="660" height="440">
 
-<img src="https://j93.es/api/posting/photo/gyeongbokgung-palace-at-night/img/밤의-경복궁-2.jpg" alt="밤의 경복궁-2" width="660" height="440" loading="lazy">
+<img src="/api/posting/photo/gyeongbokgung-palace-at-night/img/밤의-경복궁-2.jpg" alt="밤의 경복궁-2" width="660" height="440" loading="lazy">
 
-<img src="https://j93.es/api/posting/photo/gyeongbokgung-palace-at-night/img/밤의-경복궁-3.jpg" alt="밤의 경복궁-3" width="660" height="440" loading="lazy">
+<img src="/api/posting/photo/gyeongbokgung-palace-at-night/img/밤의-경복궁-3.jpg" alt="밤의 경복궁-3" width="660" height="440" loading="lazy">
 
-<img src="https://j93.es/api/posting/photo/gyeongbokgung-palace-at-night/img/밤의-경복궁-4.jpg" alt="밤의 경복궁-4" width="660" height="440" loading="lazy">
+<img src="/api/posting/photo/gyeongbokgung-palace-at-night/img/밤의-경복궁-4.jpg" alt="밤의 경복궁-4" width="660" height="440" loading="lazy">
 
-<img src="https://j93.es/api/posting/photo/gyeongbokgung-palace-at-night/img/밤의-경복궁-5.jpg" alt="밤의 경복궁-5" width="660" height="440" loading="lazy">
+<img src="/api/posting/photo/gyeongbokgung-palace-at-night/img/밤의-경복궁-5.jpg" alt="밤의 경복궁-5" width="660" height="440" loading="lazy">
 
-<img src="https://j93.es/api/posting/photo/gyeongbokgung-palace-at-night/img/밤의-경복궁-6.jpg" alt="밤의 경복궁-6" width="660" height="440" loading="lazy">
+<img src="/api/posting/photo/gyeongbokgung-palace-at-night/img/밤의-경복궁-6.jpg" alt="밤의 경복궁-6" width="660" height="440" loading="lazy">
 
-<img src="https://j93.es/api/posting/photo/gyeongbokgung-palace-at-night/img/밤의-경복궁-7.jpg" alt="밤의 경복궁-7" width="660" height="440" loading="lazy">
+<img src="/api/posting/photo/gyeongbokgung-palace-at-night/img/밤의-경복궁-7.jpg" alt="밤의 경복궁-7" width="660" height="440" loading="lazy">

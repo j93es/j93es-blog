@@ -20,26 +20,26 @@ description: "싱가포르 여행에서 촬영한 사진을 포스팅합니다. 
 
 철골 나무의 불빛을 통하여 관광객을 유입하고, 모노레일을 통하여 관광객에게 색다른 경험을 제공하는, 아주 잘 설계된 공간인 것 같습니다.
 
-<img src="https://j93.es/api/posting/photo/singapore-2/img/1-가든스더베이1.jpg" alt="1-가든스더베이1" width="440" height="660">
+<img src="/api/posting/photo/singapore-2/img/1-가든스더베이1.jpg" alt="1-가든스더베이1" width="440" height="660">
 
-<img src="https://j93.es/api/posting/photo/singapore-2/img/1-가든스더베이2.jpg" alt="1-가든스더베이2" width="440" height="660" loading="lazy">
+<img src="/api/posting/photo/singapore-2/img/1-가든스더베이2.jpg" alt="1-가든스더베이2" width="440" height="660" loading="lazy">
 
-<img src="https://j93.es/api/posting/photo/singapore-2/img/1-가든스더베이3.jpg" alt="1-가든스더베이3" width="440" height="660" loading="lazy">
+<img src="/api/posting/photo/singapore-2/img/1-가든스더베이3.jpg" alt="1-가든스더베이3" width="440" height="660" loading="lazy">
 
-<img src="https://j93.es/api/posting/photo/singapore-2/img/1-가든스더베이4.jpg" alt="1-가든스더베이4" width="660" height="440" loading="lazy">
+<img src="/api/posting/photo/singapore-2/img/1-가든스더베이4.jpg" alt="1-가든스더베이4" width="660" height="440" loading="lazy">
 
-<img src="https://j93.es/api/posting/photo/singapore-2/img/1-가든스더베이5.jpg" alt="1-가든스더베이5" width="440" height="660" loading="lazy">
+<img src="/api/posting/photo/singapore-2/img/1-가든스더베이5.jpg" alt="1-가든스더베이5" width="440" height="660" loading="lazy">
 
-<img src="https://j93.es/api/posting/photo/singapore-2/img/1-가든스더베이6.jpg" alt="1-가든스더베이6" width="660" height="440" loading="lazy">
+<img src="/api/posting/photo/singapore-2/img/1-가든스더베이6.jpg" alt="1-가든스더베이6" width="660" height="440" loading="lazy">
 
 ## 유니버셜 스튜디오
 
 말해 뭐하겠습니까? 동화 속 세계에 빠진듯한 느낌을 주는 유니버셜 스튜디오입니다.
 
-<img src="https://j93.es/api/posting/photo/singapore-2/img/2-유니버셜스튜디오1.jpg" alt="2-유니버셜스튜디오1" width="660" height="440" loading="lazy">
+<img src="/api/posting/photo/singapore-2/img/2-유니버셜스튜디오1.jpg" alt="2-유니버셜스튜디오1" width="660" height="440" loading="lazy">
 
-<img src="https://j93.es/api/posting/photo/singapore-2/img/2-유니버셜스튜디오2.jpg" alt="2-유니버셜스튜디오2" width="440" height="660" loading="lazy">
+<img src="/api/posting/photo/singapore-2/img/2-유니버셜스튜디오2.jpg" alt="2-유니버셜스튜디오2" width="440" height="660" loading="lazy">
 
-<img src="https://j93.es/api/posting/photo/singapore-2/img/2-유니버셜스튜디오3.jpg" alt="2-유니버셜스튜디오3" width="660" height="440" loading="lazy">
+<img src="/api/posting/photo/singapore-2/img/2-유니버셜스튜디오3.jpg" alt="2-유니버셜스튜디오3" width="660" height="440" loading="lazy">
 
-<img src="https://j93.es/api/posting/photo/singapore-2/img/2-유니버셜스튜디오4.jpg" alt="2-유니버셜스튜디오4" width="660" height="440" loading="lazy">
+<img src="/api/posting/photo/singapore-2/img/2-유니버셜스튜디오4.jpg" alt="2-유니버셜스튜디오4" width="660" height="440" loading="lazy">

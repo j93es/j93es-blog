@@ -88,7 +88,7 @@ PID 제어는 피드백 제어의 일종입니다. 이때 피드백 제어란, �
 
 PWM은 펄스 폭 변조로도 불립니다. 이름 그대로, 펄스 폭을 조절하여 신호를 전달합니다. Duty Cycle이 높을수록, 펄스 폭은 늘어납니다. 아래 사진을 통하여 살펴봅시다.
 
-<img src="https://j93.es/api/posting/dev/dc-linetracer/img/pwm-with-duty-cycle.jpg" alt="pwm-with-duty-cycle" width="400" height="438" loading="lazy">
+<img src="/api/posting/dev/dc-linetracer/img/pwm-with-duty-cycle.jpg" alt="pwm-with-duty-cycle" width="400" height="438" loading="lazy">
 
 라인트레이서의 경우 Duty Cycle이 높을수록, 높은 전압을 인가합니다. 이때, PID 제어를 통하여 계산된 전압을 바탕으로, 어떻게 펄스 폭을 변경해야할까요? [계산된 전압 / 실제 배터리 전압]의 값으로 Duty Cycle을 변경하면 됩니다. 다음으로 PWM을 생성하는 역할을 할 수 있는 10번/11번 타이머로, 변경된 Duty Cycle을 반영하여, 펄스 파를 모터 드라이버에게 전송합니다. 그렇다면 모터 드라이버는 전달된 정보를 바탕으로, [배터리에서 공급받는 전압 \* Duty Cycle]로 모터를 구동하게 됩니다.
 
@@ -128,7 +128,7 @@ PWM 신호는 타이머 10번/11번을 통하여 생성됩니다. 이때 타이�
 
 STM32CubeIDE에서는 다음과 같이 interrupt들의 Preemption Priority(선점 우선순위)와 Subpriority(서브 우선순위)를 설정할 수 있습니다.
 
-<img src="https://j93.es/api/posting/dev/dc-linetracer/img/stm32cubeide-interrupt-priority-setting.jpg" alt="stm32cubeide-interrupt-priority-setting" width="600" height="430" loading="lazy">
+<img src="/api/posting/dev/dc-linetracer/img/stm32cubeide-interrupt-priority-setting.jpg" alt="stm32cubeide-interrupt-priority-setting" width="600" height="430" loading="lazy">
 
 Preemption Priority(선점 우선순위)는 우선 순위가 낮은 interrupt가 실행중이더라도, 우선 순위가 높은 다른 interrupt에 의해 선점(중단)되는 것을 허용합니다. 그리고 우선 순위가 높은 interrupt가 종료되면, 우선 순위가 낮은 interrupt는 중단된 부분부터 계속됩니다.
 
