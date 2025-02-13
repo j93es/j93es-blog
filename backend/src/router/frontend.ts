@@ -43,7 +43,7 @@ router.get(
   "*",
   wrapAsync(async (req: Request, res: Response, next: NextFunction) => {
     const requestedPath = path.join(apiDir, req.path);
-    const resolvedPath = path.resolve(requestedPath);
+    const resolvedPath = path.normalize(requestedPath);
 
     if (!resolvedPath.startsWith(apiDir)) {
       throw new ForbiddenError("잘못된 경로로 접근하셨습니다.");
@@ -55,9 +55,7 @@ router.get(
       throw new NotFoundError("요청하신 페이지를 찾을 수 없습니다.");
     }
 
-    const indexHtml = indexHtmlController.getIndexHtml(
-      path.join("/", resolvedPath.split(apiDir)[1])
-    );
+    const indexHtml = indexHtmlController.getIndexHtml(req.path);
     res.send(indexHtml);
   })
 );

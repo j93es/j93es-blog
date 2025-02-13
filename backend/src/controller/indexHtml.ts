@@ -85,6 +85,9 @@ export class IndexHtmlController {
    */
   getIndexHtml(urlPath: string): string {
     // URL에 해당하는 동적 데이터 [title, description] 가져오기
+    urlPath = path.join("/", urlPath);
+    urlPath = path.normalize(urlPath);
+
     const td = this.titleDescription[urlPath];
 
     // 동적 데이터를 객체 형태로 매핑 (필요에 따라 다른 placeholder도 추가 가능)

@@ -2,7 +2,6 @@ import fs from "fs";
 import path from "path";
 import { apiDir, showingCategoryList } from "../config";
 import { PostingIndex } from "../model/postingIndex";
-import { PostingIndexController } from "./index";
 import { parseMarkdown } from "../utils/index";
 
 // constructor에서 directoryPath를 받아서 사용하는데, 이는 apiDir로부터의 상대경로이다.
