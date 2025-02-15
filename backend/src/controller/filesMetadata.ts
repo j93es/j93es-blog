@@ -4,8 +4,9 @@ import { apiDir, showingCategoryList } from "../config";
 import { PostingIndex } from "../model/postingIndex";
 import { parseMarkdown } from "../utils/index";
 
-// constructor에서 directoryPath를 받아서 사용하는데, 이는 apiDir로부터의 상대경로이다.
-// makeRawPostingIndex 메서드는 apiDir로부터의 상대경로를 받아서 PostingIndex를 만들어 반환한다.
+/* 실제 파일 시스템에서 .md 파일을 읽고, 메타데이터를 생성해주는 class이다. */
+// constructor에서 directoryPath는 apiDir로부터의 상대경로를 받는다.
+// 즉, {apiDir}/{directoryPath}에 있는 .md 파일들을 읽어서 메타데이터를 생성해준다.
 export class FilesMetadataController {
   private postingIndex: PostingIndex | null = null;
   private directoryPath: string;

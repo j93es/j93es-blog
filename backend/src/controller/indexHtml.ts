@@ -1,8 +1,13 @@
 import fs from "fs";
 import path from "path";
-import { frontendDir, defaultTitle, defaultDescription } from "../config";
+import {
+  apiDir,
+  frontendDir,
+  defaultTitle,
+  defaultDescription,
+} from "../config";
 import { postingIndexController } from "../controller/index";
-import { makeTitleDescription } from "../utils/index";
+import { makeTitleDescription, parseMarkdown } from "../utils/index";
 
 // 각 토큰은 static 문자열이거나 placeholder 이름을 가집니다.
 interface TemplateToken {
@@ -10,6 +15,7 @@ interface TemplateToken {
   value: string;
 }
 
+/* SEO를 위하여 index.html의 title, description 같은 항목을 요청의 path에 따라 동적으로 생성하여 반환하는 class이다. */
 export class IndexHtmlController {
   // 템플릿을 미리 파싱하여 토큰 배열로 저장
   private templateTokens: TemplateToken[] = [];
@@ -17,6 +23,12 @@ export class IndexHtmlController {
   private titleDescription: { [key: string]: [string, string] } = {};
 
   constructor() {
+    this.makeTemplateTokens();
+    this.makePostingTitleDescription();
+    this.makePolicyTitleDescription();
+  }
+
+  private makeTemplateTokens() {
     const indexHtmlPath = path.join(frontendDir, "index.html");
     let rawHtml = "";
     try {
@@ -26,7 +38,9 @@ export class IndexHtmlController {
     }
     // 템플릿을 파싱하여 토큰 배열 생성 (placeholder가 여러 개여도 모두 기록됨)
     this.templateTokens = this.parseTemplate(rawHtml);
+  }
 
+  private makePostingTitleDescription() {
     // 각 게시글에 대해 title과 description 미리 생성하여 캐싱
     postingIndexController.getCategoryList().forEach((category: string) => {
       const postingList = postingIndexController.getPostingList(category);
@@ -38,6 +52,26 @@ export class IndexHtmlController {
     });
     // 루트 경로에는 기본 값 사용
     this.titleDescription["/"] = makeTitleDescription({ useDefault: true });
+  }
+
+  private makePolicyTitleDescription() {
+    // policy 폴더 내의 모든 markdown 파일을 파싱하여 title과 description 캐싱
+    const policyDir = path.join(apiDir, "policy");
+    fs.readdirSync(policyDir).forEach((filename) => {
+      if (filename.endsWith(".md")) {
+        const filePath = path.join(policyDir, filename);
+        try {
+          const md = fs.readFileSync(filePath, "utf8");
+          const policyMetadata = parseMarkdown.getData(md);
+          const targetPath = path.join("/", filePath.split(apiDir)[1]);
+          this.titleDescription[targetPath] = makeTitleDescription({
+            ...policyMetadata,
+          });
+        } catch (error) {
+          console.error(`Failed to read ${filename} file.`);
+        }
+      }
+    });
   }
 
   /**
