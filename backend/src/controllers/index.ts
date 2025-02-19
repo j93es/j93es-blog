@@ -1,11 +1,16 @@
 import { PostingIndexController } from "./postingIndex";
 import { FilesMetadataController } from "./filesMetadata";
 import { IndexHtmlController } from "./indexHtml";
+import { metadataListToPostingIndex } from "../adaptors/metadataListToPostingIndex";
 
-const filesMetadataController = new FilesMetadataController("/posting/");
-const postingMetadata = filesMetadataController.getMarkdownFilesMetadata();
+const fsPolicyMetadataController = new FilesMetadataController("/policy/");
+const policyMetadataList = fsPolicyMetadataController.getMetadataList();
 
-const postingIndexController = new PostingIndexController(postingMetadata);
+const fsPostingMetadataController = new FilesMetadataController("/posting/");
+const postingMetadataList = fsPostingMetadataController.getMetadataList();
+const postingindex = metadataListToPostingIndex(postingMetadataList);
+
+const postingIndexController = new PostingIndexController(postingindex);
 const indexHtmlController = new IndexHtmlController();
 
-export { postingIndexController, indexHtmlController };
+export { postingIndexController, indexHtmlController, policyMetadataList };

@@ -1,12 +1,10 @@
 import fs from "fs";
 import path from "path";
+import { frontendDir, defaultTitle, defaultDescription } from "../config";
 import {
-  apiDir,
-  frontendDir,
-  defaultTitle,
-  defaultDescription,
-} from "../config";
-import { postingIndexController } from "../controllers/index";
+  postingIndexController,
+  policyMetadataList,
+} from "../controllers/index";
 import { makeTitleDescription, parseMarkdown } from "../utils/index";
 
 // 각 토큰은 static 문자열이거나 placeholder 이름을 가집니다.
@@ -24,8 +22,7 @@ export class IndexHtmlController {
 
   constructor() {
     this.makeTemplateTokens();
-    this.makePostingTitleDescription();
-    this.makePolicyTitleDescription();
+    this.makeTokenVlaue();
   }
 
   private makeTemplateTokens() {
@@ -40,11 +37,11 @@ export class IndexHtmlController {
     this.templateTokens = this.parseTemplate(rawHtml);
   }
 
-  private makePostingTitleDescription() {
+  private makeTokenVlaue() {
     // 루트 경로에는 기본 값 사용
     this.titleDescription["/"] = makeTitleDescription({ useDefault: true });
 
-    // 각 게시글에 대해 title과 description 미리 생성하여 캐싱
+    // 각 posting path 별로 token의 value를 만들어 저장
     postingIndexController.getCategoryList().forEach((category: string) => {
       const postingList = postingIndexController.getPostingList(category);
       postingList.forEach((posting) => {
@@ -53,30 +50,13 @@ export class IndexHtmlController {
         });
       });
     });
-  }
 
-  private makePolicyTitleDescription() {
-    // policy 폴더 내의 모든 markdown 파일을 파싱하여 title과 description 캐싱
-    const readDirectory = (dirPath: string) => {
-      const files = fs.readdirSync(dirPath);
-
-      files.forEach((file) => {
-        const fullPath = path.join(dirPath, file);
-
-        if (fs.lstatSync(fullPath).isDirectory()) {
-          readDirectory(fullPath);
-        } else if (path.extname(fullPath) === ".md") {
-          const md = fs.readFileSync(fullPath, "utf8");
-          const policyMetadata = parseMarkdown.getData(md);
-          const targetPath = path.join("/", fullPath.split(apiDir)[1]);
-          this.titleDescription[targetPath] = makeTitleDescription({
-            ...policyMetadata,
-          });
-        }
+    // 각 policy path 별로 token의 value를 만들어 저장
+    policyMetadataList.forEach((metadata) => {
+      this.titleDescription[metadata.path] = makeTitleDescription({
+        ...metadata,
       });
-    };
-
-    readDirectory(path.join(apiDir, "policy"));
+    });
   }
 
   /**

@@ -191,6 +191,10 @@ useEffect(() => {
 
 - soft 404를 해결하기 위하여 별의 별짓을 다했다. 결론적으로 frontend 파일들을 express에서 서빙하며, url에 대하여 선제적으로 파일이 있는지 검사하여, 없다면 에러페이지로 리디렉션하고, 있다면 index.html을 반환하여 정상적으로 동작하게 하였다.
 
-#### seo optimize
+#### 2025-2-5 seo optimize
 
 - index.html을 템플릿 엔진처럼 변환할 수 있도록 만들었다. 즉, placeholder를 넣어두고 토큰화하여, 해당 부분을 교체하는 방법으로 진행하였다. 이제 각 url 별로 알맞는 title과 description이 출력된다. 그럼에도 불구하고 나중에 ssg로 변경할 예정이다.
+
+#### 2025-2-20 refactor
+
+- backend의 filesMetadata에 postingIndex 로직이 엮여있었다. 예를들어 filesMetadata의 메서드 중 일부는 postingIndex의 모델로 반환값을 전송했다. 그런데 단순한 리스트 형태로 정보를 전달받을 일이 생겼다. 따라서 filesMetadata는 EachPosting[] 형태로 정보를 전달하고, adaptor가 EachPosting[]를 postingIndex로 변환시키도록 하였다.
