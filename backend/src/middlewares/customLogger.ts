@@ -44,7 +44,7 @@ export class CustomLogger {
     )} - - [${this.formatDateToCustomString(new Date())}] ${this.makeSimpleMsg(
       head,
       message
-    )} - ${req.method} ${req.url} - ${req.headers["user-agent"]}`;
+    )} - ${req.method} ${req.originalUrl} - ${req.headers["user-agent"]}`;
   };
 
   requestLogger = (req: Request, res: Response, next: NextFunction) => {

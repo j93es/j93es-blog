@@ -58,5 +58,5 @@ deploy-backend:update-force build-backend stop-pm2 start-pm2 save-pm2 restart-ng
 	@echo "Backend deployment completed."
 
 # 6. Full deployment: Update, build, and restart services
-deploy: update build-frontend build-backend stop-pm2 start-pm2 save-pm2 restart-nginx
+deploy: update build-backend build-frontend stop-pm2 start-pm2 save-pm2 restart-nginx
 	@echo "Deployment completed."

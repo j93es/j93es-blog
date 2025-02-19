@@ -1,7 +1,7 @@
 import { PostingIndexController } from "./postingIndex";
 import { FilesMetadataController } from "./filesMetadata";
 import { IndexHtmlController } from "./indexHtml";
-import { metadataListToPostingIndex } from "../adaptors/metadataListToPostingIndex";
+import { metadataListToPostingIndex } from "../adapters/metadataListToPostingIndex";
 
 const fsPolicyMetadataController = new FilesMetadataController("/policy/");
 const policyMetadataList = fsPolicyMetadataController.getMetadataList();
