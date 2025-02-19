@@ -9,7 +9,7 @@ import reportWebVitals from "reportWebVitals";
 
 // Local
 import App from "App";
-import useGlobalErrorHandler from "customHook/useGlobalErrorHandler";
+import useGlobalErrorHandler from "customHooks/useGlobalErrorHandler";
 import ErrorBoundary from "components/ErrorBoundary";
 
 import "index.css";

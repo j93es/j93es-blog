@@ -7,9 +7,9 @@ import urlJoin from "url-join";
 
 // Local
 import { apiUrl } from "config";
-import { EachPostingMetadata } from "model/postingIndex";
-import { PostingIndexController } from "controller/index";
-import { FetchError } from "model/errorType";
+import { EachPostingMetadata } from "models/postingIndex";
+import { PostingIndexController } from "controllers/index";
+import { FetchError } from "models/errorType";
 import Loader from "components/Loader";
 import ErrorRedirect from "components/ErrorRedirect";
 import PostingList from "pages/body/PostingList";

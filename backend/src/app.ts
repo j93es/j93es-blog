@@ -9,9 +9,9 @@ import {
   customLogger,
   errorHandlers,
   headerSetter,
-} from "./middleware/index";
-import frontendRouter from "./router/frontend";
-import apiRouter from "./router/api";
+} from "./middlewares/index";
+import frontendRouter from "./routes/frontend";
+import apiRouter from "./routes/api";
 
 const app: Application = express();
 

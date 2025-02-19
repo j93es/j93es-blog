@@ -7,7 +7,7 @@ import { useContext } from "react";
 import MetaTag from "components/MetaTag";
 import { PostingIndexControllerContext } from "pages/body/Body";
 import { Link } from "react-router-dom";
-import { EachPostingMetadata } from "model/postingIndex";
+import { EachPostingMetadata } from "models/postingIndex";
 import "pages/body/PostingList.css";
 
 const PostingList = () => {

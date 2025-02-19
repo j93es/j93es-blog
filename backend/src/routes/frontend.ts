@@ -3,9 +3,9 @@ import path from "path";
 import fs from "fs";
 
 import { frontendDir, apiDir } from "../config";
-import { ForbiddenError, NotFoundError } from "../model/error";
-import { wrapAsync } from "../middleware/wrapAsync";
-import { indexHtmlController } from "../controller/index";
+import { ForbiddenError, NotFoundError } from "../models/error";
+import { wrapAsync } from "../middlewares/wrapAsync";
+import { indexHtmlController } from "../controllers/index";
 
 const router = express.Router();
 

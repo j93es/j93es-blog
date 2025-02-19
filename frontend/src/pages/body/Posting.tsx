@@ -12,14 +12,14 @@ import "highlight.js/styles/github-dark-dimmed.css";
 
 // Local
 import { apiUrl } from "config";
-import { EachPostingMetadata } from "model/postingIndex";
+import { EachPostingMetadata } from "models/postingIndex";
 import { parseMarkdown } from "utils/index";
 import { PostingIndexControllerContext } from "pages/body/Body";
 import Loader from "components/Loader";
 import CustomPre from "components/CustomPre";
 import CustomImage from "components/CustomImage";
 import MetaTag from "components/MetaTag";
-import { FetchError } from "model/errorType";
+import { FetchError } from "models/errorType";
 import { errorRedirect } from "utils/index";
 import "pages/body/Posting.css";
 

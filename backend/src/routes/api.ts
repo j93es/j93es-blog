@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
 
-import { postingIndexController } from "../controller/index";
+import { postingIndexController } from "../controllers/index";
 import { apiDir } from "../config";
 
 const router = express.Router();

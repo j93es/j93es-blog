@@ -6,7 +6,7 @@ import {
   defaultTitle,
   defaultDescription,
 } from "../config";
-import { postingIndexController } from "../controller/index";
+import { postingIndexController } from "../controllers/index";
 import { makeTitleDescription, parseMarkdown } from "../utils/index";
 
 // 각 토큰은 static 문자열이거나 placeholder 이름을 가집니다.
@@ -41,6 +41,9 @@ export class IndexHtmlController {
   }
 
   private makePostingTitleDescription() {
+    // 루트 경로에는 기본 값 사용
+    this.titleDescription["/"] = makeTitleDescription({ useDefault: true });
+
     // 각 게시글에 대해 title과 description 미리 생성하여 캐싱
     postingIndexController.getCategoryList().forEach((category: string) => {
       const postingList = postingIndexController.getPostingList(category);
@@ -50,28 +53,30 @@ export class IndexHtmlController {
         });
       });
     });
-    // 루트 경로에는 기본 값 사용
-    this.titleDescription["/"] = makeTitleDescription({ useDefault: true });
   }
 
   private makePolicyTitleDescription() {
     // policy 폴더 내의 모든 markdown 파일을 파싱하여 title과 description 캐싱
-    const policyDir = path.join(apiDir, "policy");
-    fs.readdirSync(policyDir).forEach((filename) => {
-      if (filename.endsWith(".md")) {
-        const filePath = path.join(policyDir, filename);
-        try {
-          const md = fs.readFileSync(filePath, "utf8");
+    const readDirectory = (dirPath: string) => {
+      const files = fs.readdirSync(dirPath);
+
+      files.forEach((file) => {
+        const fullPath = path.join(dirPath, file);
+
+        if (fs.lstatSync(fullPath).isDirectory()) {
+          readDirectory(fullPath);
+        } else if (path.extname(fullPath) === ".md") {
+          const md = fs.readFileSync(fullPath, "utf8");
           const policyMetadata = parseMarkdown.getData(md);
-          const targetPath = path.join("/", filePath.split(apiDir)[1]);
+          const targetPath = path.join("/", fullPath.split(apiDir)[1]);
           this.titleDescription[targetPath] = makeTitleDescription({
             ...policyMetadata,
           });
-        } catch (error) {
-          console.error(`Failed to read ${filename} file.`);
         }
-      }
-    });
+      });
+    };
+
+    readDirectory(path.join(apiDir, "policy"));
   }
 
   /**

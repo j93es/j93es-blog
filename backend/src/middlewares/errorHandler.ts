@@ -4,7 +4,7 @@ import {
   NotFoundError,
   ForbiddenError,
   TooManyRequestsError,
-} from "../model/error";
+} from "../models/error";
 import { customLogger } from "./index";
 
 class ErrorHandler {

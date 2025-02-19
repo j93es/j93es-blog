@@ -1,10 +1,7 @@
-// External
+import { PostingIndex, EachPostingMetadata } from "../models/postingIndex";
 
-// Local
-
-import { PostingIndex, EachPostingMetadata } from "../model/postingIndex";
-
-class PostingIndexController {
+/* PostingIndex를 받아서 PostingIndex를 정렬하고, PostingIndex의 정보를 편리하게 가져올 수 있도록 하는 class이다. */
+export class PostingIndexController {
   private postingIndex: PostingIndex;
   private categoryListCache: string[] | null;
 
@@ -100,5 +97,3 @@ class PostingIndexController {
     return postingList[index + 1];
   };
 }
-
-export { PostingIndexController };
