@@ -14,7 +14,9 @@
       content="%REACT_APP_TITLE_PLACEHOLDER%"
     />
     <meta name="twitter:title" content="%REACT_APP_TITLE_PLACEHOLDER%" />
-    <meta class="daum-wm-title" content="%REACT_APP_TITLE_PLACEHOLDER%" />
+    <template>
+      <div class="daum-wm-title">%REACT_APP_TITLE_PLACEHOLDER%</div>
+    </template>
     <!-- title end -->
 
     <!-- description start -->
@@ -27,10 +29,9 @@
       name="twitter:description"
       content="%REACT_APP_DESCRIPTION_PLACEHOLDER%"
     />
-    <meta
-      class="daum-wm-content"
-      content="%REACT_APP_DESCRIPTION_PLACEHOLDER%"
-    />
+    <template>
+      <div class="daum-wm-content">%REACT_APP_DESCRIPTION_PLACEHOLDER%</div>
+    </template>
     <!-- description end -->
 
     <!-- icon start -->

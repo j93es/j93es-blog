@@ -10,7 +10,6 @@ ENV_DIR=/srv/j93es-blog/env
 # Targets
 .PHONY: all update update-force build-frontend build-backend deploy deploy-frontend deploy-backend restart-nginx start-pm2 stop-pm2
 
-# 1. Clone or update the repository
 update:
 	if [ ! -d "$(PROJECT_DIR)" ]; then \
 		sudo git clone $(REPO_URL) $(PROJECT_DIR); \
@@ -28,16 +27,12 @@ update-force:
 		cd $(PROJECT_DIR) && sudo git pull; \
 	fi
 
-# 2. Install dependencies and build frontend
 build-frontend:
 	sudo cp $(ENV_DIR)/frontend $(FRONTEND_DIR)/.env && cd $(FRONTEND_DIR) && sudo npm install && sudo npm run build && sudo cp -r $(FRONTEND_DIR)/build/* $(BACKEND_DIR)/src/public/ && sudo mkdir -p $(BACKEND_DIR)/src/public/frontend/ && sudo cp -r $(FRONTEND_DIR)/build/* $(BACKEND_DIR)/src/public/frontend/
 
-
-# 3. Install dependencies for backend and start with PM2
 build-backend:
 	sudo cp $(ENV_DIR)/backend $(BACKEND_DIR)/.env && cd $(BACKEND_DIR) && sudo npm install && sudo npm run build
 
-# 4. Stop and restart backend service with PM2
 stop-pm2:
 	sudo pm2 stop j93es-blog-backend || true && sudo pm2 delete j93es-blog-backend || true
 
@@ -47,7 +42,6 @@ start-pm2:
 save-pm2:
 	sudo pm2 save
 
-# 5. Reload Nginx to apply new configuration
 restart-nginx:
 	sudo systemctl reload nginx
 
@@ -57,6 +51,5 @@ deploy-frontend: update-force build-frontend restart-nginx
 deploy-backend:update-force build-backend stop-pm2 start-pm2 save-pm2 restart-nginx
 	@echo "Backend deployment completed."
 
-# 6. Full deployment: Update, build, and restart services
-deploy: update build-backend build-frontend stop-pm2 start-pm2 save-pm2 restart-nginx
+deploy: update build-frontend build-backend stop-pm2 start-pm2 save-pm2 restart-nginx
 	@echo "Deployment completed."
