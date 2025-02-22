@@ -193,7 +193,7 @@ useEffect(() => {
 
 #### 2025-2-5 seo optimize
 
-- index.html을 템플릿 엔진처럼 변환할 수 있도록 만들었다. 즉, placeholder를 넣어두고 토큰화하여, 해당 부분을 교체하는 방법으로 진행하였다. 이제 각 url 별로 알맞는 title과 description이 출력된다. 그럼에도 불구하고 나중에 ssg로 변경할 예정이다.
+- index.html을 템플릿 엔진처럼 변환할 수 있도록 만들었다. 즉, placeholder를 넣어두고 토큰화하여, 해당 부분을 교체하는 방법으로 진행하였다. 이제 각 url 별로 알맞는 title과 description이 출력된다. 그럼에도 불구하고 나중에 ssg 프레임워크로 변경할 예정이다.
 
 #### 2025-2-20 refactor
 
