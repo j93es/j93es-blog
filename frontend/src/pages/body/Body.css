@@ -1,8 +1,11 @@
 .body-cont {
   width: 100%;
   max-width: 48rem;
-  display: flex;
-  justify-content: center;
   margin: 0 auto;
   padding-bottom: 2rem;
+}
+
+.body-item {
+  display: flex;
+  justify-content: center;
 }

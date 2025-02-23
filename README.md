@@ -198,3 +198,8 @@ useEffect(() => {
 #### 2025-2-20 refactor
 
 - backend의 filesMetadata에 postingIndex 로직이 엮여있었다. 예를들어 filesMetadata의 메서드 중 일부는 postingIndex의 모델로 반환값을 전송했다. 그런데 단순한 리스트 형태로 정보를 전달받을 일이 생겼다. 따라서 filesMetadata는 EachPosting[] 형태로 정보를 전달하고, adapter가 EachPosting[]를 postingIndex로 변환시키도록 하였다.
+
+#### 2025-2-24 loading spinner, refactor
+
+- 여러 fetch가 이루어질때, loading spinner가 끊기듯이 랜더링 되었다. 따라서 loading에 관한 로직을 전역으로 처리하였다.
+- context들을 하나의 디렉토리에 몰아두어 가독성을 향상시켰다.

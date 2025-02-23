@@ -28,7 +28,7 @@ const CustomImage: React.FC<CustomImageProps> = (props) => {
         maxWidth: props.width || "100%",
         height: "auto",
         display: "inline-block",
-        ...(isLoading && { border: "1px solid #dadce0" }),
+        ...(isLoading && { border: ".0625rem solid #dadce0" }),
       }}
     >
       {isLoading && (
@@ -41,7 +41,7 @@ const CustomImage: React.FC<CustomImageProps> = (props) => {
             zIndex: 10,
           }}
         >
-          <Loader useFooterHide={false} />
+          <Loader />
         </div>
       )}
       <img

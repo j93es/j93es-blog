@@ -1,5 +1,5 @@
 // React
-import { useRef, useContext, useEffect, useState } from "react";
+import { useRef, useEffect, useState } from "react";
 
 // External
 import { Link } from "react-router-dom";
@@ -13,18 +13,16 @@ import "highlight.js/styles/github-dark-dimmed.css";
 // Local
 import { apiUrl } from "config";
 import { EachPostingMetadata } from "models/postingIndex";
-import { parseMarkdown } from "utils/index";
-import { PostingIndexControllerContext } from "pages/body/Body";
-import Loader from "components/Loader";
+import { FetchError } from "models/errorType";
+import { useLoading } from "contexts/LoadingProvider";
+import { usePostingIndexController } from "contexts/PostingIndexControllerProvider";
 import CustomPre from "components/CustomPre";
 import CustomImage from "components/CustomImage";
 import MetaTag from "components/MetaTag";
-import { FetchError } from "models/errorType";
-import { errorRedirect } from "utils/index";
+import { errorRedirect, parseMarkdown } from "utils/index";
 import "pages/body/Posting.css";
 
 const Posting = ({ path }: { path: string }) => {
-  const [isPostingLoading, setIsPostingLoading] = useState(true);
   const [markdownContent, setMarkdownContent] = useState("");
   const [currentPosting, setCurrentPosting] =
     useState<EachPostingMetadata | null>(null);
@@ -34,7 +32,9 @@ const Posting = ({ path }: { path: string }) => {
   const [previousPosting, setPreviousPosting] =
     useState<EachPostingMetadata | null>(null);
 
-  const postingIndexController = useContext(PostingIndexControllerContext);
+  const { startLoading, stopLoading } = useLoading();
+  const { postingIndexController } = usePostingIndexController();
+
   const elementRef = useRef<HTMLDivElement>(null);
   const [elementWidth, setElementWidth] = useState(0);
 
@@ -61,11 +61,11 @@ const Posting = ({ path }: { path: string }) => {
   useEffect(() => {
     const fetchMarkdown = async () => {
       try {
+        startLoading();
         setMarkdownContent("");
         setCurrentPosting(null);
         setNextPosting(null);
         setPreviousPosting(null);
-        setIsPostingLoading(true);
 
         const response = await fetch(urlJoin(apiUrl, path));
         if (!response.ok) {
@@ -100,10 +100,9 @@ const Posting = ({ path }: { path: string }) => {
           message: "포스팅을 불러오는 중 오류가 발생했습니다.",
         });
       } finally {
-        setIsPostingLoading(false);
+        stopLoading();
       }
     };
-
     fetchMarkdown();
 
     return () => {
@@ -111,8 +110,8 @@ const Posting = ({ path }: { path: string }) => {
       setCurrentPosting(null);
       setNextPosting(null);
       setPreviousPosting(null);
-      setIsPostingLoading(false);
     };
+    // eslint-disable-next-line
   }, [path, postingIndexController]);
 
   const components = useRef({
@@ -160,56 +159,45 @@ const Posting = ({ path }: { path: string }) => {
   return (
     <div ref={elementRef} className="posting-wrap">
       {currentPosting && <MetaTag {...currentPosting} />}
-      {isPostingLoading ? (
-        <Loader />
-      ) : (
-        <>
-          <div className="posting-head">
-            <h1 className="posting-title">{currentPosting?.title}</h1>
-            <p className="posting-tag">
-              {currentPosting?.tag && `Tags | ${currentPosting.tag.join(", ")}`}
-            </p>
-            <p className="posting-date">
-              {currentPosting?.date && `Date | ${currentPosting.date}`}
-            </p>
-            <p className="posting-summary">
-              {currentPosting?.description &&
-                `Summary | ${currentPosting.description}`}
-            </p>
-          </div>
-          <div className="posting-content">
-            <ReactMarkdown
-              children={markdownContent}
-              remarkPlugins={[remarkGfm]}
-              rehypePlugins={[rehypeHighlight, rehypeRaw]}
-              components={{
-                ...components.current,
-                pre: (props) => (
-                  <components.current.pre
-                    elementWidth={elementWidth}
-                    {...props}
-                  />
-                ),
-              }}
-            />
-          </div>
-          <div className="posting-nav">
-            {previousPosting && (
-              <Link
-                to={previousPosting.path}
-                className="posting-nav-item nav-prev"
-              >
-                <span>&lsaquo; {previousPosting.title}</span>
-              </Link>
-            )}
-            {nextPosting && (
-              <Link to={nextPosting.path} className="posting-nav-item nav-next">
-                <span>{nextPosting.title} &rsaquo;</span>
-              </Link>
-            )}
-          </div>
-        </>
-      )}
+
+      <div className="posting-head">
+        <h1 className="posting-title">{currentPosting?.title}</h1>
+        <p className="posting-tag">
+          {currentPosting?.tag && `Tags | ${currentPosting.tag.join(", ")}`}
+        </p>
+        <p className="posting-date">
+          {currentPosting?.date && `Date | ${currentPosting.date}`}
+        </p>
+        <p className="posting-summary">
+          {currentPosting?.description &&
+            `Summary | ${currentPosting.description}`}
+        </p>
+      </div>
+      <div className="posting-content">
+        <ReactMarkdown
+          children={markdownContent}
+          remarkPlugins={[remarkGfm]}
+          rehypePlugins={[rehypeHighlight, rehypeRaw]}
+          components={{
+            ...components.current,
+            pre: (props) => (
+              <components.current.pre elementWidth={elementWidth} {...props} />
+            ),
+          }}
+        />
+      </div>
+      <div className="posting-nav">
+        {previousPosting && (
+          <Link to={previousPosting.path} className="posting-nav-item nav-prev">
+            <span>&lsaquo; {previousPosting.title}</span>
+          </Link>
+        )}
+        {nextPosting && (
+          <Link to={nextPosting.path} className="posting-nav-item nav-next">
+            <span>{nextPosting.title} &rsaquo;</span>
+          </Link>
+        )}
+      </div>
     </div>
   );
 };

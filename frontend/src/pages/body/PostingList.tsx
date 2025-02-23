@@ -1,17 +1,16 @@
 // React
-import { useContext } from "react";
 
 // External
+import { Link } from "react-router-dom";
 
 // Local
-import MetaTag from "components/MetaTag";
-import { PostingIndexControllerContext } from "pages/body/Body";
-import { Link } from "react-router-dom";
 import { EachPostingMetadata } from "models/postingIndex";
+import { usePostingIndexController } from "contexts/PostingIndexControllerProvider";
+import MetaTag from "components/MetaTag";
 import "pages/body/PostingList.css";
 
 const PostingList = () => {
-  const postingIndexController = useContext(PostingIndexControllerContext);
+  const { postingIndexController } = usePostingIndexController();
 
   return (
     <div className="posting-list-wrap">

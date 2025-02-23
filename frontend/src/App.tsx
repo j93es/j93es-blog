@@ -1,30 +1,26 @@
 // React
-import React, { createContext, useState } from "react";
 
 // External
 import { BrowserRouter } from "react-router-dom";
 
 // Local
-import Header from "pages/header/Header";
-import Body from "pages/body/Body";
-import Footer from "pages/footer/Footer";
+import { LoadingProvider } from "contexts/LoadingProvider";
+import { PostingIndexControllerProvider } from "contexts/PostingIndexControllerProvider";
+import { FooterHiddenProvider } from "contexts/FooterHiddenProvider";
+import Pages from "pages/Pages";
 import "App.css";
 
-export const SetFooterHideCmdContext = createContext<
-  React.Dispatch<React.SetStateAction<boolean>>
->(() => {});
-
 const App = () => {
-  const [footerHideCmd, setFooterHideCmd] = useState(false);
-
   return (
     <div className="App">
       <BrowserRouter>
-        <SetFooterHideCmdContext value={setFooterHideCmd}>
-          <Header />
-          <Body />
-          <Footer footerHideCmd={footerHideCmd} />
-        </SetFooterHideCmdContext>
+        <PostingIndexControllerProvider>
+          <FooterHiddenProvider>
+            <LoadingProvider>
+              <Pages />
+            </LoadingProvider>
+          </FooterHiddenProvider>
+        </PostingIndexControllerProvider>
       </BrowserRouter>
     </div>
   );

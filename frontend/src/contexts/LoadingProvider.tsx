@@ -1,0 +1,46 @@
+// React
+import React, { createContext, useState, useContext } from "react";
+
+// External
+
+// Local
+
+const LoadingContext = createContext<{
+  isLoading: boolean;
+  startLoading: () => void;
+  stopLoading: () => void;
+}>({
+  isLoading: false,
+  startLoading: () => {},
+  stopLoading: () => {},
+});
+
+const LoadingProvider: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
+  const [loadingCount, setLoadingCount] = useState(0);
+
+  const startLoading = () => {
+    setLoadingCount((prev) => prev + 1);
+  };
+
+  const stopLoading = () => {
+    setLoadingCount((prev) => Math.max(0, prev - 1)); // 음수 방지
+  };
+
+  return (
+    <LoadingContext
+      value={{
+        isLoading: loadingCount > 0,
+        startLoading,
+        stopLoading,
+      }}
+    >
+      {children}
+    </LoadingContext>
+  );
+};
+
+const useLoading = () => useContext(LoadingContext);
+
+export { LoadingProvider, useLoading };

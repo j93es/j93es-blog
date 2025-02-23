@@ -1,3 +1,7 @@
+// External
+
+// Local
+
 import { appDefaultTitle, appDefaultDescription } from "../config";
 
 const makeTitleDescription = ({
