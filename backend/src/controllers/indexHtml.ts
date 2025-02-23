@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import { frontendDir, defaultTitle, defaultDescription } from "../config";
+import { frontendDir, appDefaultTitle, appDefaultDescription } from "../config";
 import {
   postingIndexController,
   policyMetadataList,
@@ -111,8 +111,8 @@ export class IndexHtmlController {
 
     // 동적 데이터를 객체 형태로 매핑 (필요에 따라 다른 placeholder도 추가 가능)
     const dynamicMapping: { [key: string]: string } = {
-      title: td ? td[0] || defaultTitle : defaultTitle,
-      description: td ? td[1] || defaultDescription : defaultDescription,
+      title: td ? td[0] || appDefaultTitle : appDefaultTitle,
+      description: td ? td[1] || appDefaultDescription : appDefaultDescription,
     };
 
     let finalHtml = "";

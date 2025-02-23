@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 // External
 
 // Local
-import { defaultTitle, defaultDescription } from "config";
+import { appDefaultTitle, appDefaultDescription } from "config";
 
 let isInitialRender = true;
 
@@ -45,11 +45,11 @@ const MetaTagV2 = ({
     let metaDescription = description;
 
     if (useDefault) {
-      metaTitle = defaultTitle;
-      metaDescription = defaultDescription;
+      metaTitle = appDefaultTitle;
+      metaDescription = appDefaultDescription;
     }
     if (!useDefault && metaTitle) {
-      metaTitle = `${metaTitle} - ${defaultTitle}`;
+      metaTitle = `${metaTitle} - ${appDefaultTitle}`;
     }
 
     if (metaTitle) setMetaTitle(metaTitle);

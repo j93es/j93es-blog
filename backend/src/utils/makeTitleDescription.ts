@@ -1,4 +1,4 @@
-import { defaultTitle, defaultDescription } from "../config";
+import { appDefaultTitle, appDefaultDescription } from "../config";
 
 const makeTitleDescription = ({
   title,
@@ -10,14 +10,14 @@ const makeTitleDescription = ({
   useDefault?: boolean;
 }): [string, string] => {
   const getTitle = () => {
-    if (useDefault) return defaultTitle;
-    if (!title) return defaultTitle;
-    return `${title} - ${defaultTitle}`;
+    if (useDefault) return appDefaultTitle;
+    if (!title) return appDefaultTitle;
+    return `${title} - ${appDefaultTitle}`;
   };
 
   const getDescription = () => {
-    if (useDefault) return defaultDescription;
-    if (!description) return defaultDescription;
+    if (useDefault) return appDefaultDescription;
+    if (!description) return appDefaultDescription;
     return description;
   };
 

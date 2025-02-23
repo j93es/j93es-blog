@@ -4,6 +4,7 @@ import React, { useState } from "react";
 // External
 
 // Local
+import { appDefaultTitle } from "config";
 
 interface CustomImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {}
 
@@ -29,7 +30,11 @@ const CustomImage: React.FC<CustomImageProps> = (props) => {
               height: "auto",
             }
       }
-      alt={props.alt || "이미지 로드 실패"}
+      alt={
+        isError
+          ? props.alt || `${appDefaultTitle}의 이미지`
+          : "이미지를 불러오지 못했습니다."
+      }
       onError={handleError}
     />
   );
