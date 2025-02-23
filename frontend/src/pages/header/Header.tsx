@@ -7,7 +7,9 @@ import { Link } from "react-router-dom";
 import { ReactComponent as J93esLogo } from "assets/logo/j93es-logo.svg";
 import "pages/header/Header.css";
 
-const Header = () => {
+interface HeaderProps {}
+
+const Header: React.FC<HeaderProps> = () => {
   return (
     <header className="header-cont">
       <Link to="/" className="logo-item" aria-label="Go to homepage">

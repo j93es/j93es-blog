@@ -18,6 +18,8 @@ import PostingList from "pages/body/PostingList";
 import { errorRedirect } from "utils/index";
 import "pages/body/Body.css";
 
+interface BodyProps {}
+
 const loadPostingComponent = () => {
   return import("pages/body/Posting");
 };
@@ -30,7 +32,7 @@ const Posting = ({ path }: { path: string }) => {
   );
 };
 
-const Body = () => {
+const Body: React.FC<BodyProps> = () => {
   const { isLoading, startLoading, stopLoading } = useLoading();
   const { postingIndexController, setPostingIndexController } =
     usePostingIndexController();

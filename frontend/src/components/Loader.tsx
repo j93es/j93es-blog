@@ -5,7 +5,9 @@
 // Local
 import "components/Loader.css";
 
-const Loader = () => {
+interface LoaderProps {}
+
+const Loader: React.FC<LoaderProps> = () => {
   return (
     <div className="dot-spinner">
       <div className="dot-spinner__dot"></div>

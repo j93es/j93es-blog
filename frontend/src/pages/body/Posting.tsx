@@ -22,7 +22,11 @@ import MetaTag from "components/MetaTag";
 import { errorRedirect, parseMarkdown } from "utils/index";
 import "pages/body/Posting.css";
 
-const Posting = ({ path }: { path: string }) => {
+interface PostingProps {
+  path: string;
+}
+
+const Posting: React.FC<PostingProps> = ({ path }) => {
   const [markdownContent, setMarkdownContent] = useState("");
   const [currentPosting, setCurrentPosting] =
     useState<EachPostingMetadata | null>(null);

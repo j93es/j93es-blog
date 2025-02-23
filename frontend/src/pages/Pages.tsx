@@ -1,18 +1,19 @@
 // React
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 // External
 
 // Local
 import { useLoading } from "contexts/LoadingProvider";
-import { useFooterHidden } from "contexts/FooterHiddenProvider";
 import Header from "pages/header/Header";
 import Body from "pages/body/Body";
 import Footer from "pages/footer/Footer";
 
-const Pages = () => {
+interface PagesProps {}
+
+const Pages: React.FC<PagesProps> = () => {
   const { isLoading } = useLoading();
-  const { setFooterHidden } = useFooterHidden();
+  const [footerHidden, setFooterHidden] = useState<boolean>(false);
 
   useEffect(() => {
     if (isLoading) {
@@ -27,7 +28,7 @@ const Pages = () => {
     <>
       <Header />
       <Body />
-      <Footer />
+      <Footer footerHidden />
     </>
   );
 };

@@ -7,6 +7,10 @@ import React, { createContext, useState, useContext } from "react";
 import { PostingIndex } from "models/postingIndex";
 import { PostingIndexController } from "controllers/index";
 
+interface PostingIndexControllerProviderProps {
+  children: React.ReactNode;
+}
+
 const PostingIndexControllerContext = createContext<{
   postingIndexController: PostingIndexController | null;
   setPostingIndexController: (postingIndex: PostingIndex | null) => void;
@@ -15,9 +19,9 @@ const PostingIndexControllerContext = createContext<{
   setPostingIndexController: () => {},
 });
 
-const PostingIndexControllerProvider: React.FC<{
-  children: React.ReactNode;
-}> = ({ children }) => {
+const PostingIndexControllerProvider: React.FC<
+  PostingIndexControllerProviderProps
+> = ({ children }) => {
   const [postingIndexController, _setPostingIndexController] =
     useState<PostingIndexController | null>(null);
 

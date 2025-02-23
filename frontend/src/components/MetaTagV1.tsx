@@ -4,15 +4,12 @@
 
 // Local
 import { makeTitleDescription } from "utils/index";
+import { MetaTagProps } from "./MetaTag";
 
-const MetaTagV1 = ({
+const MetaTagV1: React.FC<MetaTagProps> = ({
   title,
   description,
   useDefault = false,
-}: {
-  title?: string;
-  description?: string;
-  useDefault?: boolean;
 }) => {
   const [newTitle, newDescription] = makeTitleDescription({
     title,

@@ -5,6 +5,10 @@ import React, { createContext, useState, useContext } from "react";
 
 // Local
 
+interface LoadingProviderProps {
+  children: React.ReactNode;
+}
+
 const LoadingContext = createContext<{
   isLoading: boolean;
   startLoading: () => void;
@@ -15,9 +19,7 @@ const LoadingContext = createContext<{
   stopLoading: () => {},
 });
 
-const LoadingProvider: React.FC<{ children: React.ReactNode }> = ({
-  children,
-}) => {
+const LoadingProvider: React.FC<LoadingProviderProps> = ({ children }) => {
   const [loadingCount, setLoadingCount] = useState(0);
 
   const startLoading = () => {

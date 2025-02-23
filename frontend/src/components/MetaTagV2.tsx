@@ -5,17 +5,14 @@ import { useState, useEffect } from "react";
 
 // Local
 import { appDefaultTitle, appDefaultDescription } from "config";
+import { MetaTagProps } from "./MetaTag";
 
 let isInitialRender = true;
 
-const MetaTagV2 = ({
+const MetaTagV2: React.FC<MetaTagProps> = ({
   title,
   description,
   useDefault = false,
-}: {
-  title?: string;
-  description?: string;
-  useDefault?: boolean;
 }) => {
   const [metaTitle, setMetaTitle] = useState<string | undefined>(undefined);
   const [metaDescription, setMetaDescription] = useState<string | undefined>(

@@ -4,7 +4,12 @@
 
 // Local
 
-const CustomPre = ({ elementWidth, ...props }: { elementWidth: number }) => {
+interface CustomPreProps {
+  elementWidth: number;
+  [key: string]: any;
+}
+
+const CustomPre: React.FC<CustomPreProps> = ({ elementWidth, ...props }) => {
   return (
     <pre
       style={{

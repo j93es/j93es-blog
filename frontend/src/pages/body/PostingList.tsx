@@ -9,7 +9,9 @@ import { usePostingIndexController } from "contexts/PostingIndexControllerProvid
 import MetaTag from "components/MetaTag";
 import "pages/body/PostingList.css";
 
-const PostingList = () => {
+interface PostingListProps {}
+
+const PostingList: React.FC<PostingListProps> = () => {
   const { postingIndexController } = usePostingIndexController();
 
   return (

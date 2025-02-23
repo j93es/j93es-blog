@@ -4,15 +4,16 @@
 import { Link } from "react-router-dom";
 
 // Local
-import { useFooterHidden } from "contexts/FooterHiddenProvider";
 import { ReactComponent as InstagramIcon } from "assets/icons/instagram-icon.svg";
 import { ReactComponent as GithubIcon } from "assets/icons/github-icon.svg";
 import { ReactComponent as MailIcon } from "assets/icons/mail-icon.svg";
 import "pages/footer/Footer.css";
 
-const Footer = () => {
-  const { footerHidden } = useFooterHidden();
+interface FooterProps {
+  footerHidden: boolean;
+}
 
+const Footer: React.FC<FooterProps> = ({ footerHidden }) => {
   if (footerHidden) {
     return null;
   }

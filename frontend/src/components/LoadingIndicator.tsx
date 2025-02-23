@@ -6,7 +6,9 @@ import { useEffect } from "react";
 // Local
 import { useLoading } from "contexts/LoadingProvider";
 
-const LoadingIndicator: React.FC<{}> = () => {
+interface LoadingIndicatorProps {}
+
+const LoadingIndicator: React.FC<LoadingIndicatorProps> = () => {
   const { startLoading, stopLoading } = useLoading();
 
   useEffect(() => {
