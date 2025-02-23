@@ -5,38 +5,59 @@ import React, { useState } from "react";
 
 // Local
 import { appDefaultTitle } from "config";
+import Loader from "components/Loader";
 
 interface CustomImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {}
 
 const CustomImage: React.FC<CustomImageProps> = (props) => {
+  const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
 
-  const handleError = () => {
+  const onLoad = () => {
+    setIsLoading(false);
+  };
+  const onError = () => {
+    onLoad();
     setIsError(true);
   };
 
   return (
-    <img
-      {...props}
-      style={
-        isError
-          ? {
-              width: "100%",
-              height: "auto",
-              objectFit: "contain",
-            }
-          : {
-              maxWidth: "100%",
-              height: "auto",
-            }
-      }
-      alt={
-        isError
-          ? props.alt || `${appDefaultTitle}의 이미지`
-          : "이미지를 불러오지 못했습니다."
-      }
-      onError={handleError}
-    />
+    <div
+      style={{
+        position: "relative",
+        maxWidth: props.width || "100%",
+        height: "auto",
+        display: "inline-block",
+        ...(isLoading && { border: "1px solid #dadce0" }),
+      }}
+    >
+      {isLoading && (
+        <div
+          style={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            zIndex: 10,
+          }}
+        >
+          <Loader useFooterHide={false} />
+        </div>
+      )}
+      <img
+        {...props}
+        style={{
+          height: "auto",
+          visibility: isLoading ? "hidden" : "visible",
+          ...(isError
+            ? { width: "100%", objectFit: "contain" }
+            : { maxWidth: "100%", objectFit: "cover" }),
+        }}
+        alt={props.alt || `${appDefaultTitle}의 이미지`}
+        onLoad={onLoad}
+        onError={onError}
+      />
+    </div>
   );
 };
 

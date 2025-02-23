@@ -7,15 +7,17 @@ import { useContext, useEffect } from "react";
 import { SetFooterHideCmdContext } from "App";
 import "components/Loader.css";
 
-const Loader = () => {
+const Loader = ({ useFooterHide = true }) => {
   const setFooterHideCmd = useContext(SetFooterHideCmdContext);
 
   useEffect(() => {
+    if (!useFooterHide) return;
+
     setFooterHideCmd(true);
     return () => {
       setFooterHideCmd(false);
     };
-  }, [setFooterHideCmd]);
+  }, [setFooterHideCmd, useFooterHide]);
 
   return (
     <div className="dot-spinner">
