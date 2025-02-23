@@ -21,16 +21,16 @@ const Footer: React.FC<FooterProps> = ({ footerHidden }) => {
     <footer className="footer-cont">
       <div className="social-item">
         <a
-          aria-label="Visit j93es's Instagram"
+          aria-label="j93es의 Instagram에 방문"
           href="https://www.instagram.com/j93es_jung"
         >
           <InstagramIcon />
         </a>
-        <a aria-label="Visit j93es's Github" href="https://github.com/j93es">
+        <a aria-label="j93es의 Github에 방문" href="https://github.com/j93es">
           <GithubIcon />
         </a>
         <a
-          aria-label="Contact j93es by email"
+          aria-label="j93es에게 Email을 통하여 연락"
           href="mailto:j93es.jung@gmail.com"
         >
           <MailIcon />
@@ -39,7 +39,8 @@ const Footer: React.FC<FooterProps> = ({ footerHidden }) => {
       <p>&copy; 2024. j93es. All rights reserved.</p>
       <Link
         to="/policy/information-protection-policy.md"
-        className="information-protection-policy"
+        className="policy-link"
+        aria-label="정보 보호 정책 열람"
       >
         정보 보호 정책
       </Link>

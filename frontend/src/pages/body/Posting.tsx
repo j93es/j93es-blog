@@ -192,12 +192,20 @@ const Posting: React.FC<PostingProps> = ({ path }) => {
       </div>
       <div className="posting-nav">
         {previousPosting && (
-          <Link to={previousPosting.path} className="posting-nav-item nav-prev">
+          <Link
+            to={previousPosting.path}
+            className="posting-nav-item nav-prev"
+            aria-label={`${previousPosting.title} 포스팅으로 이동`}
+          >
             <span>&lsaquo; {previousPosting.title}</span>
           </Link>
         )}
         {nextPosting && (
-          <Link to={nextPosting.path} className="posting-nav-item nav-next">
+          <Link
+            to={nextPosting.path}
+            className="posting-nav-item nav-next"
+            aria-label={`${nextPosting.title} 포스팅으로 이동`}
+          >
             <span>{nextPosting.title} &rsaquo;</span>
           </Link>
         )}

@@ -28,7 +28,7 @@ const Pages: React.FC<PagesProps> = () => {
     <>
       <Header />
       <Body />
-      <Footer footerHidden />
+      <Footer footerHidden={footerHidden} />
     </>
   );
 };

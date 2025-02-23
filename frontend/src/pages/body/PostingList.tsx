@@ -29,7 +29,7 @@ const PostingList: React.FC<PostingListProps> = () => {
                     <Link
                       to={posting.path}
                       className="posting-link-item"
-                      aria-label={`A post named ${posting.title} in the ${posting.category} category`}
+                      aria-label={`${posting.title} 포스팅으로 이동`}
                     >
                       <span>{posting.title}</span>
                       <span>{posting.date}</span>
