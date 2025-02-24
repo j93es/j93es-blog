@@ -17,7 +17,7 @@ router.get("/", (req: Request, res: Response) => {
 // error.html을 상태코드와 함께 제공
 router.get("/error-page/error.html", (req: Request, res: Response) => {
   const queryStatusKey = "j93es-status";
-  const allowedErrorStatus = [400, 403, 404, 429, 500];
+  const allowedErrorStatus = [400, 403, 404, 424, 429, 500];
   const frontendErrorStatus = [1000, 1001, 1002];
   const status = Number(req.query[queryStatusKey]);
 
