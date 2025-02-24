@@ -12,12 +12,11 @@ import Footer from "pages/footer/Footer";
 import "App.css";
 
 const App = () => {
-  useDesktopSafariBackFix(isMacOs && isSafari && !isIOS && !isMobileSafari);
+  useDesktopSafariBackFix(isMacOs && isSafari);
   useScrollToTop();
 
   return (
     <div className="App">
-      <p>{`${isMacOs && isSafari && !isIOS && !isMobileSafari}`}</p>
       <Header />
       <Body />
       <Footer />
