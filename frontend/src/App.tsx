@@ -17,6 +17,7 @@ const App = () => {
 
   return (
     <div className="App">
+      {isMacOs && isSafari && !isIOS && !isMobileSafari}
       <Header />
       <Body />
       <Footer />
