@@ -4,12 +4,12 @@ import { useEffect } from "react";
 // External
 
 // Local
-import { isSafari } from "utils/index";
+import { getBrowser } from "utils/index";
 
 // Safari에서 트랙패드로 뒤로가기, 앞으로가기 이용 시 브라우저가 1초간 멈추는 이슈 해결
 const useSafariBackFix = () => {
   useEffect(() => {
-    if (!isSafari()) return;
+    if (getBrowser() !== "Safari") return;
 
     const handlePageShow = (event: { persisted: boolean }) => {
       if (event.persisted) {
