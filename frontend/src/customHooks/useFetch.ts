@@ -53,7 +53,7 @@ const useFetch = <T>(
 
         setData(result);
       } catch (error: any) {
-        console.error(error.name, error.message);
+        if (error?.name === "AbortError") return; // 요청 취소 시 에러 무시
         setError(error);
 
         if (error instanceof FetchError) {
