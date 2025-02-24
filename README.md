@@ -199,12 +199,10 @@ useEffect(() => {
 
 - backend의 filesMetadata에 postingIndex 로직이 엮여있었다. 예를들어 filesMetadata의 메서드 중 일부는 postingIndex의 모델로 반환값을 전송했다. 그런데 단순한 리스트 형태로 정보를 전달받을 일이 생겼다. 따라서 filesMetadata는 EachPosting[] 형태로 정보를 전달하고, adapter가 EachPosting[]를 postingIndex로 변환시키도록 하였다.
 
-#### 2025-2-24 loading spinner, refactor
+#### 2025-2-24 loading spinner, refactor, Crossbrowsing
 
 - 여러 fetch가 이루어질때, loading spinner가 끊기듯이 랜더링 되었다. 따라서 loading에 관한 로직을 전역으로 처리하였다.
 - context들을 하나의 디렉토리에 몰아두어 가독성을 향상시켰다.
-
-#### Crossbrowsing
 
 - Safari에서 트랙패드로 뒤로가기 제스처 시에 브라우저가 1초간 멈추는 이슈를 해결했다. 먼저 Safari에서 포스팅의 중간부분에 있다가, 뒤로가기 트랙패드 제스처 이후, 앞으로가기 트랙패드 제스처를 하면, 브라우저가 1초 정도 멈춘다. 특히 뒤로가기 버튼을 클릭하면 정상작동하고, 트랙패드 제스처만 해당 이슈가 발생하였다. [링크](https://bugs.webkit.org/show_bug.cgi?id=248303)에서도 동일한 문제를 겪고있는 사람이 있었고, 원인을 추측할 수 있었다. 간단히 설명하면, 짧은 터치 제스처(touchstart → touchend가 빠르게 실행됨)는 히스토리 항목이 정상적으로 추가되지만(뒤로 가기 버튼이 동작함), 긴 터치 제스처(touchstart 후 1초 이상 대기 후 touchend)는 히스토리 항목이 사용자 상호작용으로 추가된 것으로 간주되지 않기 때문인것으로 추측된다(뒤로 가기 버튼이 작동하지 않음). 즉, 트랙패드 제스처는 히스토리 항목에 정상적으로 추가되지 않을 수 있고, 브라우저의 히스토리 상태가 변경될 때 실행되는 popstate 이벤트와 충돌되는 것으로 추측한다. 따라서 popstate 이벤트가 발생하면, window.location.reload();를 하여 문제를 해결하였다.
 
@@ -314,3 +312,8 @@ bool Document::hasRecentUserInteractionForNavigationFromJS() const
 
 </div>
 </details>
+
+#### 2025-2-25 Crossbrowsing
+
+- Safari에서 트랙패드로 뒤로가기 제스처 시에 브라우저가 1초간 멈추는 이슈를 해결했는데, 배포과정에서 이상한 문제가 생겼다. 사파리 개인정보 브라우저에서 트랙패드로 뒤로가기 실행시, fetch에러가 났다. 이유를 알아보니, reload시에 fetch가 취소되는데, 이때문에 에러가 발생하여 문제가 생겼다. 따라서 fetch 에러처리 로직을 변경하였다.
+- 해당 해결책을 적용하고 나니, ios에서 Chrome에서 불필요하게 reload되고 있었다. 사실 Safari에서 문제가 발생하기 때문에, Chrome에서는 reload되지 않아도 된다. 이유를 알아보니 user agent가 "CriOS" 로 표기되어 제대로 파싱하지 못했다. 해당 사항을 수정했다.

@@ -4,12 +4,11 @@ import { useEffect } from "react";
 // External
 
 // Local
-import { getBrowser } from "utils/index";
 
-// Safari에서 트랙패드로 뒤로가기, 앞으로가기 이용 시 브라우저가 1초간 멈추는 이슈 해결
-const useSafariBackFix = () => {
+// Desktop Safari에서 트랙패드로 뒤로가기, 앞으로가기 이용 시 브라우저가 1초간 멈추는 이슈 해결
+const useDesktopSafariBackFix = (isDesktopSafari: boolean) => {
   useEffect(() => {
-    if (getBrowser() !== "Safari") return;
+    if (!isDesktopSafari) return;
 
     const handlePageShow = (event: { persisted: boolean }) => {
       if (event.persisted) {
@@ -31,7 +30,7 @@ const useSafariBackFix = () => {
       window.removeEventListener("pageshow", handlePageShow);
       window.removeEventListener("popstate", handlePopState);
     };
-  }, []);
+  }, [isDesktopSafari]);
 };
 
-export default useSafariBackFix;
+export default useDesktopSafariBackFix;
