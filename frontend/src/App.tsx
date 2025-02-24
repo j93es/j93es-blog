@@ -5,14 +5,15 @@
 // Local
 import useDesktopSafariBackFix from "customHooks/useDesktopSafariBackFix";
 import useScrollToTop from "customHooks/useScrollToTop";
-import { isMobile, isSafari } from "mobile-device-detect";
+import { isMacOs, isSafari } from "mobile-device-detect";
 import Header from "pages/header/Header";
 import Body from "pages/body/Body";
 import Footer from "pages/footer/Footer";
 import "App.css";
 
 const App = () => {
-  useDesktopSafariBackFix(!isMobile && isSafari);
+  console.log("isMacOs", isMacOs);
+  useDesktopSafariBackFix(isMacOs && isSafari);
   useScrollToTop();
 
   return (
