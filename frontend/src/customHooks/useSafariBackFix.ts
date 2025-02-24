@@ -21,7 +21,7 @@ const useSafariBackFix = () => {
     // setTimeout을 사용하면 popstate가 트리거된 후 약간의 시간이 지나도록 강제하여, 브라우저의 상태 변화가 완료될 가능성을 높혀 안정성 증대(정확하진 않음)
     const handlePopState = () => {
       setTimeout(() => {
-        window.location.href = window.location.href;
+        window.location.reload();
       }, 10);
     };
 
