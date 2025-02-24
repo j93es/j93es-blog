@@ -18,22 +18,18 @@ description:
 
 ## menifest.json
 
-## meta tag
-
-title, description, language
-
-meta http-equiv="content-language" content="ko"
-
-모바일 반응형
-
 ## noscript
 
 ## custom error page
 
 ## background-color, color
 
+## loading spinner 관련 로직
+
 ## 크로스 브라우징
 
 사파리에서 이전포스팅, 다음포스팅 클릭시 화면이 맨 위에서 시작안했던 것
+
+Safari에서 트랙패드로 뒤로가기, 앞으로가기 이용 시 브라우저가 1초간 멈추는 이슈 해결
 
 ## CSP 설정, 정보보호정책

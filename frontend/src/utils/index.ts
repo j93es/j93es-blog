@@ -1,7 +1,8 @@
-import { ParseMarkdown } from "utils/parseMarkdown";
 import { errorRedirect } from "utils/errorRedirect";
+import { isSafari } from "./isSafari";
 import { makeTitleDescription } from "utils/makeTitleDescription";
+import { ParseMarkdown } from "utils/parseMarkdown";
 
-export const parseMarkdown = new ParseMarkdown();
-export { errorRedirect };
-export { makeTitleDescription };
+const parseMarkdown = new ParseMarkdown();
+
+export { errorRedirect, isSafari, parseMarkdown, makeTitleDescription };

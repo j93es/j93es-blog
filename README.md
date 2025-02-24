@@ -203,3 +203,114 @@ useEffect(() => {
 
 - 여러 fetch가 이루어질때, loading spinner가 끊기듯이 랜더링 되었다. 따라서 loading에 관한 로직을 전역으로 처리하였다.
 - context들을 하나의 디렉토리에 몰아두어 가독성을 향상시켰다.
+
+#### Crossbrowsing
+
+- 뒤로가기 트랙패드 작동 지연 이슈를 해결했다. 먼저 Safari에서 포스팅의 중간부분에 있다가, 뒤로가기 트랙패드 제스처 이후, 앞으로가기 트랙패드 제스처를 하면, 브라우저가 1초 정도 멈춘다. 특히 뒤로가기 버튼을 클릭하면 정상작동하고, 트랙패드 제스처만 해당 이슈가 발생하였다. [링크](https://bugs.webkit.org/show_bug.cgi?id=248303)에서도 동일한 문제를 겪고있는 사람이 있었고, 원인을 추측할 수 있었다. 간단히 설명하면, 짧은 터치 제스처(touchstart → touchend가 빠르게 실행됨)는 히스토리 항목이 정상적으로 추가되지만(뒤로 가기 버튼이 동작함), 긴 터치 제스처(touchstart 후 1초 이상 대기 후 touchend)는 히스토리 항목이 사용자 상호작용으로 추가된 것으로 간주되지 않기 때문인것으로 추측된다(뒤로 가기 버튼이 작동하지 않음). 즉, 트랙패드 제스처는 히스토리 항목에 정상적으로 추가되지 않을 수 있고, 브라우저의 히스토리 상태가 변경될 때 실행되는 popstate 이벤트와 충돌되는 것으로 추측한다. 따라서 popstate 이벤트가 발생하면, window.location.reload();를 하여 문제를 해결하였다.
+
+<details>
+<summary>링크 전문</summary>
+<div markdown="1">
+
+### **번역:**
+
+---
+
+**안녕하세요 Chris 및 WebKit 팀,**
+
+설명해 주셔서 감사합니다. 참고로, Chris가 설명한 변경 사항은 아래 링크에서 확인할 수 있습니다:
+
+- <https://bugs.webkit.org/show_bug.cgi?id=241885> (<https://commits.webkit.org/251783@main>)
+- 그리고 후속 수정: <https://bugs.webkit.org/show_bug.cgi?id=242947> (<https://commits.webkit.org/252649@main>)
+
+지금, 저는 **iOS 16.3.1 (20D67)** 을 실행하는 **iPhone SE (2세대)** 에서 실험을 진행했으며, `"is history item added by user interaction"`(사용자 상호작용을 통해 추가된 히스토리 항목인지 감지하는 로직)이 `"touchend"` 이벤트를 사용할 때 다소 예측 불가능하게 작동하는 것을 발견했습니다.
+
+즉, 어떤 경우에는 `"touchend"` 리스너에서 추가된 히스토리 항목이 **"사용자 상호작용에 의해 추가된 것"** 으로 간주되지만,  
+어떤 경우에는 그렇지 않으며, **일관된 패턴 없이 랜덤하게 작동하는 것처럼 보였습니다.**
+
+그러나 위에 링크된 WebKit 소스 코드 변경 사항을 분석한 결과, 몇 가지 가설을 세울 수 있었습니다.
+
+---
+
+## **🔍 WebKit의 "사용자 상호작용에 의해 추가된 히스토리 항목" 감지 로직**
+
+핵심 로직은 **`Document.cpp`** 에서 다음과 같이 구현되어 있습니다:
+
+```cpp
+bool Document::hasRecentUserInteractionForNavigationFromJS() const
+{
+    if (UserGestureIndicator::processingUserGesture(this))
+        return true;
+
+    static constexpr Seconds maximumItervalForUserGestureForwarding { 10_s };
+    return (MonotonicTime::now() - lastHandledUserGestureTimestamp()) <= maximumItervalForUserGestureForwarding;
+}
+```
+
+이 함수는 두 가지 경우 중 하나에 해당하면 `true`를 반환합니다:
+
+1. **`processingUserGesture()`가 `true`를 반환하는 경우**  
+   → 즉, 현재 브라우저가 **사용자 제스처를 처리 중인 상태**라면 `true`를 반환
+2. **마지막 사용자 제스처가 1초 이내에 발생한 경우**  
+   → `lastHandledUserGestureTimestamp()` 값이 **현재 시간에서 1초 이내**라면 `true` 반환
+
+`lastHandledUserGestureTimestamp()`는 내부적으로 `updateLastHandledUserGestureTimestamp()`를 호출하여 업데이트됩니다.  
+이 함수는 **`UserGestureIndicator` 객체가 생성될 때 실행되며, 새로운 `UserGestureToken`을 생성할 때도 실행됩니다.**
+
+---
+
+## **🤔 가설: WebKit의 `UserGestureToken` 동작 방식과 touchend 이벤트 감지 문제**
+
+여러 단서를 통해, **`UserGestureToken`은 단순한 개별 터치 이벤트가 아니라, 전체 제스처의 "수명 주기"를 추적하는 객체일 가능성이 있습니다.**
+
+### **🚩 이를 뒷받침하는 단서:**
+
+- `UserGestureToken` 객체에 `startTime`이라는 멤버 변수가 있음
+- macOS **AppKit** 및 iOS **UIKit**에서는 `"gesture"`(제스처)라는 용어를 단일 터치 이벤트가 아닌, **전체 터치 이벤트 시퀀스**를 의미하는 용도로 사용
+
+**➡️ 즉, WebKit의 `hasRecentUserInteractionForNavigationFromJS()` 함수는 "마지막 제스처의 시작 시점"이 1초 이내인지 확인하는 것일 수 있습니다.**
+
+---
+
+## **🔬 테스트 결과: 터치 제스처의 길이에 따른 차이**
+
+이 가설이 맞다면, `"touchend"` 이벤트에서 히스토리 항목을 추가할 때 성공 여부가 **제스처의 전체 길이에 따라 달라질 가능성이 있습니다.**
+
+### **🧪 실험 결과**
+
+- **짧은 터치 제스처** (`touchstart` → `touchend`가 빠르게 실행됨)  
+  ✅ 히스토리 항목이 정상적으로 추가됨 (뒤로 가기 버튼이 동작함)
+
+- **긴 터치 제스처** (`touchstart` 후 1초 이상 대기 후 `touchend`)  
+  ❌ 히스토리 항목이 **사용자 상호작용으로 추가된 것으로 간주되지 않음** (뒤로 가기 버튼이 작동하지 않음)
+
+즉, **제스처가 길어질수록 히스토리 항목 추가가 정상적으로 인식되지 않는 경향이 있었습니다.**
+
+---
+
+## **📌 추가 궁금한 점**
+
+저는 정확한 1초 임계값을 JavaScript에서 측정할 수 없었지만, 확실한 것은 **짧은 터치 제스처는 정상적으로 작동하고 긴 제스처는 실패하는 패턴이 있다는 점입니다.**
+
+- iOS에서 이 "1초" 임계값을 변경하는 경우가 있을까?
+- 혹은 내부적으로 **레이스 컨디션 (race condition)** 이 발생하는 것일까?
+- 이 동작이 일관되지 않은 이유는 무엇일까?
+
+**오늘은 어셈블리 코드를 분석하지 않겠지만, 이 부분이 어떻게 작동하는지 매우 궁금합니다.** 🤔
+
+테스트 케이스를 첨부할 예정이니, 이 버그를 추적하는 데 도움이 되었으면 합니다. 🚀
+
+---
+
+## **✅ 요약**
+
+- WebKit의 `"사용자 상호작용 감지"` 로직은 제스처 시작 시점을 기준으로 판단하는 것일 가능성이 있음
+- `"touchend"` 이벤트에서 히스토리 항목을 추가할 때, **짧은 제스처는 정상적으로 동작하지만 긴 제스처는 실패하는 경향**이 있음
+- 이 문제의 원인은 **제스처 시작 시점과 `hasRecentUserInteractionForNavigationFromJS()`의 임계값(1초?)이 맞물려 발생하는 것일 가능성이 큼**
+- 내부적으로 `UserGestureToken`이 전체 제스처를 추적하는 구조일 가능성이 있음
+- iOS에서 이 임계값이 변경될 수 있는지, 혹은 레이스 컨디션이 있는지 추가 확인이 필요함
+
+🚀 **테스트 케이스를 공유할 예정이니, 이 정보를 통해 문제를 해결할 수 있기를 바랍니다!** 🔍
+
+</div>
+</details>

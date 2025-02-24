@@ -2,7 +2,7 @@
 import React, { useEffect, Suspense } from "react";
 
 // External
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import urlJoin from "url-join";
 
 // Local
@@ -36,16 +36,11 @@ const Body: React.FC<BodyProps> = () => {
   const { isLoading, startLoading, stopLoading } = useLoading();
   const { postingIndexController, setPostingIndexController } =
     usePostingIndexController();
-  const location = useLocation();
 
   useEffect(() => {
     // preload Posting component
     loadPostingComponent();
   }, []);
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [location.pathname]);
 
   useEffect(() => {
     const func = async () => {
