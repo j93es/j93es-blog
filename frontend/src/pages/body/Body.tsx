@@ -7,15 +7,14 @@ import urlJoin from "url-join";
 
 // Local
 import { apiUrl } from "config";
-import { EachPostingMetadata } from "models/postingIndex";
-import { FetchError } from "models/errorType";
+import { EachPostingMetadata, PostingIndex } from "models/postingIndex";
 import { useLoading } from "contexts/LoadingProvider";
 import { usePostingIndexController } from "contexts/PostingIndexControllerProvider";
+import useFetch from "customHooks/useFetch";
 import Spinner from "components/Spinner";
 import LoadingIndicator from "components/LoadingIndicator";
 import ErrorRedirecter from "components/ErrorRedirecter";
 import PostingList from "pages/body/PostingList/PostingList";
-import { errorRedirect } from "utils/index";
 import "pages/body/Body.css";
 
 interface BodyProps {}
@@ -33,9 +32,16 @@ const Posting = ({ path }: { path: string }) => {
 };
 
 const Body: React.FC<BodyProps> = () => {
-  const { isLoading, startLoading, stopLoading } = useLoading();
+  const { isLoading } = useLoading();
   const { postingIndexController, setPostingIndexController } =
     usePostingIndexController();
+
+  const { data: postingIndex }: { data: PostingIndex | null } = useFetch(
+    urlJoin(apiUrl, "index"),
+    null, // 초기 값
+    [], // 의존성 배열 (한 번만 실행)
+    { responseType: "json" }
+  );
 
   useEffect(() => {
     // preload Posting component
@@ -43,28 +49,13 @@ const Body: React.FC<BodyProps> = () => {
   }, []);
 
   useEffect(() => {
-    const func = async () => {
-      try {
-        startLoading();
-        const response = await fetch(urlJoin(apiUrl, "index"));
-        if (!response.ok) {
-          throw new FetchError(response.status, response.statusText);
-        }
-        const postingIndex = await response.json();
-        setPostingIndexController(postingIndex);
-      } catch (error: Error | FetchError | any) {
-        errorRedirect({
-          statusCode: error.status || 500,
-          message: "포스팅 목록을 불러오는 중 오류가 발생했습니다.",
-        });
-      } finally {
-        stopLoading();
-      }
-    };
-    func();
+    if (!postingIndex) {
+      return;
+    }
+    setPostingIndexController(postingIndex);
 
     // eslint-disable-next-line
-  }, []);
+  }, [postingIndex]);
 
   return (
     <main className="body-cont">

@@ -7,9 +7,7 @@ import { useLocation } from "react-router-dom";
 // Local
 import { useLoading } from "contexts/LoadingProvider";
 
-export interface ScrollToTopProps {}
-
-const ScrollToTop: React.FC<ScrollToTopProps> = () => {
+const useScrollToTop = () => {
   const { pathname } = useLocation();
   const { isLoading } = useLoading();
 
@@ -22,8 +20,6 @@ const ScrollToTop: React.FC<ScrollToTopProps> = () => {
       window.scrollTo(0, 0);
     }
   }, [isLoading]);
-
-  return null;
 };
 
-export default ScrollToTop;
+export default useScrollToTop;

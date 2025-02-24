@@ -6,9 +6,12 @@ import React from "react";
 // External
 import ReactDOM from "react-dom/client";
 import reportWebVitals from "reportWebVitals";
+import { BrowserRouter } from "react-router-dom";
 
 // Local
 import App from "App";
+import { LoadingProvider } from "contexts/LoadingProvider";
+import { PostingIndexControllerProvider } from "contexts/PostingIndexControllerProvider";
 import useGlobalErrorHandler from "customHooks/useGlobalErrorHandler";
 import ErrorBoundary from "components/ErrorBoundary";
 
@@ -23,7 +26,13 @@ const Root = () => {
 
   return (
     <ErrorBoundary>
-      <App />
+      <BrowserRouter>
+        <PostingIndexControllerProvider>
+          <LoadingProvider>
+            <App />
+          </LoadingProvider>
+        </PostingIndexControllerProvider>
+      </BrowserRouter>
       {/* <ErrorBoundaryTest /> */}
     </ErrorBoundary>
   );

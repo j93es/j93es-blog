@@ -13,13 +13,12 @@ import "highlight.js/styles/github-dark-dimmed.css";
 // Local
 import { apiUrl } from "config";
 import { EachPostingMetadata } from "models/postingIndex";
-import { FetchError } from "models/errorType";
-import { useLoading } from "contexts/LoadingProvider";
 import { usePostingIndexController } from "contexts/PostingIndexControllerProvider";
+import useFetch from "customHooks/useFetch";
 import CustomPre from "pages/body/Posting/components/CustomPre";
 import CustomImage from "pages/body/Posting/components/CustomImage";
 import MetaTag from "pages/body/components/MetaTag";
-import { errorRedirect, parseMarkdown } from "utils/index";
+import { parseMarkdown } from "utils/index";
 import "pages/body/Posting/Posting.css";
 
 interface PostingProps {
@@ -36,11 +35,17 @@ const Posting: React.FC<PostingProps> = ({ path }) => {
   const [previousPosting, setPreviousPosting] =
     useState<EachPostingMetadata | null>(null);
 
-  const { startLoading, stopLoading } = useLoading();
   const { postingIndexController } = usePostingIndexController();
 
   const elementRef = useRef<HTMLDivElement>(null);
   const [elementWidth, setElementWidth] = useState(0);
+
+  const { data: markdownText } = useFetch(
+    urlJoin(apiUrl, path),
+    "",
+    [path, postingIndexController],
+    { responseType: "text" }
+  );
 
   useEffect(() => {
     const resizeObserver = new ResizeObserver((entries) => {
@@ -63,60 +68,24 @@ const Posting: React.FC<PostingProps> = ({ path }) => {
   }, []);
 
   useEffect(() => {
-    const fetchMarkdown = async () => {
-      try {
-        startLoading();
-        setMarkdownContent("");
-        setCurrentPosting(null);
-        setNextPosting(null);
-        setPreviousPosting(null);
+    if (!markdownText || !postingIndexController) return;
 
-        const response = await fetch(urlJoin(apiUrl, path));
-        if (!response.ok) {
-          throw new FetchError(response.status, response.statusText);
-        }
+    const { data, content } = parseMarkdown.get(markdownText);
+    const currentPosting = { ...data } as EachPostingMetadata;
+    const nextPosting = postingIndexController.getNextPostingMetadata(
+      data.category,
+      data.title
+    );
+    const previousPosting = postingIndexController.getPreviousPostingMetadata(
+      data.category,
+      data.title
+    );
 
-        const markdownText = await response.text();
-        const { data, content } = parseMarkdown.get(markdownText);
-        const currentPosting = {
-          ...data,
-        } as EachPostingMetadata;
-        const nextPosting =
-          postingIndexController &&
-          postingIndexController.getNextPostingMetadata(
-            data.category,
-            data.title
-          );
-        const previousPosting =
-          postingIndexController &&
-          postingIndexController.getPreviousPostingMetadata(
-            data.category,
-            data.title
-          );
-
-        setMarkdownContent(content);
-        setCurrentPosting(currentPosting);
-        setNextPosting(nextPosting);
-        setPreviousPosting(previousPosting);
-      } catch (error: Error | FetchError | any) {
-        errorRedirect({
-          statusCode: error.status || 500,
-          message: "포스팅을 불러오는 중 오류가 발생했습니다.",
-        });
-      } finally {
-        stopLoading();
-      }
-    };
-    fetchMarkdown();
-
-    return () => {
-      setMarkdownContent("");
-      setCurrentPosting(null);
-      setNextPosting(null);
-      setPreviousPosting(null);
-    };
-    // eslint-disable-next-line
-  }, [path, postingIndexController]);
+    setMarkdownContent(content);
+    setCurrentPosting(currentPosting);
+    setNextPosting(nextPosting || null);
+    setPreviousPosting(previousPosting || null);
+  }, [markdownText, postingIndexController]);
 
   const components = useRef({
     code: ({ ...props }) => {
