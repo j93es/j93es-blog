@@ -53,6 +53,7 @@ const useFetch = <T>(
 
         setData(result);
       } catch (error: any) {
+        console.error(error.name, error.message);
         setError(error);
 
         if (error instanceof FetchError) {
