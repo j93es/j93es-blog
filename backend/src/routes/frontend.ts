@@ -18,7 +18,7 @@ router.get("/", (req: Request, res: Response) => {
 router.get("/error-page/error.html", (req: Request, res: Response) => {
   const queryStatusKey = "j93es-status";
   const allowedErrorStatus = [400, 403, 404, 429, 500];
-  const frontendErrorStatus = [1000, 1001, 1002];
+  const frontendErrorStatus = [1000, 1001];
   const status = Number(req.query[queryStatusKey]);
 
   if (allowedErrorStatus.includes(status)) {
