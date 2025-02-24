@@ -50,6 +50,7 @@ const useFetch = <T>(
 
         setData(result);
       } catch (error: any) {
+        console.error(error);
         if (error.name === "AbortError") return; // 요청 취소된 경우 무시
 
         setError(error);
