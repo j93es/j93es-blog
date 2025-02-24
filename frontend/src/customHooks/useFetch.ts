@@ -54,9 +54,8 @@ const useFetch = <T>(
         setData(result);
       } catch (error: any) {
         setError(error);
-        if (error instanceof TypeError || error?.name === "AbortError") {
-        } // fetch 중단 시 발생하는 오류 무시
 
+        if (!(error instanceof FetchError)) return;
         errorRedirect({
           statusCode: error.status || 1002,
           message: "데이터를 불러오는 중 오류가 발생했습니다.",
