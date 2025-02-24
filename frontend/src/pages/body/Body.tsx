@@ -11,17 +11,17 @@ import { EachPostingMetadata } from "models/postingIndex";
 import { FetchError } from "models/errorType";
 import { useLoading } from "contexts/LoadingProvider";
 import { usePostingIndexController } from "contexts/PostingIndexControllerProvider";
-import Loader from "components/Loader";
+import Spinner from "components/Spinner";
 import LoadingIndicator from "components/LoadingIndicator";
-import ErrorRedirect from "components/ErrorRedirect";
-import PostingList from "pages/body/PostingList";
+import ErrorRedirecter from "components/ErrorRedirecter";
+import PostingList from "pages/body/PostingList/PostingList";
 import { errorRedirect } from "utils/index";
 import "pages/body/Body.css";
 
 interface BodyProps {}
 
 const loadPostingComponent = () => {
-  return import("pages/body/Posting");
+  return import("pages/body/Posting/Posting");
 };
 const ORIGIN_POSTING = React.lazy(loadPostingComponent);
 const Posting = ({ path }: { path: string }) => {
@@ -73,7 +73,7 @@ const Body: React.FC<BodyProps> = () => {
 
   return (
     <main className="body-cont">
-      {isLoading && <Loader />}
+      {isLoading && <Spinner />}
       {postingIndexController && (
         <div className={isLoading ? "body-item hidden" : "body-item"}>
           <Routes>
@@ -105,7 +105,7 @@ const Body: React.FC<BodyProps> = () => {
             <Route
               path="*"
               element={
-                <ErrorRedirect
+                <ErrorRedirecter
                   statusCode={404}
                   message="요청하신 페이지를 찾을 수 없습니다."
                 />

@@ -7,17 +7,17 @@ import { Link } from "react-router-dom";
 import { ReactComponent as InstagramIcon } from "assets/icons/instagram-icon.svg";
 import { ReactComponent as GithubIcon } from "assets/icons/github-icon.svg";
 import { ReactComponent as MailIcon } from "assets/icons/mail-icon.svg";
+import { useLoading } from "contexts/LoadingProvider";
+import { usePostingIndexController } from "contexts/PostingIndexControllerProvider";
 import "pages/footer/Footer.css";
 
-interface FooterProps {
-  footerHidden: boolean;
-}
+interface FooterProps {}
 
-const Footer: React.FC<FooterProps> = ({ footerHidden }) => {
-  if (footerHidden) {
-    return null;
-  }
-  return (
+const Footer: React.FC<FooterProps> = () => {
+  const { postingIndexController } = usePostingIndexController();
+  const { isLoading } = useLoading();
+
+  return isLoading || !postingIndexController ? null : (
     <footer className="footer-cont">
       <div className="social-item">
         <a

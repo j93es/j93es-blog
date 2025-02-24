@@ -6,7 +6,9 @@ import { BrowserRouter } from "react-router-dom";
 // Local
 import { LoadingProvider } from "contexts/LoadingProvider";
 import { PostingIndexControllerProvider } from "contexts/PostingIndexControllerProvider";
-import Pages from "pages/Pages";
+import Header from "pages/header/Header";
+import Body from "pages/body/Body";
+import Footer from "pages/footer/Footer";
 import "App.css";
 
 const App = () => {
@@ -15,7 +17,9 @@ const App = () => {
       <BrowserRouter>
         <PostingIndexControllerProvider>
           <LoadingProvider>
-            <Pages />
+            <Header />
+            <Body />
+            <Footer />
           </LoadingProvider>
         </PostingIndexControllerProvider>
       </BrowserRouter>

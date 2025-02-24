@@ -6,12 +6,12 @@ import { useEffect } from "react";
 // Local
 import { errorRedirect } from "utils/index";
 
-interface ErrorRedirectProps {
+interface ErrorRedirecterProps {
   statusCode: number;
   message: string;
 }
 
-const ErrorRedirect: React.FC<ErrorRedirectProps> = ({
+const ErrorRedirecter: React.FC<ErrorRedirecterProps> = ({
   statusCode,
   message,
 }) => {
@@ -22,4 +22,4 @@ const ErrorRedirect: React.FC<ErrorRedirectProps> = ({
   return null;
 };
 
-export default ErrorRedirect;
+export default ErrorRedirecter;

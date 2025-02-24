@@ -3,11 +3,11 @@
 // External
 
 // Local
-import "components/Loader.css";
+import "components/Spinner.css";
 
-interface LoaderProps {}
+interface SpinnerProps {}
 
-const Loader: React.FC<LoaderProps> = () => {
+const Spinner: React.FC<SpinnerProps> = () => {
   return (
     <div className="dot-spinner">
       <div className="dot-spinner__dot"></div>
@@ -22,4 +22,4 @@ const Loader: React.FC<LoaderProps> = () => {
   );
 };
 
-export default Loader;
+export default Spinner;

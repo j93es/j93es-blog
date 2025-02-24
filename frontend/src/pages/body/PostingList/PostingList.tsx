@@ -6,8 +6,8 @@ import { Link } from "react-router-dom";
 // Local
 import { EachPostingMetadata } from "models/postingIndex";
 import { usePostingIndexController } from "contexts/PostingIndexControllerProvider";
-import MetaTag from "components/MetaTag";
-import "pages/body/PostingList.css";
+import MetaTag from "pages/body/components/MetaTag";
+import "pages/body/PostingList/PostingList.css";
 
 interface PostingListProps {}
 

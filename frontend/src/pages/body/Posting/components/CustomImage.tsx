@@ -5,7 +5,7 @@ import React, { useState } from "react";
 
 // Local
 import { appDefaultTitle } from "config";
-import Loader from "components/Loader";
+import Spinner from "components/Spinner";
 
 interface CustomImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {}
 
@@ -28,7 +28,9 @@ const CustomImage: React.FC<CustomImageProps> = (props) => {
         maxWidth: props.width || "100%",
         height: "auto",
         display: "inline-block",
-        ...(isLoading && { border: ".0625rem solid #dadce0" }),
+        ...(isLoading && {
+          border: ".0625rem solid var(--border-color)",
+        }),
       }}
     >
       {isLoading && (
@@ -41,7 +43,7 @@ const CustomImage: React.FC<CustomImageProps> = (props) => {
             zIndex: 10,
           }}
         >
-          <Loader />
+          <Spinner />
         </div>
       )}
       <img

@@ -16,11 +16,11 @@ import { EachPostingMetadata } from "models/postingIndex";
 import { FetchError } from "models/errorType";
 import { useLoading } from "contexts/LoadingProvider";
 import { usePostingIndexController } from "contexts/PostingIndexControllerProvider";
-import CustomPre from "components/CustomPre";
-import CustomImage from "components/CustomImage";
-import MetaTag from "components/MetaTag";
+import CustomPre from "pages/body/Posting/components/CustomPre";
+import CustomImage from "pages/body/Posting/components/CustomImage";
+import MetaTag from "pages/body/components/MetaTag";
 import { errorRedirect, parseMarkdown } from "utils/index";
-import "pages/body/Posting.css";
+import "pages/body/Posting/Posting.css";
 
 interface PostingProps {
   path: string;
