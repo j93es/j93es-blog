@@ -2,13 +2,14 @@
 import { useEffect } from "react";
 
 // External
+import { isMacOs, isSafari } from "mobile-device-detect";
 
 // Local
 
 // Desktop Safari에서 트랙패드로 뒤로가기, 앞으로가기 이용 시 브라우저가 1초간 멈추는 이슈 해결
-const useDesktopSafariBackFix = (isDesktopSafari: boolean) => {
+const useDesktopSafariBackFix = () => {
   useEffect(() => {
-    if (!isDesktopSafari) return;
+    if (!(isMacOs && isSafari)) return;
 
     const handlePageShow = (event: { persisted: boolean }) => {
       if (event.persisted) {
@@ -30,7 +31,7 @@ const useDesktopSafariBackFix = (isDesktopSafari: boolean) => {
       window.removeEventListener("pageshow", handlePageShow);
       window.removeEventListener("popstate", handlePopState);
     };
-  }, [isDesktopSafari]);
+  }, []);
 };
 
 export default useDesktopSafariBackFix;

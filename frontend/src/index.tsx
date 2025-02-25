@@ -17,6 +17,18 @@ import ErrorBoundary from "components/ErrorBoundary";
 
 import "index.css";
 
+// const loadAppComponent = () => {
+//   return import("App");
+// };
+// const ORIGIN_APP = React.lazy(loadAppComponent);
+// const App = () => {
+//   return (
+//     <Suspense>
+//       <ORIGIN_APP />
+//     </Suspense>
+//   );
+// };
+
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );

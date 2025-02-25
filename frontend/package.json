@@ -15,6 +15,7 @@
     "rehype-highlight": "^7.0.1",
     "rehype-raw": "^7.0.0",
     "remark-gfm": "^4.0.0",
+    "selectivizr": "^1.0.3",
     "url-join": "^5.0.0"
   },
   "scripts": {
@@ -29,7 +30,9 @@
   },
   "browserslist": {
     "production": [
+      "defaults",
       ">0.2%",
+      "> 1% in KR",
       "not dead",
       "not op_mini all"
     ],
