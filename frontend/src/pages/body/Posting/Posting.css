@@ -1,24 +1,46 @@
+:root {
+  --posting-head-mb: var(--logo-to-body-item-distance);
+  --posting-content-mb: 1.5rem;
+  --posting-nav-mb: calc(var(--posting-content-mb) + 0.5rem);
+}
+
 .posting-wrap {
   width: 90%;
   display: grid;
   grid-template-rows: auto 1fr auto;
   margin: 0 auto;
-  gap: 2rem;
-  margin-bottom: 2.5rem;
 }
 
-.posting-head :last-child,
-.posting-content :last-child {
+/* 공통: 첫번째/마지막 자식의 마진 초기화 */
+.posting-head > :first-child,
+.posting-content > :first-child {
+  margin-top: 0;
+}
+
+.posting-head > :last-child,
+.posting-content > :last-child {
   margin-bottom: 0;
 }
 
-.posting-head :first-child,
-.posting-content :first-child {
-  margin-top: 0;
+/* 섹션별 여백 */
+.posting-head {
+  margin-bottom: var(--posting-head-mb);
+}
+
+.posting-content {
+  margin-bottom: var(--posting-content-mb);
+}
+
+/* 네비게이션 */
+.posting-nav {
+  margin-bottom: var(--posting-nav-mb);
+  display: flex;
+  justify-content: space-between;
 }
 
 .posting-nav-item {
   text-decoration: none;
+  display: flex;
   align-items: center;
   color: var(--color);
   border-bottom: 0.0625rem solid var(--underline-color);
@@ -26,14 +48,17 @@
   text-overflow: ellipsis;
 }
 
+.nav-prev,
+.nav-next {
+  margin: 0.25rem;
+}
+
 .nav-prev {
-  float: left;
   text-align: left;
-  margin: 0.25rem 0.5rem 0.25rem 0;
+  margin-right: 0.5rem;
 }
 
 .nav-next {
-  float: right;
   text-align: right;
-  margin: 0.25rem 0 0.25rem 0.5rem;
+  margin-left: 0.5rem;
 }

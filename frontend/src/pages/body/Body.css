@@ -1,12 +1,19 @@
+:root {
+  --body-cont-mt: 1rem;
+  --logo-to-body-item-distance: calc(
+    var(--logo-to-body-distance) + var(--body-cont-mt)
+  );
+}
+
 .body-cont {
   width: 100%;
   max-width: 48rem;
   margin: 0 auto;
+  margin-top: var(--body-cont-mt);
 }
 
 .body-item {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 1rem;
 }

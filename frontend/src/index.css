@@ -6,6 +6,7 @@
   --underline-color: #dadce0;
   --border-color: #dadce0;
   --link-color: #0066cc;
+  --logo-to-body-distance: 2.28rem;
 }
 
 body {

@@ -319,3 +319,7 @@ bool Document::hasRecentUserInteractionForNavigationFromJS() const
 - 해당 해결책을 적용하고 나니, ios의 Chrome과 ios의 Safari에서 불필요하게 reload되고 있었다. 사실 Desktop Safari에서 문제가 발생하기 때문에, Chrome에서는 reload되지 않아도 된다. 이유를 알아보니 user agent가 "CriOS" 로 표기되어 제대로 파싱하지 못했다. npm라이브러리를 통하여 브라우저 정보를 해석하기로 하였다.
 - css normalize 를 하여 여러 브라우저에서 동일한 스타일을 유지하도록 하였다.
 - crossbrowsing을 위해서 html5 태그, css 가상 selector, css 변수를 지원하지 않는 브라우저에서 잘 동작하도록 만들었다.
+
+#### 2025-02-26
+
+- 로고와 body의 간격 등에 의해 postinglist와 posting의 간격이 동시에 변하게 하는것이, 유지보수에 이롭다고 판단하였다.(간격의 gap은 일정하게 유지하는 것이 좋기에) 따라서 css 변수를 활용하여, 유지보수성을 높혔다.

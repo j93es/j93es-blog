@@ -1,11 +1,16 @@
+:root {
+  --posting-list-category-wrap-mb: var(--logo-to-body-item-distance);
+  --posting-list-wrap-mb: calc(var(--logo-to-body-item-distance) + 0.5rem);
+}
+
 .posting-list-wrap {
   width: 90%;
   max-width: 30rem;
-  margin-bottom: 3.5rem;
+  margin-bottom: var(--posting-list-wrap-mb);
 }
 
 .category-wrap:not(:last-child) {
-  margin-bottom: 2rem;
+  margin-bottom: var(--posting-list-category-wrap-mb);
 }
 
 .category-title {
@@ -28,6 +33,6 @@
   margin-bottom: 0.5rem;
   display: grid;
   grid-template-columns: 1fr auto;
-  grid-gap: 0.625rem;
+  gap: 0.625rem;
   border-bottom: 0.0625rem solid var(--underline-color);
 }
