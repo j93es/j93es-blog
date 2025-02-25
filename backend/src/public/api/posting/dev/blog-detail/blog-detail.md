@@ -26,6 +26,10 @@ description:
 
 ## loading spinner 관련 로직
 
+## css 요소의 유지보수성
+
+- 단일책임원칙으로 살펴보는 padding, margin
+
 ## meta http-equiv="content-language" content="ko"
 
 크롬 번역
