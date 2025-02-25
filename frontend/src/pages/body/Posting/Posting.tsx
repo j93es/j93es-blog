@@ -110,16 +110,14 @@ const Posting: React.FC<PostingProps> = ({ path }) => {
 
       <div className="posting-head">
         <h1 className="posting-title">{currentPosting?.title}</h1>
-        <p className="posting-tag">
-          {currentPosting?.tag && `Tags | ${currentPosting.tag.join(", ")}`}
-        </p>
-        <p className="posting-date">
-          {currentPosting?.date && `Date | ${currentPosting.date}`}
-        </p>
-        <p className="posting-summary">
-          {currentPosting?.description &&
-            `Summary | ${currentPosting.description}`}
-        </p>
+
+        {currentPosting?.tag && (
+          <p>{`Tag | ${currentPosting.tag.join(", ")}`}</p>
+        )}
+        {currentPosting?.date && <p>{`Date | ${currentPosting.date}`}</p>}
+        {currentPosting?.description && (
+          <p>{`Summary | ${currentPosting.description}`}</p>
+        )}
       </div>
       <div className="posting-content">
         <ReactMarkdown

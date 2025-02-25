@@ -316,4 +316,6 @@ bool Document::hasRecentUserInteractionForNavigationFromJS() const
 #### 2025-2-25 Crossbrowsing
 
 - Safari에서 트랙패드로 뒤로가기 제스처 시에 브라우저가 1초간 멈추는 이슈를 해결했는데, 배포과정에서 이상한 문제가 생겼다. 사파리 개인정보 브라우저에서 트랙패드로 뒤로가기 실행시, fetch에러가 났다. 이유를 알아보니, reload시에 fetch가 취소되는데, 이때문에 에러가 발생하여 문제가 생겼다. 따라서 fetch 에러처리 로직을 변경하였다.
-- 해당 해결책을 적용하고 나니, ios에서 Chrome에서 불필요하게 reload되고 있었다. 사실 Safari에서 문제가 발생하기 때문에, Chrome에서는 reload되지 않아도 된다. 이유를 알아보니 user agent가 "CriOS" 로 표기되어 제대로 파싱하지 못했다. 해당 사항을 수정했다.
+- 해당 해결책을 적용하고 나니, ios의 Chrome과 ios의 Safari에서 불필요하게 reload되고 있었다. 사실 Desktop Safari에서 문제가 발생하기 때문에, Chrome에서는 reload되지 않아도 된다. 이유를 알아보니 user agent가 "CriOS" 로 표기되어 제대로 파싱하지 못했다. npm라이브러리를 통하여 브라우저 정보를 해석하기로 하였다.
+- css normalize 를 하여 여러 브라우저에서 동일한 스타일을 유지하도록 하였다.
+- crossbrowsing을 위해서 html5 태그, css 가상 selector, css 변수를 지원하지 않는 브라우저에서 잘 동작하도록 만들었다.

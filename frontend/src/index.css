@@ -40,7 +40,10 @@ table {
 table,
 th,
 td {
-  border: 1px solid var(--border-color);
+  border: 0.0625rem solid var(--border-color);
+}
+th {
+  border-bottom: 0.1625rem solid var(--border-color);
 }
 
 th,

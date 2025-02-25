@@ -2,8 +2,18 @@
   width: 90%;
   display: grid;
   grid-template-rows: auto 1fr auto;
-  /* grid-gap: 1rem; */
   margin: 0 auto;
+  gap: 2rem;
+}
+
+.posting-head :last-child,
+.posting-content :last-child {
+  margin-bottom: 0;
+}
+
+.posting-head :first-child,
+.posting-content :first-child {
+  margin-top: 0;
 }
 
 .posting-nav-item {
@@ -18,7 +28,7 @@
 .nav-prev {
   float: left;
   text-align: left;
-  margin: 0 1rem 0.6875rem 0;
+  margin: 0 1rem 1rem 0;
 }
 
 .nav-next {

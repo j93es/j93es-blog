@@ -4,16 +4,19 @@
 }
 
 .category-wrap:not(:last-child) {
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
 }
 
 .category-title {
   text-align: center;
+  margin-top: 0;
+  margin-bottom: 1rem;
 }
 
 .posting-link-wrap {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
 .posting-link-item {

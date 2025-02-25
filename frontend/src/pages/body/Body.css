@@ -2,10 +2,11 @@
   width: 100%;
   max-width: 48rem;
   margin: 0 auto;
-  padding-bottom: 2rem;
 }
 
 .body-item {
   display: flex;
   justify-content: center;
+  align-items: center;
+  padding: 1rem 0 2rem 0;
 }
