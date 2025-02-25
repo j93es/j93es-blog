@@ -1,7 +1,7 @@
 .footer-cont {
   width: 100%;
   text-align: center;
-  padding: 1.25rem 0;
+  padding: 1.54rem 0;
   border-top: 0.125rem solid var(--underline-color);
 }
 
@@ -15,7 +15,7 @@
 }
 
 .copyright {
-  margin: 0.5rem 0;
+  margin: 0.6rem 0;
 }
 
 .policy-link {
