@@ -1,6 +1,7 @@
 .posting-list-wrap {
   width: 90%;
   max-width: 30rem;
+  margin-bottom: 3.5rem;
 }
 
 .category-wrap:not(:last-child) {

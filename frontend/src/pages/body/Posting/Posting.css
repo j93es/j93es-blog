@@ -3,7 +3,8 @@
   display: grid;
   grid-template-rows: auto 1fr auto;
   margin: 0 auto;
-  gap: 3rem;
+  gap: 2rem;
+  margin-bottom: 2.5rem;
 }
 
 .posting-head :last-child,
