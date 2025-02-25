@@ -36,7 +36,7 @@ const Footer: React.FC<FooterProps> = () => {
           <MailIcon />
         </a>
       </div>
-      <p>&copy; 2024. j93es. All rights reserved.</p>
+      <p className="copyright">&copy; 2024. j93es. All rights reserved.</p>
       <Link
         to="/policy/information-protection-policy.md"
         className="policy-link"

@@ -1,7 +1,7 @@
 .footer-cont {
   width: 100%;
   text-align: center;
-  padding: 2rem 0;
+  padding: 1.6rem 0;
   border-top: 0.125rem solid var(--underline-color);
 }
 
@@ -10,7 +10,11 @@
   width: 5.625rem;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-gap: 0.5rem;
+  gap: 1rem;
+}
+
+.copyright {
+  margin: 0.6rem 0;
 }
 
 .policy-link {
