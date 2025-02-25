@@ -1,3 +1,5 @@
+@import url("./normalize.css");
+
 :root {
   --color: #0d1117;
   --bg-color: #f5f8ff;
@@ -17,13 +19,47 @@ body {
   -moz-osx-font-smoothing: grayscale;
   word-break: keep-all;
   overflow-wrap: break-word;
-  text-wrap: balance;
   width: 100%;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+li {
+  line-height: 130%;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1em 0;
+}
+
+table,
+th,
+td {
+  border: 1px solid var(--border-color);
+}
+
+th,
+td {
+  padding: 0.5em;
+  text-align: left;
+}
+
+p {
+  line-height: 160%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 1.618em 0 1em 0;
 }
 
 .hidden {

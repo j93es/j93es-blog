@@ -102,31 +102,6 @@ const Posting: React.FC<PostingProps> = ({ path }) => {
     pre: ({ ...props }) => {
       return <CustomPre elementWidth={elementWidth} {...props} />;
     },
-    p: ({ ...props }) => {
-      return <p style={{ lineHeight: "160%" }} {...props} />;
-    },
-    th: ({ ...props }) => {
-      return (
-        <th
-          style={{
-            padding: "0.5rem",
-            borderBottom: "0.125rem solid var(--underline-color)",
-          }}
-          {...props}
-        />
-      );
-    },
-    td: ({ ...props }) => {
-      return (
-        <td
-          style={{
-            padding: "0.5rem",
-            borderBottom: "0.0625rem solid var(--underline-color)",
-          }}
-          {...props}
-        />
-      );
-    },
   });
 
   return (

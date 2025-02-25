@@ -2967,7 +2967,7 @@ bail@^2.0.0:
   resolved "https://registry.npmjs.org/bail/-/bail-2.0.2.tgz"
   integrity sha512-0xO6mYd7JB2YesxDKplafRpsiOzPt9V02ddPCLbY1xYGPOX24NTyN50qnUxgCPcSoYMhKpAuBTjQoRZCAkUDRw==
 
-balanced-match@^1.0.0:
+balanced-match@^1.0.0, balanced-match@^1.0.2:
   version "1.0.2"
   resolved "https://registry.npmjs.org/balanced-match/-/balanced-match-1.0.2.tgz"
   integrity sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==
@@ -3584,6 +3584,14 @@ css-tree@^1.1.2, css-tree@^1.1.3:
   dependencies:
     mdn-data "2.0.14"
     source-map "^0.6.1"
+
+css-vars-ponyfill@^2.4.9:
+  version "2.4.9"
+  resolved "https://registry.yarnpkg.com/css-vars-ponyfill/-/css-vars-ponyfill-2.4.9.tgz#ad04f0ee5937f816616b7fae3cfa945a33e7bfd1"
+  integrity sha512-aZyLue5bdiGVNCiCclNjo123D8I7kyoYNUaAvz+H1JalX1ye4Ilz7jNRRH5YbM+dYD6ucejiydGwk7lol/GCXQ==
+  dependencies:
+    balanced-match "^1.0.2"
+    get-css-data "^2.0.2"
 
 css-what@^3.2.1:
   version "3.4.2"
@@ -4953,6 +4961,11 @@ get-caller-file@^2.0.5:
   resolved "https://registry.npmjs.org/get-caller-file/-/get-caller-file-2.0.5.tgz"
   integrity sha512-DyFP3BM/3YHTQOCUL/w0OZHR0lpKeGrxotcHWcqNEdnltqFwXVfhEBQ94eIo34AfQpo0rGki4cyIiftY06h2Fg==
 
+get-css-data@^2.0.2:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/get-css-data/-/get-css-data-2.1.1.tgz#be1ef413f5a0854b75967f3b694a6ce164557070"
+  integrity sha512-JpMa/f5P4mDXKg6l5/2cHL5xNY77Jap7tHyduMa6BF0E2a7bQ6Tvaz2BIMjeVYZYLcmOZ5w2Ro0yVJEI41tMbw==
+
 get-intrinsic@^1.1.3, get-intrinsic@^1.2.1, get-intrinsic@^1.2.2, get-intrinsic@^1.2.3, get-intrinsic@^1.2.4:
   version "1.2.4"
   resolved "https://registry.npmjs.org/get-intrinsic/-/get-intrinsic-1.2.4.tgz"
@@ -5348,6 +5361,11 @@ html-webpack-plugin@^5.5.0:
     lodash "^4.17.21"
     pretty-error "^4.0.0"
     tapable "^2.0.0"
+
+html5shiv@^3.7.3:
+  version "3.7.3"
+  resolved "https://registry.yarnpkg.com/html5shiv/-/html5shiv-3.7.3.tgz#d78a84a367bcb9a710100d57802c387b084631d2"
+  integrity sha512-SZwGvLGNtgp8GbgFX7oXEp8OR1aBt5LliX6dG0kdD1kl3KhMonN0QcSa/A3TsTgFewaGCbIryQunjayWDXzxmw==
 
 htmlparser2@^6.1.0:
   version "6.1.0"

@@ -5,7 +5,7 @@
 // Local
 import useDesktopSafariBackFix from "customHooks/useDesktopSafariBackFix";
 import useScrollToTop from "customHooks/useScrollToTop";
-import { isMacOs, isSafari, isIOS, isMobileSafari } from "mobile-device-detect";
+import { isMacOs, isSafari } from "mobile-device-detect";
 import Header from "pages/header/Header";
 import Body from "pages/body/Body";
 import Footer from "pages/footer/Footer";

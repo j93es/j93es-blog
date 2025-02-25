@@ -4,7 +4,9 @@
   "private": true,
   "author": "j93es",
   "dependencies": {
+    "css-vars-ponyfill": "^2.4.9",
     "highlight.js": "^11.11.1",
+    "html5shiv": "^3.7.3",
     "mobile-device-detect": "^0.4.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
