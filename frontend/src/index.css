@@ -1,4 +1,5 @@
 @import "./normalize.css";
+@import "pretendard/dist/web/static/pretendard.css";
 
 :root {
   --color: #0d1117;

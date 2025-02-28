@@ -28,7 +28,7 @@ update-force:
 	fi
 
 build-frontend:
-	sudo cp $(ENV_DIR)/frontend $(FRONTEND_DIR)/.env && cd $(FRONTEND_DIR) && sudo npm install && sudo npm run build && sudo cp -r $(FRONTEND_DIR)/build/* $(BACKEND_DIR)/src/public/ && sudo mkdir -p $(BACKEND_DIR)/src/public/frontend/ && sudo cp -r $(FRONTEND_DIR)/build/* $(BACKEND_DIR)/src/public/frontend/
+	sudo cp $(ENV_DIR)/frontend $(FRONTEND_DIR)/.env && cd $(FRONTEND_DIR) && sudo npm install && sudo npm run build && sudo cp -r $(FRONTEND_DIR)/build/* $(BACKEND_DIR)/src/public/ && sudo mkdir -p $(BACKEND_DIR)/src/public/root/ && sudo cp -r $(FRONTEND_DIR)/build/* $(BACKEND_DIR)/src/public/root/
 
 build-backend:
 	sudo cp $(ENV_DIR)/backend $(BACKEND_DIR)/.env && cd $(BACKEND_DIR) && sudo npm install && sudo npm run build
