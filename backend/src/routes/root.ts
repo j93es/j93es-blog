@@ -2,7 +2,7 @@ import express, { Request, Response, NextFunction } from "express";
 import path from "path";
 import fs from "fs";
 
-import { frontendDir, apiDir } from "../config";
+import { rootDir, apiDir } from "../config";
 import { ForbiddenError, NotFoundError } from "../models/error";
 import { wrapAsync } from "../middlewares/wrapAsync";
 import { indexHtmlController } from "../controllers/index";
@@ -28,11 +28,11 @@ router.get("/error-page/error.html", (req: Request, res: Response) => {
   } else {
     res.status(400);
   }
-  res.sendFile("error-page/error.html", { root: frontendDir });
+  res.sendFile("error-page/error.html", { root: rootDir });
 });
 
 // logo, favicon, manifest.json 등의 정적 파일을 제공
-router.use(express.static(frontendDir));
+router.use(express.static(rootDir));
 
 // apiDir을 root로 url의 path에 해당하는 파일이 있는지 선제적으로 확인
 // 없다면 에러 페이지로 리디렉션

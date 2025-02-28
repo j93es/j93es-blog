@@ -10,7 +10,7 @@ import {
   errorHandlers,
   headerSetter,
 } from "./middlewares/index";
-import frontendRouter from "./routes/frontend";
+import rootRouter from "./routes/root";
 import apiRouter from "./routes/api";
 
 const app: Application = express();
@@ -31,7 +31,7 @@ app.use([
 ]);
 
 app.use("/api/", apiRouter);
-app.use("/", frontendRouter);
+app.use("/", rootRouter);
 
 app.use(errorHandlers);
 

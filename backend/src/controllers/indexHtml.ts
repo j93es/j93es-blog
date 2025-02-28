@@ -1,11 +1,11 @@
 import fs from "fs";
 import path from "path";
-import { frontendDir, appDefaultTitle, appDefaultDescription } from "../config";
+import { rootDir, appDefaultTitle, appDefaultDescription } from "../config";
 import {
   postingIndexController,
   policyMetadataList,
 } from "../controllers/index";
-import { makeTitleDescription, parseMarkdown } from "../utils/index";
+import { makeTitleDescription } from "../utils/index";
 
 // 각 토큰은 static 문자열이거나 placeholder 이름을 가집니다.
 interface TemplateToken {
@@ -26,7 +26,7 @@ export class IndexHtmlController {
   }
 
   private makeTemplateTokens() {
-    const indexHtmlPath = path.join(frontendDir, "index.html");
+    const indexHtmlPath = path.join(rootDir, "index.html");
     let rawHtml = "";
     try {
       rawHtml = fs.readFileSync(indexHtmlPath, "utf8");
