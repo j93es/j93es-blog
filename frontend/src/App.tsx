@@ -16,7 +16,7 @@ const App = () => {
   useCrossBrowsingPoliyfill();
   useDesktopSafariBackFix();
   useScrollToTop();
-  useFont();
+  // useFont();
 
   return (
     <div className="App">
