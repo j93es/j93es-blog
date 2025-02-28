@@ -1,5 +1,5 @@
 const allowedErrorStatus = [400, 403, 404, 429, 500];
-const frontendErrorStatus = [1000, 1001, 1002];
+const frontendErrorStatus = [1000, 1001];
 const queryStatusKey = "j93es-status";
 const queryMessageKey = "j93es-message";
 const redirectUrl = "/";

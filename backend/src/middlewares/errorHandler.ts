@@ -72,7 +72,7 @@ class ErrorHandler {
       const code = 429;
       const message = "접속량이 많습니다. 잠시 후 다시 시도해주세요.";
       customLogger.warn("TooManyRequestsError", error.message, req);
-      this.redirectErrorPage(res, code, message);
+      res.status(code).send(message);
       return;
     }
 
