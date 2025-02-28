@@ -9,23 +9,37 @@ class HeaderSetter {
     res.setHeader("Last-Modified", lastModified);
 
     // Set security headers
-    res.set(
-      "Content-Security-Policy",
-      "default-src 'none'; base-uri 'self'; connect-src 'self' cloudflareinsights.com; font-src 'self'; form-action 'self'; frame-ancestors 'none'; img-src 'self'; script-src 'self' static.cloudflareinsights.com; style-src 'self'; manifest-src 'self'; object-src 'none'; upgrade-insecure-requests;"
-    );
-    res.set("X-Content-Type-Options", "nosniff");
-    res.set("X-Frame-Options", "deny");
-    res.set("Referrer-Policy", "strict-origin-when-cross-origin");
-    res.set(
+    const cspValue = [
+      "default-src 'none'",
+      "base-uri 'self'",
+      "connect-src 'self' cloudflareinsights.com",
+      "font-src 'self' cdnjs.cloudflare.com",
+      "form-action 'self'",
+      "frame-ancestors 'none'",
+      "img-src 'self'",
+      "script-src 'self' static.cloudflareinsights.com",
+      "style-src 'self' cdnjs.cloudflare.com",
+      "manifest-src 'self'",
+      "object-src 'none'",
+      "upgrade-insecure-requests",
+    ].join("; ");
+    res.setHeader("Content-Security-Policy", cspValue);
+    res.setHeader("X-Content-Type-Options", "nosniff");
+    res.setHeader("X-Frame-Options", "deny");
+    res.setHeader("Referrer-Policy", "strict-origin-when-cross-origin");
+    res.setHeader(
       "Permissions-Policy",
       "accelerometer=(),autoplay=(),camera=(),fullscreen=(self),geolocation=(),gyroscope=(),midi=(),microphone=(),magnetometer=(),payment=(),xr-spatial-tracking=()"
     );
-    res.set("X-XSS-Protection", "0");
-    res.set("Cross-Origin-Resource-Policy", "same-origin");
-    res.set("Cross-Origin-Opener-Policy", "same-origin");
-    res.set("Cross-Origin-Embedder-Policy", "require-corp");
-    res.set("X-Permitted-Cross-Domain-Policies", "none");
-    res.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
+    res.setHeader("X-XSS-Protection", "0");
+    res.setHeader("Cross-Origin-Resource-Policy", "same-origin");
+    res.setHeader("Cross-Origin-Opener-Policy", "same-origin");
+    res.setHeader("Cross-Origin-Embedder-Policy", "require-corp");
+    res.setHeader("X-Permitted-Cross-Domain-Policies", "none");
+    res.setHeader(
+      "Strict-Transport-Security",
+      "max-age=31536000; includeSubDomains"
+    );
     next();
   };
 }
