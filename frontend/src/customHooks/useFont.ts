@@ -8,13 +8,15 @@ import { useEffect } from "react";
 const useFont = () => {
   useEffect(() => {
     const link = document.createElement("link");
-    link.rel = "stylesheet";
-    link.as = "style";
-    link.crossOrigin = "anonymous";
-    link.href =
-      "https://cdnjs.cloudflare.com/ajax/libs/pretendard/1.3.9/static/pretendard.min.css";
-    link.onload = () => console.log("Static subset font loaded");
-    document.head.appendChild(link);
+
+    setTimeout(() => {
+      link.rel = "stylesheet";
+      link.as = "style";
+      link.crossOrigin = "anonymous";
+      link.href =
+        "https://cdnjs.cloudflare.com/ajax/libs/pretendard/1.3.9/static/pretendard.min.css";
+      document.head.appendChild(link);
+    }, 500);
 
     return () => {
       document.head.removeChild(link);
