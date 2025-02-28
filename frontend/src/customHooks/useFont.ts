@@ -16,7 +16,7 @@ const useFont = () => {
       link.href =
         "https://cdnjs.cloudflare.com/ajax/libs/pretendard/1.3.9/static/pretendard.min.css";
       document.head.appendChild(link);
-    }, 500);
+    }, 3000);
 
     return () => {
       document.head.removeChild(link);
