@@ -24,12 +24,15 @@ body {
   overflow-wrap: break-word;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+code,
+pre {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+  line-height: 130%;
 }
 
-li {
+li,
+span {
   line-height: 130%;
 }
 
@@ -56,6 +59,7 @@ td {
 
 p {
   line-height: 160%;
+  margin: 1em 0 0.618em 0;
 }
 
 h1,
