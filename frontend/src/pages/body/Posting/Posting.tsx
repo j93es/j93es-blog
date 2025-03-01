@@ -8,7 +8,6 @@ import rehypeHighlight from "rehype-highlight";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 import urlJoin from "url-join";
-import "highlight.js/styles/github-dark-dimmed.css";
 
 // Local
 import { apiUrl } from "config";
