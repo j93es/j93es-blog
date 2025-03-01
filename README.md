@@ -323,3 +323,11 @@ bool Document::hasRecentUserInteractionForNavigationFromJS() const
 #### 2025-02-26
 
 - 로고와 body의 간격 등에 의해 postinglist와 posting의 간격이 동시에 변하게 하는것이, 유지보수에 이롭다고 판단하였다.(간격의 gap은 일정하게 유지하는 것이 좋기에) 따라서 css 변수를 활용하여, 유지보수성을 높혔다.
+
+#### 2025-2-28
+
+- 여러 환경에서 동일한 디자인을 제공하기 위해 폰트를 적용했다.
+
+#### 2025-3-1
+
+- 에러 페이지와 noscript 페이지를 압축하여 serving하도록 만들었다.

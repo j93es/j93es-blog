@@ -1,16 +1,17 @@
 ---
 title: "정보 보호 정책"
-date: 2025-02-10 11:33
+date: 2025-03-01 15:34
 tag: [information-protection-policy]
 category: policy
 description: "j93es 블로그의 정보 보호 정책과 수집 정보, 수집 목적, 보관 기간, 정보 제공, 보안 조치, 파기 절차 등을 안내합니다."
 ---
 
-j93.es은(는) 사용자의 웹사이트 이용 경험을 개선하고, 보안을 강화하는 등의 목적을 위하여 개인을 식별할 수 없는 범위에 한하여 정보를 수집합니다. 이 정책에서 수집된 정보의 의미는, 웹사이트 배포/보안 강화/방문자 수 파악을 위하여 일반적으로 사용되는 Cloudflare/AWS 등의 서비스에서 수집한 정보가 아닌, j93.es의 호스트 서버에 저장하는 정보입니다. 현재 j93.es는 웹사이트 배포/보안 강화/방문자 수 파악을 위하여 다음의 서비스를 이용합니다. 서비스와 관련한 자세한 사항은 아래의 링크를 참고하세요.
+j93.es은(는) 사용자의 웹사이트 이용 경험을 개선하고, 보안을 강화하는 등의 목적을 위하여 개인을 식별할 수 없는 범위에 한하여 정보를 수집합니다. 이 정책에서 수집된 정보의 의미는, 웹사이트 배포/보안 강화/방문자 수 파악/검색엔진 등록 등을 위하여 일반적으로 사용되는 Cloudflare/AWS 등의 서비스에서 수집한 정보가 아닌, j93.es의 호스트 서버에 저장하는 정보입니다. 현재 j93.es는 웹사이트 배포/보안 강화/방문자 수 파악/검색엔진 등록 등을 위하여 다음의 서비스를 이용합니다. 서비스와 관련한 자세한 사항은 아래의 링크를 참고하세요.
 
 - [Cloudflare(IP 주소, 접속 국가, 브라우저 정보, 방문자 수 등)](https://www.cloudflare.com/ko-kr/web-analytics/)
-- [Naver Search Advisor(방문자 수)](https://searchadvisor.naver.com)
-- [Daum 웹마스터 도구(방문자 수)](https://cs.daum.net/faq/15.html)
+- [Google Search Console(방문자 수, 검색엔진 등록 등)](https://search.google.com/search-console/welcome)
+- [Naver Search Advisor(방문자 수, 검색엔진 등록 등)](https://searchadvisor.naver.com)
+- [Daum 웹마스터 도구(방문자 수, 검색엔진 등록 등)](https://webmaster.daum.net/)
 
 ## 1. 수집되는 정보
 

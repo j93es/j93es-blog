@@ -4,7 +4,7 @@
   <!-- main page start -->
   <url>
     <loc>https://j93.es/</loc>
-    <lastmod>2025-02-12</lastmod>
+    <lastmod>2025-02-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -13,19 +13,19 @@
   <!-- dev posting start -->
   <url>
     <loc>https://j93.es/posting/dev/step-linetracer/step-linetracer.md</loc>
-    <lastmod>2025-02-12</lastmod>
+    <lastmod>2025-01-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://j93.es/posting/dev/state-machine/state-machine.md</loc>
-    <lastmod>2025-02-12</lastmod>
+    <lastmod>2025-01-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://j93.es/posting/dev/dc-linetracer/dc-linetracer.md</loc>
-    <lastmod>2025-02-12</lastmod>
+    <lastmod>2025-01-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -34,49 +34,49 @@
   <!-- photo posting start -->
   <url>
     <loc>https://j93.es/posting/photo/singapore-1/singapore-1.md</loc>
-    <lastmod>2025-02-12</lastmod>
+    <lastmod>2024-10-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://j93.es/posting/photo/singapore-2/singapore-2.md</loc>
-    <lastmod>2025-02-12</lastmod>
+    <lastmod>2024-10-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://j93.es/posting/photo/singapore-3/singapore-3.md</loc>
-    <lastmod>2025-02-12</lastmod>
+    <lastmod>2024-10-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://j93.es/posting/photo/singapore-4/singapore-4.md</loc>
-    <lastmod>2025-02-12</lastmod>
+    <lastmod>2024-10-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://j93.es/posting/photo/singapore-5/singapore-5.md</loc>
-    <lastmod>2025-02-12</lastmod>
+    <lastmod>2024-10-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://j93.es/posting/photo/gyeongbokgung-palace-at-night/gyeongbokgung-palace-at-night.md</loc>
-    <lastmod>2025-02-12</lastmod>
+    <lastmod>2025-01-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://j93.es/posting/photo/jeju-1/jeju-1.md</loc>
-    <lastmod>2025-02-12</lastmod>
+    <lastmod>2025-02-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://j93.es/posting/photo/jeju-2/jeju-2.md</loc>
-    <lastmod>2025-02-12</lastmod>
+    <lastmod>2025-02-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -85,7 +85,7 @@
   <!-- policy start -->
   <url>
     <loc>https://j93.es/policy/information-protection-policy.md</loc>
-    <lastmod>2025-02-12</lastmod>
+    <lastmod>2025-03-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
