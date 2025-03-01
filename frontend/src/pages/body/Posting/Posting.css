@@ -34,8 +34,6 @@
 /* 네비게이션 */
 .posting-nav {
   margin-bottom: var(--posting-nav-mb);
-  display: flex;
-  justify-content: space-between;
 }
 
 .posting-nav-item {
@@ -50,15 +48,17 @@
 
 .nav-prev,
 .nav-next {
-  margin: 0.25rem;
+  margin: 0.25rem 0;
 }
 
 .nav-prev {
+  float: left;
   text-align: left;
   margin-right: 0.5rem;
 }
 
 .nav-next {
+  float: right;
   text-align: right;
   margin-left: 0.5rem;
 }
