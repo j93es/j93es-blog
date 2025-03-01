@@ -3,7 +3,7 @@
 :root {
   --posting-head-mb: var(--logo-to-body-item-distance);
   --posting-content-mb: 1.5rem;
-  --posting-nav-mb: calc(var(--posting-content-mb) + 0.5rem);
+  --posting-nav-mb: calc(var(--posting-content-mb) + 0.6rem);
 }
 
 .posting-wrap {

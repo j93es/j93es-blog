@@ -1,6 +1,6 @@
 :root {
   --posting-list-category-wrap-mb: var(--logo-to-body-item-distance);
-  --posting-list-wrap-mb: calc(var(--logo-to-body-item-distance) + 0.5rem);
+  --posting-list-wrap-mb: calc(var(--logo-to-body-item-distance) + 0.6rem);
 }
 
 .posting-list-wrap {
