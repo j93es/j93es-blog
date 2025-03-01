@@ -3,13 +3,30 @@ import tryToCatch from "try-to-catch";
 import urlJoin from "url-join";
 import fs from "fs";
 
-const errorPageInputDir = "./public/error-page/";
-const errorPageOutputDir = "./build/error-page/";
-const errorPageFileName = ["error.html", "error.css", "error.js"];
+// packaga.json에서 실행됨으로 root는 ./ 로 설정
+const rootDir = "./";
+const inputDir = urlJoin(rootDir, "public/");
+const outputDir = urlJoin(rootDir, "build/");
 
-const noscriptPageInputDir = "./public/noscript-page/";
-const noscriptPageOutputDir = "./build/noscript-page/";
+const errorPageInputDir = urlJoin(inputDir, "error-page/");
+const errorPageOutputDir = urlJoin(outputDir, "error-page/");
+const errorPageFileName = ["error.html", "error.css", "error.js"];
+const errorPageInput = errorPageFileName.map((name) =>
+  urlJoin(errorPageInputDir, name)
+);
+const errorPageOutput = errorPageFileName.map((name) =>
+  urlJoin(errorPageOutputDir, name)
+);
+
+const noscriptPageInputDir = urlJoin(inputDir, "noscript-page/");
+const noscriptPageOutputDir = urlJoin(outputDir, "noscript-page/");
 const noscriptPageFileName = ["noscript.html", "noscript.css"];
+const noscriptPageInput = noscriptPageFileName.map((name) =>
+  urlJoin(noscriptPageInputDir, name)
+);
+const noscriptPageOutput = noscriptPageFileName.map((name) =>
+  urlJoin(noscriptPageOutputDir, name)
+);
 
 const options = {
   js: {
@@ -47,20 +64,6 @@ const options = {
     },
   },
 };
-
-const errorPageInput = errorPageFileName.map((name) =>
-  urlJoin(errorPageInputDir, name)
-);
-const errorPageOutput = errorPageFileName.map((name) =>
-  urlJoin(errorPageOutputDir, name)
-);
-
-const noscriptPageInput = noscriptPageFileName.map((name) =>
-  urlJoin(noscriptPageInputDir, name)
-);
-const noscriptPageOutput = noscriptPageFileName.map((name) =>
-  urlJoin(noscriptPageOutputDir, name)
-);
 
 errorPageInput.forEach(async (input, index) => {
   const [error, data] = await tryToCatch(minify, input, options);

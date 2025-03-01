@@ -22,7 +22,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "GENERATE_SOURCEMAP=false react-scripts build && node minify.js"
+    "build": "GENERATE_SOURCEMAP=false react-scripts build && node ./scripts/minify.js"
   },
   "eslintConfig": {
     "extends": [

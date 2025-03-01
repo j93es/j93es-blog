@@ -48,7 +48,7 @@ restart-nginx:
 deploy-frontend: update-force build-frontend restart-nginx
 	@echo "Frontend deployment completed."
 
-deploy-backend:update-force build-backend stop-pm2 start-pm2 save-pm2 restart-nginx
+deploy-backend: update-force build-backend stop-pm2 start-pm2 save-pm2 restart-nginx
 	@echo "Backend deployment completed."
 
 deploy: update build-frontend build-backend stop-pm2 start-pm2 save-pm2 restart-nginx

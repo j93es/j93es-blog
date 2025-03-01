@@ -1,8 +1,9 @@
-const fs = require("fs");
-const path = require("path");
+import fs from "fs";
 
 // Site configuration
 const siteUrl = "https://j93.es";
+
+const outputPath = "../public/sitemap.xml";
 
 // Example pages for the sitemap
 const pages = [
@@ -29,7 +30,6 @@ const generateSitemap = (siteUrl, pages) => {
 
 // Save sitemap.xml to the public directory
 const saveSitemap = (content) => {
-  const outputPath = path.join(__dirname, "public", "sitemap.xml");
   fs.writeFileSync(outputPath, content, "utf8");
   console.log(`Sitemap has been generated and saved to ${outputPath}`);
 };
