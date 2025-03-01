@@ -22,7 +22,7 @@ app.disable("x-powered-by");
 app.use([
   headerSetter.setHeader,
   corsMiddleware,
-  rateLimiter.makeLimit(10, 30),
+  rateLimiter.makeLimit(60, 180),
   express.json({ limit: "100kb" }),
   express.urlencoded({ extended: false }),
   requestWriter.addId,
