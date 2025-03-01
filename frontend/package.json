@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "author": "j93es",
+  "type": "module",
   "dependencies": {
     "css-vars-ponyfill": "^2.4.9",
     "highlight.js": "^11.11.1",
@@ -21,7 +22,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "GENERATE_SOURCEMAP=false react-scripts build"
+    "build": "GENERATE_SOURCEMAP=false react-scripts build && node minify.js"
   },
   "eslintConfig": {
     "extends": [
@@ -50,10 +51,13 @@
     "@testing-library/react": "^16.2.0",
     "@testing-library/user-event": "^14.6.1",
     "@types/jest": "^29.5.14",
+    "@types/minify": "^9.1.4",
     "@types/node": "^22.12.0",
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
+    "minify": "^13.0.0",
     "react-scripts": "5.0.1",
+    "try-to-catch": "^3.0.1",
     "typescript": "^4.9.5",
     "web-vitals": "^4.2.4"
   }

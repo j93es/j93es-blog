@@ -5,14 +5,15 @@ const queryMessageKey = "j93es-message";
 const redirectUrl = "/";
 let countdown = 5;
 const queryString = window.location.search;
-const urlParams = new URLSearchParams(queryString);
-const originStatusCode = Number(urlParams.get(queryStatusKey));
-const statusCode = [...allowedErrorStatus, ...frontendErrorStatus].includes(
-  originStatusCode
-)
-  ? originStatusCode
-  : 400;
-const message = urlParams.get(queryMessageKey);
+const originStatusCode = Number(
+  new URLSearchParams(queryString).get(queryStatusKey)
+);
+const isValidStatusCode = [
+  ...allowedErrorStatus,
+  ...frontendErrorStatus,
+].includes(originStatusCode);
+const statusCode = isValidStatusCode ? originStatusCode : 400;
+const message = new URLSearchParams(queryString).get(queryMessageKey);
 
 const updateElementTextById = (id, text) => {
   const element = document.getElementById(id);
@@ -22,7 +23,7 @@ const updateElementTextById = (id, text) => {
 };
 
 const checkQueryString = () => {
-  if (originStatusCode !== statusCode) {
+  if (!isValidStatusCode) {
     const url = new URL(window.location.href);
     url.searchParams.set(queryStatusKey, statusCode);
     url.searchParams.set(queryMessageKey, "잘못된 요청입니다.");
