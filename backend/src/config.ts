@@ -1,4 +1,5 @@
 import path from "path";
+import fs from "fs";
 import { nanoidGenerator } from "./utils/index";
 
 export const PORT = process.env.PORT || 8081;
@@ -20,5 +21,17 @@ export const rootDir = path.join(publicDir, "/root/");
 export const ipV4RemainIndex = 2;
 export const ipV6RemainIndex = 2;
 
-export const eTag = `W/"${nanoidGenerator.generateId()}"`;
-export const lastModified = new Date().toUTCString();
+let _etag = null;
+let _lastmod = null;
+try {
+  const data = fs.readFileSync(
+    path.join(publicDir, "cacheVerificationHeader.json"),
+    "utf8"
+  );
+  ({ etag: _etag, lastmod: _lastmod } = JSON.parse(data));
+} catch (error) {
+  console.error("Failed to read cacheVerificationHeader.json file.");
+}
+
+export const eTag = _etag || `W/"${nanoidGenerator.generateId()}"`;
+export const lastmod = _lastmod || new Date().toUTCString();

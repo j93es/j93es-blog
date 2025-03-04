@@ -1,12 +1,12 @@
 import { Request, Response, NextFunction } from "express";
-import { eTag, lastModified } from "../config";
+import { eTag, lastmod } from "../config";
 
 class HeaderSetter {
   setHeader = (req: Request, res: Response, next: NextFunction) => {
     // Set cache headers
     res.setHeader("Cache-Control", "public, max-age=86400");
     res.setHeader("ETag", eTag);
-    res.setHeader("Last-Modified", lastModified);
+    res.setHeader("Last-Modified", lastmod);
 
     // Set security headers
     const cspValue = [
@@ -40,6 +40,7 @@ class HeaderSetter {
       "Strict-Transport-Security",
       "max-age=31536000; includeSubDomains"
     );
+
     next();
   };
 }
