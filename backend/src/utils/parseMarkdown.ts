@@ -1,12 +1,16 @@
+// External
+
+// Local
+
 interface ParsedMarkdown {
-  data: { [key: string]: any };
+  metadata: { [key: string]: any };
   content: string;
 }
 
-export class ParseMarkdown {
-  private _parseMarkdownData(
+class ParseMarkdown {
+  private _parseMarkdownMetadata(
     match: RegExpMatchArray | null
-  ): ParsedMarkdown["data"] {
+  ): ParsedMarkdown["metadata"] {
     let data = {};
 
     if (match) {
@@ -67,11 +71,11 @@ export class ParseMarkdown {
     return content || "";
   }
 
-  getData(markdown: string): ParsedMarkdown["data"] {
+  getMetadata(markdown: string): ParsedMarkdown["metadata"] {
     const metadataRegex = /^---\s*([\s\S]*?)\s*---/m;
     const match = markdown.match(metadataRegex);
 
-    return this._parseMarkdownData(match);
+    return this._parseMarkdownMetadata(match);
   }
 
   getContent(markdown: string): string {
@@ -85,12 +89,14 @@ export class ParseMarkdown {
     const metadataRegex = /^---\s*([\s\S]*?)\s*---/m;
     const match = markdown.match(metadataRegex);
 
-    const data = this._parseMarkdownData(match);
+    const metadata = this._parseMarkdownMetadata(match);
     const content = this._parseMarkdownContent(markdown, match);
 
     return {
-      data,
+      metadata,
       content,
     };
   }
 }
+
+export { ParseMarkdown };

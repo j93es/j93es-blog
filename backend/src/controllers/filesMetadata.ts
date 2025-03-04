@@ -26,7 +26,7 @@ class FilesMetadataController {
         this.readDirectory(fullPath);
       } else if (path.extname(fullPath) === ".md") {
         const md = fs.readFileSync(fullPath, "utf8");
-        const policyMetadata = parseMarkdown.getData(md);
+        const policyMetadata = parseMarkdown.getMetadata(md);
         const targetPath = path.join("/", fullPath.split(apiDir)[1]);
         this.metadataList.push({
           path: targetPath,

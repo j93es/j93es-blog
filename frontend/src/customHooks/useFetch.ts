@@ -13,6 +13,7 @@ interface FetchOptions {
   headers?: HeadersInit;
   body?: BodyInit;
   responseType?: "json" | "text";
+  callback?: (data: object | string) => void;
 }
 
 /**
@@ -52,6 +53,7 @@ const useFetch = <T>(
             : await response.json();
 
         setData(result);
+        options?.callback && options.callback(result);
       } catch (error: any) {
         if (error?.name === "AbortError") return; // 요청 취소 시 에러 무시
         setError(error);

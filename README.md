@@ -331,3 +331,7 @@ bool Document::hasRecentUserInteractionForNavigationFromJS() const
 #### 2025-3-1
 
 - 에러 페이지와 noscript 페이지를 압축하여 serving하도록 만들었다.
+
+#### 2025-3-4
+
+- A 포스팅에서 B 포스팅으로 이동시에, md 파일 fetch가 완료되어 spinner가 보이지 않을때, A 포스팅이 잠시 보였다가 B 포스팅이 랜더링 되었다. 즉, 잠시 깜빡임이 발생하였다. 이를 방지하였다.

@@ -39,12 +39,27 @@ const Posting: React.FC<PostingProps> = ({ path }) => {
   const elementRef = useRef<HTMLDivElement>(null);
   const [elementWidth, setElementWidth] = useState(0);
 
-  const { data: markdownText } = useFetch(
-    urlJoin(apiUrl, path),
-    "",
-    [path, postingIndexController],
-    { responseType: "text" }
-  );
+  useFetch(urlJoin(apiUrl, path), "", [path, postingIndexController], {
+    responseType: "text",
+    callback: (data) => {
+      if (!data || !postingIndexController) return;
+      const { metadata, content } = parseMarkdown.get(data as string);
+      const currentPosting = { ...metadata } as EachPostingMetadata;
+      const nextPosting = postingIndexController.getNextPostingMetadata(
+        metadata.category,
+        metadata.title
+      );
+      const previousPosting = postingIndexController.getPreviousPostingMetadata(
+        metadata.category,
+        metadata.title
+      );
+
+      setMarkdownContent(content);
+      setCurrentPosting(currentPosting);
+      setNextPosting(nextPosting || null);
+      setPreviousPosting(previousPosting || null);
+    },
+  });
 
   useEffect(() => {
     const resizeObserver = new ResizeObserver((entries) => {
@@ -65,26 +80,6 @@ const Posting: React.FC<PostingProps> = ({ path }) => {
       }
     };
   }, []);
-
-  useEffect(() => {
-    if (!markdownText || !postingIndexController) return;
-
-    const { data, content } = parseMarkdown.get(markdownText);
-    const currentPosting = { ...data } as EachPostingMetadata;
-    const nextPosting = postingIndexController.getNextPostingMetadata(
-      data.category,
-      data.title
-    );
-    const previousPosting = postingIndexController.getPreviousPostingMetadata(
-      data.category,
-      data.title
-    );
-
-    setMarkdownContent(content);
-    setCurrentPosting(currentPosting);
-    setNextPosting(nextPosting || null);
-    setPreviousPosting(previousPosting || null);
-  }, [markdownText, postingIndexController]);
 
   const components = useRef({
     code: ({ ...props }) => {
