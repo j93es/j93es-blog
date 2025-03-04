@@ -335,3 +335,4 @@ bool Document::hasRecentUserInteractionForNavigationFromJS() const
 #### 2025-3-4
 
 - A 포스팅에서 B 포스팅으로 이동시에, md 파일 fetch가 완료되어 spinner가 보이지 않을때, A 포스팅이 잠시 보였다가 B 포스팅이 랜더링 되었다. 즉, 잠시 깜빡임이 발생하였다. 이를 방지하였다.
+- 기존에는 캐시 검증헤더가 프로젝트 재시작 시에 다시 생성되었으나, 캐시 검증 헤더를 빌드시에만 업데이트 되도록 하였다.
