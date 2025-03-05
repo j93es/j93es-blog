@@ -5,7 +5,7 @@ import { apiDir } from "../config";
 
 const router = express.Router();
 
-router.get("/index/", (req: Request, res: Response) => {
+router.get("/posting-index.json", (req: Request, res: Response) => {
   res.json(postingIndexController.getPostingIndex());
 });
 

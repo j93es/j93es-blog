@@ -37,7 +37,7 @@ const Body: React.FC<BodyProps> = () => {
     usePostingIndexController();
 
   const { data: postingIndex }: { data: PostingIndex | null } = useFetch(
-    urlJoin(apiUrl, "index"),
+    urlJoin(apiUrl, "/posting-index.json"),
     null, // 초기 값
     [], // 의존성 배열 (한 번만 실행)
     { responseType: "json" }
