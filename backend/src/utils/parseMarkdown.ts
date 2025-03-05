@@ -1,9 +1,10 @@
 // External
 
 // Local
+import { EachPostingMetadata } from "models/postingIndex";
 
 interface ParsedMarkdown {
-  metadata: { [key: string]: any };
+  metadata: EachPostingMetadata | null;
   content: string;
 }
 
@@ -55,7 +56,11 @@ class ParseMarkdown {
       }, {});
     }
 
-    return data || {};
+    if (Object.keys(data).length === 0) {
+      return null;
+    }
+
+    return data as EachPostingMetadata;
   }
 
   private _parseMarkdownContent(

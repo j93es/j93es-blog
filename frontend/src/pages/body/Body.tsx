@@ -75,7 +75,7 @@ const Body: React.FC<BodyProps> = () => {
                       <Route
                         key={eachPostingMetadata.path}
                         path={eachPostingMetadata.path}
-                        element={<Posting {...eachPostingMetadata} />}
+                        element={<Posting path={eachPostingMetadata.path} />}
                       />
                     );
                   });

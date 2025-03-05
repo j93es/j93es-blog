@@ -30,11 +30,11 @@ class FilesMetadataController {
         const targetPath = path.join("/", fullPath.split(apiDir)[1]);
         this.metadataList.push({
           path: targetPath,
-          title: policyMetadata.title,
-          date: policyMetadata.date,
-          tag: policyMetadata.tag,
-          category: policyMetadata.category,
-          description: policyMetadata.description,
+          title: policyMetadata?.title || "",
+          date: policyMetadata?.date || "",
+          tag: policyMetadata?.tag || [],
+          category: policyMetadata?.category || "",
+          description: policyMetadata?.description || "",
         });
       }
     });

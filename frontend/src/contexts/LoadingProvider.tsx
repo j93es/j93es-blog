@@ -1,5 +1,5 @@
 // React
-import React, { createContext, useState, useContext } from "react";
+import React, { createContext, useState, useContext, useCallback } from "react";
 
 // External
 
@@ -22,13 +22,13 @@ const LoadingContext = createContext<{
 const LoadingProvider: React.FC<LoadingProviderProps> = ({ children }) => {
   const [loadingCount, setLoadingCount] = useState(0);
 
-  const startLoading = () => {
+  const startLoading = useCallback(() => {
     setLoadingCount((prev) => prev + 1);
-  };
+  }, []);
 
-  const stopLoading = () => {
+  const stopLoading = useCallback(() => {
     setLoadingCount((prev) => Math.max(0, prev - 1)); // 음수 방지
-  };
+  }, []);
 
   return (
     <LoadingContext

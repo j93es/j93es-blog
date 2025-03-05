@@ -1,13 +1,16 @@
 // External
 
 // Local
+import { EachPostingMetadata } from "models/postingIndex";
 
 interface ParsedMarkdown {
-  metadata: { [key: string]: any };
+  metadata: EachPostingMetadata | null;
   content: string;
 }
 
 class ParseMarkdown {
+  metadataRegex = /^---\s*([\s\S]*?)\s*---/m;
+
   private _parseMarkdownMetadata(
     match: RegExpMatchArray | null
   ): ParsedMarkdown["metadata"] {
@@ -55,7 +58,11 @@ class ParseMarkdown {
       }, {});
     }
 
-    return data || {};
+    if (Object.keys(data).length === 0) {
+      return null;
+    }
+
+    return data as EachPostingMetadata;
   }
 
   private _parseMarkdownContent(
@@ -71,23 +78,20 @@ class ParseMarkdown {
     return content || "";
   }
 
-  getMetaData(markdown: string): ParsedMarkdown["metadata"] {
-    const metadataRegex = /^---\s*([\s\S]*?)\s*---/m;
-    const match = markdown.match(metadataRegex);
+  getMetadata(markdown: string): ParsedMarkdown["metadata"] {
+    const match = markdown.match(this.metadataRegex);
 
     return this._parseMarkdownMetadata(match);
   }
 
   getContent(markdown: string): string {
-    const metadataRegex = /^---\s*([\s\S]*?)\s*---/m;
-    const match = markdown.match(metadataRegex);
+    const match = markdown.match(this.metadataRegex);
 
     return this._parseMarkdownContent(markdown, match);
   }
 
   get(markdown: string): ParsedMarkdown {
-    const metadataRegex = /^---\s*([\s\S]*?)\s*---/m;
-    const match = markdown.match(metadataRegex);
+    const match = markdown.match(this.metadataRegex);
 
     const metadata = this._parseMarkdownMetadata(match);
     const content = this._parseMarkdownContent(markdown, match);

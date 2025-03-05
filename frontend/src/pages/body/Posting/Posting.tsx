@@ -26,12 +26,11 @@ interface PostingProps {
 
 const Posting: React.FC<PostingProps> = ({ path }) => {
   const [markdownContent, setMarkdownContent] = useState("");
-  const [currentPosting, setCurrentPosting] =
+  const [currentPostingMetadata, setCurrentPostingMetadata] =
     useState<EachPostingMetadata | null>(null);
-  const [nextPosting, setNextPosting] = useState<EachPostingMetadata | null>(
-    null
-  );
-  const [previousPosting, setPreviousPosting] =
+  const [nextPostingMetadata, setNextPostingMetadata] =
+    useState<EachPostingMetadata | null>(null);
+  const [previousPostingMetadata, setPreviousPostingMetadata] =
     useState<EachPostingMetadata | null>(null);
 
   const { postingIndexController } = usePostingIndexController();
@@ -42,24 +41,31 @@ const Posting: React.FC<PostingProps> = ({ path }) => {
   useFetch(urlJoin(apiUrl, path), "", [path, postingIndexController], {
     responseType: "text",
     callback: (data) => {
-      if (!data || !postingIndexController) return;
+      if (!data) return;
+
       const { metadata, content } = parseMarkdown.get(data as string);
-      const currentPosting = { ...metadata } as EachPostingMetadata;
-      const nextPosting = postingIndexController.getNextPostingMetadata(
-        metadata.category,
-        metadata.title
-      );
-      const previousPosting = postingIndexController.getPreviousPostingMetadata(
-        metadata.category,
-        metadata.title
-      );
 
       setMarkdownContent(content);
-      setCurrentPosting(currentPosting);
-      setNextPosting(nextPosting || null);
-      setPreviousPosting(previousPosting || null);
+      setCurrentPostingMetadata(metadata);
     },
   });
+
+  useEffect(() => {
+    if (!currentPostingMetadata || !postingIndexController) return;
+
+    const nextPostingMetadata = postingIndexController.getNextPostingMetadata(
+      currentPostingMetadata.category,
+      currentPostingMetadata.title
+    );
+    const previousPostingMetadata =
+      postingIndexController.getPreviousPostingMetadata(
+        currentPostingMetadata.category,
+        currentPostingMetadata.title
+      );
+
+    setNextPostingMetadata(nextPostingMetadata || null);
+    setPreviousPostingMetadata(previousPostingMetadata || null);
+  }, [currentPostingMetadata, postingIndexController]);
 
   useEffect(() => {
     const resizeObserver = new ResizeObserver((entries) => {
@@ -100,17 +106,19 @@ const Posting: React.FC<PostingProps> = ({ path }) => {
 
   return (
     <div ref={elementRef} className="posting-wrap">
-      {currentPosting && <MetaTag {...currentPosting} />}
+      {currentPostingMetadata && <MetaTag {...currentPostingMetadata} />}
 
       <div className="posting-head">
-        <h1 className="posting-title">{currentPosting?.title}</h1>
+        <h1 className="posting-title">{currentPostingMetadata?.title}</h1>
 
-        {currentPosting?.tag && (
-          <p>{`Tag | ${currentPosting.tag.join(", ")}`}</p>
+        {currentPostingMetadata?.tag && (
+          <p>{`Tag | ${currentPostingMetadata.tag.join(", ")}`}</p>
         )}
-        {currentPosting?.date && <p>{`Date | ${currentPosting.date}`}</p>}
-        {currentPosting?.description && (
-          <p>{`Summary | ${currentPosting.description}`}</p>
+        {currentPostingMetadata?.date && (
+          <p>{`Date | ${currentPostingMetadata.date}`}</p>
+        )}
+        {currentPostingMetadata?.description && (
+          <p>{`Summary | ${currentPostingMetadata.description}`}</p>
         )}
       </div>
       <div className="posting-content">
@@ -127,22 +135,22 @@ const Posting: React.FC<PostingProps> = ({ path }) => {
         />
       </div>
       <div className="posting-nav">
-        {previousPosting && (
+        {previousPostingMetadata && (
           <Link
-            to={previousPosting.path}
+            to={previousPostingMetadata.path}
             className="posting-nav-item nav-prev"
-            aria-label={`${previousPosting.title} 포스팅으로 이동`}
+            aria-label={`${previousPostingMetadata.title} 포스팅으로 이동`}
           >
-            <span>&lsaquo; {previousPosting.title}</span>
+            <span>&lsaquo; {previousPostingMetadata.title}</span>
           </Link>
         )}
-        {nextPosting && (
+        {nextPostingMetadata && (
           <Link
-            to={nextPosting.path}
+            to={nextPostingMetadata.path}
             className="posting-nav-item nav-next"
-            aria-label={`${nextPosting.title} 포스팅으로 이동`}
+            aria-label={`${nextPostingMetadata.title} 포스팅으로 이동`}
           >
-            <span>{nextPosting.title} &rsaquo;</span>
+            <span>{nextPostingMetadata.title} &rsaquo;</span>
           </Link>
         )}
       </div>
