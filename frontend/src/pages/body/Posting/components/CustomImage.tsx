@@ -23,6 +23,7 @@ const CustomImage: React.FC<CustomImageProps> = (props) => {
 
   return (
     <div
+      key={props.alt}
       style={{
         position: "relative",
         maxWidth: props.width || "100%",
