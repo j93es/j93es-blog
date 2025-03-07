@@ -14,9 +14,7 @@ class ErrorHandler {
     message: string
   ) => {
     res.redirect(
-      `/error-page/error.html?j93es-status=${code}&j93es-message=${encodeURIComponent(
-        message
-      )}`
+      `/error-page/${code}.html?j93es-message=${encodeURIComponent(message)}`
     );
   };
 

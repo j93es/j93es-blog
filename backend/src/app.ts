@@ -12,6 +12,7 @@ import {
 } from "./middlewares/index";
 import rootRouter from "./routes/root";
 import apiRouter from "./routes/api";
+import errorPageRouter from "./routes/errorPage";
 
 const app: Application = express();
 
@@ -22,7 +23,7 @@ app.disable("x-powered-by");
 app.use([
   headerSetter.setHeader,
   corsMiddleware,
-  rateLimiter.makeLimit(60, 180),
+  rateLimiter.makeLimit(60, 150),
   express.json({ limit: "100kb" }),
   express.urlencoded({ extended: false }),
   requestWriter.addId,
@@ -31,6 +32,7 @@ app.use([
 ]);
 
 app.use("/api/", apiRouter);
+app.use("/error-page/", errorPageRouter);
 app.use("/", rootRouter);
 
 app.use(errorHandlers);

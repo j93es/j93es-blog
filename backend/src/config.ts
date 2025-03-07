@@ -17,6 +17,7 @@ export const showingCategoryList: string[] = ["dev", "photo"];
 export const publicDir = path.join(__dirname, "/public/");
 export const apiDir = path.join(publicDir, "/api/");
 export const rootDir = path.join(publicDir, "/root/");
+export const errorPageDir = path.join(rootDir, "/error-page/");
 
 export const ipV4RemainIndex = 2;
 export const ipV6RemainIndex = 2;

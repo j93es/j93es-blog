@@ -1,18 +1,7 @@
-const allowedErrorStatus = [400, 403, 404, 429, 500];
-const frontendErrorStatus = [1000, 1001];
-const queryStatusKey = "j93es-status";
 const queryMessageKey = "j93es-message";
 const redirectUrl = "/";
 let countdown = 5;
 const queryString = window.location.search;
-const originStatusCode = Number(
-  new URLSearchParams(queryString).get(queryStatusKey)
-);
-const isValidStatusCode = [
-  ...allowedErrorStatus,
-  ...frontendErrorStatus,
-].includes(originStatusCode);
-const statusCode = isValidStatusCode ? originStatusCode : 400;
 const message = new URLSearchParams(queryString).get(queryMessageKey);
 
 const updateElementTextById = (id, text) => {
@@ -20,19 +9,6 @@ const updateElementTextById = (id, text) => {
   if (element) {
     element.textContent = text;
   }
-};
-
-const checkQueryString = () => {
-  if (!isValidStatusCode) {
-    const url = new URL(window.location.href);
-    url.searchParams.set(queryStatusKey, statusCode);
-    url.searchParams.set(queryMessageKey, "잘못된 요청입니다.");
-    window.location.replace(url);
-  }
-};
-
-const setStatus = () => {
-  updateElementTextById("statusCode", `${statusCode} Error`);
 };
 
 const setErrorMsg = () => {
@@ -55,8 +31,6 @@ const startCountdown = () => {
 };
 
 window.onload = function () {
-  checkQueryString();
-  setStatus();
   setErrorMsg();
   startCountdown();
 };

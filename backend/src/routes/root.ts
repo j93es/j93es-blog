@@ -14,23 +14,6 @@ router.get("/", (req: Request, res: Response) => {
   res.send(indexHtmlController.getIndexHtml("/"));
 });
 
-// error.html을 상태코드와 함께 제공
-router.get("/error-page/error.html", (req: Request, res: Response) => {
-  const queryStatusKey = "j93es-status";
-  const allowedErrorStatus = [400, 403, 404, 429, 500];
-  const frontendErrorStatus = [1000, 1001];
-  const status = Number(req.query[queryStatusKey]);
-
-  if (allowedErrorStatus.includes(status)) {
-    res.status(status);
-  } else if (frontendErrorStatus.includes(status)) {
-    res.status(418);
-  } else {
-    res.status(400);
-  }
-  res.sendFile("error-page/error.html", { root: rootDir });
-});
-
 // logo, favicon, manifest.json 등의 정적 파일을 제공
 router.use(express.static(rootDir));
 

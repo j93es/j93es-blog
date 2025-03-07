@@ -9,10 +9,15 @@ const errorRedirect = ({
   statusCode: number;
   message: string;
 }) => {
-  window.location?.replace(
-    `/error-page/error.html?j93es-status=${encodeURIComponent(
-      statusCode
-    )}&j93es-message=${encodeURIComponent(message)}`
+  setTimeout(
+    () => {
+      window.location?.replace(
+        `/error-page/${statusCode}.html?j93es-message=${encodeURIComponent(
+          message
+        )}`
+      );
+    },
+    statusCode === 429 ? 1000 : 0
   );
 };
 
