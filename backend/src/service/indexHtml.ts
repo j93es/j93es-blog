@@ -1,10 +1,10 @@
-import fs from "fs";
 import path from "path";
-import { rootDir, appDefaultTitle, appDefaultDescription } from "../config";
-import {
-  postingIndexController,
-  policyMetadataList,
-} from "../controllers/index";
+
+import { apiDir, appDefaultTitle, appDefaultDescription } from "../config";
+import { IndexHtmlService } from "../core/service/indexHtml";
+
+import { indexHtmlRepo, markdownMetadataRepo } from "../repository/index";
+import { postingIndexServ } from "../service/index";
 import { makeTitleDescription } from "../utils/index";
 
 // 각 토큰은 static 문자열이거나 placeholder 이름을 가집니다.
@@ -14,7 +14,7 @@ interface TemplateToken {
 }
 
 /* SEO를 위하여 index.html의 title, description 같은 항목을 요청의 path에 따라 동적으로 생성하여 반환하는 class이다. */
-export class IndexHtmlController {
+export class IndexHtmlServ implements IndexHtmlService {
   // 템플릿을 미리 파싱하여 토큰 배열로 저장
   private templateTokens: TemplateToken[] = [];
   // URL 별로 title, description 캐싱
@@ -25,47 +25,14 @@ export class IndexHtmlController {
     this.makeTokenVlaue();
   }
 
-  private makeTemplateTokens() {
-    const indexHtmlPath = path.join(rootDir, "index.html");
-    let rawHtml = "";
-    try {
-      rawHtml = fs.readFileSync(indexHtmlPath, "utf8");
-    } catch (error) {
-      console.error("Failed to read index.html file.");
-    }
-    // 템플릿을 파싱하여 토큰 배열 생성 (placeholder가 여러 개여도 모두 기록됨)
-    this.templateTokens = this.parseTemplate(rawHtml);
-  }
-
-  private makeTokenVlaue() {
-    // 루트 경로에는 기본 값 사용
-    this.titleDescription["/"] = makeTitleDescription({ useDefault: true });
-
-    // 각 posting path 별로 token의 value를 만들어 저장
-    postingIndexController.getCategoryList().forEach((category: string) => {
-      const postingList = postingIndexController.getPostingList(category);
-      postingList.forEach((posting) => {
-        this.titleDescription[posting.path] = makeTitleDescription({
-          ...posting,
-        });
-      });
-    });
-
-    // 각 policy path 별로 token의 value를 만들어 저장
-    policyMetadataList.forEach((metadata) => {
-      this.titleDescription[metadata.path] = makeTitleDescription({
-        ...metadata,
-      });
-    });
-  }
-
   /**
    * 템플릿 문자열을 정규식을 사용해 static 토큰과 placeholder 토큰으로 분리합니다.
    * placeholder는 {{ ... }} 형태로 작성되어 있다고 가정합니다.
    * @param templateStr 전체 템플릿 문자열
-   * @returns 토큰 배열
    */
-  private parseTemplate(templateStr: string): TemplateToken[] {
+  private makeTemplateTokens = () => {
+    const templateStr = indexHtmlRepo.getSync();
+
     const tokens: TemplateToken[] = [];
     const regex = /\{\{(.*?)\}\}/g; // {{ 와 }} 사이의 내용을 placeholder로 인식
     let lastIndex = 0;
@@ -93,8 +60,35 @@ export class IndexHtmlController {
         value: templateStr.substring(lastIndex),
       });
     }
-    return tokens;
-  }
+
+    this.templateTokens = tokens;
+  };
+
+  private makeTokenVlaue = () => {
+    // 루트 경로에는 기본 값 사용
+    this.titleDescription["/"] = makeTitleDescription({ useDefault: true });
+
+    // 각 posting path 별로 token의 value를 만들어 저장
+    postingIndexServ.controller
+      ?.getCategoryList()
+      .forEach((category: string) => {
+        const postingList =
+          postingIndexServ.controller?.getPostingList(category);
+        postingList?.forEach((posting) => {
+          this.titleDescription[posting.path] = makeTitleDescription({
+            ...posting,
+          });
+        });
+      });
+
+    const policyMetadataList = markdownMetadataRepo.getSync(apiDir, "/policy/");
+    // 각 policy path 별로 token의 value를 만들어 저장
+    policyMetadataList.forEach((metadata) => {
+      this.titleDescription[metadata.path] = makeTitleDescription({
+        ...metadata,
+      });
+    });
+  };
 
   /**
    * 주어진 URL 경로에 대해 최종 HTML 문자열을 생성합니다.
@@ -102,7 +96,7 @@ export class IndexHtmlController {
    * @param urlPath 요청 URL 경로
    * @returns 최종 HTML 문자열
    */
-  getIndexHtml(urlPath: string): string {
+  get(urlPath: string): string {
     // URL에 해당하는 동적 데이터 [title, description] 가져오기
     urlPath = path.join("/", urlPath);
     urlPath = path.normalize(urlPath);

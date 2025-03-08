@@ -1,15 +1,8 @@
-export interface EachPostingMetadata {
-  title: string;
-  date: string;
-  tag: string[];
-  category: string;
-  path: string;
-  description: string;
-}
+import { MarkdownMetadata } from "models/markdownMetadata";
 
 export interface PostingCategory {
   order: number;
-  data: EachPostingMetadata[];
+  data: MarkdownMetadata[];
 }
 
 export interface PostingIndex {

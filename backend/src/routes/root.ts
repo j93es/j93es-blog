@@ -5,13 +5,13 @@ import fs from "fs";
 import { rootDir, apiDir } from "../config";
 import { ForbiddenError, NotFoundError } from "../models/error";
 import { wrapAsync } from "../middlewares/wrapAsync";
-import { indexHtmlController } from "../controllers/index";
+import { indexHtmlServ } from "../service/index";
 
 const router = express.Router();
 
 // index.html을 제공
 router.get("/", (req: Request, res: Response) => {
-  res.send(indexHtmlController.getIndexHtml("/"));
+  res.send(indexHtmlServ.get("/"));
 });
 
 // logo, favicon, manifest.json 등의 정적 파일을 제공
@@ -38,7 +38,7 @@ router.get(
       throw new NotFoundError("요청하신 페이지를 찾을 수 없습니다.");
     }
 
-    const indexHtml = indexHtmlController.getIndexHtml(req.path);
+    const indexHtml = indexHtmlServ.get(req.path);
     res.send(indexHtml);
   })
 );

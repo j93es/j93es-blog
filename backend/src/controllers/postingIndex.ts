@@ -1,4 +1,6 @@
-import { PostingIndex, EachPostingMetadata } from "../models/postingIndex";
+import { PostingIndex } from "../models/postingIndex";
+import { MarkdownMetadata } from "../models/markdownMetadata";
+import { deepCopy } from "../utils/index";
 
 /* PostingIndex를 받아서 PostingIndex를 정렬하고, PostingIndex의 정보를 편리하게 가져올 수 있도록 하는 class이다. */
 export class PostingIndexController {
@@ -7,7 +9,7 @@ export class PostingIndexController {
 
   constructor(postingIndex: PostingIndex) {
     this.categoryListCache = null;
-    this.postingIndex = JSON.parse(JSON.stringify(postingIndex));
+    this.postingIndex = deepCopy(postingIndex);
     this.sortPostingIndex();
   }
 
@@ -35,7 +37,7 @@ export class PostingIndexController {
   };
 
   public getPostingIndex = (): PostingIndex | null => {
-    return JSON.parse(JSON.stringify(this.postingIndex));
+    return deepCopy(this.postingIndex);
   };
 
   public getCategoryList = (): string[] | [] => {
@@ -48,22 +50,22 @@ export class PostingIndexController {
       });
     }
 
-    return JSON.parse(JSON.stringify(this.categoryListCache));
+    return deepCopy(this.categoryListCache);
   };
 
-  public getPostingList = (category: string): EachPostingMetadata[] | [] => {
+  public getPostingList = (category: string): MarkdownMetadata[] | [] => {
     if (!this.postingIndex[category]) {
       return [];
     }
 
-    return JSON.parse(JSON.stringify(this.postingIndex[category].data));
+    return deepCopy(this.postingIndex[category].data);
   };
 
-  public getEachPostingMetadata = (
+  public getMarkdownMetadata = (
     category: string,
     target: string,
-    by: keyof EachPostingMetadata
-  ): EachPostingMetadata | null => {
+    by: keyof MarkdownMetadata
+  ): MarkdownMetadata | null => {
     return (
       this.postingIndex[category].data.find(
         (posting) => posting[by] === target
@@ -74,7 +76,7 @@ export class PostingIndexController {
   public getNextPostingMetadata = (
     category: string,
     title: string
-  ): EachPostingMetadata | null => {
+  ): MarkdownMetadata | null => {
     const postingList = this.getPostingList(category);
     const index = postingList.findIndex((posting) => posting.title === title);
     if (index === 0) {
@@ -87,7 +89,7 @@ export class PostingIndexController {
   public getPreviousPostingMetadata = (
     category: string,
     title: string
-  ): EachPostingMetadata | null => {
+  ): MarkdownMetadata | null => {
     const postingList = this.getPostingList(category);
     const index = postingList.findIndex((posting) => posting.title === title);
     if (index === postingList.length - 1) {

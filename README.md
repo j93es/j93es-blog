@@ -340,3 +340,7 @@ bool Document::hasRecentUserInteractionForNavigationFromJS() const
 #### 2025-3-7
 
 - 에러페이지 url을 변경하였다. 기존에는 에러코드를 query에 담아 전송했다. 하지만 CDN 서비스의 캐싱이 이루어진다면, j93.es?code=404이 캐시에 저장되고 j93.es?code=400 호출된다면, j93.es?code=400의 에러코드는 404로 전송되었다. 이에 특정 조건에서는 에러페이지를 요청할때, 서버로 바이패스하도록 하였다. 이러한 서버로 오는 요청을 줄이기 위해, 이제부터는 code를 query가 아닌 url에 담아서 전송한다.
+
+#### 2025-3-8
+
+- controller 단에서 너무 많은 로직과 controller에 포함되어서는 안되는 로직이 담겨있었다. 이를 service와 repository 단에 적절히 나누었다.

@@ -1,9 +1,10 @@
 import { showingCategoryList } from "../config";
 import { PostingIndex } from "../models/postingIndex";
-import { EachPostingMetadata } from "../models/postingIndex";
+import { MarkdownMetadata } from "../models/markdownMetadata";
+import { deepCopy } from "../utils";
 
 const metadataListToPostingIndex = (
-  metadataList: EachPostingMetadata[]
+  metadataList: MarkdownMetadata[]
 ): PostingIndex => {
   const postingIndex: PostingIndex = {};
 
@@ -11,18 +12,11 @@ const metadataListToPostingIndex = (
     postingIndex[category] = { order: index, data: [] };
   });
 
-  metadataList.forEach((metadata) => {
+  deepCopy(metadataList).forEach((metadata) => {
     if (!showingCategoryList.includes(metadata.category)) {
       return;
     }
-    postingIndex[metadata.category].data.push({
-      title: metadata.title,
-      date: metadata.date,
-      tag: metadata.tag,
-      category: metadata.category,
-      description: metadata.description,
-      path: metadata.path,
-    });
+    postingIndex[metadata.category].data.push(metadata);
   });
 
   Object.keys(postingIndex).forEach((key) => {

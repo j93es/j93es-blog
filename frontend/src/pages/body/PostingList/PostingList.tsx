@@ -4,7 +4,7 @@
 import { Link } from "react-router-dom";
 
 // Local
-import { EachPostingMetadata } from "models/postingIndex";
+import { MarkdownMetadata } from "models/markdownMetadata";
 import { usePostingIndexController } from "contexts/PostingIndexControllerProvider";
 import MetaTag from "pages/body/components/MetaTag";
 import "pages/body/PostingList/PostingList.css";
@@ -24,7 +24,7 @@ const PostingList: React.FC<PostingListProps> = () => {
             <ul className="posting-link-wrap">
               {postingIndexController
                 .getPostingList(category)
-                .map((posting: EachPostingMetadata) => (
+                .map((posting: MarkdownMetadata) => (
                   <li key={`posting-${posting.title}`}>
                     <Link
                       to={posting.path}

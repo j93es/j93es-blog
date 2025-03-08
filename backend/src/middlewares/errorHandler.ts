@@ -111,13 +111,13 @@ class ErrorHandler {
   };
 }
 
-const errorHandler = new ErrorHandler();
+export const eachErrorHandler = new ErrorHandler();
 
 export const errorHandlers = [
-  errorHandler.routerNotFound,
-  errorHandler.notFound,
-  errorHandler.tooManyRequestsError,
-  errorHandler.badRequestError,
-  errorHandler.forbiddenError,
-  errorHandler.error,
+  eachErrorHandler.routerNotFound,
+  eachErrorHandler.notFound,
+  eachErrorHandler.tooManyRequestsError,
+  eachErrorHandler.badRequestError,
+  eachErrorHandler.forbiddenError,
+  eachErrorHandler.error,
 ];

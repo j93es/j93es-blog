@@ -11,7 +11,7 @@ import urlJoin from "url-join";
 
 // Local
 import { apiUrl } from "config";
-import { EachPostingMetadata } from "models/postingIndex";
+import { MarkdownMetadata } from "models/markdownMetadata";
 import { usePostingIndexController } from "contexts/PostingIndexControllerProvider";
 import useFetch from "customHooks/useFetch";
 import CustomPre from "pages/body/Posting/components/CustomPre";
@@ -27,11 +27,11 @@ interface PostingProps {
 const Posting: React.FC<PostingProps> = ({ path }) => {
   const [markdownContent, setMarkdownContent] = useState("");
   const [currentPostingMetadata, setCurrentPostingMetadata] =
-    useState<EachPostingMetadata | null>(null);
+    useState<MarkdownMetadata | null>(null);
   const [nextPostingMetadata, setNextPostingMetadata] =
-    useState<EachPostingMetadata | null>(null);
+    useState<MarkdownMetadata | null>(null);
   const [previousPostingMetadata, setPreviousPostingMetadata] =
-    useState<EachPostingMetadata | null>(null);
+    useState<MarkdownMetadata | null>(null);
 
   const { postingIndexController } = usePostingIndexController();
 

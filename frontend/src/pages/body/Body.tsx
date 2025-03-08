@@ -7,7 +7,8 @@ import urlJoin from "url-join";
 
 // Local
 import { apiUrl } from "config";
-import { EachPostingMetadata, PostingIndex } from "models/postingIndex";
+import { MarkdownMetadata } from "models/markdownMetadata";
+import { PostingIndex } from "models/postingIndex";
 import { useLoading } from "contexts/LoadingProvider";
 import { usePostingIndexController } from "contexts/PostingIndexControllerProvider";
 import useFetch from "customHooks/useFetch";
@@ -70,7 +71,7 @@ const Body: React.FC<BodyProps> = () => {
               .map((category: string) => {
                 return postingIndexController
                   .getPostingList(category)
-                  .map((eachPostingMetadata: EachPostingMetadata) => {
+                  .map((eachPostingMetadata: MarkdownMetadata) => {
                     return (
                       <Route
                         key={eachPostingMetadata.path}
