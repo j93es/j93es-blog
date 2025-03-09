@@ -2,7 +2,7 @@ import express, { Request, Response } from "express";
 
 import { errorPageDir } from "../config";
 import { BadRequestError } from "../models/error";
-import { eachErrorHandler } from "../middlewares/errorHandler";
+import { eachErrorHandler } from "../middlewares/index";
 
 const router = express.Router();
 

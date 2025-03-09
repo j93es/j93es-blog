@@ -4,8 +4,9 @@ import fs from "fs";
 
 import { rootDir, apiDir } from "../config";
 import { ForbiddenError, NotFoundError } from "../models/error";
-import { wrapAsync } from "../middlewares/wrapAsync";
+import { wrapAsync } from "../middlewares/index";
 import { indexHtmlServ } from "../service/index";
+import { eachErrorHandler } from "../middlewares/index";
 
 const router = express.Router();
 
@@ -42,5 +43,7 @@ router.get(
     res.send(indexHtml);
   })
 );
+
+router.use(eachErrorHandler.routerNotFound);
 
 export default router;

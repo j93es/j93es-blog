@@ -2,7 +2,7 @@ import express, { Request, Response } from "express";
 
 import { postingIndexServ } from "../service/index";
 import { apiDir } from "../config";
-import { eachErrorHandler } from "../middlewares/errorHandler";
+import { eachErrorHandler } from "../middlewares/index";
 
 const router = express.Router();
 
