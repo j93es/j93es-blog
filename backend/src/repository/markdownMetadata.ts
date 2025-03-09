@@ -3,7 +3,7 @@ import path from "path";
 
 import { MarkdownMetadata } from "models/markdownMetadata";
 import { MarkdownMetadataRepository } from "core/repository/markdownMetadata";
-import { parseMarkdown, deepCopy } from "../utils/index";
+import { parseMarkdown } from "../utils/index";
 
 export class MarkdownMetadataRepo implements MarkdownMetadataRepository {
   private async readDirectory(baseDir: string, targetDir: string) {

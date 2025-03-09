@@ -22,7 +22,7 @@ class ErrorHandler {
     if (res.headersSent) {
       return next();
     }
-    throw new NotFoundError("Not Found");
+    throw new NotFoundError("Router Not Found");
   };
 
   notFound = (
@@ -35,7 +35,7 @@ class ErrorHandler {
       const code = 404;
       const message = "요청하신 정보를 찾을 수 없습니다.";
 
-      customLogger.log("NotFoundError", error.message, req);
+      customLogger.info("NotFoundError", error.message, req);
       this.redirectErrorPage(res, code, message);
       return;
     }
@@ -53,7 +53,7 @@ class ErrorHandler {
       const code = 400;
       const message = "잘못된 요청입니다.";
 
-      customLogger.log("BadRequestError", error.message, req);
+      customLogger.info("BadRequestError", error.message, req);
       this.redirectErrorPage(res, code, message);
       return;
     }

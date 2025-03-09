@@ -12,6 +12,6 @@ router.get("/posting-index.json", (req: Request, res: Response) => {
 
 router.use(express.static(apiDir));
 
-// router.use(eachErrorHandler.routerNotFound);
+router.use(eachErrorHandler.routerNotFound);
 
 export default router;

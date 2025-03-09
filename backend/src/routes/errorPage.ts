@@ -2,6 +2,7 @@ import express, { Request, Response } from "express";
 
 import { errorPageDir } from "../config";
 import { BadRequestError } from "../models/error";
+import { eachErrorHandler } from "../middlewares/errorHandler";
 
 const router = express.Router();
 
@@ -23,5 +24,7 @@ router.get("/:errorCode.html", (req: Request, res: Response) => {
 
 // error.js error.css 등의 정적 파일을 제공
 router.use(express.static(errorPageDir));
+
+router.use(eachErrorHandler.routerNotFound);
 
 export default router;

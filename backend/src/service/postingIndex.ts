@@ -6,7 +6,7 @@ import { metadataListToPostingIndex } from "../adapters/index";
 import { PostingIndexController } from "../controllers/index";
 
 export class PostingIndexServ implements PostingIndexService {
-  controller: PostingIndexController | null = null;
+  controller: PostingIndexController;
 
   constructor() {
     const metadataList = markdownMetadataRepo.getSync(apiDir, "/posting/");
