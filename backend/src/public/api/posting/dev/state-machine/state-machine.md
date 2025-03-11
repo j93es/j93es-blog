@@ -143,7 +143,7 @@ int main(void) {
 
 ## 3. State Machine과 JavaScript의 비동기 함수
 
-우리는 async, await에 대하여 학습할때, 비동기적으로 동작하며 다른 작업과 함께 처리될 수 있다는 것을 학습합니다. 조금 더 깊게 들어가면 Call Stack, Micro-task Queue, Macro-task Queue와 Evevt Loop를 살펴보기도 합니다. 저 또한 이 정도의 지식을 학습하였고, 비동기 함수의 개념을 추상적으로만 이해하고 있었습니다.
+우리는 async, await에 대하여 학습할때, 비동기적으로 동작하며 다른 작업과 함께 처리될 수 있다는 것을 학습합니다. 조금 더 깊게 들어가면 Call Stack, Micro-task Queue, Macro-task Queue와 Event Loop를 살펴보기도 합니다. 저 또한 이 정도의 지식을 학습하였고, 비동기 함수의 개념을 추상적으로만 이해하고 있었습니다.
 
 그런데 바야흐로 약 1년 전, 저를 포함한 3명이 JavaScript 스터디를 할 때에, 한 친구가 async는 어떻게 동작하는지에 대해 호기심을 가졌습니다. 특히 ”어떤 방법으로 해당 작업이 완료될 때까지 기다리는가?“에 초점을 맞췄습니다. async는 어떤 방법으로 동작할까요? 1년 전 스터디에서는 현대 JavaScript를 ES5등의 구버전 문법으로 변환하는 것으로 그 해답에 근접했습니다. 이를 같이 살펴봅시다.
 
