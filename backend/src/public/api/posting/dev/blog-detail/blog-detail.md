@@ -29,9 +29,12 @@ description:
 ## css 요소의 유지보수성
 
 - 단일책임원칙으로 살펴보는 padding, margin
+- css 변수
 
 ## meta http-equiv="content-language" content="ko"
 
 크롬 번역
 
 ## CSP 설정, 정보보호정책
+
+## 캐시 검증헤더

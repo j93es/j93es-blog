@@ -28,4 +28,8 @@ svg, loading bar
 
 ## dynamic import
 
+## 에러 페이지, noscript 페이지 압축
+
+## preload, preconnect
+
 ## 나오며
