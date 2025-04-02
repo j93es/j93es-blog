@@ -149,7 +149,7 @@ int main(void) {
 
 저는 이제 JavaScript는 모르고 TypeScript만 아는 개발자이기 때문에(농담입니다.) TypeScript를 ES5 문법으로 바꾸어 보겠습니다. 참고로 TypeScript는 빌드 시에 JavaScript로 변환됩니다. 런타임 환경에서, 만약 브라우저가 해당 버전의 JavaScript 문법을 지원하지 않는다면, babel과 같은 컴파일러를 통하여, ES5 등의 구버전 문법으로 변환됩니다.
 
-본론으로 돌아와서 저희는 JavaScript의 비동기 함수를, babel을 통하여 ES5 문법으로 변환하여 살펴볼 것입니다. [타입스크립트 to ES5 변환 사이트](https://www.typescriptlang.org/play)에 접속한 뒤, TS Config 탭을 클릭하여 Target 버전을 선택하면 손쉽게 변환이 가능합니다. 아래는 변환 전 코드입니다.
+본론으로 돌아와서 저희는 JavaScript의 비동기 함수를 ES5 문법으로 변환하여 살펴볼 것입니다. [타입스크립트 to ES5 변환 사이트](https://www.typescriptlang.org/play)에 접속한 뒤, TS Config 탭을 클릭하여 Target 버전을 선택하면 손쉽게 변환이 가능합니다. 아래는 변환 전 코드입니다.
 
 ```TypeScript
 async function fetchData(): Promise<any> {

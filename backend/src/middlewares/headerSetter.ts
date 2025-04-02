@@ -31,7 +31,7 @@ class HeaderSetter {
       "Permissions-Policy",
       "accelerometer=(),autoplay=(),camera=(),fullscreen=(self),geolocation=(),gyroscope=(),midi=(),microphone=(),magnetometer=(),payment=(),xr-spatial-tracking=()"
     );
-    res.setHeader("X-XSS-Protection", "0");
+    res.setHeader("X-XSS-Protection", "1; mode=block");
     res.setHeader("Cross-Origin-Resource-Policy", "same-origin");
     res.setHeader("Cross-Origin-Opener-Policy", "same-origin");
     res.setHeader("Cross-Origin-Embedder-Policy", "require-corp");
