@@ -29,3 +29,5 @@ export class BadRequestError implements Error {
     this.message = message ?? "Bad Request Error";
   }
 }
+
+export type ErrorCode = 400 | 403 | 404 | 429 | 500 | 1000 | 1001 | 1002;

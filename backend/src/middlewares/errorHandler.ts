@@ -6,16 +6,15 @@ import {
   TooManyRequestsError,
 } from "../models/error";
 import { customLogger } from "./index";
+import { ErrorCode } from "../models/error";
+import { errorHtmlServ } from "../service/index";
 
 class ErrorHandler {
-  private redirectErrorPage = (
-    res: Response,
-    code: number,
-    message: string
-  ) => {
-    res.redirect(
-      `/error-page/${code}.html?j93es-message=${encodeURIComponent(message)}`
-    );
+  private sendErrorPage = (res: Response, code: ErrorCode) => {
+    const errorHtml = errorHtmlServ.get(code);
+    res.status(code);
+    res.send(errorHtml);
+    res.end();
   };
 
   routerNotFound = (req: Request, res: Response, next: NextFunction) => {
@@ -33,10 +32,9 @@ class ErrorHandler {
   ) => {
     if (error instanceof NotFoundError) {
       const code = 404;
-      const message = "요청하신 정보를 찾을 수 없습니다.";
 
       customLogger.info("NotFoundError", error.message, req);
-      this.redirectErrorPage(res, code, message);
+      this.sendErrorPage(res, code);
       return;
     }
 
@@ -51,10 +49,9 @@ class ErrorHandler {
   ) => {
     if (error instanceof BadRequestError) {
       const code = 400;
-      const message = "잘못된 요청입니다.";
 
       customLogger.info("BadRequestError", error.message, req);
-      this.redirectErrorPage(res, code, message);
+      this.sendErrorPage(res, code);
       return;
     }
     next(error);
@@ -68,9 +65,9 @@ class ErrorHandler {
   ) => {
     if (error instanceof TooManyRequestsError) {
       const code = 429;
-      const message = "접속량이 많습니다. 잠시 후 다시 시도해주세요.";
+
       customLogger.warn("TooManyRequestsError", error.message, req);
-      res.status(code).send(message);
+      this.sendErrorPage(res, code);
       return;
     }
 
@@ -85,10 +82,9 @@ class ErrorHandler {
   ) => {
     if (error instanceof ForbiddenError) {
       const code = 403;
-      const message = "금지된 접근입니다.";
 
       customLogger.warn("ForbbidenError", error.message, req);
-      this.redirectErrorPage(res, code, message);
+      this.sendErrorPage(res, code);
       return;
     }
 
@@ -101,10 +97,9 @@ class ErrorHandler {
       res.locals.error = error;
 
       const code = 500;
-      const message = "예기치 못한 문제가 발생하였습니다.";
 
       customLogger.error("InternalServerError", error.message, req);
-      this.redirectErrorPage(res, code, message);
+      this.sendErrorPage(res, code);
     } catch (err) {
       res.end();
     }

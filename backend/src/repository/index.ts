@@ -1,10 +1,11 @@
-import { IndexHtmlRepository } from "../core/repository/indexHtml";
-import { IndexHtmlRepo } from "./indexHtml";
+import { TokenizedHtmlRepository } from "../core/repository/TokenizedHtml";
+import { TokenizedHtmlRepo } from "./TokenizedHtml";
 
 import { MarkdownMetadataRepository } from "../core/repository/markdownMetadata";
 import { MarkdownMetadataRepo } from "./markdownMetadata";
 
-export const indexHtmlRepo: IndexHtmlRepository = new IndexHtmlRepo();
+export const tokenizedHtmlRepo: TokenizedHtmlRepository =
+  new TokenizedHtmlRepo();
 
 export const markdownMetadataRepo: MarkdownMetadataRepository =
   new MarkdownMetadataRepo();

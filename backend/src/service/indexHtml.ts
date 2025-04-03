@@ -1,72 +1,34 @@
 import path from "path";
 
-import { apiDir, appDefaultTitle, appDefaultDescription } from "../config";
+import {
+  rootDir,
+  apiDir,
+  appDefaultTitle,
+  appDefaultDescription,
+} from "../config";
+import { TemplateToken } from "../models/templateToken";
 import { IndexHtmlService } from "../core/service/indexHtml";
-
-import { indexHtmlRepo, markdownMetadataRepo } from "../repository/index";
-import { postingIndexServ } from "../service/index";
+import { tokenizedHtmlRepo, markdownMetadataRepo } from "../repository/index";
+import { postingIndexServ } from "./index";
 import { makeTitleDescription } from "../utils/index";
-
-// 각 토큰은 static 문자열이거나 placeholder 이름을 가집니다.
-interface TemplateToken {
-  type: "static" | "placeholder";
-  value: string;
-}
 
 /* SEO를 위하여 index.html의 title, description 같은 항목을 요청의 path에 따라 동적으로 생성하여 반환하는 class이다. */
 export class IndexHtmlServ implements IndexHtmlService {
   // 템플릿을 미리 파싱하여 토큰 배열로 저장
   private templateTokens: TemplateToken[] = [];
   // URL 별로 title, description 캐싱
-  private titleDescription: { [key: string]: [string, string] } = {};
+  private templateData: { [key: string]: [string, string] } = {}; // { [key: url path]: [title, description] }
 
   constructor() {
-    this.makeTemplateTokens();
-    this.makeTokenVlaue();
+    this.templateTokens = tokenizedHtmlRepo.getSync(rootDir, "index.html");
+    this.templateData = this.makeTokenVlaue();
   }
 
-  /**
-   * 템플릿 문자열을 정규식을 사용해 static 토큰과 placeholder 토큰으로 분리합니다.
-   * placeholder는 {{ ... }} 형태로 작성되어 있다고 가정합니다.
-   * @param templateStr 전체 템플릿 문자열
-   */
-  private makeTemplateTokens = () => {
-    const templateStr = indexHtmlRepo.getSync();
-
-    const tokens: TemplateToken[] = [];
-    const regex = /\{\{(.*?)\}\}/g; // {{ 와 }} 사이의 내용을 placeholder로 인식
-    let lastIndex = 0;
-    let match: RegExpExecArray | null;
-
-    while ((match = regex.exec(templateStr)) !== null) {
-      // placeholder 이전의 정적인 문자열 부분 추가
-      if (match.index > lastIndex) {
-        tokens.push({
-          type: "static",
-          value: templateStr.substring(lastIndex, match.index),
-        });
-      }
-      // placeholder 토큰 추가 (양쪽 공백 제거)
-      tokens.push({
-        type: "placeholder",
-        value: match[1].trim(),
-      });
-      lastIndex = regex.lastIndex;
-    }
-    // 마지막 남은 정적 문자열 부분 추가
-    if (lastIndex < templateStr.length) {
-      tokens.push({
-        type: "static",
-        value: templateStr.substring(lastIndex),
-      });
-    }
-
-    this.templateTokens = tokens;
-  };
-
   private makeTokenVlaue = () => {
+    const templateData: { [key: string]: [string, string] } = {};
+
     // 루트 경로에는 기본 값 사용
-    this.titleDescription["/"] = makeTitleDescription({ useDefault: true });
+    templateData["/"] = makeTitleDescription({ useDefault: true });
 
     // 각 posting path 별로 token의 value를 만들어 저장
     postingIndexServ.controller
@@ -75,7 +37,7 @@ export class IndexHtmlServ implements IndexHtmlService {
         const postingList =
           postingIndexServ.controller?.getPostingList(category);
         postingList?.forEach((posting) => {
-          this.titleDescription[posting.path] = makeTitleDescription({
+          templateData[posting.path] = makeTitleDescription({
             ...posting,
           });
         });
@@ -84,10 +46,12 @@ export class IndexHtmlServ implements IndexHtmlService {
     const policyMetadataList = markdownMetadataRepo.getSync(apiDir, "/policy/");
     // 각 policy path 별로 token의 value를 만들어 저장
     policyMetadataList.forEach((metadata) => {
-      this.titleDescription[metadata.path] = makeTitleDescription({
+      templateData[metadata.path] = makeTitleDescription({
         ...metadata,
       });
     });
+
+    return templateData;
   };
 
   /**
@@ -101,12 +65,14 @@ export class IndexHtmlServ implements IndexHtmlService {
     urlPath = path.join("/", urlPath);
     urlPath = path.normalize(urlPath);
 
-    const td = this.titleDescription[urlPath];
+    const data = this.templateData[urlPath];
 
     // 동적 데이터를 객체 형태로 매핑 (필요에 따라 다른 placeholder도 추가 가능)
     const dynamicMapping: { [key: string]: string } = {
-      title: td ? td[0] || appDefaultTitle : appDefaultTitle,
-      description: td ? td[1] || appDefaultDescription : appDefaultDescription,
+      title: data ? data[0] || appDefaultTitle : appDefaultTitle,
+      description: data
+        ? data[1] || appDefaultDescription
+        : appDefaultDescription,
     };
 
     let finalHtml = "";
