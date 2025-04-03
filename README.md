@@ -344,3 +344,7 @@ bool Document::hasRecentUserInteractionForNavigationFromJS() const
 #### 2025-3-8
 
 - controller 단에서 너무 많은 로직과 controller에 포함되어서는 안되는 로직이 담겨있었다. 이를 service와 repository 단에 적절히 나누었다.
+
+#### 2025-4-3
+
+- error page에서 param의 값을 토대로 에러 메세지를 표시했다. 여기에서 악의적인 공격자가 param에 스크립트를 넣어 XSS 공격을 할 수도 있겠다는 예측을 했으나, 해당 부분은 성립하지 않았다. 왜냐하면, element의 text 영역에 값을 집어넣었기 때문에, 스크립트는 실행되지 않을 것이다. 하지만 param에 "도메인이 변경되었습니다. evil.com으로 이동하세요."라고 적어두는 등의 피싱 공격이 발생할 수도 있을 것이다. 따라서 에러페이지의 메세지를 정해두고 서빙하도록 변경하였다.
