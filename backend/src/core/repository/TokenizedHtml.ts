@@ -1,4 +1,4 @@
-import { TemplateToken } from "../models/templateToken";
+import { TemplateToken } from "../../models/templateToken";
 
 export interface TokenizedHtmlRepository {
   get: (dir: string, fileName: string) => Promise<TemplateToken[]>;
