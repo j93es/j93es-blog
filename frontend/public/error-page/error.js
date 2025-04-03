@@ -11,13 +11,6 @@ const updateElementTextById = (id, text) => {
   }
 };
 
-const setErrorMsg = () => {
-  updateElementTextById(
-    "message",
-    message || "예기치 못한 오류가 발생했습니다."
-  );
-};
-
 const startCountdown = () => {
   document.getElementById("redirectMsg").textContent =
     countdown + "초 뒤에 홈페이지로 이동합니다.";
@@ -31,6 +24,5 @@ const startCountdown = () => {
 };
 
 window.onload = function () {
-  setErrorMsg();
   startCountdown();
 };

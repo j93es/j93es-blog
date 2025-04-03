@@ -61,7 +61,8 @@ const useFetch = <T>(
         if (error instanceof FetchError) {
           errorRedirect({
             statusCode: error.status || 1002,
-            message: "데이터를 불러오는 중 오류가 발생했습니다.",
+            message:
+              error.message || "데이터를 불러오는 중 오류가 발생했습니다.",
           });
         }
       } finally {
