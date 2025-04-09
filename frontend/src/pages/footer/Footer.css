@@ -13,7 +13,7 @@
   margin: 0 auto;
   display: grid;
   justify-content: center;
-  grid-template-columns: repeat(3, var(--footer-social-item-size));
+  grid-template-columns: repeat(5, var(--footer-social-item-size));
   gap: 1rem;
 }
 
