@@ -204,7 +204,9 @@ function fetchData() {
 
 즉, State Machine을 활용하면 await을 만나면 실행을 중단하고, Promise가 resolve되면 중단된 지점부터 다시 실행할 수 있습니다. 더하여 Promise가 resolve될 때까지 다른 작업을 멈추고 기다리는 것이 아닌, 멀티 스레드"처럼" 작업을 처리할 수 있습니다.
 
-정리하면 async는, babel을 통하여 ES5 문법으로 변환하였을때, State Machine으로 구현됩니다. State Machine을 통하여, 싱글 스레드 환경에서 여러 작업을 함께 처리할 수 있습니다. 다만 브라우저에서 현대 문법이 native로 지원되는 경우에, JavaScript가 바이트 코드로 변환된 결과가 State Machine을 이용하는지 여부는 검증되지 않았습니다. 하지만 단순히 ”async 함수 내에서 await가 호출되었을때 기다린다“라고 추상적으로 이해한 것을 넘어서, 동작 원리를 State Machine이란 개념을 통하여 이해해보니, 비동기 함수에 대한 이해를 더욱 높일 수 있었습니다.
+하지만 라인트레이서 State Machine과는 다른 방식으로 작동합니다. 라인트레이서 State Machine은 각 함수를 While문 내에서 계속적으로 호출합니다. 하지만 JS의 경우 callback을 이용합니다. libuv가 비동기 I/O 작업을 수행한 후, 완료되었을 때 실행할 콜백을 이벤트 루프 큐에 등록합니다. 이 덕분에 개발자가 반복적으로 상태를 확인(polling)할 필요 없이, 작업이 완료되면 자동으로 콜백이 실행됩니다. 위의 예시에서는 HTTP 요청 시 \_\_awaiter 안에서 \_\_generator의 next()를 실행하다가 yield를 만나면 \_\_generator는 멈추게 됩니다. 이후 libuv가 I/O 요청을 백그라운드에서 처리한 후, 이벤트 루프에 콜백을 등록합니다. 마지막으로 HTTP 요청이 완료되면 callback이 호출되고, \_\_generator의 상태가 바뀌게 되며, \_\_generator는 다시 동작을 시작하게 됩니다.
+
+정리하면 async는, ES5 문법으로 변환하였을때, State Machine으로 구현됩니다. State Machine을 통하여, 싱글 스레드 환경에서 여러 작업을 함께 처리할 수 있습니다. 다만 브라우저에서 현대 문법이 native로 지원되는 경우에, JavaScript가 바이트 코드로 변환된 결과가 State Machine을 이용하는지 여부는 검증되지 않았습니다. 하지만 단순히 ”async 함수 내에서 await가 호출되었을때 기다린다“라고 추상적으로 이해한 것을 넘어서, 동작 원리를 State Machine이란 개념을 통하여 이해해보니, 비동기 함수에 대한 이해를 더욱 높일 수 있었습니다.
 
 ## 4. 나오며
 

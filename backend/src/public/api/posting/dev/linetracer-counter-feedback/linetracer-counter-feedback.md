@@ -30,7 +30,7 @@ description:
 
 ### Props Drilling
 
-### 참가자 페이지 크로스 브라우징, 디자인
+### 참가자 페이지 UI
 
 ## 3. 좋았던 점
 
