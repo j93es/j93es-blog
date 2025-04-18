@@ -27,7 +27,7 @@ app.use([
   express.json({ limit: "100kb" }),
   express.urlencoded({ extended: false }),
   requestWriter.addId,
-  // requestWriter.addIp,
+  requestWriter.addIp,
   customLogger.requestLogger,
 ]);
 
