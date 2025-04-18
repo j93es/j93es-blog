@@ -14,34 +14,34 @@ export class RequestWriter {
   }
 
   getIp = (req: Request) => {
-    return `${req.headers.removedIp}`;
+    return `${req.headers.clientIp}`;
   };
 
-  // addIp = (req: Request, res: Response, next: NextFunction) => {
-  //   const clientIp = this.getClientIp(req);
-  //   const removedIp = this.removeIpPart(clientIp);
+  addIp = (req: Request, res: Response, next: NextFunction) => {
+    const clientIp = this.getClientIp(req);
+    // const removedIp = this.removeIpPart(clientIp);
 
-  //   req.headers.removedIp = removedIp;
-  //   next();
-  // };
+    req.headers.clientIp = clientIp;
+    next();
+  };
 
-  // private getClientIp = (req: Request): string => {
-  //   const xForwardedFor = req.headers["x-forwarded-for"];
-  //   if (typeof xForwardedFor === "string") {
-  //     return xForwardedFor.split(",")[0].trim();
-  //   } else if (Array.isArray(xForwardedFor) && xForwardedFor.length > 0) {
-  //     return xForwardedFor[0].trim();
-  //   }
+  private getClientIp = (req: Request): string => {
+    const xForwardedFor = req.headers["x-forwarded-for"];
+    if (typeof xForwardedFor === "string") {
+      return xForwardedFor.split(",")[0].trim();
+    } else if (Array.isArray(xForwardedFor) && xForwardedFor.length > 0) {
+      return xForwardedFor[0].trim();
+    }
 
-  //   const xRealIp = req.headers["x-real-ip"];
-  //   if (typeof xRealIp === "string") {
-  //     return xRealIp;
-  //   } else if (Array.isArray(xRealIp) && xRealIp.length > 0) {
-  //     return xRealIp[0].trim();
-  //   }
+    const xRealIp = req.headers["x-real-ip"];
+    if (typeof xRealIp === "string") {
+      return xRealIp;
+    } else if (Array.isArray(xRealIp) && xRealIp.length > 0) {
+      return xRealIp[0].trim();
+    }
 
-  //   return req.socket.remoteAddress || "";
-  // };
+    return req.socket.remoteAddress || "";
+  };
 
   // private removeIpPart = (ipStr: string): string => {
   //   // IPv4 처리
