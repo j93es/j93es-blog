@@ -1,5 +1,5 @@
-import { TokenizedHtmlRepository } from "../core/repository/TokenizedHtml";
-import { TokenizedHtmlRepo } from "./TokenizedHtml";
+import { TokenizedHtmlRepository } from "../core/repository/tokenizedHtml";
+import { TokenizedHtmlRepo } from "./tokenizedHtml";
 
 import { MarkdownMetadataRepository } from "../core/repository/markdownMetadata";
 import { MarkdownMetadataRepo } from "./markdownMetadata";

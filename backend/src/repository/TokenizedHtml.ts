@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 import { TemplateToken } from "../models/templateToken";
-import { TokenizedHtmlRepository } from "../core/repository/TokenizedHtml";
+import { TokenizedHtmlRepository } from "../core/repository/tokenizedHtml";
 
 export class TokenizedHtmlRepo implements TokenizedHtmlRepository {
   /**
