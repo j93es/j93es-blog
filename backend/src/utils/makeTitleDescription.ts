@@ -8,7 +8,7 @@ const makeTitleDescription = ({
   title?: string;
   description?: string;
   useDefault?: boolean;
-}): [string, string] => {
+}): {} => {
   const getTitle = () => {
     if (useDefault) return appDefaultTitle;
     if (!title) return appDefaultTitle;
@@ -21,7 +21,7 @@ const makeTitleDescription = ({
     return description;
   };
 
-  return [getTitle(), getDescription()];
+  return { title: getTitle(), description: getDescription() };
 };
 
 export { makeTitleDescription };
