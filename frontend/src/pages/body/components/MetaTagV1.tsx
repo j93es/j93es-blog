@@ -11,11 +11,14 @@ const MetaTagV1: React.FC<MetaTagProps> = ({
   description,
   useDefault = false,
 }) => {
-  const [newTitle, newDescription] = makeTitleDescription({
+  const obj = makeTitleDescription({
     title,
     description,
     useDefault,
   });
+
+  const newTitle = obj.title;
+  const newDescription = obj.description;
 
   document.title = newTitle;
   document
