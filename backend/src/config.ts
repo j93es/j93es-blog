@@ -36,3 +36,5 @@ try {
 
 export const eTag = _etag || `W/"${nanoidGenerator.generateId()}"`;
 export const lastmod = _lastmod || new Date().toUTCString();
+
+export const monitoringKey = process.env.MONITORING_KEY || "monitoring";
