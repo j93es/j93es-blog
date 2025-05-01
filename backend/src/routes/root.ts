@@ -11,8 +11,10 @@ import { markdownMetadataRepo } from "../repository/index";
 
 const router = express.Router();
 
-const getTokenVlaue = (path: string) => {
-  let result = null;
+const getTokenVlaue = (
+  path: string
+): { title: string; description: string } | null => {
+  let result: { title: string; description: string } | null = null;
 
   // 루트 경로에는 기본 값 사용
   if (path === "/") {
@@ -23,6 +25,8 @@ const getTokenVlaue = (path: string) => {
   postingIndexServ.controller?.getCategoryList().forEach((category: string) => {
     const postingList = postingIndexServ.controller?.getPostingList(category);
     postingList?.forEach((posting) => {
+      if (result) return;
+
       if (posting.path === path) {
         result = makeTitleDescription({
           ...posting,
@@ -37,6 +41,8 @@ const getTokenVlaue = (path: string) => {
   const policyMetadataList = markdownMetadataRepo.getSync(apiDir, "/policy/");
   // 각 policy path 별로 token의 value를 만들어 저장
   policyMetadataList.forEach((metadata) => {
+    if (result) return;
+
     if (metadata.path === path) {
       result = makeTitleDescription({
         ...metadata,
@@ -47,19 +53,19 @@ const getTokenVlaue = (path: string) => {
     return result;
   }
 
-  return makeTitleDescription({ useDefault: true });
+  return null;
 };
 
 // index.html을 제공
 router.get(
   "/",
   wrapAsync(async (req: Request, res: Response) => {
-    const html = await templateHtmlServ.get(
-      rootDir,
-      "index.html",
-      getTokenVlaue("/")
-    );
+    const tokenValue = getTokenVlaue("/");
+    if (!tokenValue) {
+      throw new NotFoundError("요청하신 페이지를 찾을 수 없습니다.");
+    }
 
+    const html = await templateHtmlServ.get(rootDir, "index.html", tokenValue);
     res.send(html);
   })
 );
@@ -82,19 +88,19 @@ router.get(
       throw new ForbiddenError("잘못된 경로로 접근하셨습니다.");
     }
 
+    const reqPath = path.join("/", resolvedPath.split(apiDir)[1]);
+    const tokenValue = getTokenVlaue(reqPath);
+    if (!tokenValue) {
+      throw new NotFoundError("요청하신 페이지를 찾을 수 없습니다.");
+    }
+
     try {
       await fs.promises.access(resolvedPath, fs.constants.F_OK);
     } catch (err) {
       throw new NotFoundError("요청하신 페이지를 찾을 수 없습니다.");
     }
 
-    const reqPath = path.join("/", resolvedPath.split(apiDir)[1]);
-    const html = await templateHtmlServ.get(
-      rootDir,
-      "index.html",
-      getTokenVlaue(reqPath)
-    );
-
+    const html = await templateHtmlServ.get(rootDir, "index.html", tokenValue);
     res.send(html);
   })
 );
