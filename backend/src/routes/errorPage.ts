@@ -19,7 +19,7 @@ router.get("/:errorCode.html", (req: Request, res: Response) => {
   try {
     Number(req.params.errorCode);
   } catch (error) {
-    throw new BadRequestError("잘못된 요청입니다.");
+    return res.redirect(`${req.baseUrl}/400.html`);
   }
   const errorCode = Number(req.params.errorCode);
 
@@ -50,7 +50,7 @@ router.get("/:errorCode.html", (req: Request, res: Response) => {
     throw new FrontendFetchError("네트워크 오류가 발생했습니다.");
   }
 
-  res.redirect(`${req.baseUrl}/400.html`);
+  return res.redirect(`${req.baseUrl}/400.html`);
 });
 
 // error.js error.css 등의 정적 파일을 제공
