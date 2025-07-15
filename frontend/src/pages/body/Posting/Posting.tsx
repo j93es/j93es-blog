@@ -7,6 +7,7 @@ import ReactMarkdown from "react-markdown";
 import rehypeHighlight from "rehype-highlight";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
+import rehypeSanitize, { defaultSchema } from "rehype-sanitize";
 import urlJoin from "url-join";
 
 // Local
@@ -129,7 +130,11 @@ const Posting: React.FC<PostingProps> = ({ path }) => {
         <ReactMarkdown
           children={markdownContent}
           remarkPlugins={[remarkGfm]}
-          rehypePlugins={[rehypeHighlight, rehypeRaw]}
+          rehypePlugins={[
+            rehypeRaw,
+            [rehypeSanitize, { ...defaultSchema }],
+            rehypeHighlight,
+          ]}
           components={{
             ...components.current,
             pre: (props) => (

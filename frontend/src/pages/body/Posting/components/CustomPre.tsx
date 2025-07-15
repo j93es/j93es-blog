@@ -12,12 +12,12 @@ interface CustomPreProps {
 const CustomPre: React.FC<CustomPreProps> = ({ elementWidth, ...props }) => {
   return (
     <pre
+      {...props}
       style={{
         whiteSpace: "pre",
         maxWidth: `${elementWidth}px`,
         overflowX: "auto",
       }}
-      {...props}
     />
   );
 };
