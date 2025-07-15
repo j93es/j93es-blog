@@ -43,7 +43,7 @@ description: "계수기 소프트웨어를 개발하며 학습한 내용, 기술
 
 다음은 대회장의 전경을 재구성한 이미지입니다.
 
-<img src="/api/posting/dev/linetracer-counter/img/대회장-구조.jpg" alt="대회장 구조" width="600" height="423.5" loading="lazy">
+<img src="/api/posting/dev/linetracer-counter/img/1.jpg" alt="대회장 구조" width="600" height="423.5" loading="lazy">
 
 이때, 계수기 하드웨어와 소프트웨어는 시리얼 통신으로 연결됩니다. 더하여 계수기를 관리하는 곳과 전광판을 관리하는 곳이 멀리 떨어져있었기 때문에, 유선이 아닌 무선 통신 수단을 이용해야했습니다. 저는 웹기술로 계수기 소프트웨어를 구현하였습니다.
 
@@ -53,7 +53,7 @@ description: "계수기 소프트웨어를 개발하며 학습한 내용, 기술
 
 다음은 전체적인 구조를 도식화한 것입니다.
 
-<img src="/api/posting/dev/linetracer-counter/img/도식도.jpg" alt="도식도" width="600" height="337.5" loading="lazy">
+<img src="/api/posting/dev/linetracer-counter/img/2.jpg" alt="도식도" width="600" height="337.5" loading="lazy">
 
 지금부터는 제가 계수기 소프트웨어를 관리자 백엔드/프론트엔드, 참가자 백엔드/프론트엔드로 나누고, 각 부분을 설계/구현하며 고민했던 지점과 학습한 개념을 소개해보려합니다.
 
@@ -65,15 +65,15 @@ description: "계수기 소프트웨어를 개발하며 학습한 내용, 기술
 
 첫째로 로그인 페이지는 토큰을 서버로 요청하는 역할을 합니다. 보안적인 측면을 고려하여, 프론트엔드에서 토큰에 대한 로직을 최소화하였습니다.
 
-<img src="/api/posting/dev/linetracer-counter/img/로그인-페이지.jpg" alt="로그인 페이지" width="594" height="461" loading="lazy">
+<img src="/api/posting/dev/linetracer-counter/img/3.jpg" alt="로그인 페이지" width="594" height="461" loading="lazy">
 
 둘째로 정보를 관리하는 페이지는 경연, 참가자, 부문, 경연타이머, 경연기록, 계수기 하드웨어와의 시리얼통신 등 정말 많은 정보를 다루어야했습니다. 이 페이지를 구성하며 기획과정에서의 기능명세, 페이지 명세 등의 필요성을 뼈져리게 느꼈습니다. 복잡하고 다양한 로직을 다룰수록, 명세는 선택이 아닌 필수가 되는 것 같습니다.
 
-<img src="/api/posting/dev/linetracer-counter/img/정보-관리-페이지.jpg" alt="정보 관리 페이지" width="476" height="590" loading="lazy">
+<img src="/api/posting/dev/linetracer-counter/img/4.jpg" alt="정보 관리 페이지" width="476" height="590" loading="lazy">
 
 셋째로 전광판 페이지는 실시간으로 업데이트되는 정보를 받아오고, 이를 보여주면 됩니다. 이 페이지는 참가자들이 보게되는 페이지이기 때문에, 나름대로 디자인적 요소를 신경쓰며 제작하였습니다.
 
-<img src="/api/posting/dev/linetracer-counter/img/전광판-페이지.jpg" alt="전광판 페이지" width="600" height="489" loading="lazy">
+<img src="/api/posting/dev/linetracer-counter/img/5.jpg" alt="전광판 페이지" width="600" height="489" loading="lazy">
 
 지금까지 각 페이지를 살펴보았습니다. 이후에는 이러한 페이지를 제작하며 학습한 지식과 생각을 공유하겠습니다.
 
@@ -203,11 +203,11 @@ id에 대한 로직을 MongoDB에 일임하기보다는, backend에서 관리하
 
 참가자가 도메인에 접근했을때, 처음으로 접하는 페이지입니다. 해당 페이지는 대회 정보와 축사 등 기본정보를 담도록 구성하였습니다.
 
-<img src="/api/posting/dev/linetracer-counter/img/참가자-홈.jpg" alt="참가자 홈" width="517" height="570" loading="lazy">
+<img src="/api/posting/dev/linetracer-counter/img/6.jpg" alt="참가자 홈" width="517" height="570" loading="lazy">
 
 참가자가 실시간으로 경연기록을 확인하고, 순서에 대한 정보를 제공하는 페이지입니다.
 
-<img src="/api/posting/dev/linetracer-counter/img/참가자-실시간경연기록.jpg" alt="참가자 실시간경연기록" width="517" height="415" loading="lazy">
+<img src="/api/posting/dev/linetracer-counter/img/7.jpg" alt="참가자 실시간경연기록" width="517" height="415" loading="lazy">
 
 마지막으로 후원 페이지입니다. 혹여나 상표권에 침해될 우려로 인하여, 따로 페이지를 첨부를 하진 않았습니다. 감사하게도 대회를 개최함에 있어 많은 후원을 받았습니다. 후원사의 로고를 표출하여, 홍보효과를 극대화하기 위하여 노력하였습니다. 후원사인 [MAXON 모터](https://www.maxongroup.com/ko-kr), [몬스터 에너지](https://www.monsterenergy.com/ko-kr/)와 주최와 후원을 해주신 [서울시립대학교](https://www.uos.ac.kr)에 다시금 감사의 말씀 드리고 싶습니다.
 

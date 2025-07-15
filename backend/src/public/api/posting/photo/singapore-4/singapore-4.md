@@ -16,15 +16,15 @@ description: "싱가포르 여행에서 촬영한 사진을 포스팅합니다. 
 
 머라이언 공원에 갔는데, 머라이언은 안찍고 다른 것만 찍었네요. 남들이 찍지 않는 것을 프레임에 담아내는 것이라고 열심히 포장해보겠습니다. 다시한번 느끼지만, 싱가포르는 빌딩을 배경으로 활용하는 것을 정말 잘하는 것 같습니다.
 
-<img src="/api/posting/photo/singapore-4/img/1-머라이언공원1.jpg" alt="1-머라이언공원1" width="660" height="440">
+<img src="/api/posting/photo/singapore-4/img/1-1.jpg" alt="머라이언공원1" width="660" height="440">
 
-<img src="/api/posting/photo/singapore-4/img/1-머라이언공원2.jpg" alt="1-머라이언공원2" width="660" height="440">
+<img src="/api/posting/photo/singapore-4/img/1-2.jpg" alt="머라이언공원2" width="660" height="440">
 
-<img src="/api/posting/photo/singapore-4/img/1-머라이언공원3.jpg" alt="1-머라이언공원3" width="660" height="440" loading="lazy">
+<img src="/api/posting/photo/singapore-4/img/1-3.jpg" alt="머라이언공원3" width="660" height="440" loading="lazy">
 
-<img src="/api/posting/photo/singapore-4/img/1-머라이언공원4.jpg" alt="1-머라이언공원4" width="660" height="440" loading="lazy">
+<img src="/api/posting/photo/singapore-4/img/1-4.jpg" alt="머라이언공원4" width="660" height="440" loading="lazy">
 
-<img src="/api/posting/photo/singapore-4/img/1-머라이언공원5.jpg" alt="1-머라이언공원5" width="660" height="440" loading="lazy">
+<img src="/api/posting/photo/singapore-4/img/1-5.jpg" alt="머라이언공원5" width="660" height="440" loading="lazy">
 
 ## 마리나베이샌즈 쇼핑몰
 
@@ -36,10 +36,10 @@ description: "싱가포르 여행에서 촬영한 사진을 포스팅합니다. 
 
 마리나베이샌즈에서 더 큰 만족감을 얻으면 쇼핑몰에 방문하는 사람은 더욱 늘어나겠죠. 쇼핑몰은 마리나베이샌즈의 멋을 더해주고, 마리나베이샌즈는 쇼핑몰에 방문하는 사람의 수를 늘려주는 공생관계에 있다고 볼 수도 있겠습니다.
 
-<img src="/api/posting/photo/singapore-4/img/2-마리나베이샌즈쇼핑몰1.jpg" alt="2-마리나베이샌즈쇼핑몰1" width="660" height="440" loading="lazy">
+<img src="/api/posting/photo/singapore-4/img/2-1.jpg" alt="마리나베이샌즈쇼핑몰1" width="660" height="440" loading="lazy">
 
-<img src="/api/posting/photo/singapore-4/img/2-마리나베이샌즈쇼핑몰2.jpg" alt="2-마리나베이샌즈쇼핑몰2" width="660" height="440" loading="lazy">
+<img src="/api/posting/photo/singapore-4/img/2-2.jpg" alt="마리나베이샌즈쇼핑몰2" width="660" height="440" loading="lazy">
 
-<img src="/api/posting/photo/singapore-4/img/2-마리나베이샌즈쇼핑몰3.jpg" alt="2-마리나베이샌즈쇼핑몰3" width="440" height="660" loading="lazy">
+<img src="/api/posting/photo/singapore-4/img/2-3.jpg" alt="마리나베이샌즈쇼핑몰3" width="440" height="660" loading="lazy">
 
-<img src="/api/posting/photo/singapore-4/img/2-마리나베이샌즈쇼핑몰4.jpg" alt="2-마리나베이샌즈쇼핑몰4" width="660" height="440" loading="lazy">
+<img src="/api/posting/photo/singapore-4/img/2-4.jpg" alt="마리나베이샌즈쇼핑몰4" width="660" height="440" loading="lazy">
