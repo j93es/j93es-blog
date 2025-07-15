@@ -16,6 +16,7 @@ import { usePostingIndexController } from "contexts/PostingIndexControllerProvid
 import useFetch from "customHooks/useFetch";
 import CustomPre from "pages/body/Posting/components/CustomPre";
 import CustomImage from "pages/body/Posting/components/CustomImage";
+import CustomA from "pages/body/Posting/components/CustomA";
 import MetaTag from "pages/body/components/MetaTag";
 import { parseMarkdown } from "utils/index";
 import "pages/body/Posting/Posting.css";
@@ -101,6 +102,9 @@ const Posting: React.FC<PostingProps> = ({ path }) => {
     },
     pre: ({ ...props }) => {
       return <CustomPre elementWidth={elementWidth} {...props} />;
+    },
+    a: ({ ...props }) => {
+      return <CustomA {...props} />;
     },
   });
 

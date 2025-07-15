@@ -7,7 +7,9 @@ import React, { useState } from "react";
 import { appDefaultTitle } from "config";
 import Spinner from "components/Spinner";
 
-interface CustomImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {}
+interface CustomImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
+  [key: string]: any;
+}
 
 const CustomImage: React.FC<CustomImageProps> = (props) => {
   const [isLoading, setIsLoading] = useState(true);
