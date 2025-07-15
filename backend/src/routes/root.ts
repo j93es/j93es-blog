@@ -79,8 +79,11 @@ router.use(express.static(rootDir));
 // frontend에서 example.com/posting/ex.md로 라우팅되면 frontend는 example.com/api/posting/ex.md로 마크다운 파일을 요청함
 // 즉, apiDir에 frontend에서 요청"할" 파일이 있는지 선제적으로 확인하고 없다면 에러 페이지로 리디렉션
 router.get(
-  "/*.md",
+  "/*path",
   wrapAsync(async (req: Request, res: Response, next: NextFunction) => {
+    if (!req.path.endsWith(".md")) {
+      return next();
+    }
     const requestedPath = path.join(apiDir, req.path);
     const resolvedPath = path.normalize(requestedPath);
 
