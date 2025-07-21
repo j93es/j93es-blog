@@ -81,17 +81,24 @@ router.use(express.static(rootDir));
 router.get(
   "/*path",
   wrapAsync(async (req: Request, res: Response, next: NextFunction) => {
+    const resolvedApiDir = path.resolve(apiDir);
+
+    // 1. .md 파일이 아니면 넘김
     if (!req.path.endsWith(".md")) {
       return next();
     }
-    const requestedPath = path.join(apiDir, req.path);
-    const resolvedPath = path.normalize(requestedPath);
 
-    if (!resolvedPath.startsWith(apiDir)) {
+    // 2. 요청 경로 정규화
+    const requestedPath = path.join(apiDir, req.path);
+    const resolvedPath = path.resolve(requestedPath);
+
+    // 3. 디렉터리 외부 접근 차단
+    if (!resolvedPath.startsWith(resolvedApiDir + path.sep)) {
       throw new ForbiddenError("잘못된 경로로 접근하셨습니다.");
     }
 
-    const reqPath = path.join("/", resolvedPath.split(apiDir)[1]);
+    // 4. reqPath 생성 및 토큰 확인
+    const reqPath = path.join("/", path.relative(resolvedApiDir, resolvedPath));
     const tokenValue = getTokenVlaue(reqPath);
     if (!tokenValue) {
       throw new NotFoundError("요청하신 페이지를 찾을 수 없습니다.");
