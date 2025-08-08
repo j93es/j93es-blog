@@ -1,5 +1,5 @@
 ---
-title: 라인트레이서 계수기 소프트웨어 피드백
+title: 계수기 소프트웨어 피드백
 date: 2025-08-08 22:56
 tag: [Frontend, Backend]
 category: dev
