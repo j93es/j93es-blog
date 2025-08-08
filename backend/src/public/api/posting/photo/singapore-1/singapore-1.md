@@ -1,6 +1,6 @@
 ---
 title: "싱가포르1"
-date: 2024-10-02 15:30
+date: 2024-10-02
 tag: [Singapore, Travel]
 category: photo
 description: "싱가포르 여행에서 촬영한 사진을 포스팅합니다. 두려움을 아름다움으로 승화한 쥬얼창이, 공허함을 역동성으로 승화한 마리나베이샌즈 등을 담았습니다."

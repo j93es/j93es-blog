@@ -1,6 +1,6 @@
 ---
 title: 라인트레이서 계수기 소프트웨어
-date: 2025-03-11 16:21
+date: 2025-03-11
 tag: [Embedded, Frontend, Backend]
 category: dev
 description: "계수기 소프트웨어를 개발하며 경험한 React 개발 팁, 백엔드 설계 경험 등을 소개하려 합니다."

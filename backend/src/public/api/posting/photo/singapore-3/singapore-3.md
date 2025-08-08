@@ -1,6 +1,6 @@
 ---
 title: "싱가포르3"
-date: 2024-10-04 11:23
+date: 2024-10-04
 tag: [Singapore, Travel]
 category: photo
 description: "싱가포르 여행에서 촬영한 사진을 포스팅합니다. 아틀라스바, 싱가포르의 밤거리, 아랍거리, 싱가포르의 빌딩을 담아냈습니다."

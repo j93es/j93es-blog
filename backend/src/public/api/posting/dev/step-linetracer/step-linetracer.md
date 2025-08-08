@@ -1,6 +1,6 @@
 ---
 title: "STEP 모터 라인트레이서"
-date: 2025-01-07 19:34
+date: 2025-01-07
 tag: [Embedded]
 category: dev
 description: "STEP 라인트레이서를 제작하며 경험한 모듈화의 중요성, 테스트 시 외부변수 차단, 임베디드에서의 의존성 주입과 관련한 생각을 공유합니다."

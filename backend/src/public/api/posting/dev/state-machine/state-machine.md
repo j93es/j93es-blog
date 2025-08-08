@@ -1,6 +1,6 @@
 ---
 title: "State Machine"
-date: 2025-01-12 20:49
+date: 2025-01-12
 tag: [Embedded, JavaScript]
 category: dev
 description: "상태를 관리하기 위한 설계 방식 중 하나인 State Machine이, 임베디드/JavaScript에서, 어떻게 활용되는지 살펴보겠습니다."

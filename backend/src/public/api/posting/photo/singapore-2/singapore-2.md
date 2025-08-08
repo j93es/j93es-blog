@@ -1,6 +1,6 @@
 ---
 title: "싱가포르2"
-date: 2024-10-03 16:46
+date: 2024-10-03
 tag: [Singapore, Travel]
 category: photo
 description: "싱가포르 여행에서 촬영한 사진을 포스팅합니다. 정글을 현대식으로 풀어낸 가든스 더 베이와 명불허전의 유니버셜 스튜디오를 담았습니다."
