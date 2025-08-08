@@ -1,15 +1,5 @@
-const queryMessageKey = "j93es-message";
 const redirectUrl = "/";
 let countdown = 5;
-const queryString = window.location.search;
-const message = new URLSearchParams(queryString).get(queryMessageKey);
-
-const updateElementTextById = (id, text) => {
-  const element = document.getElementById(id);
-  if (element) {
-    element.textContent = text;
-  }
-};
 
 const startCountdown = () => {
   document.getElementById("redirectMsg").textContent =
