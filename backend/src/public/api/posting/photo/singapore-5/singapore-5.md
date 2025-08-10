@@ -1,6 +1,6 @@
 ---
 title: "싱가포르5"
-date: 2024-10-04
+date: 2024-10-06
 tag: [Singapore, Travel]
 category: photo
 description: "싱가포르 여행에서 촬영한 사진을 포스팅합니다. 빌딩을 배경으로 즐기는 사테거리와 화려하지만 조화로운 무지개 경찰서를 담아냈습니다."

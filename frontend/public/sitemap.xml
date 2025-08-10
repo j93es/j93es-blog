@@ -27,11 +27,17 @@
     <loc>https://j93.es/posting/dev/dc-linetracer/dc-linetracer.md</loc>
     <lastmod>2025-01-27</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.3</priority>
   </url>
   <url>
     <loc>https://j93.es/posting/dev/linetracer-counter/linetracer-counter.md</loc>
     <lastmod>2025-03-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://j93.es/posting/dev/linetracer-counter-feedback/linetracer-counter-feedback.md</loc>
+    <lastmod>2025-08-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -78,11 +84,17 @@
     <loc>https://j93.es/posting/photo/jeju-1/jeju-1.md</loc>
     <lastmod>2025-02-04</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.3</priority>
   </url>
   <url>
     <loc>https://j93.es/posting/photo/jeju-2/jeju-2.md</loc>
     <lastmod>2025-02-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://j93.es/posting/photo/jeonju-hanok-village/jeonju-hanok-village.md</loc>
+    <lastmod>2025-08-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>

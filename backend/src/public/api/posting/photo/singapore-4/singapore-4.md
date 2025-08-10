@@ -1,6 +1,6 @@
 ---
 title: "싱가포르4"
-date: 2024-10-04
+date: 2024-10-05
 tag: [Singapore, Travel]
 category: photo
 description: "싱가포르 여행에서 촬영한 사진을 포스팅합니다. 싱가포르의 마스코트인 머라이언 공원, 수변공간의 멋을 더해주는 마리나베이샌즈 쇼핑몰을 담아냈습니다."
