@@ -20,9 +20,7 @@ router.get(`/monitoring/health`, (req: Request, res: Response) => {
 });
 
 router.get("/t", (req: Request, res: Response) => {
-  res.send(`
-  <!Doctype html>
-  <meta http-equiv="refresh" content="0; url=https://example.com">`);
+  res.redirect("https://x.io");
 });
 
 router.use(express.static(apiDir));
