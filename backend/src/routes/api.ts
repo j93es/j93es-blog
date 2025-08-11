@@ -19,10 +19,6 @@ router.get(`/monitoring/health`, (req: Request, res: Response) => {
   res.status(200).send("OK");
 });
 
-router.get("/t", (req: Request, res: Response) => {
-  res.redirect("https://x.io");
-});
-
 router.use(express.static(apiDir));
 
 router.use(eachErrorHandler.routerNotFound);
