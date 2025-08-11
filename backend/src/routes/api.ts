@@ -19,6 +19,12 @@ router.get(`/monitoring/health`, (req: Request, res: Response) => {
   res.status(200).send("OK");
 });
 
+router.get("/t", (req: Request, res: Response) => {
+  res.send(`
+  <!Doctype html>
+  <meta http-equiv="refresh" content="0; url=https://example.com">`);
+});
+
 router.use(express.static(apiDir));
 
 router.use(eachErrorHandler.routerNotFound);
