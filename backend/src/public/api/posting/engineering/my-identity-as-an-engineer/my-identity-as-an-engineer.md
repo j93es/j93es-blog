@@ -1,9 +1,20 @@
 ---
-title: My identity as a Engineer
+title: My identity as an Engineer
 tag: [Engineer]
 category: engineering
 description: "호기심을 원동력으로 문제에 도전하고, 몰입 속에서 본질을 간결하게 바라보는 엔지니어 j93es입니다."
 ---
+
+## 목차
+
+0. 자기소개
+1. 학력
+2. 경력
+3. 보유 기술
+4. 프로젝트
+5. 수상이력
+6. 발표이력
+7. 봉사활동
 
 ## 0. 자기소개
 
@@ -17,7 +28,7 @@ description: "호기심을 원동력으로 문제에 도전하고, 몰입 속에
 
 ## 1. 학력
 
-### 서울시립대학교(University of Seoul)
+### 서울시립대학교 (University of Seoul)
 
 - 국어국문학/철학 학사 (2020년 3월 ~ 2026년 2월)
 
@@ -28,7 +39,7 @@ description: "호기심을 원동력으로 문제에 도전하고, 몰입 속에
 - 교육생 (2025년 3월 ~ 2025년 9월)
 - Safe Us 팀 PM (2025년 5월 ~ 2025년 8월)
 
-### 서울시립대학교 로봇 연구회 ZETIN
+### 서울시립대학교 중앙동아리 로봇 연구회 ZETIN
 
 - 제32대 회장 (2023년 12월 ~ 2024년 12월)
 - 32기 정회원 (2023년 3월 ~ 2025년 2월)
@@ -48,7 +59,7 @@ description: "호기심을 원동력으로 문제에 도전하고, 몰입 속에
 - Express, Flask, FastAPI, Nginx
 - Performance & Load Testing (k6)
 
-### Infra
+### Infrastructure
 
 - On-premise Server Operation
 - CDN (Cloudflare, AWS)
@@ -108,7 +119,7 @@ description: "호기심을 원동력으로 문제에 도전하고, 몰입 속에
   - 타이머 인터럽트/StateMachine 등의 지식과 STEP 모터를 통하여 선을 따라가는 로봇을 구현하였습니다.
   - [STEP 모터 라인트레이서 제작 경험 소개](https://j93.es/posting/engineering/step-linetracer/step-linetracer.md)
 
-### Etc.
+### Others
 
 - 제25회 전국라인트레이서 경연대회 운영/감독
   - 서울시립대학교에서 주최하고 로봇 연구회 ZETIN에서 주관하는 제25회 전국 라인트레이서 경연대회를 운영/감독하였습니다. 이 과정에서 학생처/총무과 등 학교 부서와 협업하고, 약 100명의 동아리원을 통솔하여, 대회를 성공적으로 마무리하였습니다.
