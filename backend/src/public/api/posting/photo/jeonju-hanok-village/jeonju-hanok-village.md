@@ -42,4 +42,4 @@ description: "전주 한옥마을에서 촬영한 사진을 포스팅합니다. 
 
 <img src="/api/posting/photo/jeonju-hanok-village/img/3-2.jpg" alt="전주 한옥마을3-2" width="660" height="440" loading="lazy">
 
-<img src="/api/posting/photo/jeonju-hanok-village/img/3-3.jpg" alt="전주 한옥마을3-3" width="440" height="660" loading="lazy">
+<img src="/api/posting/photo/jeonju-hanok-village/img/3-3.jpg" alt="전주 한옥마을3-3" width="660" height="440" loading="lazy">
