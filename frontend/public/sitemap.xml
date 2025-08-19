@@ -12,31 +12,31 @@
 
   <!-- dev posting start -->
   <url>
-    <loc>https://j93.es/posting/dev/step-linetracer/step-linetracer.md</loc>
+    <loc>https://j93.es/posting/engineering/step-linetracer/step-linetracer.md</loc>
     <lastmod>2025-01-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://j93.es/posting/dev/state-machine/state-machine.md</loc>
+    <loc>https://j93.es/posting/engineering/state-machine/state-machine.md</loc>
     <lastmod>2025-01-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://j93.es/posting/dev/dc-linetracer/dc-linetracer.md</loc>
+    <loc>https://j93.es/posting/engineering/dc-linetracer/dc-linetracer.md</loc>
     <lastmod>2025-01-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://j93.es/posting/dev/linetracer-counter/linetracer-counter.md</loc>
+    <loc>https://j93.es/posting/engineering/linetracer-counter/linetracer-counter.md</loc>
     <lastmod>2025-03-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://j93.es/posting/dev/linetracer-counter-feedback/linetracer-counter-feedback.md</loc>
+    <loc>https://j93.es/posting/engineering/linetracer-counter-feedback/linetracer-counter-feedback.md</loc>
     <lastmod>2025-08-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>

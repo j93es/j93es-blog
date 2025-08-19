@@ -6,13 +6,13 @@ export const PORT = process.env.PORT || 8081;
 
 export const appDefaultTitle = "j93es blog";
 export const appDefaultDescription =
-  "개발 경험과 기술에 대한 인사이트를 기록하며, 때로는 사진과 철학으로 세상을 바라봅니다. j93es blog에서 작은 발견과 영감을 나눌 수 있기를 바랍니다.";
+  "엔지니어링 경험에서 얻은 인사이트를 기록하고, 지식을 탐구하며 사랑하는 철학에 대한 이야기를 다룹니다. 때로는 사진으로 세상을 바라봅니다. j93es blog에서 작은 발견과 영감을 나눌 수 있기를 바랍니다.";
 
 export const corsWhitelist: string[] = JSON.parse(
   process.env.CORS_WHITE_LIST || JSON.stringify(["http://localhost:3000"])
 );
 
-export const showingCategoryList: string[] = ["dev", "photo"];
+export const showingCategoryList: string[] = ["engineering", "photo"];
 
 export const publicDir = path.join(__dirname, "public");
 export const apiDir = path.join(publicDir, "api");
