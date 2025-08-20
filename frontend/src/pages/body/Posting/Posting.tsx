@@ -18,6 +18,7 @@ import useFetch from "customHooks/useFetch";
 import CustomPre from "pages/body/Posting/components/CustomPre";
 import CustomImage from "pages/body/Posting/components/CustomImage";
 import CustomA from "pages/body/Posting/components/CustomA";
+import CustomLi from "pages/body/Posting/components/CustomLi";
 import MetaTag from "pages/body/components/MetaTag";
 import { parseMarkdown } from "utils/index";
 import "pages/body/Posting/Posting.css";
@@ -106,6 +107,9 @@ const Posting: React.FC<PostingProps> = ({ path }) => {
     },
     a: ({ ...props }) => {
       return <CustomA {...props} />;
+    },
+    li: ({ ...props }) => {
+      return <CustomLi {...props} />;
     },
   });
 
