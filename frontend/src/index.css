@@ -31,7 +31,11 @@ pre {
   line-height: 130%;
 }
 
-li,
+li {
+  line-height: 160%;
+  margin-bottom: 0.4em;
+}
+
 span {
   line-height: 130%;
 }

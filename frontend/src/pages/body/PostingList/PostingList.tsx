@@ -25,7 +25,10 @@ const PostingList: React.FC<PostingListProps> = () => {
               {postingIndexController
                 .getPostingList(category)
                 .map((posting: MarkdownMetadata) => (
-                  <li key={`posting-${posting.title}`}>
+                  <li
+                    key={`posting-${posting.title}`}
+                    className="posting-link-cont"
+                  >
                     <Link
                       to={posting.path}
                       className="posting-link-item"
