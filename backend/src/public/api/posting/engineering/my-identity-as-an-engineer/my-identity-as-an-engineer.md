@@ -2,7 +2,7 @@
 title: My identity as an Engineer
 tag: [Engineer]
 category: engineering
-description: "호기심을 원동력으로 문제에 도전하고, 몰입 속에서 본질을 간결하게 바라보는 엔지니어 j93es입니다."
+description: "호기심을 원동력으로 문제에 도전하고, 몰입하며, 그 자체를 즐깁니다. 이러한 과정에서 문제를 깊이 파고, 본질을 간결하게 바라보는 태도를 지향합니다."
 ---
 
 ## 목차
