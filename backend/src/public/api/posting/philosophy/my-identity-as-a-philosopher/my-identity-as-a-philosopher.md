@@ -1,7 +1,7 @@
 ---
 title: My identity as a Philosopher
 date:
-tag: [Intro, Philosophy]
-category: _intro
+tag: [Philosophy]
+category: _philosophy
 description:
 ---
