@@ -34,13 +34,13 @@ build-backend:
 	sudo cp $(ENV_DIR)/backend $(BACKEND_DIR)/.env && cd $(BACKEND_DIR) && sudo npm install && sudo npm run build
 
 stop-pm2:
-	sudo pm2 stop j93es-blog-backend || true && sudo pm2 delete j93es-blog-backend || true
+	pm2 stop j93es-blog-backend || true && pm2 delete j93es-blog-backend || true
 
 start-pm2:
-	cd $(BACKEND_DIR) && sudo pm2 start npm --name j93es-blog-backend -- run start
+	cd $(BACKEND_DIR) && pm2 start npm --name j93es-blog-backend -- run start
 
 save-pm2:
-	sudo pm2 save
+	pm2 save
 
 restart-nginx:
 	sudo systemctl reload nginx
@@ -50,6 +50,9 @@ deploy-frontend: update-force build-frontend restart-nginx
 
 deploy-backend: update-force build-backend stop-pm2 start-pm2 save-pm2 restart-nginx
 	@echo "Backend deployment completed."
+
+deploy-force: update-force build-frontend build-backend stop-pm2 start-pm2 save-pm2 restart-nginx
+	@echo "Force deployment completed."
 
 deploy: update build-frontend build-backend stop-pm2 start-pm2 save-pm2 restart-nginx
 	@echo "Deployment completed."
