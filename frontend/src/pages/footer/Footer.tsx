@@ -53,7 +53,7 @@ const Footer: React.FC<FooterProps> = () => {
 
         <ExternalLink
           aria-label="j93es에게 Email을 통하여 연락"
-          href="mailto:j93es.jung@gmail.com"
+          href="mailto:j93es09@gmail.com"
         >
           <MailIcon />
         </ExternalLink>
