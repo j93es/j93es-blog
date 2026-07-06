@@ -23,7 +23,7 @@
   },
   "scripts": {
     "dev": "nodemon ./src/app.ts",
-    "build": "node scripts/cacheVerificationHeaderGenerator.js && tsc && mkdir -p dist/src/public && cp -R src/public/* dist/src/public/",
+    "build": "sudo node scripts/cacheVerificationHeaderGenerator.js && sudo tsc && sudo mkdir -p dist/src/public && sudo cp -R src/public/* dist/src/public/",
     "start": "node ./dist/src/app.js"
   }
 }
