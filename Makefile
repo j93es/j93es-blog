@@ -2,7 +2,7 @@
 
 # Variables
 REPO_URL=https://github.com/j93es/j93es-blog.git
-PROJECT_DIR=/srv/j93es-blog/j93es-blog
+PROJECT_DIR=/srv/j93es-blog
 FRONTEND_DIR=$(PROJECT_DIR)/frontend
 BACKEND_DIR=$(PROJECT_DIR)/backend
 ENV_DIR=/srv/j93es-blog/env
