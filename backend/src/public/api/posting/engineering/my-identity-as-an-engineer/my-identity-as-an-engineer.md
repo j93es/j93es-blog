@@ -37,6 +37,8 @@ description: "호기심을 원동력으로 문제에 도전하고, 몰입하며,
 - 제32대 회장 (2023년 12월 ~ 2024년 12월)
 - 32기 정회원 (2023년 3월 ~ 2025년 2월)
 
+### 화이트햇 스쿨 3기 수료
+
 ## 3. 보유 기술
 
 ### Frontend
@@ -51,6 +53,7 @@ description: "호기심을 원동력으로 문제에 도전하고, 몰입하며,
 
 - Express, Nginx
 - Performance & Load Testing (k6)
+- OAuth
 
 ### Infrastructure
 
