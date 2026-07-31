@@ -52,9 +52,9 @@ export class FrontendErrorBoundaryError implements Error {
   }
 }
 
-export class FrontendGlobalError implements Error {
+export class FrontendPromiseRejectionError implements Error {
   code: FrontendErrorCode;
-  name: string = "FrontendGlobalError";
+  name: string = "FrontendPromiseRejectionError";
 
   constructor(public message: string) {
     this.code = 1001;
@@ -62,9 +62,9 @@ export class FrontendGlobalError implements Error {
   }
 }
 
-export class FrontendFetchError implements Error {
+export class FrontendBrowswerCallbackError implements Error {
   code: FrontendErrorCode;
-  name: string = "FrontendFetchError";
+  name: string = "FrontendBrowswerCallbackError";
 
   constructor(public message: string) {
     this.code = 1002;

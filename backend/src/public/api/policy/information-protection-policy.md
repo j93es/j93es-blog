@@ -1,6 +1,6 @@
 ---
 title: "정보 보호 정책"
-date: 2025-04-18 11:34
+date: 2025-04-18
 tag: [information-protection-policy]
 category: policy
 description: "j93es 블로그의 정보 보호 정책과 수집 정보, 수집 목적, 보관 기간, 정보 제공, 보안 조치, 파기 절차 등을 안내합니다."

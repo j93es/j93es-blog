@@ -18,7 +18,7 @@ description: "호기심을 원동력으로 문제에 도전하고, 몰입하며,
 
 ## 0. 자기소개
 
-호기심을 원동력으로 새로운 문제에 도전합니다. 그리고 문제를 해결해나가는 과정, 그 자체를 즐기고 몰입합니다. 이러한 과정에서 문제를 깊이 파고, 다른 시각에서 본질을 간결하게 바라보려는 태도를 지향합니다.
+호기심을 원동력으로 새로운 문제에 도전합니다. 그리고 문제를 해결해 나가는 과정, 그 자체를 즐기고 몰입합니다. 이러한 과정에서 문제를 깊이 파고, 다른 시각에서 본질을 간결하게 바라보려는 태도를 지향합니다.
 
 기술은 목적에 부합할 때 비로소 빛을 발한다고 생각합니다. 따라서 저는 목적에 부합하지 않는 불필요한 기술을 지양하고, 간결하고 본질에 충실한 엔지니어링을 추구합니다.
 
@@ -37,7 +37,10 @@ description: "호기심을 원동력으로 문제에 도전하고, 몰입하며,
 - 제32대 회장 (2023년 12월 ~ 2024년 12월)
 - 32기 정회원 (2023년 3월 ~ 2025년 2월)
 
-### 화이트햇 스쿨 3기 수료
+### 화이트햇 스쿨 3기
+
+- 수료생
+- 프로젝트 PM
 
 ## 3. 보유 기술
 
@@ -48,12 +51,12 @@ description: "호기심을 원동력으로 문제에 도전하고, 몰입하며,
 - Search Engine Optimization (SEO)
 - Cross-Browser Compatibility
 - Web APIs (e.g., Web Serial API)
+- OAuth
 
 ### Backend
 
 - Express, Nginx
 - Performance & Load Testing (k6)
-- OAuth
 
 ### Infrastructure
 
@@ -70,6 +73,10 @@ description: "호기심을 원동력으로 문제에 도전하고, 몰입하며,
 
 - Browser Automation with Agentic AI
 
+### Security
+
+- Development of Automated Vulnerability Detection Tools
+
 ### Language
 
 - C
@@ -85,11 +92,17 @@ description: "호기심을 원동력으로 문제에 도전하고, 몰입하며,
   - 엔지니어링 경험에서 얻은 인사이트 등을 공유하기 위한 개인 블로그를 운영중입니다.
   - SEO, Cross Browser 환경에서의 호환성, FCP/CLS 등 성능 최적화를 고려하여 설계하였습니다.
   - error page, noscript page 등 세세한 디테일을 챙겨, 완성도를 높이기 위한 설계를 경험하였습니다.
+  - [소스 코드](https://github.com/j93es/j93es-blog)
+  - [개인 서버 구축 경험 소개](https://j93.es/posting/engineering/personal-server/personal-server.md)
+  - [성능 개선 경험 소개](https://j93.es/posting/engineering/blog-performance/blog-performance.md)
+
 - 창의적 종합설계 경진대회
   - 창의적 종합설계 경진대회에 "터널 내 레일 로봇의 실시간 모니터링 및 협동을 통한 자동차 2차 사고 예방 시스템"이라는 주제로 대회에 참여하였습니다.
   - 웹 풀스택 개발 및 서버 인프라 관리의 역할을 수행하였습니다.
   - 산업통상자원부 장관상 등을 수상하였습니다.
   - [소스 코드](https://github.com/j93es/2024-creative-engineering-design-competition)
+  - [창의적 종합설계 경진대회 출전 경험 소개](https://j93.es/posting/engineering/creative-engineering-design-competition/creative-engineering-design-competition.md)
+
 - 라인트레이서 계수기 소프트웨어
   - 제25회 전국라인트레이서 경연대회에서 대회 운영을 위한 라인트레이서 계수기 소프트웨어를 설계/구현하였습니다.
   - [라인트레이서 계수기 소프트웨어 제작 경험 소개](https://j93.es/posting/engineering/linetracer-counter/linetracer-counter.md)
@@ -103,17 +116,34 @@ description: "호기심을 원동력으로 문제에 도전하고, 몰입하며,
   - 임베디드 개발환경에서의 디버깅에 대한 인사이트를 얻었습니다.
   - 대전광역시장상 등을 수상하였습니다.
   - [DC 모터 라인트레이서 제작 경험 소개](https://j93.es/posting/engineering/dc-linetracer/dc-linetracer.md)
+
 - STEP 모터 라인트레이서
   - STEP 모터를 활용하여 선을 따라가는 로봇을 구현하였습니다.
   - 타이머 인터럽트/State Machine 등의 지식을 학습하였습니다.
   - 임베디드 개발환경에서의 테스트, 유지보수를 위한 아키텍쳐 설계에 대한 인사이트를 얻었습니다.
   - [STEP 모터 라인트레이서 제작 경험 소개](https://j93.es/posting/engineering/step-linetracer/step-linetracer.md)
 
+### Security
+
+- 화이트햇 스쿨 3기
+  - OAuth 표준 사양(RFC)과 이를 지키지 않았을때 발생할 수 있는 위협을 학습하였습니다.
+  - 과거 위협 사례 분석과 보안 정책에 입문하였습니다.
+  - API에서 악성 URL 위협 패턴을 학습하였습니다.
+
+- OAuth 취약점 분석 및 버그헌팅
+  - 화이트햇 스쿨 3기에서 OAuth 구현 시 발생할 수 있는 취약점을 분석하고 버그헌팅을 진행하였습니다.
+  - 표준 사양(RFC) 문서를 분석하여, OAuth 표준을 학습하였습니다.
+  - Agentic AI를 이용한 브라우저 자동화 및 패킷 분석 도구(mitm proxy)로 버그헌팅을 진행하였습니다.
+  - 팀에서 PM 및 개발의 역할을 맡았습니다.
+  - [소스 코드(Frontend-Browser)](https://github.com/j93es/OAuth-OIDC-VulnScanner-frontend)
+  - [소스 코드(Backend-Proxy)](https://github.com/j93es/OAuth-OIDC-VulnScanner-backend)
+
 ### Others
 
 - 제25회 전국라인트레이서 경연대회 운영/감독
   - 서울시립대학교에서 주최하고 로봇 연구회 ZETIN에서 주관하는 제25회 전국 라인트레이서 경연대회를 운영/감독하였습니다.
   - 학생처/총무과 등 학교 부서와 협업하고, 약 100명의 동아리원을 통솔하여, 대회를 성공적으로 마무리하였습니다.
+  - [ZETIN 회장 경험 소개](https://j93.es/posting/engineering/chairman-of-zetin/chairman-of-zetin.md)
 
 ## 5. 주요 업적
 
@@ -129,6 +159,13 @@ description: "호기심을 원동력으로 문제에 도전하고, 몰입하며,
 | 제13회 로봇융합 페스티벌 지능형 창작로봇 경진대회 라인트레이서 2D 부문 대상 (예선 1위, 본선 1위)          | **대전광역시장상**            |
 | 제24회 전국라인트레이서 경연대회 Expert STEP 부문 대상 (예선 1위, 본선 1위)                               | 서울시립대학교 학생처장       |
 
-## 6. 봉사활동
+## 6. 발표 이력
+
+- OWASP Seoul Chapter 2025 7월 세미나 - Safe Us 팀 소속
+  - 발표 주제: 해커들이 좋아하는 인증 환경은 따로 있다?
+  - [발표 영상](https://youtu.be/lw7vOgRlEOE?feature=shared&t=705)(11분 45초 ~ 36분 00초)
+  - [발표 자료](https://owasp.org/www-chapter-seoul/#div-presentation)
+
+## 7. 봉사활동
 
 - 2024 ROBOTEX & MRC Global Olympiad Korea International 심사위원

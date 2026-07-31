@@ -12,7 +12,7 @@ import { BrowserRouter } from "react-router-dom";
 import App from "App";
 import { LoadingProvider } from "contexts/LoadingProvider";
 import { PostingIndexControllerProvider } from "contexts/PostingIndexControllerProvider";
-import useGlobalErrorHandler from "customHooks/useGlobalErrorHandler";
+import usePromiseRejectionErrorHandler from "customHooks/usePromiseRejectionErrorHandler";
 import ErrorBoundary from "components/ErrorBoundary";
 
 import "index.css";
@@ -34,7 +34,7 @@ const root = ReactDOM.createRoot(
 );
 
 const Root = () => {
-  useGlobalErrorHandler();
+  usePromiseRejectionErrorHandler();
 
   return (
     <ErrorBoundary>
@@ -45,7 +45,7 @@ const Root = () => {
           </LoadingProvider>
         </PostingIndexControllerProvider>
       </BrowserRouter>
-      {/* <ErrorBoundaryTest /> */}
+    {/* <ErrorBoundaryTest /> */}
     </ErrorBoundary>
   );
 };
@@ -56,7 +56,7 @@ root.render(
   </React.StrictMode>
 );
 
-// test code for ErrorBoundary and useGlobalErrorHandler
+// test code for ErrorBoundary and usePromiseRejectionErrorHandler
 
 // function ErrorBoundaryTest() {
 //   return (

@@ -1,10 +1,9 @@
 // React
+import React from "react";
 
 // External
 
 // Local
-
-import React from "react";
 
 interface ExternalLinkProps
   extends React.AnchorHTMLAttributes<HTMLAnchorElement> {

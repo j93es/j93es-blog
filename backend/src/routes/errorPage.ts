@@ -7,8 +7,8 @@ import {
   NotFoundError,
   TooManyRequestsError,
   FrontendErrorBoundaryError,
-  FrontendGlobalError,
-  FrontendFetchError,
+  FrontendPromiseRejectionError,
+  FrontendBrowswerCallbackError,
 } from "../models/error";
 import { eachErrorHandler, wrapAsync } from "../middlewares/index";
 
@@ -42,12 +42,12 @@ router.get("/:errorCode.html", (req: Request, res: Response) => {
     throw new FrontendErrorBoundaryError("예기치 못한 오류가 발생했습니다.");
   }
   if (errorCode === 1001) {
-    throw new FrontendGlobalError(
+    throw new FrontendPromiseRejectionError(
       "비동기 처리에서 예기치 못한 오류가 발생했습니다."
     );
   }
   if (errorCode === 1002) {
-    throw new FrontendFetchError("네트워크 오류가 발생했습니다.");
+    throw new FrontendBrowswerCallbackError("브라우저 콜백 함수에서 오류가 발생했습니다.");
   }
 
   return res.redirect(`${req.baseUrl}/400.html`);

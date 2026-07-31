@@ -6,7 +6,7 @@ import { useEffect } from "react";
 // Local
 import { errorRedirect } from "utils/index";
 
-const useGlobalErrorHandler = () => {
+const usePromiseRejectionErrorHandler = () => {
   useEffect(() => {
     // 처리되지 않은 Promise Rejection
     const handleUnhandledRejection = (event: PromiseRejectionEvent) => {
@@ -29,4 +29,4 @@ const useGlobalErrorHandler = () => {
   }, []);
 };
 
-export default useGlobalErrorHandler;
+export default usePromiseRejectionErrorHandler;

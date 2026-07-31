@@ -5,8 +5,8 @@ import {
   ForbiddenError,
   TooManyRequestsError,
   FrontendErrorBoundaryError,
-  FrontendGlobalError,
-  FrontendFetchError,
+  FrontendPromiseRejectionError,
+  FrontendBrowswerCallbackError,
   ServerErrorCode,
   FrontendErrorCode,
 } from "../models/error";
@@ -153,28 +153,28 @@ class ErrorHandler {
     next(error);
   };
 
-  frontendGlobalError = (
+  frontendPromiseRejectionError = (
     error: Error,
     req: Request,
     res: Response,
     next: NextFunction
   ) => {
-    if (error instanceof FrontendGlobalError) {
-      customLogger.error("FrontendGlobalError", error.message, req);
+    if (error instanceof FrontendPromiseRejectionError) {
+      customLogger.error("FrontendPromiseRejectionError", error.message, req);
       this.sendFrontendErrorPage(res, error.code);
       return;
     }
     next(error);
   };
 
-  frontendFetchError = (
+  FrontendBrowswerCallbackError = (
     error: Error,
     req: Request,
     res: Response,
     next: NextFunction
   ) => {
-    if (error instanceof FrontendFetchError) {
-      customLogger.error("FrontendFetchError", error.message, req);
+    if (error instanceof FrontendBrowswerCallbackError) {
+      customLogger.error("FrontendBrowswerCallbackError", error.message, req);
       this.sendFrontendErrorPage(res, error.code);
       return;
     }
@@ -203,7 +203,7 @@ export const errorHandlers = [
   eachErrorHandler.badRequestError,
   eachErrorHandler.forbiddenError,
   eachErrorHandler.frontendErrorBoundaryError,
-  eachErrorHandler.frontendGlobalError,
-  eachErrorHandler.frontendFetchError,
+  eachErrorHandler.frontendPromiseRejectionError,
+  eachErrorHandler.FrontendBrowswerCallbackError,
   eachErrorHandler.error,
 ];

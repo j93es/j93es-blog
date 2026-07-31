@@ -7,7 +7,11 @@ const startCountdown = () => {
 
   if (countdown > 0) {
     countdown--;
-    setTimeout(startCountdown, 1000);
+    try {
+      setTimeout(startCountdown, 1000);
+    } catch {
+      window.location.replace(redirectUrl);
+    }
   } else {
     window.location.replace(redirectUrl);
   }
