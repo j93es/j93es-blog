@@ -5,6 +5,7 @@
 
 backend/src/public/root/*
 
+
 # dependencies
 /node_modules
 /.pnp
