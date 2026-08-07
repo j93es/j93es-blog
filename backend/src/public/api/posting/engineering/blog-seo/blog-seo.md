@@ -21,7 +21,7 @@ description: "개인 블로그를 운영하며 학습했던 SEO에 대하여 논
 
 SEO는 검색 엔진의 상단에 노출될 수 있도록 최적화하는 과정을 의미합니다. 구글, 야후, 네이버, 다음과 같은 검색엔진의 상단에 자신의 웹사이트가 표출된다면, 더욱 많은 사용자를 끌어모을 수 있겠죠. 이번 포스팅에서는 이러한 SEO에 대하여 다루어보겠습니다.
 
-결국 SEO는 2가지를 고려하는 것이 중요하다고 생각합니다. 첫째로 SEO를 평가하는 주체의 특성, 즉 봇의 특성을 고려해야합니다. 둘째로, 신경써야할 요소가 많은 평가 항목을 정확히 파악하고, 여러 meta tag를 잘 열거하여 파악하는 것이 중요합니다. 이번 포스팅은 크게 위의 2가지 주제를 소개합니다.
+결국 SEO는 2가지를 고려하는 것이 중요하다고 생각합니다. 첫째로 SEO를 평가하는 주체의 특성, 즉 봇의 특성을 고려해야합니다. 둘째로, SEO 평가 항목을 정확히 파악하고, 여러 meta tag를 잘 열거하여 파악하는 것이 중요합니다. 이번 포스팅은 크게 위의 2가지 주제를 소개합니다.
 
 ## 1. 검색 엔진의 관리자 플랫폼에 웹사이트 등록
 
@@ -69,7 +69,7 @@ SEO는 검색 엔진의 상단에 노출될 수 있도록 최적화하는 과정
 
 웹사이트를 돌아다니는 봇은 어떤 특성을 지녔을까요? CSR의 경우, 브라우저에서 JS를 실행하여 페이지를 랜더링합니다. 그런데 봇은 과연 그러할까요? 종종 JS를 실행시키지 않을 수 있습니다. 그리고 JS를 실행시키는 것 보다는 HTML의 meta tag, 응답 코드 등을 살펴보는 것이 봇의 입장에서 효율적이겠죠.
 
-즉, JS를 실행 시켜서 전제 랜더링된 페이지를 분석하는 봇은 많지 않습니다. 그렇다면 CSR의 경우, **HTML의 헤더와 응답 헤더만으로 봇이 웹사이트를 파악할 수 있도록 구성**하는 것이 유리합니다. 이때 어떻게 HTML의 헤더와 응답 코드를 구성해야할까요? 차례대로 살펴봅시다.
+즉, JS를 실행 시켜서 랜더링된 페이지를 분석하는 봇은 많지 않습니다. 다시말해 많은 검색 엔진 봇은 JavaScript 렌더링 이전의 HTML만으로도 페이지를 평가하거나, JavaScript 렌더링을 지연 또는 생략할 수 있습니다. 그렇다면 CSR의 경우, **HTML의 헤더와 응답 헤더만으로 봇이 웹사이트를 파악할 수 있도록 구성**하는 것이 유리합니다. 이때 어떻게 HTML의 헤더와 응답 코드를 구성해야할까요? 차례대로 살펴봅시다.
 
 ### 응답 코드
 
@@ -96,6 +96,67 @@ HTML 헤더의 meta tag는 웹사이트의 기본적인 정보를 담은 태그�
 #### title, description
 
 각각의 path마다 다른 title과 description을 통하여 해당 페이지의 제목과 설명을 제공합니다. 이때 영문 기준 title 50-60자, description 150-160자를 넘긴다면, 제목이나 설명이 잘릴 수 있습니다. 즉, 제목, 설명마다 글자 수를 적절히 조정하는 것이 중요합니다.
+
+이때 CSR일 경우, title, description이 HTML의 헤더에 어떻게 적용될까요? 많은 경우 React의 `Helmet`을 이용합니다. 다음의 과정을 살펴봅시다.
+
+- HTML 도착
+
+```html
+<head>
+  <title>기본(각각의 path마다 똑같은) 제목</title>
+  <meta
+    name="description"
+    content="기본(각각의 path마다 똑같은) 설명"
+  />
+<head>
+```
+
+- 랜더링 시에 path에 해당하는 title, description 수정
+
+```tsx
+<Helmet>
+  <title>{posting.title}</title>
+  <meta
+    name="description"
+    content={posting.description}
+  />
+</Helmet>
+```
+
+그런데 이전에 살펴보았듯이 많은 검색 엔진 봇은 JavaScript 렌더링 이전의 HTML만으로도 페이지를 평가하거나, JavaScript 렌더링을 지연 또는 생략할 수 있습니다. 즉, 전달된 HTML의 헤더에, path에 해당하는 title, description이 담겨있지 않다면, 모든 path에 같은 title, description이 적용됩니다. 이는 SEO에 부정적인 영향을 미칩니다.
+
+그렇다면 랜더링 시에 title, description을 바꾸는 것이 아닌, 응답에서 title, description이 각 path에 적절하게 적용되어있어야 합니다. 저의 블로그의 경우 다음과 같은 방식을 사용합니다.
+
+index.html을 템플릿 엔진과 유사하게 구성합니다.
+
+```html
+<html xmlns="https://www.w3.org/2000/svg" lang="ko">
+  <head>
+    <!-- title start -->
+    <title>{{title}}</title>
+    <meta property="og:title" content="{{title}}" />
+    <meta name="apple-mobile-web-app-title" content="{{title}}" />
+    <meta name="twitter:title" content="{{title}}" />
+    <template>
+      <div class="daum-wm-title">{{title}}</div>
+    </template>
+    <!-- title end -->
+
+    <!-- description start -->
+    <meta name="description" content="{{description}}" />
+    <meta property="og:description" content="{{description}}" />
+    <meta name="twitter:description" content="{{description}}" />
+    <template>
+      <div class="daum-wm-content">{{description}}</div>
+    </template>
+    <!-- description end -->
+  </head>
+</html>
+```
+
+React에서 build 된 파일을 express 서버에서 서빙합니다. 이때 express 서버가 `{{title or description}}`로 둘러싸여진 부분을 각 path에 적합하게 변환하여 응답합니다.
+
+즉, express 서버의 응답에서 각 path에 해당하는 title, description이 적용되도록 구성하였습니다. 이를 통하여 CSR 환경에서 SEO를 적절히 수행하였습니다.
 
 #### 모바일 반응형
 
