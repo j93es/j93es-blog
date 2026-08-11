@@ -127,7 +127,7 @@ HTML 헤더의 meta tag는 웹사이트의 기본적인 정보를 담은 태그�
 
 그렇다면 랜더링 시에 title, description을 바꾸는 것이 아닌, 응답에서 title, description이 각 path에 적절하게 적용되어있어야 합니다. 저의 블로그의 경우 다음과 같은 방식을 사용합니다.
 
-index.html을 템플릿 엔진과 유사하게 구성합니다.
+index.html을 템플릿 엔진에서 사용하는 형식과 유사하게 구성합니다.
 
 ```html
 <html xmlns="https://www.w3.org/2000/svg" lang="ko">
@@ -154,9 +154,9 @@ index.html을 템플릿 엔진과 유사하게 구성합니다.
 </html>
 ```
 
-React에서 build 된 파일을 express 서버에서 서빙합니다. 이때 express 서버가 `{{title or description}}`로 둘러싸여진 부분을 각 path에 적합하게 변환하여 응답합니다.
+다음으로 React에서 build 된 파일을 생성하여, express 서버에서 서빙합니다. 이때 중요한 점은 **express 서버가 `{{title or description}}`로 둘러싸여진 부분을 각 path에 적합하게 변환하여 응답**하여야한다는 것 입니다.
 
-즉, express 서버의 응답에서 각 path에 해당하는 title, description이 적용되도록 구성하였습니다. 이를 통하여 CSR 환경에서 SEO를 적절히 수행하였습니다.
+즉, express 서버가 템플릿 엔진의 역할 또한 수행하여, 각 path에 해당하는 title, description이 적용되도록 구성하였습니다. 이를 통하여 CSR 환경에서 SEO를 적절히 수행하였습니다.
 
 #### 모바일 반응형
 
@@ -212,7 +212,7 @@ React에서 build 된 파일을 express 서버에서 서빙합니다. 이때 exp
 
 ### robots.txt, sitemap.xml
 
-봇이 도메인에 요청을 했을때, 어떤 파일을 요청해야할까요? 그런데 봇이 도메인에 접근되는 것이 금지되진 않았을까요? 이러한 내용을 알려주는 것이 robots.txt입니다. robots.txt의 세부 내용을 살펴보겠습니다.
+봇이 도메인에 요청을 했을때, 어떤 파일을 요청해야하는지, 봇이 도메인에 접근되는 것이 금지되었는지, 알려주는 리소스가 robots.txt입니다. 즉, 봇이 접근할 수 있는 리소스의 범위를 제한하는 것이 robots.txt입니다. robots.txt의 세부 내용을 살펴보겠습니다.
 
 ```txt
 # https://www.robotstxt.org/robotstxt.html
@@ -224,7 +224,7 @@ Sitemap: https://j93.es/sitemap.xml
 
 이 파일을 통하여, 어떤 에이전트(요청 헤더에서 브라우저 정보 등)가 접근할 수 있는지, 허용되지 않는 에이전트는 누구인지 확인할 수 있습니다. robots.txt는 봇이 해당 도메인에 접근할때, 우선적으로 확인하는 항목입니다. 즉, 봇에게 해당 사이트 접근에 대한 정보를 제공한다고 생각하면 좋습니다.
 
-그런데 하단에 sitemap.xml 또한 확인됩니다. 이 파일은 도메인에 어떤 리소스가 있는지 알려주는 파일입니다. 한번 살펴봅시다.
+그런데 하단에 sitemap.xml에 접근할 수 있는 path 또한 확인됩니다. 이 파일은 도메인에 어떤 하위 경로가 있는지 알려주는 파일입니다. 한번 살펴봅시다.
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -243,7 +243,7 @@ Sitemap: https://j93.es/sitemap.xml
 </urlset>
 ```
 
-이러한 형식으로 도메인에 접근가능한 리소스 등을 열거하는 파일이 sitemap.xml입니다. 즉, 해당 파일을 통하여 봇은 도메인에 어떤 사이트맵이 있는지 확인하여 접근할 목록을 정할 수 있습니다.
+이러한 형식으로 도메인에 접근가능한 하위 경로 등을 열거하는 파일이 sitemap.xml입니다. 즉, 해당 파일을 통하여 봇은 도메인에 어떤 사이트맵이 있는지 확인하여 접근할 목록을 정할 수 있습니다.
 
 ## 3. Lighthouse의 평가 항목
 
