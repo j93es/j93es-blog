@@ -11,9 +11,9 @@ description: "개인 블로그를 운영하며 학습했던 SEO에 대하여 논
 0. 들어가며
 1. 검색 엔진의 관리자 플랫폼에 웹사이트 등록
 2. 봇 특성을 고려한 SEO
-  - 응답 코드
-  - meta tag
-  - robots.txt, sitemap.xml
+    - 응답 코드
+    - meta tag
+    - robots.txt, sitemap.xml
 3. Lighthouse의 평가 항목
 4. 나오며
 
@@ -83,7 +83,7 @@ SEO는 검색 엔진의 상단에 노출될 수 있도록 최적화하는 과정
 
 구글 서치 콘솔은 다음과 같이 Soft 404를 표출합니다.
 
-[Google Soft 404 예시](https://j93.es/api/posting/engineering/blog-seo/img/soft-404.png)
+<img src="/api/posting/engineering/blog-seo/img/soft-404.png" alt="Google Soft 404 예시" width="660" height="513">
 
 이러한 문제를 해결하는 방법에 대하여 살펴봅시다. `https://j93.es/path`로 요청을 했다고 가정합시다. 그렇다면 백엔드에서 응답코드를 1차적으로 반영하여 응답하는 것이 중요합니다. 즉, "302면 302번이다. 404번 404다."라고 응답하는 것이 중요합니다.
 
