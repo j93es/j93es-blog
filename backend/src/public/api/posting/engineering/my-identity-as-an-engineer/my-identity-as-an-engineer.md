@@ -98,28 +98,6 @@ description: "호기심을 원동력으로 문제에 도전하고, 몰입하며,
 
 ### Frontend
 
-#### Web Performance Optimization
-
-Core Web Vitals를 기준으로 초기 로딩 속도, 렌더링 성능, 화면 안정성을 개선하여 사용자 경험을 최적화합니다.
-
-Lighthouse 기반 성능 분석을 통해 병목 구간을 식별하고, Dynamic Import를 활용한 코드 스플리팅, 이미지 최적화(Lazy Loading, 포맷 및 용량 최적화), Preload·Preconnect 적용, 리소스 경량화 및 CLS 개선을 위한 레이아웃 최적화를 수행하였습니다.
-
-초기 로딩 성능과 렌더링 효율을 향상시키고, 네트워크 사용량 및 Layout Shift를 감소시켜 Core Web Vitals 전반의 성능을 개선하였습니다. Lighthouse 기준 데스크탑 70점->96점, 모바일 50점->89점의 성능 향상을 이루어냈습니다.
-
-[블로그 성능 최적화](https://j93.es/posting/engineering/blog-performance/blog-performance.md)
-
-
-#### 웹 품질 개선
-
-기능 구현을 넘어 프론트엔드 서비스라면 기본적으로 가져야할 요소를 확보하여 서비스 완성도를 높힙니다. 이를 위하여 웹 표준, 보안, 접근성 등을 고려합니다.
-
-PWA Manifest, Noscript 및 Custom Error Page를 구축하고, CSP와 안전한 외부 링크 정책을 적용하여 보안을 강화하였습니다. 또한 캐시 검증 헤더(ETag, Last-Modified), 메타데이터, Favicon, 로딩 UX 등을 개선하였습니다.
-
-웹 표준, 보안, 접근성, 사용자 경험을 종합적으로 개선하고, 세세한 디테일을 챙겨, 안정적이고 일관된 서비스 환경을 구축하였습니다.
-
-[블로그 디테일 챙기기](https://j93.es/posting/engineering/blog-detail/blog-detail.md)
-
-
 #### CSR 기반 Search Engine Optimization (SEO)
 
 검색 엔진에서 블로그 콘텐츠가 정상적으로 노출될 수 있도록 SEO를 적용합니다. 검색 엔진 봇이 웹사이트 구조와 콘텐츠를 정확히 이해할 수 있도록 구성하고, CSR 환경에서 발생할 수 있는 SEO 문제를 해결하는 것을 목표로 하였습니다.
@@ -134,23 +112,13 @@ CSR 기반 블로그에서도 검색 엔진 봇이 페이지별 정보를 정상
 
 [블로그 SEO](https://j93.es/posting/engineering/blog-seo/blog-seo.md)
 
-#### Error Handling Architecture
-
-React 애플리케이션의 예외 상황을 안정적으로 처리할 수 있는 아키텍쳐를 설계합니다. 이를 위하여 에러를 분류하고, 분류한 에러를 처리할 수 있는 방안을 탐색합니다.
-
-예외를 React Rendering Error, Promise Rejection, Browser Callback Error로 분류하고, Error Boundary와 브라우저 전역 이벤트(unhandledrejection)를 활용한 계층형 에러 처리 구조를 설계하였습니다. 또한 에러 로그 수집과 리다이렉트 체계를 구축하여 장애 추적이 가능하도록 구현하였습니다.
-
-예외 발생 경로별 처리 로직을 표준화하여 유지보수성을 향상시켰으며, 브라우저 환경을 고려한 안정적인 에러 처리 체계를 구축하였습니다. 특히, `error` 이벤트 리스닝 시에, 개인정보 브라우징 혹은 브라우저의 공유하기 기능에서 발생할 수 있는 호환 이슈를 2025년 2월 1일 기준 안드로이드 네이버앱에서 발견하고 해결하였습니다.
-
-[블로그 에러 핸들링](https://j93.es/posting/engineering/blog-error-handling/blog-error-handling.md)
-
 #### Cross-Browser Compatibility
 
 다양한 브라우저와 운영체제에서 동일한 UI/UX를 제공하고, 최신 및 레거시 브라우저를 모두 지원할 수 있는 환경을 구축합니다.
 
 브라우저별 렌더링 및 히스토리 동작을 분석하여 Safari, Android 네이버 앱 등에서 발생하는 호환성 이슈를 해결하였습니다. 
 
-특히 Safari의 트랙패드 뒤로가기 제스처에서 발생하는 화면 멈춤 현상을 브라우저 히스토리(popstate) 동작 분석을 기반으로 개선하였습니다. 더하여 안드로이드 네이버 앱 환경에서 `error` 이벤트 리스닝시에, 개인정보보호 브라우징 혹은 공유하기 기능에서 브라우저 콜백 에러로 인한 이슈를 해결하였습니다. 
+특히 Safari의 트랙패드 뒤로가기 제스처에서 발생하는 화면 멈춤 현상을 브라우저 히스토리(popstate) 동작 분석을 기반으로 개선하였습니다. 더하여 안드로이드 네이버 앱 환경에서 `error` 이벤트 리스닝시에, 개인정보보호 브라우징 혹은 공유하기 기능에서 브라우저 콜백 에러로 인한 이슈를 해결하였습니다.
 
 또한 CSS Reset/Normalize, 폰트 전략과 Dynamic Import 기반 Polyfill(HTML5, CSS Variables, CSS Selector)을 적용하여 브라우저 호환성과 번들 최적화를 함께 구현하였습니다.
 
@@ -158,6 +126,35 @@ React 애플리케이션의 예외 상황을 안정적으로 처리할 수 있�
 
 [블로그 크로스 브라우징](https://j93.es/posting/engineering/blog-crossbrowsing/blog-crossbrowsing.md)
 
+#### Error Handling Architecture
+
+React 애플리케이션의 예외 상황을 안정적으로 처리할 수 있는 아키텍쳐를 설계합니다. 이를 위하여 에러를 분류하고, 분류한 에러를 처리할 수 있는 방안을 탐색합니다.
+
+예외를 React Rendering Error, Promise Rejection, Browser Callback Error로 분류하고, Error Boundary와 브라우저 전역 이벤트(unhandledrejection)를 활용한 계층형 에러 처리 구조를 설계하였습니다. 또한 에러 로그 수집과 리다이렉트 체계를 구축하여 장애 추적이 가능하도록 구현하였습니다. 예외 발생 경로별 처리 로직을 표준화하여 유지보수성을 향상시켰으며, 브라우저 환경을 고려한 안정적인 에러 처리 체계를 구축하였습니다. 
+
+특히, `error` 이벤트 리스닝 시에, 개인정보 브라우징 혹은 브라우저의 공유하기 기능에서 발생할 수 있는 호환 이슈를 2025년 2월 1일 기준 안드로이드 네이버앱에서 발견하고 해결하였습니다.
+
+[블로그 에러 핸들링](https://j93.es/posting/engineering/blog-error-handling/blog-error-handling.md)
+
+#### Web Performance Optimization
+
+Core Web Vitals를 기준으로 초기 로딩 속도, 렌더링 성능, 화면 안정성을 개선하여 사용자 경험을 최적화합니다. 
+
+Lighthouse 기반 성능 분석을 통해 병목 구간을 식별하고, Dynamic Import를 활용한 코드 스플리팅, 이미지 최적화(Lazy Loading, 포맷 및 용량 최적화), Preload·Preconnect 적용, 리소스 경량화 및 CLS 개선을 위한 레이아웃 최적화를 수행하였습니다.
+
+초기 로딩 성능과 렌더링 효율을 향상시키고, 네트워크 사용량 및 Layout Shift를 감소시켜 Core Web Vitals 전반의 성능을 개선하였습니다. Lighthouse 기준 데스크탑 70점->96점, 모바일 50점->89점의 성능 향상을 이루어냈습니다. 특히 LCP를 모바일 기준 2.8초로, 데스크탑 기준 0.8초로 향상하였습니다.
+
+[블로그 성능 최적화](https://j93.es/posting/engineering/blog-performance/blog-performance.md)
+
+#### 웹 품질 개선
+
+기능 구현을 넘어 프론트엔드 서비스라면 기본적으로 가져야할 요소를 확보하여 서비스 완성도를 높힙니다. 이를 위하여 웹 표준, 보안, 접근성 등을 고려합니다.
+
+PWA Manifest, Noscript 및 Custom Error Page를 구축하고, CSP와 안전한 외부 링크 정책을 적용하여 보안을 강화하였습니다. 또한 캐시 검증 헤더(ETag, Last-Modified), 메타데이터, Favicon, 로딩 UX 등을 개선하였습니다.
+
+웹 표준, 보안, 접근성, 사용자 경험을 종합적으로 개선하고, 세세한 디테일을 챙겨, 안정적이고 일관된 서비스 환경을 구축하였습니다.
+
+[블로그 디테일 챙기기](https://j93.es/posting/engineering/blog-detail/blog-detail.md)
 
 ### Backend
 
