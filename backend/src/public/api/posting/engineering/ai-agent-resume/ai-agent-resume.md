@@ -1,7 +1,7 @@
 ---
 title: ai-agent-resume
 tag: [Engineer]
-category: engineering
+category: _engineering
 description: "호기심을 원동력으로 문제에 도전하고, 몰입하며, 그 자체를 즐깁니다. 이러한 과정에서 문제를 깊이 파고, 본질을 간결하게 바라보는 태도를 지향합니다."
 ---
 
@@ -99,8 +99,6 @@ description: "호기심을 원동력으로 문제에 도전하고, 몰입하며,
 ### AI
 
 #### Browser Automation with Agentic AI
-
-AI 에이전트를 활용하여 브라우저 자동화를 구현합니다.
 
 Browser Use라는 오픈소스 도구를 통하여 Agentic AI를 활용한 브라우저 자동화를 구현하였습니다. 
 
