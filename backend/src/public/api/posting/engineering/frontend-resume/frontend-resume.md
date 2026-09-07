@@ -1,7 +1,7 @@
 ---
 title: Frontend Resume
 tag: [Engineer]
-category: engineering
+category: _engineering
 description: "호기심을 원동력으로 문제에 도전하고, 몰입하며, 그 자체를 즐깁니다. 이러한 과정에서 문제를 깊이 파고, 본질을 간결하게 바라보는 태도를 지향합니다."
 ---
 
