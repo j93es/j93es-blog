@@ -23,8 +23,8 @@
   },
   "scripts": {
     "dev": "nodemon ./src/app.ts",
-    "dev-build": "sudo node scripts/cacheVerificationHeaderGenerator.js && tsc && mkdir -p dist/src/public && cp -R src/public/* dist/src/public/",
-    "build": "sudo node scripts/cacheVerificationHeaderGenerator.js && tsc && sudo mkdir -p dist/src/public && sudo cp -R src/public/* dist/src/public/",
+    "dev-build": "sudo rm -rf src/public/root/* && sudo cp -r ../frontend/build/* src/public/root/ && sudo node scripts/cacheVerificationHeaderGenerator.js && tsc && mkdir -p dist/src/public && rm -rf dist/src/public/* && cp -r src/public/* dist/src/public/",
+    "build": "sudo node scripts/cacheVerificationHeaderGenerator.js && tsc",
     "start": "node ./dist/src/app.js"
   }
 }

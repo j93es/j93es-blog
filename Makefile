@@ -28,10 +28,27 @@ update-force:
 	fi
 
 build-frontend:
-	sudo cp $(ENV_DIR)/frontend $(FRONTEND_DIR)/.env && cd $(FRONTEND_DIR) && sudo npm install && sudo npm run build && sudo mkdir -p $(BACKEND_DIR)/src/public/root/ && sudo cp -r $(FRONTEND_DIR)/build/* $(BACKEND_DIR)/src/public/root/
+	sudo rm -f $(FRONTEND_DIR)/.env
+	sudo cp $(ENV_DIR)/frontend $(FRONTEND_DIR)/.env
+	cd $(FRONTEND_DIR) && sudo npm install && sudo npm run build
 
 build-backend:
-	sudo cp $(ENV_DIR)/backend $(BACKEND_DIR)/.env && cd $(BACKEND_DIR) && sudo npm install && sudo npm run build
+	# env 가져오기
+	sudo rm -f $(BACKEND_DIR)/.env
+	sudo cp $(ENV_DIR)/backend $(BACKEND_DIR)/.env
+
+	# src/public에 프론트 빌드파일 가져오기
+	sudo mkdir -p $(BACKEND_DIR)/src/public/root/
+	sudo rm -rf $(BACKEND_DIR)/src/public/root/*
+	sudo cp -r $(FRONTEND_DIR)/build/* $(BACKEND_DIR)/src/public/root/
+
+	# build
+	cd $(BACKEND_DIR) && sudo npm install && sudo npm run build
+
+	# dist에 public 복사
+	sudo mkdir -p $(BACKEND_DIR)/dist/src/public
+	sudo rm -rf $(BACKEND_DIR)/dist/src/public/*
+	sudo cp -r $(BACKEND_DIR)/src/public/* $(BACKEND_DIR)/dist/src/public/
 
 stop-pm2:
 	sudo pm2 stop j93es-blog-backend || true && sudo pm2 delete j93es-blog-backend || true
@@ -53,3 +70,6 @@ deploy-backend: update-force build-backend stop-pm2 start-pm2 save-pm2 restart-n
 
 deploy: update build-frontend build-backend stop-pm2 start-pm2 save-pm2 restart-nginx
 	@echo "Deployment completed."
+
+deploy-force: update-force build-frontend build-backend stop-pm2 start-pm2 save-pm2 restart-nginx
+	@echo "Force Deployment completed."
