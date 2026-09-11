@@ -18,7 +18,6 @@ description: "React 기반 어플리케이션에서의 에러 핸들링에 대�
     - 에러 바운더리
     - unhandledrejection(Promise rejection)
     - error(그 외 브라우저 콜백에서 throw)
-        - 브라우저 자체(네이버 앱 등)의 에러
 3. 나오며
 
 ## 0. 들어가며
