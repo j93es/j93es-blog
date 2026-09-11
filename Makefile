@@ -73,3 +73,4 @@ deploy: update build-frontend build-backend stop-pm2 start-pm2 save-pm2 restart-
 
 deploy-force: update-force build-frontend build-backend stop-pm2 start-pm2 save-pm2 restart-nginx
 	@echo "Force Deployment completed."
+	
