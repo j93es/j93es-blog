@@ -51,13 +51,13 @@ build-backend:
 	sudo cp -r $(BACKEND_DIR)/src/public/* $(BACKEND_DIR)/dist/src/public/
 
 stop-pm2:
-	sudo pm2 stop j93es-blog-backend || true && sudo pm2 delete j93es-blog-backend || true
+	pm2 stop j93es-blog-backend || true && pm2 delete j93es-blog-backend || true
 
 start-pm2:
-	cd $(BACKEND_DIR) && sudo pm2 start npm --name j93es-blog-backend -- run start
+	cd $(BACKEND_DIR) && pm2 start npm --name j93es-blog-backend -- run start
 
 save-pm2:
-	sudo pm2 save
+	pm2 save
 
 restart-nginx:
 	sudo systemctl reload nginx
