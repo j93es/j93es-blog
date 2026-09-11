@@ -10,7 +10,7 @@ import {
   FrontendPromiseRejectionError,
   FrontendBrowswerCallbackError,
 } from "../models/error";
-import { eachErrorHandler, wrapAsync } from "../middlewares/index";
+import { eachErrorHandler } from "../middlewares/index";
 
 const router = express.Router();
 

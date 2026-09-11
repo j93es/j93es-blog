@@ -12,7 +12,6 @@ router.get("/posting-index.json", (req: Request, res: Response) => {
 });
 
 router.head(`/monitoring/health`, (req: Request, res: Response) => {
-  console.log(monitoringKey)
   if (req.query.key !== monitoringKey) {
     throw new ForbiddenError("Invalid monitoring key");
   }
