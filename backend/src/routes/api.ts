@@ -11,6 +11,14 @@ router.get("/posting-index.json", (req: Request, res: Response) => {
   res.json(postingIndexServ.get());
 });
 
+router.head(`/monitoring/health`, (req: Request, res: Response) => {
+  if (req.query.key !== monitoringKey) {
+    throw new ForbiddenError("Invalid monitoring key");
+  }
+  res.setHeader("Cache-Control", "no-cache, no-store");
+  res.status(200).send("OK");
+});
+
 router.get(`/monitoring/health`, (req: Request, res: Response) => {
   if (req.query.key !== monitoringKey) {
     throw new ForbiddenError("Invalid monitoring key");
