@@ -1,21 +1,8 @@
 ---
-title: Frontend Resume
-tag: [Engineer]
+title: Frontend
 category: _engineering
-description: "호기심을 원동력으로 문제에 도전하고, 몰입하며, 그 자체를 즐깁니다. 이러한 과정에서 문제를 깊이 파고, 본질을 간결하게 바라보는 태도를 지향합니다."
+description: "title, footer, nav 제거하기."
 ---
-
-## 목차
-
-0. 자기소개
-1. 학력
-2. 경력
-3. 보유 기술
-4. 보유 역량
-5. 프로젝트
-6. 주요 업적
-7. 발표 이력
-8. 봉사활동
 
 ## 0. 자기소개
 
