@@ -58,6 +58,7 @@ const CustomImage: React.FC<CustomImageProps> = (props) => {
             ? { width: "100%", objectFit: "contain" }
             : { maxWidth: "100%", objectFit: "cover" }),
         }}
+        // loading={props.loading ?? "lazy"}
         alt={props.alt || `${appDefaultTitle}의 이미지`}
         onLoad={onLoad}
         onError={onError}

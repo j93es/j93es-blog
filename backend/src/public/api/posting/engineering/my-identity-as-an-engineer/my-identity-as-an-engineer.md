@@ -130,7 +130,7 @@ React 애플리케이션의 예외 상황을 안정적으로 처리할 수 있�
 
 예외를 React Rendering Error, Promise Rejection, Browser Callback Error로 분류하고, Error Boundary와 브라우저 전역 이벤트(unhandledrejection)를 활용한 계층형 에러 처리 구조를 설계하였습니다. 또한 에러 로그 수집과 리다이렉트 체계를 구축하여 장애 추적이 가능하도록 구현하였습니다. 예외 발생 경로별 처리 로직을 표준화하여 유지보수성을 향상시켰으며, 브라우저 환경을 고려한 안정적인 에러 처리 체계를 구축하였습니다.
 
-특히, `error` 이벤트 리스닝 시에, 개인정보 브라우징 혹은 브라우저의 공유하기 기능에서 발생할 수 있는 호환 이슈를 2025년 2월 1일 기준 안드로이드 네이버앱에서 발견하고 해결하였습니다.
+특히, 2025년 2월 1일 기준 안드로이드 네이버 앱 환경에서, `error` 이벤트 리스닝하는 동시에 react-router-dom을 사용하며 path를 동적으로 생성하는 어플리케이션의 경우, 개인정보보호 브라우징 혹은 공유하기 기능에서 서비스를 정상적으로 이용할 수 없었습니다. 이러한 호환 이슈를 발견하고 해결하였습니다.
 
 [블로그 에러 핸들링](https://j93.es/posting/engineering/blog-error-handling/blog-error-handling.md)
 
