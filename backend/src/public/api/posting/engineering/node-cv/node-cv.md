@@ -1,21 +1,8 @@
 ---
-title: My identity as an Engineer
-tag: [Engineer]
-category: engineering
-description: "호기심을 원동력으로 문제에 도전하고, 몰입하며, 그 자체를 즐깁니다. 이러한 과정에서 문제를 깊이 파고, 본질을 간결하게 바라보는 태도를 지향합니다."
+title: Node
+category: _engineering
+description: "title, footer, nav 제거하기."
 ---
-
-## 목차
-
-0. 자기소개
-1. 학력
-2. 경력
-3. 보유 기술
-4. 보유 역량
-5. 프로젝트
-6. 주요 업적
-7. 발표 이력
-8. 봉사활동
 
 ## 0. 자기소개
 
@@ -95,64 +82,6 @@ description: "호기심을 원동력으로 문제에 도전하고, 몰입하며,
 - etc.
 
 ## 4. 보유 역량
-
-### Frontend
-
-#### CSR 기반 Search Engine Optimization (SEO)
-
-검색 엔진에서 블로그 콘텐츠가 정상적으로 노출될 수 있도록 SEO를 적용합니다. CSR 환경에서 검색 엔진 봇이 HTML만을 통하여 웹사이트 구조와 콘텐츠를 정확히 이해할 수 있도록 구성하고, 이를 통하여 CSR 환경에서 발생할 수 있는 SEO 문제를 해결하는 것을 목표로 하였습니다.
-
-CSR 환경에서는 각 path에 적합한 title, description을 검색엔진에 등록하지 못하여, SEO 측면에서 불이익을 얻는 경우가 많습니다. 왜냐하면 대다수의 검색 엔진 봇은 JavaScript 실행 이전의 HTML을 기반으로 페이지를 분석하기 때문에, react-helmet-async 등 meta tag를 삽입하는 JS가 적절한 시기에 실행되지 못합니다. 즉, JS 실행시점에서 meta tag를 변경하는 것이 아닌 HTML 응답시점에서 meta tag가 적절히 삽입되어야 합니다. 이를 해결하기 위하여 Express 서버에서, 요청 path에 맞는 title, description 등의 meta tag를 HTML 응답 단계에서 삽입하도록 구성하였습니다.
-
-또한 Soft 404 문제를 방지하기 위해 페이지 상태에 맞는 HTTP 응답 코드를 반환하도록 구성하였으며, robots.txt와 sitemap.xml을 작성하여 검색 엔진 봇이 웹사이트 구조를 쉽게 파악할 수 있도록 개선하였습니다. 추가적으로 Lighthouse SEO 평가 항목을 분석하여 모바일 대응 등 SEO 요소를 점검하였습니다.
-
-CSR 기반 블로그에서도 검색 엔진 봇이 페이지별 정보를 정상적으로 인식할 수 있도록 개선하였습니다. 각 페이지에 적절한 meta tag와 응답 코드를 적용하여 검색 엔진 친화적인 웹사이트 구조를 확보하였으며, SEO를 고려한 프론트엔드와 백엔드 설계 경험을 얻을 수 있었습니다.
-
-[블로그 SEO](https://j93.es/posting/engineering/blog-seo/blog-seo.md)
-
-#### Cross-Browser Compatibility
-
-다양한 브라우저와 운영체제에서 동일한 UI/UX를 제공하고, 최신 및 레거시 브라우저를 모두 지원할 수 있는 환경을 구축합니다.
-
-브라우저별 렌더링 및 히스토리 동작을 분석하여 Mac 트랙패드 환경, Android 네이버 앱 등에서 발생하는 호환성 이슈를 해결하였습니다.
-
-특히 Mac, iPhone 등 트랙패드 뒤로가기 혹은 뒤로가기 제스처에서 발생하는(이하 긴 터치 뒤로가기 제스처) 화면 멈춤 현상을 브라우저 히스토리(popstate) 동작 분석을 기반으로 개선하였습니다. 더하여 안드로이드 네이버 앱 환경에서 `error` 이벤트 리스닝시에, 개인정보보호 브라우징 혹은 공유하기 기능에서 브라우저 콜백 에러로 인한 이슈를 해결하였습니다.
-
-또한 CSS Reset/Normalize, 폰트 전략과 Dynamic Import 기반 Polyfill(HTML5, CSS Variables, CSS Selector)을 적용하여 브라우저 호환성과 번들 최적화를 함께 구현하였습니다.
-
-브라우저별 UI 및 동작 차이를 최소화하여 일관된 사용자 경험을 제공하였으며, 긴 터치 뒤로가기 제스처 및 Android 네이버 앱 환경의 호환성 문제를 해결하고, 필요한 환경에서만 Polyfill을 로드하여 호환성과 초기 성능을 동시에 확보하였습니다.
-
-[블로그 크로스 브라우징](https://j93.es/posting/engineering/blog-crossbrowsing/blog-crossbrowsing.md)
-
-#### Error Handling Architecture
-
-React 애플리케이션의 예외 상황을 안정적으로 처리할 수 있는 아키텍쳐를 설계합니다. 이를 위하여 에러를 분류하고, 분류한 에러를 처리할 수 있는 방안을 탐색합니다.
-
-예외를 React Rendering Error, Promise Rejection, Browser Callback Error로 분류하고, Error Boundary와 브라우저 전역 이벤트(unhandledrejection)를 활용한 계층형 에러 처리 구조를 설계하였습니다. 또한 에러 로그 수집과 리다이렉트 체계를 구축하여 장애 추적이 가능하도록 구현하였습니다. 예외 발생 경로별 처리 로직을 표준화하여 유지보수성을 향상시켰으며, 브라우저 환경을 고려한 안정적인 에러 처리 체계를 구축하였습니다.
-
-특히, 2025년 2월 1일 기준 안드로이드 네이버 앱 환경에서, `error` 이벤트 리스닝하는 동시에 react-router-dom을 사용하며 path를 동적으로 생성하는 어플리케이션의 경우, 개인정보보호 브라우징 혹은 공유하기 기능에서 서비스를 정상적으로 이용할 수 없었습니다. 이러한 호환 이슈를 발견하고 해결하였습니다.
-
-[블로그 에러 핸들링](https://j93.es/posting/engineering/blog-error-handling/blog-error-handling.md)
-
-#### Web Performance Optimization
-
-Core Web Vitals를 기준으로 초기 로딩 속도, 렌더링 성능, 화면 안정성을 개선하여 사용자 경험을 최적화합니다.
-
-Lighthouse 기반 성능 분석을 통해 병목 구간을 식별하고, Dynamic Import를 활용한 코드 스플리팅, 이미지 최적화(Lazy Loading, 포맷 및 용량 최적화), Preload·Preconnect 적용, 리소스 경량화 및 CLS 개선을 위한 레이아웃 최적화를 수행하였습니다.
-
-초기 로딩 성능과 렌더링 효율을 향상시키고, 네트워크 사용량 및 Layout Shift를 감소시켜 Core Web Vitals 전반의 성능을 개선하였습니다. Lighthouse 기준 데스크탑 70점->96점, 모바일 50점->89점의 성능 향상을 이루어냈습니다. 특히 LCP를 모바일 기준 2.8초로, 데스크탑 기준 0.8초로 향상하였습니다.
-
-[블로그 성능 최적화](https://j93.es/posting/engineering/blog-performance/blog-performance.md)
-
-#### 웹 품질 개선
-
-기능 구현을 넘어 프론트엔드 서비스라면 기본적으로 가져야할 요소를 확보하여 서비스 완성도를 높힙니다. 이를 위하여 웹 표준, 보안, 접근성 등을 고려합니다.
-
-PWA Manifest, Noscript 및 Custom Error Page를 구축하고, CSP와 안전한 외부 링크 정책을 적용하여 보안을 강화하였습니다. 또한 캐시 검증 헤더(ETag, Last-Modified), 메타데이터, Favicon, 로딩 UX 등을 개선하였습니다.
-
-웹 표준, 보안, 접근성, 사용자 경험을 종합적으로 개선하고, 세세한 디테일을 챙겨, 안정적이고 일관된 서비스 환경을 구축하였습니다.
-
-[블로그 디테일 챙기기](https://j93.es/posting/engineering/blog-detail/blog-detail.md)
 
 ### Backend
 
@@ -243,54 +172,6 @@ Repository 계층은 MongoDB와의 데이터 접근을 담당하여 데이터 �
 Cloudflare를 통하여 원본 서버의 트래픽을 줄이고 응답시간을 줄였습니다. 또한 Cloudflare을 통한다면 원본서버의 IP 노출을 최소화할 수 있습니다. 더하여 ASN, 국가, path 키워드 기반의 WAF Rule을 적용하였습니다. 특히 ASN을 통하여 WAF Rule을 설정할 경우, 호스팅 서비스나 일반적이지 않은 환경의 요청을 효과적으로 차단할 수 있었습니다.
 
 원본 서버의 트래픽을 90% 가량 줄일 수 있었습니다. 더하여 웹 퍼징 등에서 원본 서버를 보호하여 보안 위협을 최소화할 수 있습니다.
-
-### Embedded Software
-
-#### Firmware Development on ARM (STM32F4xx) MCUs
-
-STM32F4xx 기반의 ARM MCU를 활용하여 라인트레이서 펌웨어를 개발하였습니다. 실시간으로 센서를 읽고, 모터를 안정적으로 제어하며, 유지보수와 기능 개선이 용이한 구조를 구축하는 것을 목표로 하였습니다.
-
-STM32F411을 기반으로 Timer Interrupt 중심의 실시간 제어 구조를 설계하였습니다. IR 센서는 ADC와 MUX를 이용하여 주기적으로 샘플링하고, Encoder를 통해 모터의 위치와 속도를 계산하였습니다. 또한 PWM을 이용하여 DC 모터를 제어하고, PID 제어기를 구현하여 목표 위치를 안정적으로 추종하도록 구성하였습니다.
-
-펌웨어는 센서, 모터, 제어기, 주행 전략 등을 모듈 단위로 분리하여 개발하였으며, 다양한 모터 제어 방식을 쉽게 교체할 수 있도록 인터페이스를 설계하였습니다. 또한 Timer Interrupt의 실행 주기와 우선순위를 조정하며 실시간성을 확보하고, Floating, Pull-down 회로, Interrupt 지연 등 하드웨어와 소프트웨어가 함께 영향을 주는 문제를 분석하고 해결하였습니다.
-
-실시간 센서 처리와 모터 제어가 가능한 펌웨어를 구현하였으며, STEP 모터와 DC 모터 기반 라인트레이서 모두에 적용 가능한 구조를 설계하였습니다. 또한 모듈화와 인터페이스 분리를 통해 테스트와 유지보수성을 향상시켰으며, Timer 최적화와 Interrupt 우선순위 조정을 통해 제어 안정성과 응답성을 개선하였습니다.
-
-[DC 모터 라인트레이서 제작 경험 소개](https://j93.es/posting/engineering/dc-linetracer/dc-linetracer.md)
-
-[STEP 모터 라인트레이서 제작 경험 소개](https://j93.es/posting/engineering/step-linetracer/step-linetracer.md)
-
-[State Machine](https://j93.es/posting/engineering/state-machine/state-machine.md)
-
-#### PID Control Implementation
-
-DC 모터의 위치와 속도를 안정적으로 제어하기 위하여 PID(Proportional-Integral-Derivative) 제어기를 구현하였습니다. 목표 위치를 정확하게 추종하면서 오버슈팅과 진동을 최소화하는 것을 목표로 하였습니다.
-
-Encoder를 이용하여 모터의 현재 위치를 측정하고, 목표 위치와의 오차(Error)를 계산하였습니다. 이후 비례(Proportional), 적분(Integral), 미분(Derivative) 항을 이용하여 제어값을 산출하고, 계산된 값을 PWM Duty Cycle로 변환하여 모터 드라이버에 전달하였습니다.
-
-또한 P, D Gain을 반복적으로 조정(Tuning)하며 상승 시간, 오버슈팅, 정착 시간, 정상 상태 오차를 비교하였고, 실제 주행 환경에서 가장 안정적인 제어 성능을 얻을 수 있도록 Gain을 최적화하였습니다. 제어 루프는 Timer Interrupt 기반으로 일정한 주기로 실행하여 실시간 제어 성능을 확보하였습니다.
-
-Encoder 기반의 폐쇄 루프(Closed-loop) PID 제어를 구현하여 목표 위치를 안정적으로 추종할 수 있도록 하였습니다. 또한 Gain 튜닝을 통해 오버슈팅과 진동을 감소시키고, 고속 주행에서도 안정적인 모터 제어 성능을 확보하였습니다.
-
-[DC 모터 라인트레이서 제작 경험 소개](https://j93.es/posting/engineering/dc-linetracer/dc-linetracer.md)
-
-#### Debugging in Embedded Environments
-
-하드웨어와 소프트웨어가 긴밀하게 결합된 임베디드 환경에서 문제의 원인을 체계적으로 분석하고, 실시간 제어 시스템의 안정성을 확보하는 것을 목표로 하였습니다.
-
-모듈화된 구조를 기반으로 회로, 센서, 모터 드라이버, 펌웨어를 독립적으로 검증하며 문제 범위를 단계적으로 축소하는 디버깅 방식을 적용하였습니다. 정상 동작하는 코드와 부품으로 교체하며 원인을 배제해 나가는 방식으로 센서 연결 불량, 케이블 단선 등 하드웨어 문제를 신속하게 식별하였습니다.
-
-또한 모터의 비정상 동작 원인을 분석하는 과정에서 PWM 신호선의 Floating 현상이 발생하고 있음을 확인하였으며, MCU의 GPIO Pull-down 설정과 PCB 수준의 Pull-down 회로를 추가하여 전원 인가 초기 발생하던 모터 급발진 문제를 해결하였습니다.
-
-성능 저하 문제 분석에서는 Timer Interrupt의 실행 시간과 우선순위를 중심으로 원인을 추적하였습니다. 모터 제어 코드의 연산량 증가와 센서 샘플링 주기 변경으로 인해 PWM 생성 타이밍이 지연되고 있음을 확인하였으며, 코드 최적화와 Interrupt Priority 조정을 통해 제어 주기를 안정화하고 모터의 저주파 진동 문제를 개선하였습니다.
-
-또한 모터 구동 방식(1-2상 여자, 2상 여자)의 성능을 비교하는 과정에서는 배터리 전압, 주행 환경, 센서 상태 등 외부 변수를 최대한 동일하게 유지하여 테스트 결과의 신뢰성을 확보하였으며, 제어 방식을 쉽게 교체할 수 있도록 모듈을 분리하여 반복적인 성능 검증이 가능하도록 개선하였습니다.
-
-하드웨어와 펌웨어를 함께 고려하는 체계적인 디버깅 절차를 구축하여 Floating, Timer Interrupt 지연, 센서 연결 불량 등 다양한 문제의 원인을 정확하게 식별하고 해결하였습니다. 또한 모듈화와 반복 가능한 테스트 환경을 통해 디버깅 시간을 단축하고, 실시간 임베디드 시스템의 안정성과 유지보수성을 향상시켰습니다.
-
-[DC 모터 라인트레이서 제작 경험 소개](https://j93.es/posting/engineering/dc-linetracer/dc-linetracer.md)
-
-[STEP 모터 라인트레이서 제작 경험 소개](https://j93.es/posting/engineering/step-linetracer/step-linetracer.md)
 
 ### AI
 
