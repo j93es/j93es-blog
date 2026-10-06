@@ -63,8 +63,8 @@ restart-nginx:
 	sudo systemctl reload nginx
 
 audit: 
-	cd $(FRONTEND_DIR) && npm audit fix || true
-	cd $(BACKEND_DIR) && npm audit fix || true
+	cd $(FRONTEND_DIR) && sudo npm audit fix || true
+	cd $(BACKEND_DIR) && sudo npm audit fix || true
 
 auto-audit: audit build-frontend build-backend stop-pm2 start-pm2 save-pm2 restart-nginx
 
