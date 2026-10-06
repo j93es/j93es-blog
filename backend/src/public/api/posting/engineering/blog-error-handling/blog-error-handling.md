@@ -10,14 +10,14 @@ description: "React 기반 어플리케이션에서의 에러 핸들링에 대�
 
 0. 들어가며
 1. React 기반 어플리케이션에서 발생하는 에러 분류
-    - 핵심 판단 기준
-    - React가 실행하는 코드에서 발생한 예외
-    - Promise 기반 예외 (`Promise rejection`)
-    - 브라우저 콜백에서 발생한 일반 예외 (`throw`)
+   - 핵심 판단 기준
+   - React가 실행하는 코드에서 발생한 예외
+   - Promise 기반 예외 (`Promise rejection`)
+   - 브라우저 콜백에서 발생한 일반 예외 (`throw`)
 2. 에러 핸들러 구현
-    - 에러 바운더리
-    - unhandledrejection(Promise rejection)
-    - error(그 외 브라우저 콜백에서 throw)
+   - 에러 바운더리
+   - unhandledrejection(Promise rejection)
+   - error(그 외 브라우저 콜백에서 throw)
 3. 나오며
 
 ## 0. 들어가며
@@ -26,7 +26,7 @@ description: "React 기반 어플리케이션에서의 에러 핸들링에 대�
 
 ## 1. React 기반 어플리케이션에서 발생하는 에러 분류
 
-프론트엔드에서 에러를 핸들링하려면 어떤 과정을 밟아야할까요? 먼저 어떤 에러를 핸들링해야할지 명확히 파악해야할 것 입니다. 정확히 파악하기 위해서는 단위를 잘 나누는 것이 중요하죠. 먼저 에러를 분류화해봅시다. 
+프론트엔드에서 에러를 핸들링하려면 어떤 과정을 밟아야할까요? 먼저 어떤 에러를 핸들링해야할지 명확히 파악해야할 것 입니다. 정확히 파악하기 위해서는 단위를 잘 나누는 것이 중요하죠. 먼저 에러를 분류합시다.
 
 ### 핵심 판단 기준
 
@@ -130,10 +130,9 @@ window.addEventListener("unhandledrejection")
 예:
 
 ```javascript
-Promise.resolve()
-  .then(() => {
-    throw new Error("Promise error");
-  });
+Promise.resolve().then(() => {
+  throw new Error("Promise error");
+});
 ```
 
 결과:
@@ -209,7 +208,7 @@ const Root = () => {
 
   return (
     <ErrorBoundary>
-        <App />
+      <App />
     </ErrorBoundary>
   );
 };
@@ -271,7 +270,7 @@ const usePromiseRejectionErrorHandler = () => {
       // 컴포넌트 언마운트 시 리스너 해제
       window.removeEventListener(
         "unhandledrejection",
-        handleUnhandledRejection
+        handleUnhandledRejection,
       );
     };
   }, []);
